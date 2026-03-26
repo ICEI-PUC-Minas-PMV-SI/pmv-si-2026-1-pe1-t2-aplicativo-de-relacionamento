@@ -1,6 +1,6 @@
 # Especificações do Projeto
 
-|ID| Restrição                                             |
+|Perfil-1| Usuário                                 |
 |--|-------------------------------------------------------|
 |01| O projeto deverá ser entregue até o final do semestre |
 |02| Não pode ser desenvolvido um módulo de backend        |
