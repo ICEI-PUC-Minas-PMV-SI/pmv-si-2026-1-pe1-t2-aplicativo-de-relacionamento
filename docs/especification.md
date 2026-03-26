@@ -75,4 +75,4 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |RNF&#8209;005| Fornecer mensagens claras e compreensíveis em caso de erros ou falhas no sistema.   | MÉDIA | 
 |RNF&#8209;006| Deve apresentar tempo de resposta adequado durante as interações.  | MÉDIA| 
 
-
+**Prioridade: Alta / Média / Baixa.**
