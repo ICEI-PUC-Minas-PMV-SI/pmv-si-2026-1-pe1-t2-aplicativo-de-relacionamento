@@ -24,7 +24,13 @@ Com base na análise das personas forma identificadas as seguintes histórias de
 |Usuário do sistema  | Visualizar eventos e pessoas interessadas nesses eventos            | Facilitar encontros presenciais e interações reais         |
 |Usuário do sistema  | Receber sugestões de assuntos com base no perfil e interesses do match           | Desenvolver uma interação mais interessante e personalizada.          |
 |Usuário do sistema  | Receber conteúdos e recomendações personalizadas de acordo com meu perfil e comportamento           | Ter uma experiência mais relevante dentro do aplicativo e permanecer mais tempo utilizando a plataforma          |
-|Administrador       | Alterar permissões                 | Manter a integridade e organização da plataforma  |
+|Administrador do Sistema     | Gerenciar usuários (criar, editar, bloquear e excluir contas)             | Manter a integridade e organização da plataforma  |
+|Administrador do Sistema      |  Visualizar um painel com métricas da plataforma             | Acompanhar o desempenho e o crescimento do sistema  |
+|Administrador do Sistema      | Configurar regras e permissões do sistema                | Garantir que cada usuário tenha acesso adequado   |
+|Administrador do Sistema      | Monitorar tentativas de acesso suspeitas                | Prevenir invasões e fraudes   |
+|Administrador do Sistema      | Gerenciar níveis de acesso dos usuários                 | Proteger informações sensíveis   |
+|Administrador do Sistema      | Revisar e validar informações cadastradas                 | Garantir a veracidade dos dados   |
+|Administrador do Sistema      | Visualizar feedbacks e denúncias dos usuários                 | Tomar ações corretivas e melhorar a plataforma   |
 
 Apresente aqui as histórias de usuário que são relevantes para o projeto de sua solução. As Histórias de Usuário consistem em uma ferramenta poderosa para a compreensão e elicitação dos requisitos funcionais e não funcionais da sua aplicação. Se possível, agrupe as histórias de usuário por contexto, para facilitar consultas recorrentes à essa parte do documento.
 
