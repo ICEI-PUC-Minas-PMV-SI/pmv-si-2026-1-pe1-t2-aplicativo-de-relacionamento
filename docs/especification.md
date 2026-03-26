@@ -2,8 +2,8 @@
 
 |Perfil-1| Usuário                                 |
 |--|-------------------------------------------------------|
-|01| O projeto deverá ser entregue até o final do semestre |
-|02| Não pode ser desenvolvido um módulo de backend        |
+|Descrisão:| Usuário maior de 18 anos, que utiliza frequentemente redes sociais e aplicativos de relacionamento. Busca conhecer novas pessoas com interesses semelhantes, seja para amizade, encontros ou relacionamentos. Possui alta familiaridade com tecnologia e utiliza o smartphone diariamente. |
+|Necessidades| Encontrar pessoas com interesses em comum, iniciar conversas de forma mais natural e ter uma experiência de interação menos superficial do que em aplicativos tradicionais.       |
 
 Pedro Paulo tem 26 anos, é arquiteto recém-formado e autônomo. Pensa em se desenvolver profissionalmente através de um mestrado fora do país, pois adora viajar, é solteiro e sempre quis fazer um intercâmbio. Está buscando uma agência que o ajude a encontrar universidades na Europa que aceitem alunos estrangeiros.
 
