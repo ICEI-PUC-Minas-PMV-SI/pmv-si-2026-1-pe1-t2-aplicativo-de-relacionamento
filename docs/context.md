@@ -6,6 +6,12 @@ Diante desse cenário, este trabalho propõe o desenvolvimento de um aplicativo 
 
 Com isso, a proposta busca não apenas melhorar a experiência do usuário, mas também aumentar o engajamento e a permanência na plataforma, permitindo uma personalização mais eficiente de conteúdos e informativos.  
 
+## Problema
+
+Diante do exposto, o desafio que se busca superar com este projeto é a falta de suporte enfrentada por alunos do ensino superior no que se refere às fontes de informações e conhecimentos necessários para um bom aproveitamento acadêmico.
+
+
+
 ## Objetivos
 
 Aqui você deve descrever os objetivos do trabalho indicando que o objetivo geral é desenvolver um software para solucionar o problema apresentado acima. 
