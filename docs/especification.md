@@ -37,21 +37,23 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 |ID    | Descrição do Requisito  | Prioridade | 
 |------|-----------------------------------------|----| 
-| RF-001 | O sistema deve permitir ao usuário cadastrar uma conta utilizando informações como nome, idade e e-mail e outros. | ALTA |  
-|RF-002| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
-|RF-003| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA |
-|RF-004| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
-|RF-005| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
-|RF-006| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
-|RF-007| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
-|RF-008| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
-|RF-009| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
-|RF-010| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
-|RF-011| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
-|RF-012| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
-|RF-013| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
-|RF-014| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
-|RF-015| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
+| RF-01 | O sistema deve permitir ao usuário cadastrar uma conta utilizando informações como nome, idade e e-mail e outros. | ALTA |  
+|RF-02| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
+|RF-03| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA |
+|RF-04| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
+|RF-05| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
+|RF-06| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
+|RF-07| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
+|RF-08| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
+|RF-09| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
+|RF-10| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
+|RF-11| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
+|RF-12| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
+|RF-13| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
+|RF-14| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
+|RF-15| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
+
+           aaaaaaaaa
 
 
 ### Requisitos não Funcionais
