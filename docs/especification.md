@@ -37,7 +37,7 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 |ID    | Descrição do Requisito  | Prioridade | 
 |------|-----------------------------------------|----| 
-|RF-01| O sistema deve permitir ao usuário cadastrar uma conta utilizando informações como nome, idade e e-mail e outros. | ALTA |  
+| RF-001 | O sistema deve permitir ao usuário cadastrar uma conta utilizando informações como nome, idade e e-mail e outros. | ALTA |  
 |RF-002| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
 |RF-003| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA |
 |RF-004| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
