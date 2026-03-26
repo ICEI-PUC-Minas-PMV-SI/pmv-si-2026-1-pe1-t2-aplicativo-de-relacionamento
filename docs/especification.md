@@ -38,12 +38,12 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |ID    | Descrição do Requisito  | Prioridade | 
 |------|-----------------------------------------|----| 
 | RF-01 | O sistema deve permitir ao usuário cadastrar uma conta utilizando informações como nome, idade e e-mail e outros. | ALTA |  
-|RF-02| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
-|RF-03| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA |
-|RF-04| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
-|RF-05| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
-|RF-06| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
-|RF-07| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
+|RF-02| O sistema deve permitir ao usuário realizar login em sua conta utilizando suas credenciais cadastradas e verificação de duas etapas.    | MÉDIA | 
+|RF-03| O sistema deve permitir ao usuário informar seus interesses, valores pessoais e objetivos de relacionamento durante o cadastro ou edição do perfil.  | MÉDIA |
+|RF-04| O sistema deve permitir ao usuário informar seus interesses, valores pessoais e objetivos de relacionamento durante o cadastro ou edição do perfil   | MÉDIA | 
+|RF-05| Sistema deve permitir ferramentas de matching baseado em interesses, valores e preferências dos usuários.    | MÉDIA | 
+|RF-06| O sistema deve permitir ao usuário indicar interesse ou rejeição por meio de uma interface de swipe (deslizar para direita ou esquerda).     | MÉDIA | 
+|RF-07| O sistema deve permitir que os dois usuários que deram match através do swipe, possam iniciar uma conversa e trocar mensagens por meio de um chat interno.   | MÉDIA | 
 |RF-08| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
 |RF-09| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
 |RF-10| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
@@ -53,7 +53,7 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |RF-14| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
 |RF-15| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
 
-<!-- Não coloquei às RF's com trés carácteres por questão do layout, visualmente ficou melhor assim -->
+<!-- Não coloquei às RF's com trés carácteres por questão do layout, visualmente ficou melhor assim, digo como: RF-001, e sim RF-01 -->
 
 
 ### Requisitos não Funcionais
