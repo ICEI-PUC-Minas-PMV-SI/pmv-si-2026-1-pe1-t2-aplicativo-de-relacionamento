@@ -17,8 +17,16 @@ Com base na análise das personas forma identificadas as seguintes histórias de
 
 |EU COMO... `PERSONA`| QUERO/PRECISO ... `FUNCIONALIDADE` |PARA ... `MOTIVO/VALOR`                 |
 |--------------------|------------------------------------|----------------------------------------|
-|Usuário do sistema  | Registrar minhas tarefas           | Não esquecer de fazê-las               |
-|Administrador       | Alterar permissões                 | Permitir que possam administrar contas |
+|Usuário do sistema  | Criar um perfil com minhas informações, interesses e valores             | Encontrar pessoas com maior compatibilidade           |
+|Usuário do sistema  | Responder um questionário sobre interesses e personalidade           | Melhorar a qualidade dos matches e sugestões de conexões          |
+|Usuário do sistema  | Receber sugestões de perguntas de quebra-gelo            | Iniciar a conversa de forma 
+
+mais natural         |
+|Usuário do sistema  | Verificar minha identidade no cadastro            |          |
+|Usuário do sistema  | Visualizar eventos e pessoas interessadas nesses eventos            |          |
+|Usuário do sistema  | Receber sugestões de assuntos com base no perfil e interesses do match           |          |
+|Usuário do sistema  | Receber conteúdos e recomendações personalizadas de acordo com meu perfil e comportamento           |          |
+|Administrador       | Alterar permissões                 |  |
 
 Apresente aqui as histórias de usuário que são relevantes para o projeto de sua solução. As Histórias de Usuário consistem em uma ferramenta poderosa para a compreensão e elicitação dos requisitos funcionais e não funcionais da sua aplicação. Se possível, agrupe as histórias de usuário por contexto, para facilitar consultas recorrentes à essa parte do documento.
 
