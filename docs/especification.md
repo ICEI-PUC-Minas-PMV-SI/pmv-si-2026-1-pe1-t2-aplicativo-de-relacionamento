@@ -38,20 +38,20 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |ID    | Descrição do Requisito  | Prioridade | 
 |------|-----------------------------------------|----| 
 |RF&#8209;001| O sistema deve permitir ao usuário cadastrar uma conta utilizando informações como nome, idade e e-mail e outros. | ALTA |  
-|RF&#8209;002| O sistema deve permitir ao usuário realizar login em sua conta utilizando suas credenciais cadastradas e verificação de duas etapas.    | MÉDIA | 
-|RF&#8209;003| O sistema deve permitir ao usuário informar seus interesses, valores pessoais e objetivos de relacionamento durante o cadastro ou edição do perfil.  | MÉDIA |
-|RF&#8209;004| O sistema deve permitir ao usuário informar seus interesses, valores pessoais e objetivos de relacionamento durante o cadastro ou edição do perfil   | MÉDIA | 
+|RF&#8209;002| O sistema deve permitir ao usuário realizar login em sua conta utilizando suas credenciais cadastradas e verificação de duas etapas.    | ALTA | 
+|RF&#8209;003| O sistema deve permitir ao usuário informar seus interesses, valores pessoais e objetivos de relacionamento durante o cadastro ou edição do perfil.  | ALTA|
+|RF&#8209;004| O sistema deve permitir ao usuário informar seus interesses, valores pessoais e objetivos de relacionamento durante o cadastro ou edição do perfil   | ALTA | 
 |RF&#8209;005| Sistema deve permitir ferramentas de matching baseado em interesses, valores e preferências dos usuários.    | MÉDIA | 
-|RF&#8209;006| O sistema deve permitir ao usuário indicar interesse ou rejeição por meio de uma interface de swipe (deslizar para direita ou esquerda).     | MÉDIA | 
-|RF&#8209;007| O sistema deve permitir que os dois usuários que deram match através do swipe, possam iniciar uma conversa e trocar mensagens por meio de um chat interno.   | MÉDIA | 
-|RF&#8209;008| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
-|RF&#8209;009| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
-|RF&#8209;010| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
-|RF&#8209;011| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
-|RF&#8209;012| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
-|RF&#8209;013| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
-|RF&#8209;014| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
-|RF&#8209;015| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
+|RF&#8209;006| O sistema deve permitir ao usuário indicar interesse ou rejeição por meio de uma interface de swipe (deslizar para direita ou esquerda).     | ALTA | 
+|RF&#8209;007| O sistema deve permitir que os dois usuários que deram match através do swipe, possam iniciar uma conversa e trocar mensagens por meio de um chat interno.   | ALTA | 
+|RF&#8209;008| O sistema deve permitir ao usuário excluir sua conta e remover seus dados da plataforma.  | MÉDIA | 
+|RF&#8209;009| O sistema deve permitir recursos de acessibilidade como suporte a leitores de tela, contraste adequado e outros.    | ALTA | 
+|RF&#8209;010| O sistema deve permitir um assistente que sugira perguntas e temas de conversa baseados nos interesses de ambos os usuários   | MÉDIA | 
+|RF&#8209;011| O sistema deve permitir o envio de imagens, áudios e GIFs no chat interno.    | MÉDIA | 
+|RF&#8209;012| O sistema deve permitir notificar os usuários quando houver novas atualizações dentro do chat interno ou de novos matches.    | MÉDIA | 
+|RF&#8209;013| Sistema de moderação para identificar e sinalizar mensagens ofensivas.   | MÉDIA | 
+|RF&#8209;014| O sistema deve permitir bloquear e denunciar perfis que apresentam comportamento inadequado ou ofensivo.   | MÉDIA | 
+|RF&#8209;015| O sistema deve permitir a verificação de identidade do usuário por meio de confirmação de idade e dados básicos.   | MÉDIA | 
 
 <!-- Não coloquei às RF's com trés carácteres por questão do layout, visualmente ficou melhor assim, digo como: RF-001, e sim RF-01 obs: resolvi usando &#8209; no lugar de - -->
 
