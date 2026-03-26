@@ -53,7 +53,7 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |RF-14| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
 |RF-15| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
 
-           aaaaaaaaa
+<!-- Não coloquei às RF's com trés carácteres por questão do layout, visualmente ficou melhor assim -->
 
 
 ### Requisitos não Funcionais
