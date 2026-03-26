@@ -6,7 +6,9 @@
 
 `SEMESTRE: 1º`
 
-Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo desenvolvido.
+O objetivo geral é superar a limitação dos apps tradicionais, que favorecem conexões superficiais baseadas em aparência física, propondo um sistema de correspondência fundamentado em valores, interesses, estilo de vida e personalidade dos usuários — traçados por meio de um questionário inicial de perfil.
+
+Além do sistema de match por afinidade, o aplicativo incorpora um assistente virtual inteligente capaz de sugerir mensagens e perguntas de quebra-gelo após a conexão, facilitando o início das conversas e aumentando as chances de interações duradouras entre os usuários.
 
 ## Integrantes
 
