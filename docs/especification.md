@@ -61,6 +61,8 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |RF&#8209;019| O sistema deve oferecer funcionalidades Premium para usuários VIP.    | MÉDIA | 
 |RF&#8209;020| O sistema deve permitir ligações pelo chat interno após uma certa quantidade de interação.     | BAIXA | 
 
+**Prioridade: Alta / Média / Baixa.**
+
 <!-- Não coloquei às RF's com trés carácteres por questão do layout, visualmente ficou melhor assim, digo como: RF-001, e sim RF-01 obs: resolvi usando &#8209; no lugar de - -->
 
 
