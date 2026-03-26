@@ -8,38 +8,21 @@ Com isso, a proposta busca não apenas melhorar a experiência do usuário, mas 
 
 ## Problema
 
-Diante do exposto, o desafio que se busca superar com este projeto é a falta de suporte enfrentada por alunos do ensino superior no que se refere às fontes de informações e conhecimentos necessários para um bom aproveitamento acadêmico.
-
-
+As estruturas atuais dos aplicativos de relacionamento, em sua maioria favorecem a ocorrência de conexões superficiais entre os usuários, sobretudo em decorrência de mecanismos que priorizam interações rápidas baseadas na aparência física e em informações limitadas dos perfis. Destarte, nesse viés, o projeto desenvolvido possui como problema central mensurar de que forma a implementação de interfaces reativas e mecanismos de correspondência baseados em valores, interesses e afinidades pessoais podem reduzir interações superficiais nas aplicações citadas a fim de favorecer a formação de conexões mais significativas entre os usuários.
 
 ## Objetivos
 
-Aqui você deve descrever os objetivos do trabalho indicando que o objetivo geral é desenvolver um software para solucionar o problema apresentado acima. 
+O projeto possui como objetivo central desenvolver a proposta de um aplicativo de relacionamento que promova conexões mais significativas entre os usuários, utilizando informações de interesses, valores e características pessoais para aumentar a compatibilidade entre os perfis, desenvolvendo interfaces reativas com mecanismos de validação de dados no Front-end, voltados à melhoria da qualidade das conexões estabelecidas na plataforma, visando implementar um assistente conversacional para sugerir mensagens e perguntas iniciais após o match. Desta forma, estimulando diálogos mais relevantes e duradouros. Não obstante, o projeto também almeja avaliar o nível de impacto das soluções implementadas sobre o engajamento e permanência dos usuários na plataforma, ademais a qualidade percebida das interações, ao final, identificando os principais fatores que contribuem para a superficialidade das interações nos aplicativos de relacionamento tradicionais, com ênfase nos fenômenos de Lookismo, Ghosting e Dating Burnout. 
 
-Apresente também alguns (pelo menos 2) objetivos específicos dependendo de onde você vai querer concentrar a sua prática investigativa, ou como você vai aprofundar no seu trabalho.
- 
-> **Links Úteis**:
-> - [Objetivo geral e objetivo específico: como fazer e quais verbos utilizar](https://blog.mettzer.com/diferenca-entre-objetivo-geral-e-objetivo-especifico/)
 
 ## Justificativa
 
-Descreva a importância ou a motivação para trabalhar com esta aplicação que você escolheu. Indique as razões pelas quais você escolheu seus objetivos específicos ou as razões para aprofundar em certos aspectos do software.
+A temática, a qual o projeto a ser desenvolvido é baseado, é pertinente, uma vez que na era digital, a crescente de relacionamentos virtuais suscita desdobramentos distintos em variados âmbitos socioeconômicos, de tal forma que os impactos orientam estudos e pesquisas como o da Forbes Health acerca do colapso emocional e financeiro nos aplicativos de relacionamento. Sob essa perspectiva, a realização do projeto e da aplicação a ser desenvolvida é essencial, pois, de modo inovador desenvolverá soluções a esse tipo de aplicações, sob o enfoque de promover melhorias à experiência do usuário e na qualidade das interações mediadas por interfaces homem-máquina.  
 
-Lembre-se de pesquisar e utilizar números que justifiquem por que é importante que tal problema seja resolvido ou que mostrem o impacto do problema na vida das pessoas.
-
-O grupo de trabalho pode fazer uso de questionários, entrevistas e dados estatísticos, que podem ser apresentados, com o objetivo de esclarecer detalhes do problema que será abordado pelo grupo.
-
-> **Links Úteis**:
-> - [Como montar a justificativa](https://guiadamonografia.com.br/como-montar-justificativa-do-tcc/)
+A pesquisa também é justificada pelo fato de que sua execução, suscitará o desenvolvimento de estratégias mais eficientes do que os modelos tradicionais utilizados em aplicações de relacionamento, propondo mecanismos que não só priorizem maior compatibilidade de usuários e relacionamentos contínuos e mais naturais, como também reduza barreiras interpessoais frequentes, personalize a experiência digital individual e formação de conexões mais significativas. Ressalta-se que todo o conhecimento e práticas a serem desenvolvidos contribuirão para a área acadêmica- científica da tecnologia, permitindo um maior esclarecimento sobre o tema em menção.  
+ 
 
 ## Público-Alvo
 
-Descreva quem serão as pessoas que usarão a sua aplicação indicando os diferentes perfis. O objetivo aqui não é definir quem serão os clientes ou quais serão os papéis dos usuários na aplicação. A ideia é, dentro do possível, conhecer um pouco mais sobre o perfil dos usuários: conhecimentos prévios, relação com a tecnologia, relações hierárquicas, etc.
+O público-alvo do aplicativo é formado por pessoas maiores de 18 anos que desejam conhecer novas pessoas por meio de uma plataforma digital. Em geral, são usuários que já utilizam smartphones, redes sociais e aplicativos de comunicação, possuindo familiaridade com tecnologia no dia a dia e que buscam um espaço digital para interagir com novas pessoas e criar experiências. Entre os principais perfis, destacam-se usuários que buscam conexões mais autênticas, baseadas em interesses, valores e personalidade, e não apenas na aparência. Também fazem parte desse público pessoas que encontram dificuldade em iniciar ou manter conversas em aplicativos de relacionamento tradicionais, além daquelas que valorizam mais segurança e confiabilidade durante as interações online. A equipe pretende utilizar questionários e entrevistas para compreender melhor as necessidades, experiências e expectativas desse público, permitindo definir de forma mais clara os perfis dos usuários envolvidos no problema. 
 
-Adicione informações sobre o público-alvo por meio de uma descrição textual, diagramas de personas e mapa de stakeholders.
-
-> **Links Úteis**:
-> - [Público-alvo](https://blog.hotmart.com/pt-br/publico-alvo/)
-> - [Como definir o público alvo](https://exame.com/pme/5-dicas-essenciais-para-definir-o-publico-alvo-do-seu-negocio/)
-> - [Público-alvo: o que é, tipos, como definir seu público e exemplos](https://klickpages.com.br/blog/publico-alvo-o-que-e/)
-> - [Qual a diferença entre público-alvo e persona?](https://rockcontent.com/blog/diferenca-publico-alvo-e-persona/)
