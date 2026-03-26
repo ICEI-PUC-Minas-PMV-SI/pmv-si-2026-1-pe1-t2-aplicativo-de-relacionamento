@@ -38,7 +38,7 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |ID    | Descrição do Requisito  | Prioridade | 
 |------|-----------------------------------------|----| 
 | RF- 001 | O sistema deve permitir ao usuário cadastrar uma conta utilizando informações como nome, idade e e-mail e outros. | ALTA |  
-|RF-02| O sistema deve permitir ao usuário realizar login em sua conta utilizando suas credenciais cadastradas e verificação de duas etapas.    | MÉDIA | 
+|RF-002| O sistema deve permitir ao usuário realizar login em sua conta utilizando suas credenciais cadastradas e verificação de duas etapas.    | MÉDIA | 
 |RF-03| O sistema deve permitir ao usuário informar seus interesses, valores pessoais e objetivos de relacionamento durante o cadastro ou edição do perfil.  | MÉDIA |
 |RF-04| O sistema deve permitir ao usuário informar seus interesses, valores pessoais e objetivos de relacionamento durante o cadastro ou edição do perfil   | MÉDIA | 
 |RF-05| Sistema deve permitir ferramentas de matching baseado em interesses, valores e preferências dos usuários.    | MÉDIA | 
