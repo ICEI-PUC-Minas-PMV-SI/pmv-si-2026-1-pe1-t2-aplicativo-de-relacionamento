@@ -22,14 +22,14 @@ A paleta de cores do MatchConnect foi estabelecida para comunicar modernidade, c
 <li>gradiente - #5EBBF6</li>
 </ul>
 
-utilizados em áreas de destaque da interface, especialmente na seção principal da página. O rosa (#FD51B3) representa emoção e conexão entre pessoas; o roxo (#8652F5) simboliza criatividade, inovação e tecnologia; e o azul (#5EBBF6) transmite confiança, leveza e fluidez na navegação.
+Utilizados em áreas de destaque da interface, especialmente na seção principal da página. O rosa (#FD51B3) representa emoção e conexão entre pessoas; o roxo (#8652F5) simboliza criatividade, inovação e tecnologia; e o azul (#5EBBF6) transmite confiança, leveza e fluidez na navegação.
 
 **Cores de base**
 <ul>
 <li> #FFFFFF </li>
 <li> #F8F7FF</li>
 </ul>
-aplicadas no fundo das páginas e nas seções de conteúdo, garantindo clareza, legibilidade e conforto visual. O branco (#FFFFFF) mantém a interface limpa, enquanto o tom #F8F7FF cria contraste sutil entre seções.
+Aplicadas no fundo das páginas e nas seções de conteúdo, garantindo clareza, legibilidade e conforto visual. O branco (#FFFFFF) mantém a interface limpa, enquanto o tom #F8F7FF cria contraste sutil entre seções.
 
 
 **Aplicação em botões**
@@ -37,7 +37,7 @@ aplicadas no fundo das páginas e nas seções de conteúdo, garantindo clareza,
 <li> #5C6CFF</li>
 <li>#FFFFFF)</li>
 </ul>
-a cor #5C6CFF é utilizada em botões secundários contornados, tanto na borda quanto no texto. No estado de interação, o preenchimento em #5C6CFF com texto em #FFFFFF reforça o contraste e evidencia a ação do usuário.
+A cor #5C6CFF é utilizada em botões secundários contornados, tanto na borda quanto no texto. No estado de interação, o preenchimento em #5C6CFF com texto em #FFFFFF reforça o contraste e evidencia a ação do usuário.
 
 <p> A utilização do gradiente cria uma sensação de continuidade e movimento, reforçando o dinamismo da plataforma. Em conjunto com as cores neutras, a interface mantém equilíbrio visual e destaca os elementos interativos. </p>
 
@@ -77,7 +77,8 @@ A tipografia do MatchConnect foi definida com o objetivo de garantir clareza, le
    <li>Arial</li>
    <li>Helvetica</li>
    <li>sans-serif</li>
-  utilizada em todo o sistema, desde títulos até textos descritivos. A escolha de fontes sem serifa favorece a leitura em diferentes dispositivos e tamanhos de tela.
+   
+Utilizada em todo o sistema, desde títulos até textos descritivos. A escolha de fontes sem serifa favorece a leitura em diferentes dispositivos e tamanhos de tela.
 
 A padronização tipográfica facilita a compreensão do conteúdo, evita distrações visuais e mantém o foco nas interações.
 
@@ -129,9 +130,13 @@ A tipografia complementa o símbolo com um estilo moderno e de fácil leitura, g
 O logotipo deve ser aplicado de forma consistente, garantindo legibilidade e reconhecimento.
 
 **Proporção:** manter proporção original (height: 135px / width: auto)
+
 **Integridade:** não distorcer, rotacionar ou alterar cores
+
 **Espaçamento:** respeitar área de respiro ao redor
+
 **Aplicação:** exibido como bloco na navbar (display: block)
+
 **Contraste:** aplicar sobre fundos que garantam boa legibilidade
 
 Essas diretrizes asseguram consistência visual e fortalecem a identidade da marca.
