@@ -70,10 +70,9 @@ Esse conjunto garante que os elementos interativos sejam claros, funcionais e in
 
 # Tipografia 
 
-
 A tipografia do MatchConnect foi definida com o objetivo de garantir clareza, legibilidade e consistência visual em toda a interface, contribuindo para uma navegação fluida.
 
- **Fonte principal 
+ **Fonte principal** 
  <ul>
    <li>Arial</li>
    <li>Helvetica</li>
@@ -116,6 +115,14 @@ A tipografia complementa o símbolo com um estilo moderno e de fácil leitura, g
 <figcaption> Figura 2 - Logotipo MatchConnect
 
 </figure>
+
+
+
+
+
+
+
+
 
 **Regras de Uso do Logotipo**
 
