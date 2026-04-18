@@ -29,7 +29,8 @@ Utilizados em áreas de destaque da interface, especialmente na seção principa
 <li> #FFFFFF </li>
 <li> #F8F7FF</li>
 </ul>
-Aplicadas no fundo das páginas e nas seções de conteúdo, garantindo clareza, legibilidade e conforto visual. O branco (#FFFFFF) mantém a interface limpa, enquanto o tom #F8F7FF cria contraste sutil entre seções.
+<p></p>Aplicadas no fundo das páginas e nas seções de conteúdo, garantindo clareza, legibilidade e conforto visual. O branco (#FFFFFF) mantém a interface limpa, enquanto o tom #F8F7FF cria contraste sutil entre seções.</p>
+
 
 
 **Aplicação em botões**
@@ -88,8 +89,11 @@ Esse conjunto assegura uma comunicação clara e eficiente, alinhada à proposta
 
 A iconografia do MatchConnect foi definida para reforçar a comunicação visual da plataforma, tornando a navegação mais intuitiva e alinhada à identidade moderna do produto.
 
+
 **Estilo dos ícones:** padrão minimalista, com traços limpos e formas bem definidas, garantindo fácil reconhecimento.
+
 **Aplicação:** utilizada em navegação, funcionalidades e seções explicativas, auxiliando na identificação rápida de ações.
+
 **Consistência visual:** os ícones seguem o mesmo padrão estético, mantendo coerência com a tipografia e a paleta de cores.
 
 A iconografia reduz a dependência de texto e facilita a compreensão das funcionalidades.
