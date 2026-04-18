@@ -31,6 +31,7 @@ utilizados em áreas de destaque da interface, especialmente na seção principa
 </ul>
 aplicadas no fundo das páginas e nas seções de conteúdo, garantindo clareza, legibilidade e conforto visual. O branco (#FFFFFF) mantém a interface limpa, enquanto o tom #F8F7FF cria contraste sutil entre seções.
 
+
 **Aplicação em botões**
 <ul>
 <li> #5C6CFF</li>
@@ -72,7 +73,12 @@ Esse conjunto garante que os elementos interativos sejam claros, funcionais e in
 
 A tipografia do MatchConnect foi definida com o objetivo de garantir clareza, legibilidade e consistência visual em toda a interface, contribuindo para uma navegação fluida.
 
- **Fonte principal (Arial, Helvetica, sans-serif):** utilizada em todo o sistema, desde títulos até textos descritivos. A escolha de fontes sem serifa favorece a leitura em diferentes dispositivos e tamanhos de tela.
+ **Fonte principal 
+ <ul>
+   <li>Arial</li>
+   <li>Helvetica</li>
+   <li>sans-serif</li>
+  utilizada em todo o sistema, desde títulos até textos descritivos. A escolha de fontes sem serifa favorece a leitura em diferentes dispositivos e tamanhos de tela.
 
 A padronização tipográfica facilita a compreensão do conteúdo, evita distrações visuais e mantém o foco nas interações.
 
