@@ -129,7 +129,8 @@ A tipografia complementa o símbolo com um estilo moderno e de fácil leitura, g
 
 
 
-**Regras de Uso do Logotipo**
+
+# Regras de Uso do Logotipo
 
 O logotipo deve ser aplicado de forma consistente, garantindo legibilidade e reconhecimento.
 
