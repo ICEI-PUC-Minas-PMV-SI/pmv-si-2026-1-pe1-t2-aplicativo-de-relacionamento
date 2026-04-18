@@ -13,7 +13,6 @@ Além do sistema de match por afinidade, o aplicativo incorpora um assistente vi
 ## Integrantes
 
 * Ian Pedra Martins
-* Gabriel Mariano Gonçalves
 * João Vitor Simões Leal
 * Sarah Luiza Domingos de Mello
 * Rodrigo Gonçalves de Moura Ribeiro
