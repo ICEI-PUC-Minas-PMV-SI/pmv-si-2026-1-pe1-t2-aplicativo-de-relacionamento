@@ -65,7 +65,7 @@ O quadro Kanban do grupo no GitHub está disponível no link [Projects](https://
 
 <figure>
 
-<img  src="https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t2-aplicativo-de-relacionamento/blob/bfced5be2583c752f07965ae94c85794b8424538/docs/img/Quadro%20Kanban%20-%20MatchConnect.png"
+<img  src="https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t2-aplicativo-de-relacionamento/blob/bfced5be2583c752f07965ae94c85794b8424538/docs/img/Quadro%20Kanban%20-%20MatchConnect.png">
 
 <figcaption>Figura 2 - Tela do kanban no GitHub utilizada pelo grupo</figcaption>
 
@@ -101,7 +101,7 @@ O quadro Kanban do grupo no GitHub está disponível no link [Projects](https://
 
 <figure>
 
-<img  src="https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t2-aplicativo-de-relacionamento/blob/154b9f615e0afa1910fd5c02437c48bc0d783cb3/docs/img/Etiquetas%20-%20MatchConnect.png"
+<img  src="https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t2-aplicativo-de-relacionamento/blob/154b9f615e0afa1910fd5c02437c48bc0d783cb3/docs/img/Etiquetas%20-%20MatchConnect.png">
 
 <figcaption>Figura 3 - Tela do esquema de cores e categorias</figcaption>
 
@@ -133,11 +133,11 @@ O editor de código foi escolhido porque ele possui uma integração com o siste
 
 |--------------------|--------------------------------------------------------------------------------|----------------------------------------|
 
-|Repositório de código fonte | GitHub | https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t2-aplicativo-de-relacionamento/blob/154b9f615e0afa1910fd5c02437c48bc0d783cb3/src/README.md |
+|Repositório de código fonte | GitHub | [https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t2-aplicativo-de-relacionamento/blob/154b9f615e0afa1910fd5c02437c48bc0d783cb3/src/README.md] |
 
-|Documentos do projeto | GitHub | https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t2-aplicativo-de-relacionamento/blob/154b9f615e0afa1910fd5c02437c48bc0d783cb3/README.md |
+|Documentos do projeto | GitHub | [https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t2-aplicativo-de-relacionamento/blob/154b9f615e0afa1910fd5c02437c48bc0d783cb3/README.md] |
 
-|Projeto de interface e wireframes | Figma | https://www.figma.com/proto/x7WyMSGxse3KJ0kYoflm4X/Projeto-de-Interface---Etapa-2?node-id=65-161&starting-point-node-id=65%3A161&t=wqcbaadQTDNm1hdA-1 |
+|Projeto de interface e wireframes | Figma | [https://www.figma.com/proto/x7WyMSGxse3KJ0kYoflm4X/Projeto-de-Interface---Etapa-2?node-id=65-161&starting-point-node-id=65%3A161&t=wqcbaadQTDNm1hdA-1] |
 
 
 |Gerenciamento do projeto | GitHub | [https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t2-aplicativo-de-relacionamento/blob/bfced5be2583c752f07965ae94c85794b8424538/docs/img/Quadro%20Kanban%20-%20MatchConnect.png] |
