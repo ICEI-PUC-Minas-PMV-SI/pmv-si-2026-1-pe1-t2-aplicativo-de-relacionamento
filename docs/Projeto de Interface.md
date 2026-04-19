@@ -485,7 +485,7 @@ O fluxograma apresentado na figura 30 mostra o fluxo de interação do usuário 
 <hr>
 
 
-<h3><b>Tela - Dashboard- </b></h3>
+<h3><b>Tela - Dashboard </b></h3>
 
 <p></p>
 
@@ -500,7 +500,7 @@ O fluxograma apresentado na figura 30 mostra o fluxo de interação do usuário 
 
 <hr>
 
-<h3><b>Tela - Controle de Usuários- </b></h3>
+<h3><b>Tela - Controle de Usuários </b></h3>
 
 <p>A tela de controle de usuários tem como objetivo permitir que o administrador gerencie todas as contas cadastradas no sistema, garantindo organização, segurança e controle de acesso. Nessa interface, o administrador pode visualizar a lista completa de usuários cadastrados, buscar/filtrar usuários (nome, e-mail, ID, CPF, Tipo de plano e Cidade), acessar o perfil detalhado de cada usuário, editar informações cadastrais, quando necessário, ativar, desativar ou suspender contas, excluir usuários do sistema (quando aplicável) e
 visualizar histórico de atividades ou ações realizadas pelos usuários</p>
@@ -516,7 +516,7 @@ visualizar histórico de atividades ou ações realizadas pelos usuários</p>
 
 <hr>
 
-<h3><b>Tela - Feedbacks e Denúncias- </b></h3>
+<h3><b>Tela - Feedbacks e Denúncias </b></h3>
 
 <p>A tela de feedbacks e denúncias tem como objetivo centralizar a comunicação dos usuários com a administração do sistema, permitindo o acompanhamento, análise e resolução de sugestões, reclamações e conteúdos reportados. Nessa interface, o administrador pode visualizar todos os feedbacks enviados pelos usuários, acessar denúncias relacionadas a conteúdos, perfis ou comportamentos inadequados, filtrar e organizar as solicitações por ID ou tipo (feedback ou denúncia), ler detalhes de cada envio, incluindo descrição, usuário responsável e evidências (quando houver), alterar o status das solicitações (pendente, em análise, resolvido, rejeitado) e responder feedbacks diretamente pela plataforma (se aplicável).</p>
 
@@ -530,7 +530,7 @@ visualizar histórico de atividades ou ações realizadas pelos usuários</p>
 </figure>
 
 <hr>
-<h3><b>Tela - Perfil do Administrador- </b></h3>
+<h3><b>Tela - Perfil do Administrador </b></h3>
 
 <p>A tela de perfil do administrador tem como objetivo centralizar o gerenciamento das informações e permissões do usuário com acesso administrativo ao sistema. Nessa interface, o administrador pode visualizar e editar seus dados pessoais (como nome, e-mail, telefone, cargo e foto de perfil), alterar credenciais de acesso (senha), alterar as suas permissões como administrador, gerenciar configurações da conta (tema, idioma e notificações) e visualizar/excluir informações de histórico de atividades recente (logs de acesso ou ações realizadas)</p>
 
@@ -545,7 +545,7 @@ visualizar histórico de atividades ou ações realizadas pelos usuários</p>
 
 <hr>
 
-<h3><b>Tela - Gerenciamento de Regras - </b></h3>
+<h3><b>Tela - Gerenciamento de Regras  </b></h3>
 
 <p>A tela de gerenciamento de regras tem como objetivo permitir que o administrador defina, edite e mantenha as diretrizes e políticas que regem o funcionamento da plataforma. Nessa interface, o administrador pode criar novas regras e políticas do sistema, filtrar a busca (ID, Nome da regra, Tipo, Status e Data da última atualização), editar regras existentes, atualizando descrições ou condições, organizar regras por categorias (ex: comportamento, conteúdo, segurança), ativar ou desativar regras conforme necessidade, definir níveis de severidade ou penalidades associadas a cada regra, visualizar histórico de alterações realizadas nas regras e vincular regras a ações automáticas ou processos de moderação (quando aplicável)</p>
 
