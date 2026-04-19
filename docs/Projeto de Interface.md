@@ -12,7 +12,7 @@ O fluxograma apresentado na figura 1 mostra o fluxo de interação do usuário c
   
 <figure>
 
-<img  src="https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t2-aplicativo-de-relacionamento/blob/cc8520d4fc87cf8b4ffe32c592a514aa1ad64210/docs/img/Useflow%20-%20Usu%C3%A1rio%20Comum.png]"
+![User flow Usuário Comum](https://raw.githubusercontent.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t2-aplicativo-de-relacionamento/cc8520d4fc87cf8b4ffe32c592a514aa1ad64210/docs/img/Useflow%20-%20Usu%C3%A1rio%20Comum.png)
 
 <figcaption>Figura 1 - User flow Usuário Comum
 
@@ -37,7 +37,7 @@ As telas do sistema apresentam uma estrutura comum que é apresentada na figura 
 
 <figure>
 
-<img  src="https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t2-aplicativo-de-relacionamento/blob/7cc86dce9768e5801a781e659e71fac19c81e4f1/docs/img/Estrutura%20do%20Site%20-%20Tela%20.png"
+<img src="https://raw.githubusercontent.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t2-aplicativo-de-relacionamento/7cc86dce9768e5801a781e659e71fac19c81e4f1/docs/img/Estrutura%20do%20Site%20-%20Tela%20.png">
 
 <figcaption>Figura 2 - Estrutura padrão do site 
 
