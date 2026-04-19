@@ -7,7 +7,7 @@
 
   **Usuário Comum**
 
-O fluxograma apresentado na figura 1 mostra o fluxo de interação do usuário comum pelas telas do sistema. Cada uma das telas deste fluxo é detalhada na seção de Protótipo de baixa fidelidade que se segue. Para visualizar o protótipo interativo, acesse o <a  href="https://www.figma.com/proto/x7WyMSGxse3KJ0kYoflm4X/Projeto-de-Interface---Etapa-2?node-id=65-161&starting-point-node-id=65%3A161&t=wqcbaadQTDNm1hdA-1">ambiente Figma do projeto</a>.
+O fluxograma apresentado na figura 1 mostra o fluxo de interação do usuário comum pelas telas do sistema. Cada uma dessas telas está detalhada na seção de Protótipo de baixa fidelidade que se segue. Para visualizar o protótipo interativo, acesse o <a  href="https://www.figma.com/proto/x7WyMSGxse3KJ0kYoflm4X/Projeto-de-Interface---Etapa-2?node-id=65-161&starting-point-node-id=65%3A161&t=wqcbaadQTDNm1hdA-1">ambiente Figma do projeto</a>.
 
   
 <figure>
