@@ -12,7 +12,7 @@ O fluxograma apresentado na figura 1 mostra o fluxo de interação do usuário c
   
 <figure>
 
-![User flow Usuário Comum](https://raw.githubusercontent.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t2-aplicativo-de-relacionamento/cc8520d4fc87cf8b4ffe32c592a514aa1ad64210/docs/img/Useflow%20-%20Usu%C3%A1rio%20Comum.png)
+![User flow Usuário Comum](https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t2-aplicativo-de-relacionamento/blob/fefa4895a80522173415aa6be36fdc9b7876a8ef/docs/img/Fluxograma%20Usu%C3%A1rio%20Comum%20-%20Final.png)
 
 <figcaption>Figura 1 - User flow - Usuário Comum
 
@@ -448,7 +448,7 @@ O fluxograma apresentado na figura 30 mostra o fluxo de interação do usuário 
 
 <figure>
 
-<img src="https://raw.githubusercontent.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t2-aplicativo-de-relacionamento/73a3ba8333de1375e80f6f9f576fec66307a5058/docs/img/Useflow%20-%20Usu%C3%A1rio%20Administrador.png">
+<img src="https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t2-aplicativo-de-relacionamento/blob/fefa4895a80522173415aa6be36fdc9b7876a8ef/docs/img/Fluxograma%20Usu%C3%A1rio%20Administrador%20-%20Final.png">
 
 <figcaption>Figura 30 - User flow - Administrador 
 
