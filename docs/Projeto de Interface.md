@@ -14,7 +14,7 @@ O fluxograma apresentado na figura 1 mostra o fluxo de interação do usuário c
 
 ![User flow Usuário Comum](https://raw.githubusercontent.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t2-aplicativo-de-relacionamento/cc8520d4fc87cf8b4ffe32c592a514aa1ad64210/docs/img/Useflow%20-%20Usu%C3%A1rio%20Comum.png)
 
-<figcaption>Figura 1 - User flow Usuário Comum
+<figcaption>Figura 1 - User flow - Usuário Comum
 
 </figure>
   
@@ -27,7 +27,7 @@ As telas do sistema apresentam uma estrutura comum que é apresentada na figura 
 
 <ul>
 
-<li>Cabeçalho - local onde nas páginas de navegação ( sem ser a Home Page) estão dispostos o logo com  o nome da aplicação web junto à setas de retorno à navegação principal do site (menu da aplicação). Na homepage o cabeçalho dispõe de banners que apresentam recursos integrativos permitindo quem acessa navegar para conhecer mais sobre a aplicação e o website de modo geral</li>
+<li>Cabeçalho - local, o qual, em geral, nas páginas de navegação (com exceção a Home Page) estão dispostos o logo da aplicação web. Na homepage o cabeçalho dispõe de banners que apresentam recursos integrativos permitindo quem acessa, navegar para conhecer mais sobre a aplicação</li>
 
 <li>Conteúdo - apresenta o conteúdo da tela em questão;</li>
 
@@ -460,7 +460,7 @@ O fluxograma apresentado na figura 30 mostra o fluxo de interação do usuário 
 
 <img  src="https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t2-aplicativo-de-relacionamento/blob/73a3ba8333de1375e80f6f9f576fec66307a5058/docs/img/Useflow%20-%20Usu%C3%A1rio%20Administrador.png]"
 
-<figcaption>Figura 30 - User flow Administrador 
+<figcaption>Figura 30 - User flow - Administrador 
 
 </figure>
 <h3><b>Tela - Home page</b></h3>
