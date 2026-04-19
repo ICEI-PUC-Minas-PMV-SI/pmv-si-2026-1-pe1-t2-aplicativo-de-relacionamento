@@ -240,13 +240,14 @@ Essa tela só pode ser acessada por usuários cadastrados, após realizarem o lo
   <img src="https://raw.githubusercontent.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t2-aplicativo-de-relacionamento/7cc86dce9768e5801a781e659e71fac19c81e4f1/docs/img/Tela%20-%20Plano%20Bronze.png">
   <figcaption>Figura 13 - Tela - Configurações de Planos Premium - Bronze</figcaption>
 </figure>
-
+<p></p>
 <p><strong>Prata</strong></p>
 
 <figure>
   <img src="https://raw.githubusercontent.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t2-aplicativo-de-relacionamento/7cc86dce9768e5801a781e659e71fac19c81e4f1/docs/img/Tela%20-%20Plano%20Prata%20.png">
   <figcaption>Figura 14 - Tela - Configurações de Planos Premium - Prata</figcaption>
 </figure>
+<p></p>
 <p><strong>Ouro</strong></p>
 
 <figure>
