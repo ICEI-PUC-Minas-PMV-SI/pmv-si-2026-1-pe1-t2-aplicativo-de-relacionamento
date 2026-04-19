@@ -228,42 +228,31 @@ As telas do sistema apresentam uma estrutura comum que é apresentada na figura 
 <hr>
 
 <h3><b>Tela – Configurações de Planos (Premium)</b></h3>
-<strong>Bronze</strong>
-<p>A tela de Configurações de Planos Premium permite o usuário configurar seu plano ou assinar um novo plano. Nessa tela o usuário tem acesso à três diferentes tipos de plano(bronze, prata, ouro) para contratação. Essa tela só pode ser acessada por usuários cadastrados, após realizarem o Login. </p>
 
-![Planos Premium Bronze](https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t2-aplicativo-de-relacionamento/blob/7cc86dce9768e5801a781e659e71fac19c81e4f1/docs/img/Tela%20-%20Plano%20Bronze.png)
-
-  
-
-<figure>
-
-<figcaption>Figura 13 - Tela - Configurações de Planos Premium - Bronze
-
- <strong>Prata </strong> 
-
-</figure>
-![Plano Premium Prata](https://raw.githubusercontent.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t2-aplicativo-de-relacionamento/7cc86dce9768e5801a781e659e71fac19c81e4f1/docs/img/Tela%20-%20Plano%20Prata%20.png)
-  
+<p><strong>Bronze</strong></p>
+<p>
+A tela de Configurações de Planos Premium permite ao usuário configurar seu plano ou assinar um novo plano. 
+Nessa tela, o usuário tem acesso a três diferentes tipos de plano (bronze, prata, ouro) para contratação. 
+Essa tela só pode ser acessada por usuários cadastrados, após realizarem o login.
+</p>
 
 <figure>
-
-<figcaption>Figura 14 - Tela - Configurações de Planos Premium - Prata
-
-
+  <img src="https://raw.githubusercontent.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t2-aplicativo-de-relacionamento/7cc86dce9768e5801a781e659e71fac19c81e4f1/docs/img/Tela%20-%20Plano%20Bronze.png">
+  <figcaption>Figura 13 - Tela - Configurações de Planos Premium - Bronze</figcaption>
 </figure>
 
-<strong>Ouro</strong> 
-
-</figure>
-![Plano Premium Ouro](https://raw.githubusercontent.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t2-aplicativo-de-relacionamento/7cc86dce9768e5801a781e659e71fac19c81e4f1/docs/img/Tela%20-%20Plano%20Ouro.png)
-  
+<p><strong>Prata</strong></p>
 
 <figure>
-
-<figcaption>Figura 15 - Tela - Configurações de Planos Premium - Ouro
-
+  <img src="https://raw.githubusercontent.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t2-aplicativo-de-relacionamento/7cc86dce9768e5801a781e659e71fac19c81e4f1/docs/img/Tela%20-%20Plano%20Prata%20.png">
+  <figcaption>Figura 14 - Tela - Configurações de Planos Premium - Prata</figcaption>
 </figure>
+<p><strong>Ouro</strong></p>
 
+<figure>
+  <img src="https://raw.githubusercontent.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t2-aplicativo-de-relacionamento/7cc86dce9768e5801a781e659e71fac19c81e4f1/docs/img/Tela%20-%20Plano%20Ouro.png">
+  <figcaption>Figura 15 - Tela - Configurações de Planos Premium - Ouro</figcaption>
+</figure>
 <hr>
 
 <h3><b>Tela – Adesão de Plano - Pagamento</b></h3>
