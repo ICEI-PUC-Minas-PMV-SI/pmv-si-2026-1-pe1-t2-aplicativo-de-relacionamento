@@ -487,7 +487,7 @@ O fluxograma apresentado na figura 30 mostra o fluxo de interação do usuário 
 
 <h3><b>Tela - Dashboard </b></h3>
 
-<p></p>
+<p>A tela de dashboard tem como objetivo fornecer uma visão geral e estratégica do sistema, permitindo que o administrador acompanhe, de forma rápida e intuitiva, as principais métricas e atividades da plataforma. Nessa interface, o administrador pode visualizar indicadores importantes (como número total de usuários, usuários ativos, taxa de match, conversas iniciadas, retenção D1/D7, conversas continuadas, novos usuários, conversas ativas e denúncias pendentes), acompanhar métricas relacionadas a feedbacks e denúncias (quantidade, status, recorrência) e identificar possíveis problemas ou padrões através de gráficos e relatórios</p>
 
 ![Dashboard](https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t2-aplicativo-de-relacionamento/blob/ba97d379dfb8624c890a83e41a2dbc2ebf697015/docs/img/Tela%20-%20Dashboard%20Administrador.png)
   
