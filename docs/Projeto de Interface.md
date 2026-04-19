@@ -106,7 +106,7 @@ As telas do sistema apresentam uma estrutura comum que é apresentada na figura 
 
 <h3><b>Tela – Termos de Uso e Contrato</b></h3>
 
-<p>A tela de Termos e Contratos apresenta os termos e contratos que o usuário necessita concordar e aceitar para criação e registro de conta na aplicação. Engloba termos legais e termos da própria aplicação (geral) </p>
+<p>A tela de Termos e Contratos apresenta os termos e contratos que o usuário necessita concordar e aceitar para criação e registro de conta na aplicação. Engloba termos legais e termos da própria aplicação (geral). </p>
 
 ![Termos e Contratos](https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t2-aplicativo-de-relacionamento/blob/7cc86dce9768e5801a781e659e71fac19c81e4f1/docs/img/Tela%20-%20Termos%20e%20Contratos.png)
 
@@ -242,7 +242,7 @@ As telas do sistema apresentam uma estrutura comum que é apresentada na figura 
  <strong>Prata </strong> 
 
 </figure>
-[Planos Premium Prata] (https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t2-aplicativo-de-relacionamento/blob/7cc86dce9768e5801a781e659e71fac19c81e4f1/docs/img/Tela%20-%20Plano%20Prata%20.png)
+![Plano Premium Prata](https://raw.githubusercontent.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t2-aplicativo-de-relacionamento/7cc86dce9768e5801a781e659e71fac19c81e4f1/docs/img/Tela%20-%20Plano%20Prata%20.png)
   
 
 <figure>
@@ -255,7 +255,7 @@ As telas do sistema apresentam uma estrutura comum que é apresentada na figura 
 <strong>Ouro</strong> 
 
 </figure>
-[Planos Premium Ouro] (https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t2-aplicativo-de-relacionamento/blob/7cc86dce9768e5801a781e659e71fac19c81e4f1/docs/img/Tela%20-%20Plano%20Ouro.png)
+![Plano Premium Ouro](https://raw.githubusercontent.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t2-aplicativo-de-relacionamento/7cc86dce9768e5801a781e659e71fac19c81e4f1/docs/img/Tela%20-%20Plano%20Ouro.png)
   
 
 <figure>
@@ -458,7 +458,7 @@ O fluxograma apresentado na figura 30 mostra o fluxo de interação do usuário 
 
 <figure>
 
-<img  src="https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t2-aplicativo-de-relacionamento/blob/73a3ba8333de1375e80f6f9f576fec66307a5058/docs/img/Useflow%20-%20Usu%C3%A1rio%20Administrador.png]"
+<img src="https://raw.githubusercontent.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t2-aplicativo-de-relacionamento/73a3ba8333de1375e80f6f9f576fec66307a5058/docs/img/Useflow%20-%20Usu%C3%A1rio%20Administrador.png">
 
 <figcaption>Figura 30 - User flow - Administrador 
 
