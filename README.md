@@ -26,8 +26,8 @@ Além do sistema de match por afinidade, o aplicativo incorpora um assistente vi
 
 | Etapa         | Atividades |
 |  :----:   | ----------- |
-| ETAPA 1         |[Documentação de Contexto](docs/Documentação de Contexto.md) <br> [Especificação do Projeto](docs/especification.md) |
-| ETAPA 2         |[Projeto de Interface](docs/interface.md) <br> [Template Padrão](docs/template.md) |
+| ETAPA 1         |[Documentação de Contexto](Documentacao-de-Contexto.md) <br> [Especificação do Projeto](docs/Especificação-do-Projeto.md) |
+| ETAPA 2         |[Projeto de Interface](docs/Projeto-de-Interface.md) <br> [Template Padrão](docs/Template-Padrão.md) |
 | ETAPA 3         |[Programação de Funcionalidades - HTML e CSS](docs/development.md) |
 | ETAPA 4        |[Programação de Funcionalidades - Javascript](docs/development.md) <br> [Testes de Software ](docs/tests.md) |
 | ETAPA 5         | [Apresentação](presentation/README.md) |
