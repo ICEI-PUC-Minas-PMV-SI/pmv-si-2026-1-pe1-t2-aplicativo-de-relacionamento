@@ -54,12 +54,6 @@
     .link-login:hover {
       text-decoration: underline;
     }
-    
-    .logo-img {
-      max-width: 50%;
-      height: auto;
-    }
-
   </style>
 </head>
 
@@ -67,14 +61,11 @@
 
   <main class="cadastro-card">
     <div class="text-center mb-4">
-        <img src="Img/MatchConnectLOGO.PNG" alt="MatchConnect Logo" class="logo-img">
-      </div>
-    
-    <div class="text-center mb-4">
       <h1>Criar conta</h1>
+      <p class="text-muted mb-0">Entre no MatchConnect e encontre conexões reais.</p>
     </div>
 
-    <form>
+    <form id="formCadastro">
       <div class="mb-3">
         <label for="nome" class="form-label">Nome completo</label>
         <input type="text" class="form-control" id="nome" placeholder="Digite seu nome">
@@ -83,6 +74,11 @@
       <div class="mb-3">
         <label for="email" class="form-label">E-mail</label>
         <input type="email" class="form-control" id="email" placeholder="Digite seu e-mail">
+      </div>
+
+      <div class="mb-3">
+        <label for="dataNascimento" class="form-label">Data de nascimento</label>
+        <input type="date" class="form-control" id="dataNascimento">
       </div>
 
       <div class="mb-3">
@@ -98,22 +94,25 @@
       <div class="form-check mb-4">
         <input class="form-check-input" type="checkbox" id="termos">
         <label class="form-check-label" for="termos">
-          Confirmar os
-          <a href="Termos_e_contratos.html" class="link-login">termos e contratos</a>
+          Aceito os termos de uso e política de privacidade.
         </label>
       </div>
 
       <button type="submit" class="btn btn-cadastro w-100">
-        <a href="cadastro_do_perfil.html" class="link-destaque" style="color:white">Registrar</a>
+        Criar usuário
       </button>
     </form>
 
-    <p class="text-center mt-4 mb-0">
-      Já tem uma conta?
-      <a href="login.html" class="link-login">Entrar</a>
+    <p id="mensagem" class="text-center fw-semibold"></p>
+    Já tem uma conta?
+    <a href="Homeusuario.html" class="link-login">Entrar</a>
+    </p>
+    <p id="mensagem" class="text-center fw-semibold"></p>
+    Voltar para tela inicial
+    <a href="index.html" class="link-login">Voltar</a>
     </p>
   </main>
-  <script src="js/cadastro.js"></script>
+  <script src="Cadas.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

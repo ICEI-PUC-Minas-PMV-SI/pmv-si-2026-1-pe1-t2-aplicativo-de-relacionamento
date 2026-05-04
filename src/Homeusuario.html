@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MatchConnect - Home</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-match shadow-sm">
+            <div class="container">
+
+                <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="HomeUsuario.html">
+                    <i class="bi bi-heart-pulse-fill"></i>
+                    MatchConnect
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="menuPrincipal">
+
+                    <form class="d-flex mx-lg-4 my-3 my-lg-0 flex-grow-1" role="search">
+                        <div class="input-group">
+                            <span class="input-group-text bg-white border-0">
+                                <i class="bi bi-search"></i>
+                            </span>
+                            <input class="form-control border-0" type="search"
+                                placeholder="Buscar perfis ou interesses">
+                        </div>
+                    </form>
+
+                    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3 text-center">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="HomeUsuario.html">Início</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Descobrir</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Conversas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Compatibilidade</a>
+                        </li>
+
+                        <li
+                            class="nav-item d-flex align-items-center gap-3 ms-lg-2 justify-content-center mt-3 mt-lg-0">
+                            <a href="#" class="icone-topo">
+                                <i class="bi bi-bell"></i>
+                            </a>
+
+                            <a href="#" class="icone-topo">
+                                <i class="bi bi-chat-dots"></i>
+                            </a>
+
+                            <a href="#"
+                                class="avatar-topo d-flex align-items-center justify-content-center text-decoration-none">
+                                <span id="inicialUsuario"></span>
+                            </a>
+
+                            <button id="btnSair" class="btn btn-light btn-sm rounded-pill">
+                                Sair
+                            </button>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="py-5 dashboard-bg">
+        <div class="container">
+            <div class="row g-4">
+
+                <div class="col-lg-8">
+
+                    <section class="card-match card-hero mb-4">
+                        <div class="row align-items-center g-4">
+                            <div class="col-md-8">
+                                <span class="badge rounded-pill badge-custom mb-3">Bem-vindo de volta</span>
+
+                                <h1 class="h2 fw-bold mb-3">
+                                    Olá, <span id="nomeUsuario"></span>
+                                </h1>
+
+                                <p class="text-muted mb-4">
+                                    Hoje separamos conexões com base nos seus interesses, estilo de conversa e
+                                    compatibilidade de perfil.
+                                </p>
+
+                                <div class="d-flex flex-wrap gap-3">
+                                    <a href="#" class="btn btn-match-primary">Ver matches</a>
+                                    <a href="#" class="btn btn-match-outline">Continuar perfil</a>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 text-center">
+                                <div class="hero-mini-card mx-auto">
+                                    <i class="bi bi-stars"></i>
+                                    <p id="text-matches" class="mb-0 mt-2">3 novos matches hoje</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h2 class="h4 fw-bold mb-0">Seus melhores matches de hoje</h2>
+                            <a href="#" class="link-match">Ver todos</a>
+                        </div>
+
+                        <div class="row g-4">
+
+                            <div class="col-md-6 col-xl-4">
+                                <div class="card-match h-100">
+                                    <div class="match-avatar rosa">A</div>
+                                    <h3 class="h5 fw-bold mt-3 mb-1">Ana, 24</h3>
+                                    <p class="match-percent mb-2">92% compatível</p>
+                                    <p class="text-muted small mb-3">Interesses em comum: filmes, café e viagens curtas.
+                                    </p>
+
+                                    <div class="d-flex flex-wrap gap-2 mb-4">
+                                        <span class="tag-match">Filmes</span>
+                                        <span class="tag-match">Café</span>
+                                        <span class="tag-match">Viagens</span>
+                                    </div>
+
+                                    <div class="d-flex gap-2 mt-auto">
+                                        <a href="#" class="btn btn-match-outline btn-sm flex-fill">Ver perfil</a>
+                                        <a href="#" class="btn btn-match-primary btn-sm flex-fill">Conversar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-xl-4">
+                                <div class="card-match h-100">
+                                    <div class="match-avatar azul">K</div>
+                                    <h3 class="h5 fw-bold mt-3 mb-1">Karol, 26</h3>
+                                    <p class="match-percent mb-2">90% compatível</p>
+                                    <p class="text-muted small mb-3">Vocês gostam de música, academia e conversas
+                                        profundas.</p>
+
+                                    <div class="d-flex flex-wrap gap-2 mb-4">
+                                        <span class="tag-match">Música</span>
+                                        <span class="tag-match">Treino</span>
+                                        <span class="tag-match">Podcasts</span>
+                                    </div>
+
+                                    <div class="d-flex gap-2 mt-auto">
+                                        <a href="#" class="btn btn-match-outline btn-sm flex-fill">Ver perfil</a>
+                                        <a href="#" class="btn btn-match-primary btn-sm flex-fill">Conversar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-xl-4">
+                                <div class="card-match h-100">
+                                    <div class="match-avatar roxo">M</div>
+                                    <h3 class="h5 fw-bold mt-3 mb-1">Mariana, 23</h3>
+                                    <p class="match-percent mb-2">85% compatível</p>
+                                    <p class="text-muted small mb-3">Perfis alinhados em humor, rotina e objetivos
+                                        futuros.</p>
+
+                                    <div class="d-flex flex-wrap gap-2 mb-4">
+                                        <span class="tag-match">Humor</span>
+                                        <span class="tag-match">Séries</span>
+                                        <span class="tag-match">Praia</span>
+                                    </div>
+
+                                    <div class="d-flex gap-2 mt-auto">
+                                        <a href="#" class="btn btn-match-outline btn-sm flex-fill">Ver perfil</a>
+                                        <a href="#" class="btn btn-match-primary btn-sm flex-fill">Conversar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+
+                    <section class="mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h2 class="h4 fw-bold mb-0">Continue suas conversas</h2>
+                            <a href="#" class="link-match">Abrir chat</a>
+                        </div>
+
+                        <div class="card-match">
+                            <div class="d-flex align-items-start gap-3 flex-column flex-md-row">
+                                <div class="match-avatar rosa">A</div>
+
+                                <div class="flex-grow-1">
+                                    <h3 class="h5 fw-bold mb-1">Conversa com Ana parada há 2 dias</h3>
+
+                                    <p class="text-muted mb-3">
+                                        Vocês dois gostam de filmes e lugares tranquilos. Que tal retomar o papo com uma
+                                        pergunta leve?
+                                    </p>
+
+                                    <div class="sugestao-box mb-2">
+                                        “Qual foi o melhor filme ou série que você viu recentemente?”
+                                    </div>
+
+                                    <div class="sugestao-box">
+                                        “Se você pudesse escolher um lugar para tomar café hoje, qual seria?”
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <a href="#" class="btn btn-match-primary">Responder</a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+
+                <div class="col-lg-4">
+
+                    <section class="card-match mb-4">
+                        <h2 class="h5 fw-bold mb-3">Seu perfil</h2>
+                        <p class="text-muted mb-3">Complete seu perfil para melhorar a precisão dos matches.</p>
+
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="small fw-semibold">85% completo</span>
+                            <span class="small text-muted">Faltam 2 etapas</span>
+                        </div>
+
+                        <div class="progress mb-3" style="height: 10px;">
+                            <div class="progress-bar barra-match" style="width: 85%;"></div>
+                        </div>
+
+                        <ul class="lista-sidebar mb-4">
+                            <li>Adicionar mais interesses</li>
+                            <li>Responder pergunta sobre rotina</li>
+                        </ul>
+
+                        <a href="#" class="btn btn-match-primary w-100">Completar perfil</a>
+                    </section>
+
+                    <section class="card-match mb-4">
+                        <h2 class="h5 fw-bold mb-3">Atividade recente</h2>
+
+                        <div class="atividade-item">
+                            <i class="bi bi-heart-fill"></i>
+                            <div>
+                                <strong>3 novas curtidas</strong>
+                                <p class="mb-0 text-muted small">Perfis se interessaram por você hoje.</p>
+                            </div>
+                        </div>
+
+                        <div class="atividade-item">
+                            <i class="bi bi-chat-left-dots-fill"></i>
+                            <div>
+                                <strong>2 mensagens não lidas</strong>
+                                <p class="mb-0 text-muted small">Ana e Karol enviaram novas mensagens.</p>
+                            </div>
+                        </div>
+
+                        <div class="atividade-item">
+                            <i class="bi bi-stars"></i>
+                            <div>
+                                <strong>1 novo match</strong>
+                                <p class="mb-0 text-muted small">Mariana combinou com seu perfil.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="card-match">
+                        <h2 class="h5 fw-bold mb-3">Dica do dia</h2>
+                        <p class="text-muted mb-3">
+                            Perfis com mais informações sobre hobbies e rotina costumam gerar conversas mais duradouras.
+                        </p>
+                        <a href="#" class="link-match">Melhorar meu perfil</a>
+                    </section>
+
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <script src="HomeUsuario.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
