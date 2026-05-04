@@ -77,4 +77,8 @@ formCadastro.addEventListener("submit", function (event) {
     mensagem.style.color = "green";
 
     formCadastro.reset();
+
+    setTimeout(function () {
+        window.location.href = "CadastroInteresses.html";
+    }, 12);
 });
