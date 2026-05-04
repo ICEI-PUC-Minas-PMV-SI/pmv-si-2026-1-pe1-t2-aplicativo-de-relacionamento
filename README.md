@@ -34,7 +34,7 @@ Além do sistema de match por afinidade, o aplicativo incorpora um assistente vi
 
 # Código
 
-<li><a href="src/Login.html"> Código Fonte</a></li>
+<li><a href="src/login.html"> Código Fonte</a></li>
 
 # Apresentação
 
