@@ -46,5 +46,5 @@ formInteresses.addEventListener("submit", function (event) {
 
     setTimeout(function () {
         window.location.href = "Homeusuario.html";
-    }, 1200);
+    }, 12);
 });
