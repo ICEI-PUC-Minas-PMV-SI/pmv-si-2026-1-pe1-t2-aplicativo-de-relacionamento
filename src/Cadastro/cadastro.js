@@ -78,7 +78,9 @@ formCadastro.addEventListener("submit", function (event) {
 
     formCadastro.reset();
 
+    console.log("Cadastro salvo.");
+
     setTimeout(function () {
-        window.location.href = "CadastroInteresses.html";
-    }, 12);
+        window.location.href = "cadastroInteresses.html";
+    }, 200);
 });

@@ -15,8 +15,9 @@ formLogin.addEventListener("submit", function (event) {
 
     const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
-    //  valida só pelo email primeiro (melhor prática)
-    const usuario = usuarios.find(u => u.email === emailLogin);
+    const usuario = usuarios.find(function (usuario) {
+        return usuario.email === emailLogin;
+    });
 
     if (!usuario) {
         mensagemLogin.textContent = "Usuário não encontrado.";
@@ -30,13 +31,12 @@ formLogin.addEventListener("submit", function (event) {
         return;
     }
 
-    //  salva sessão
     localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
 
     mensagemLogin.textContent = "Login realizado com sucesso!";
     mensagemLogin.style.color = "green";
 
-    setTimeout(() => {
-        window.location.href = "HomeUsuario.html";
-    }, 800);
+    setTimeout(function () {
+        window.location.href = "../home/homeUsuario.html";
+    }, 20);
 });
