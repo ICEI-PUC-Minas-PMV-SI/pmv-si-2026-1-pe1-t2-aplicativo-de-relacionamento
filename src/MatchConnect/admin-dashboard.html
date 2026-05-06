@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MatchConnect - Admin Dash</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="dashboard.css">
+
+    <style>
+        /* Ajustes de Design e Organização */
+        .match-avatar {
+            border-radius: 20%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        /* Garante que os cards de KPI tenham a mesma altura e espaçamento */
+        .card-kpi {
+            padding: 1.5rem;
+            border: none;
+            transition: transform 0.2s;
+        }
+
+        .card-kpi:hover {
+            transform: translateY(-5px);
+        }
+
+        .kpi-value {
+            font-size: 1.5rem;
+            margin-top: 10px;
+        }
+
+        /* Estilização da barra lateral e alertas */
+        .alert-item {
+            border-left: 4px solid #fd51b3;
+            background: #fff;
+            margin-bottom: 15px;
+        }
+
+        /* Responsividade para os KPIs em telas menores */
+        @media (max-width: 1200px) {
+            .kpi-row {
+                flex-wrap: wrap;
+            }
+        }
+    </style>    
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-match shadow-sm">
+            <div class="container-fluid px-lg-5">
+
+                <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="admin-dashboard.html">
+                    <i class="bi bi-shield-lock-fill"></i>
+                    MatchConnect <span class="badge bg-white text-primary ms-1" style="font-size: 0.6rem;">ADMIN</span>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="menuPrincipal">
+
+                    <form class="d-flex mx-lg-4 my-3 my-lg-0 flex-grow-1" role="search">
+                        <div class="input-group">
+                            <span class="input-group-text bg-white border-0">
+                                <i class="bi bi-search"></i>
+                            </span>
+                            <input class="form-control border-0" type="search"
+                                placeholder="Buscar denuncias, usuários ou tópicos">
+                        </div>
+                    </form>
+
+                    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3 text-center">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="admin-dashboard.html">Dashboard</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Usuários</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Denúncias</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Regras</a>
+                        </li>
+
+                        <li class="nav-item d-flex align-items-center gap-3 ms-lg-2 justify-content-center mt-3 mt-lg-0">
+                            <a href="#" class="icone-topo">
+                                <i class="bi bi-bell"></i>
+                            </a>
+
+                            <a href="#" class="icone-topo">
+                                <i class="bi bi-chat-dots"></i></a>
+
+                            <a href="#" class="avatar-topo d-flex align-items-center justify-content-center text-decoration-none">
+                                <i class="bi bi-person-circle"></i>
+                            </a>
+
+                            <button id="btnSair" class="btn btn-light btn-sm rounded-pill">Sair</button>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="py-4 dashboard-bg">
+        <div class="container-fluid px-lg-5">
+            
+            <!-- Visão Geral do Sistema -->
+            <section class="mb-5">
+                <!-- KPI -->
+                <div>
+                    <h1 class="h3 fw-bold">Visão Geral do Sistema</h1>
+                    <p class="text-muted">Métricas de desempenho e atividades críticas em tempo real.</p>
+                </div>
+                
+                <div class="row g-3 flex-nowrap overflow-auto pb-2 kpi-row">
+                    
+                    <div class="col">
+                        <div class="card-match card-kpi h-100 shadow-sm">
+                            <div class="match-avatar azul"><i class="bi bi-people-fill"></i></div>
+                            <div class="kpi-value fw-bold">12,280</div>
+                            <div class="text-muted small">Usuários Ativos</div>
+                            <div class="match-percent small mt-2"><i class="bi bi-graph-up"></i> +92%</div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card-match card-kpi h-100 shadow-sm">
+                            <div class="match-avatar rosa"><i class="bi bi-person-plus-fill"></i></div>
+                            <div class="kpi-value fw-bold">230</div>
+                            <div class="text-muted small">Novos (24h)</div>
+                            <div class="match-percent small mt-2"><i class="bi bi-plus"></i> 15%</div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card-match card-kpi h-100 shadow-sm">
+                            <div class="match-avatar roxo"><i class="bi bi-heart-fill"></i></div>
+                            <div class="kpi-value fw-bold">8,120</div>
+                            <div class="text-muted small">Matches Realizados</div>
+                            <div class="match-percent small mt-2"><i class="bi bi-graph-up"></i> +12%</div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card-match card-kpi h-100 shadow-sm">
+                            <div class="match-avatar azul"><i class="bi bi-chat-dots-fill"></i></div>
+                            <div class="kpi-value fw-bold">45.2k</div>
+                            <div class="text-muted small">Mensagens</div>
+                            <div class="match-percent small mt-2"><i class="bi bi-check-all"></i> Estável</div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card-match card-kpi h-100 shadow-sm">
+                            <div class="match-avatar rosa"><i class="bi bi-exclamation-triangle-fill"></i></div>
+                            <div class="kpi-value fw-bold text-danger">34</div>
+                            <div class="text-muted small">Denúncias Ativas</div>
+                            <div class="text-danger small mt-2 fw-bold">Ação Necessária</div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card-match card-kpi h-100 shadow-sm">
+                            <div class="match-avatar roxo"><i class="bi bi-ban"></i></div>
+                            <div class="kpi-value fw-bold">12</div>
+                            <div class="text-muted small">Banidos (Hoje)</div>
+                            <div class="match-percent small mt-2"><i class="bi bi-shield-check"></i> Monitorado</div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <div class="row">
+                <!-- Alertas de Moderação -->
+                <section class="col-lg-8">
+                    <section class="card-match shadow-sm mb-4 p-4">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h2 class="h5 fw-bold mb-0">Alertas Críticos de Moderação</h2>
+                            <button class="btn btn-match-outline btn-sm">Ver todos</button>
+                        </div>
+
+                        <!-- Lista de Alertas -->
+                        <section class="alert-list" role="list">
+                            <div class="card-match p-4 alert-item shadow-sm" role="listitem">
+                                <div class="d-flex align-items-start gap-3">
+                                    <div class="flex-grow-1">
+                                        <h3 class="h6 fw-bold mb-1">Denúncia de Assédio: Bruno vs Usuário #743</h3>
+                                        <p class="text-muted small mb-3">O sistema identificou mensagens com teor sexualizado e repetido. O usuário #743 recebeu 1 aviso prévio.</p>
+                                        <div class="sugestao-box small mb-2">
+                                            "Encaminhar para revisão manual de políticas de conduta."
+                                        </div>
+                                        <div class="d-flex gap-2">
+                                            <button class="btn btn-match-primary btn-sm px-4">Analisar Chat</button>
+                                            <button class="btn btn-outline-danger btn-sm rounded-pill px-3">Banir Usuário</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-match p-4 alert-item shadow-sm" role="listitem">
+                                <div class="d-flex align-items-start gap-3">
+                                    <div class="flex-grow-1">
+                                        <h3 class="h6 fw-bold mb-1">Denúncia de Conteúdo Inadequado: Camila vs Usuário #158</h3>
+                                        <p class="text-muted small mb-3">Foram detectadas imagens e links suspeitos compartilhados no perfil. O usuário #158 está sob investigação.</p>
+                                        <div class="sugestao-box small mb-2">
+                                            "Possível violação das regras de mídia e privacidade."
+                                        </div>
+                                        <div class="d-flex gap-2">
+                                            <button class="btn btn-match-primary btn-sm px-4">Revisar Conteúdo</button>
+                                            <button class="btn btn-outline-danger btn-sm rounded-pill px-3">Suspender Conta</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-match p-4 alert-item shadow-sm" role="listitem">
+                                <div class="d-flex align-items-start gap-3">
+                                    <div class="flex-grow-1">
+                                        <h3 class="h6 fw-bold mb-1">Denúncia de Spam: Eduardo vs Usuário #520</h3>
+                                        <p class="text-muted small mb-3">Mensagens repetitivas foram enviadas para vários contatos em curto período. O usuário #520 já foi marcado como potencial spammer.</p>
+                                        <div class="sugestao-box small mb-2">
+                                            "Ação recomendada: bloqueio temporário e revisão de atividade." 
+                                        </div>
+                                        <div class="d-flex gap-2">
+                                            <button class="btn btn-match-primary btn-sm px-4">Ver Registro</button>
+                                            <button class="btn btn-outline-danger btn-sm rounded-pill px-3">Bloquear</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+
+                <!-- Status da Infraestrutura -->
+                <section class="col-lg-4">
+                    <div class="card-match shadow-sm mb-4">
+                        <h2 class="h6 fw-bold mb-3">Status da Infraestrutura</h2>
+                        
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span class="small fw-semibold">Uso do Servidor</span>
+                                <span class="small text-muted">85%</span>
+                            </div>
+                            <div class="progress" style="height: 8px;">
+                                <div class="progress-bar barra-match" style="width: 85%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="atividade-item mb-3">
+                            <i class="bi bi-shield-check text-success"></i>
+                            <div>
+                                <strong class="small">Backup Diário</strong>
+                                <p class="mb-0 text-muted" style="font-size: 0.75rem;">Concluído com sucesso às 03:00.</p>
+                            </div>
+                        </div>
+
+                        <div class="atividade-item">
+                            <i class="bi bi-cpu text-primary"></i>
+                            <div>
+                                <strong class="small">Latência da API</strong>
+                                <p class="mb-0 text-muted" style="font-size: 0.75rem;">24ms - Excelente desempenho.</p>
+                            </div>
+                        </div>
+                        
+                        <section class="text-center">
+                            <h2 class="h6 fw-bold mb-2">Ações Rápidas</h2>
+                                <button class="btn btn-match-outline btn-sm">Limpar Cache</button>
+                                <button class="btn btn-match-outline btn-sm text-danger border-danger">Modo Manutenção</button>
+                            </div>
+                        </section>
+                    </div>
+
+                </section>
+
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="container-fluid px-lg-5 py-3 text-center text-muted small">
+            &copy; 2024 MatchConnect — Projeto acadêmico. Desenvolvido por Equipe de Desenvolvimento.
+        </div>
+    </footer>
+
+    <script src="home-usuario.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

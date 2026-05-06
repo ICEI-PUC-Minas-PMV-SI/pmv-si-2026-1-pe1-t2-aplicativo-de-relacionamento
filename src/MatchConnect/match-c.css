@@ -154,17 +154,6 @@ html {
     max-width: 320px;
 }
 
-/* ================= RODAPÉ ================= */
-.footer-custom {
-    background-color: #ffffff;
-}
-
-footer .nav-link:hover,
-footer a:hover {
-    color: #5c6cff !important;
-    transition: 0.3s;
-}
-
 /* ================= RESPONSIVO ================= */
 @media (max-width: 991.98px) {
     .principal {
