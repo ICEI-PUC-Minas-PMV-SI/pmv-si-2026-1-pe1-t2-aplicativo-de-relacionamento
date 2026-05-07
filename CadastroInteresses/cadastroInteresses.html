@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Interesses | MatchConnect</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f9c5e5 0%, #d7c4ff 50%, #bfe9ff 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 16px;
+            font-family: Arial, sans-serif;
+        }
+
+        .card-cadastro {
+            background: rgba(255, 255, 255, 0.96);
+            max-width: 860px;
+            width: 100%;
+            padding: 50px;
+            border-radius: 34px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.12);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-cadastro {
+            width: 90px;
+            height: auto;
+            margin-bottom: 14px;
+        }
+
+        h1 {
+            color: #3d2d7a;
+            font-weight: 800;
+            font-size: 3rem;
+            margin-bottom: 14px;
+        }
+
+        h5 {
+            color: #3d2d7a;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .subtitulo {
+            max-width: 620px;
+            margin: 0 auto;
+            color: #6c757d;
+            line-height: 1.7;
+        }
+
+        .bloco-formulario {
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid #ece7ff;
+        }
+
+        .form-control,
+        .form-select {
+            border-radius: 18px;
+            padding: 14px 16px;
+            border: 1px solid #e5dcff;
+            transition: 0.25s;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #8652F5;
+            box-shadow: 0 0 0 0.2rem rgba(134, 82, 245, 0.15);
+        }
+
+        .btn-interesse {
+            border: 2px solid #d8c8ff;
+            background: white;
+            color: #6e58d9;
+            border-radius: 999px;
+            font-weight: 700;
+            margin: 8px;
+            padding: 12px 18px;
+            transition: 0.25s;
+        }
+
+        .btn-interesse:hover {
+            transform: translateY(-2px);
+            border-color: #8652F5;
+            color: #6e58d9;
+        }
+
+        .btn-check:checked+.btn-interesse {
+            background: linear-gradient(135deg, #FD51B3, #8652F5);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 10px 24px rgba(134, 82, 245, 0.25);
+        }
+
+        .preview-img {
+            width: 110px;
+            height: 110px;
+            object-fit: cover;
+            border-radius: 24px;
+            border: 3px solid white;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .btn-cadastro {
+            background: linear-gradient(135deg, #FD51B3 0%, #8652F5 55%, #5EBBF6 100%);
+            color: white;
+            border: none;
+            border-radius: 18px;
+            font-weight: 700;
+            padding: 16px;
+            font-size: 1.05rem;
+            box-shadow: 0 12px 30px rgba(134, 82, 245, 0.22);
+            transition: 0.25s;
+        }
+
+        .btn-cadastro:hover {
+            color: white;
+            transform: translateY(-2px);
+            opacity: 0.96;
+        }
+
+        .link-voltar {
+            color: #8652F5;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .link-voltar:hover {
+            text-decoration: underline;
+        }
+
+        .progress {
+            height: 10px;
+            border-radius: 999px;
+            background-color: #efeaff;
+        }
+
+        .progress-bar {
+            background: linear-gradient(135deg, #FD51B3, #8652F5, #5EBBF6);
+        }
+
+        @media (max-width: 768px) {
+            .card-cadastro {
+                padding: 28px;
+                border-radius: 28px;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .btn-interesse {
+                width: 100%;
+                margin: 6px 0;
+            }
+
+            .preview-img {
+                width: 90px;
+                height: 90px;
+            }
+        }
+
+        .progresso-fixo {
+            position: sticky;
+            top: 16px;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.92);
+            padding: 16px;
+            border-radius: 20px;
+            margin-bottom: 28px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            backdrop-filter: blur(8px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="card-cadastro">
+
+        <div class="text-center mb-3">
+            <a href="../index.html">
+                <img src="../img/MatchConnectLOGO.PNG" alt="Logo MatchConnect" class="logo-cadastro">
+            </a>
+        </div>
+
+        <div class="text-center mb-4">
+            <h1>Vamos montar seu perfil</h1>
+            <p class="subtitulo">
+                Escolha seus interesses e adicione algumas informações para encontrarmos pessoas mais compatíveis.
+            </p>
+        </div>
+
+        <form id="formInteresses">
+            <div class="progresso-fixo">
+
+                <div class="d-flex justify-content-between align-items-center mb-2">
+
+                    <span class="fw-semibold">Progresso do perfil</span>
+
+                    <span id="textoProgressoPerfil" class="small text-muted">0%</span>
+
+                </div>
+
+                <div class="progress">
+
+                    <div id="barraProgressoPerfil" class="progress-bar" style="width: 0%;"></div>
+
+                </div>
+
+            </div>
+
+            <h5>📸 Suas fotos</h5>
+
+            <div class="mb-3">
+                <label for="fotos" class="form-label">Adicione fotos ao seu perfil</label>
+                <input type="file" class="form-control" id="fotos" accept="image/*" multiple>
+                <small class="text-muted">Por enquanto, as fotos serão salvas apenas no localStorage.</small>
+            </div>
+
+            <div id="previewFotos" class="d-flex flex-wrap gap-2 mb-4"></div>
+
+            <div class="bloco-formulario">
+                <h5>✨ Escolha pelo menos 3 interesses</h5>
+
+                <div class="mb-4">
+                    <input type="checkbox" class="btn-check" id="musica" value="Música">
+                    <label class="btn btn-interesse" for="musica">🎵 Música</label>
+
+                    <input type="checkbox" class="btn-check" id="cinema" value="Cinema">
+                    <label class="btn btn-interesse" for="cinema">🎬 Cinema</label>
+
+                    <input type="checkbox" class="btn-check" id="series" value="Séries">
+                    <label class="btn btn-interesse" for="series">📺 Séries</label>
+
+                    <input type="checkbox" class="btn-check" id="livros" value="Livros">
+                    <label class="btn btn-interesse" for="livros">📚 Livros</label>
+
+                    <input type="checkbox" class="btn-check" id="viagens" value="Viagens">
+                    <label class="btn btn-interesse" for="viagens">✈️ Viagens</label>
+
+                    <input type="checkbox" class="btn-check" id="academia" value="Academia">
+                    <label class="btn btn-interesse" for="academia">🏋️ Academia</label>
+
+                    <input type="checkbox" class="btn-check" id="corrida" value="Corrida">
+                    <label class="btn btn-interesse" for="corrida">🏃 Corrida</label>
+
+                    <input type="checkbox" class="btn-check" id="gastronomia" value="Gastronomia">
+                    <label class="btn btn-interesse" for="gastronomia">🍝 Gastronomia</label>
+
+                    <input type="checkbox" class="btn-check" id="tecnologia" value="Tecnologia">
+                    <label class="btn btn-interesse" for="tecnologia">💻 Tecnologia</label>
+
+                    <input type="checkbox" class="btn-check" id="games" value="Games">
+                    <label class="btn btn-interesse" for="games">🎮 Games</label>
+
+                    <input type="checkbox" class="btn-check" id="praia" value="Praia">
+                    <label class="btn btn-interesse" for="praia">🏖️ Praia</label>
+
+                    <input type="checkbox" class="btn-check" id="pets" value="Pets">
+                    <label class="btn btn-interesse" for="pets">🐶 Pets</label>
+                </div>
+            </div>
+
+            <div class="bloco-formulario">
+                <h5>💜 Sobre você</h5>
+
+                <div class="mb-3">
+                    <label for="objetivo" class="form-label">O que você busca no MatchConnect?</label>
+                    <select class="form-select" id="objetivo">
+                        <option value="">Selecione uma opção</option>
+                        <option value="Relacionamento sério">Relacionamento sério</option>
+                        <option value="Conhecer pessoas novas">Conhecer pessoas novas</option>
+                        <option value="Amizade">Amizade</option>
+                        <option value="Algo leve, sem pressão">Algo leve, sem pressão</option>
+                        <option value="Ainda não sei">Ainda não sei</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="personalidade" class="form-label">Como você se define?</label>
+                    <select class="form-select" id="personalidade">
+                        <option value="">Selecione uma opção</option>
+                        <option value="Mais extrovertido(a)">Mais extrovertido(a)</option>
+                        <option value="Mais introvertido(a)">Mais introvertido(a)</option>
+                        <option value="Um equilíbrio dos dois">Um equilíbrio dos dois</option>
+                        <option value="Depende do ambiente">Depende do ambiente</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="programaIdeal" class="form-label">Programa ideal</label>
+                    <select class="form-select" id="programaIdeal">
+                        <option value="">Selecione uma opção</option>
+                        <option value="Jantar ou café tranquilo">Jantar ou café tranquilo</option>
+                        <option value="Cinema, show ou teatro">Cinema, show ou teatro</option>
+                        <option value="Praia, trilha ou ar livre">Praia, trilha ou ar livre</option>
+                        <option value="Festa ou barzinho">Festa ou barzinho</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="descricao" class="form-label">Fale um pouco sobre você</label>
+                    <textarea class="form-control" id="descricao" rows="3"
+                        placeholder="Ex: gosto de cinema, praia e conversas leves..."></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="qualidades" class="form-label">Quais qualidades você valoriza?</label>
+                    <textarea class="form-control" id="qualidades" rows="3"
+                        placeholder="Ex: bom humor, sinceridade, parceria..."></textarea>
+                </div>
+
+                <div class="mb-4">
+                    <label for="curiosidade" class="form-label">Uma curiosidade sobre você</label>
+                    <input type="text" class="form-control" id="curiosidade"
+                        placeholder="Ex: amo café, corro aos domingos, gosto de filmes de suspense...">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-cadastro w-100 mt-3">
+                Finalizar cadastro
+            </button>
+
+            <p id="mensagemInteresses" class="text-center fw-semibold mt-3"></p>
+
+            <p class="text-center mt-3 mb-0">
+                <a href="cadastro.html" class="link-voltar">Voltar para cadastro</a>
+            </p>
+
+        </form>
+    </main>
+
+    <script src="CadastroInteresses.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
