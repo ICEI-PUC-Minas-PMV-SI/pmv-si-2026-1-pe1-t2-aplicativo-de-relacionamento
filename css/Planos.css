@@ -1,0 +1,320 @@
+/* ================= GERAL ================= */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #ffffff;
+    color: #212529;
+}
+
+.secao-clara {
+    background-color: #f8f7ff;
+}
+
+/* ================= NAVBAR ================= */
+.navbar-match {
+    background: linear-gradient(135deg, #f7a8d5 0%, #b79df7 55%, #9dd9f9 100%);
+    padding: 16px 0;
+}
+
+.navbar-brand {
+    font-size: 1.3rem;
+    color: #fff !important;
+}
+
+.navbar-brand i {
+    font-size: 1.4rem;
+}
+
+.nav-link {
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #ffffff !important;
+    opacity: 1;
+}
+
+.btn-entrar {
+    background-color: #ffffff;
+    color: #3d2d7a;
+    font-weight: 700;
+    border-radius: 12px;
+    padding: 10px 22px;
+    border: none;
+}
+
+.btn-entrar:hover {
+    background-color: #f1f1f1;
+    color: #3d2d7a;
+}
+
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.85);
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+.navbar-toggler-icon {
+    filter: brightness(0) invert(1);
+}
+
+/* ================= HERO ================= */
+.hero-planos {
+    background: linear-gradient(
+        180deg,
+        rgba(247, 168, 213, 0.20) 0%,
+        rgba(183, 157, 247, 0.16) 50%,
+        rgba(157, 217, 249, 0.12) 100%
+    );
+}
+
+.badge-planos {
+    background-color: #f3e7ff;
+    color: #7b4fe0;
+    font-weight: 600;
+}
+
+.texto-hero {
+    max-width: 760px;
+    color: #6c757d;
+}
+
+/* ================= CARDS DOS PLANOS ================= */
+.card-plano {
+    background-color: #ffffff;
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(33, 37, 41, 0.06);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.card-destaque {
+    border: 2px solid #d9ccff;
+    box-shadow: 0 18px 45px rgba(134, 82, 245, 0.12);
+}
+
+.selo-destaque {
+    position: absolute;
+    top: -12px;
+    right: 24px;
+    background: linear-gradient(135deg, #fd51b3 0%, #8652f5 55%, #5ebbf6 100%);
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 999px;
+}
+
+.preco {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+}
+
+.valor {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #212529;
+}
+
+.periodo {
+    color: #6c757d;
+}
+
+/* ================= LISTA ================= */
+.lista-beneficios {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 28px 0;
+}
+
+.lista-beneficios li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    color: #495057;
+}
+
+.lista-beneficios li i {
+    color: #8652f5;
+}
+
+.lista-beneficios li.indisponivel {
+    color: #adb5bd;
+}
+
+.lista-beneficios li.indisponivel i {
+    color: #ced4da;
+}
+
+/* ================= BOTÕES ================= */
+.btn-plano-primary {
+    background: linear-gradient(135deg, #fd51b3 0%, #8652f5 55%, #5ebbf6 100%);
+    color: white;
+    border: none;
+    border-radius: 14px;
+    padding: 12px 22px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.btn-plano-primary:hover {
+    color: white;
+    opacity: 0.96;
+}
+
+.btn-plano-outline {
+    border: 2px solid #c6b8fb;
+    color: #6e58d9;
+    background-color: transparent;
+    border-radius: 14px;
+    padding: 12px 22px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.btn-plano-outline:hover {
+    background-color: #f5f1ff;
+    color: #6e58d9;
+}
+
+/* ================= TABELA ================= */
+.tabela-planos {
+    background-color: #ffffff;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(33, 37, 41, 0.05);
+}
+
+.tabela-planos th,
+.tabela-planos td {
+    padding: 18px;
+    text-align: center;
+}
+
+.tabela-planos th:first-child,
+.tabela-planos td:first-child {
+    text-align: left;
+}
+
+.tabela-planos thead th {
+    background-color: #f8f7ff;
+    color: #5a45c8;
+}
+
+.tabela-planos i.bi-check-lg {
+    color: #8652f5;
+    font-size: 1.2rem;
+}
+
+.tabela-planos i.bi-dash-lg {
+    color: #adb5bd;
+    font-size: 1.2rem;
+}
+
+/* ================= ACCORDION ================= */
+.accordion-match .accordion-item {
+    border: 1px solid #ece7ff;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+
+.accordion-match .accordion-button {
+    font-weight: 600;
+    padding: 18px 20px;
+    box-shadow: none;
+}
+
+.accordion-match .accordion-button:not(.collapsed) {
+    background-color: #f8f7ff;
+    color: #5a45c8;
+}
+
+.accordion-match .accordion-body {
+    color: #6c757d;
+    padding: 18px 20px;
+}
+
+/* ================= CTA FINAL ================= */
+.cta-final {
+    background: linear-gradient(
+        180deg,
+        rgba(247, 168, 213, 0.14) 0%,
+        rgba(183, 157, 247, 0.12) 50%,
+        rgba(157, 217, 249, 0.10) 100%
+    );
+    border-radius: 24px;
+    padding: 40px 24px;
+}
+
+/* ================= RESPONSIVO ================= */
+@media (max-width: 991.98px) {
+    .navbar-nav {
+        padding-top: 16px;
+        gap: 10px;
+    }
+
+    .card-plano {
+        padding: 24px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .hero-planos {
+        padding-top: 3rem !important;
+        padding-bottom: 3rem !important;
+    }
+
+    .valor {
+        font-size: 1.9rem;
+    }
+
+    .card-plano {
+        padding: 22px;
+        border-radius: 20px;
+    }
+
+    .selo-destaque {
+        right: 18px;
+    }
+
+    .cta-final {
+        padding: 32px 18px;
+        border-radius: 20px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .navbar-brand {
+        font-size: 1.1rem;
+    }
+
+    .card-plano {
+        padding: 18px;
+        border-radius: 18px;
+    }
+
+    .tabela-planos th,
+    .tabela-planos td {
+        padding: 14px;
+        font-size: 0.92rem;
+    }
+
+    .btn-plano-primary,
+    .btn-plano-outline {
+        width: 100%;
+        text-align: center;
+    }
+
+    .cta-final {
+        padding: 26px 16px;
+        border-radius: 18px;
+    }
+}
