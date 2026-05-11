@@ -72,6 +72,7 @@ formCadastro.addEventListener("submit", function (event) {
 
     usuarios.push(novoUsuario);
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
+    localStorage.setItem("usuarioLogado", JSON.stringify(novoUsuario));
 
     mensagem.textContent = "Usuário cadastrado com sucesso!";
     mensagem.style.color = "green";
@@ -81,6 +82,6 @@ formCadastro.addEventListener("submit", function (event) {
     console.log("Cadastro salvo.");
 
     setTimeout(function () {
-        window.location.href = "../CadastroInteresses/cadastrointeresses.html";
+        window.location.href = "../cadastro-interesses/cadastro-interesses.html";
     }, 200);
 });
