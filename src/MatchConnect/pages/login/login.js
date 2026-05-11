@@ -37,6 +37,6 @@ formLogin.addEventListener("submit", function (event) {
     mensagemLogin.style.color = "green";
 
     setTimeout(function () {
-        window.location.href = "../home/home-usuario.html";
+        window.location.href = "../pages/home/home-usuario.html";
     }, 20);
 });
