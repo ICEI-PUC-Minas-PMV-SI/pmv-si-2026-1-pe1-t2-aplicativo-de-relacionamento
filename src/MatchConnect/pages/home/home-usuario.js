@@ -2,7 +2,7 @@ const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 const dadosInteresses = JSON.parse(localStorage.getItem("interessesUsuario"));
 
 if (!usuarioLogado) {
-    window.location.href = "../pages/login/login.html";
+    window.location.href = "../../pages/login/login.html";
 }
 
 const nomeUsuario = document.getElementById("nomeUsuario");
@@ -16,10 +16,10 @@ if (usuarioLogado) {
 if (dadosInteresses && dadosInteresses.fotos && dadosInteresses.fotos.length > 0) {
     fotoPerfilNavbar.src = dadosInteresses.fotos[0];
 } else {
-    fotoPerfilNavbar.src = "../pages/../pages/assets/img/usuarioPadrao.png";
+    fotoPerfilNavbar.src = "../../pages/assets/img/usuarioPadrao.png";
 }
 
 btnSair.addEventListener("click", function () {
     localStorage.removeItem("usuarioLogado");
-    window.location.href = "../pages/login/login.html";
+    window.location.href = "../../pages/login/login.html";
 });

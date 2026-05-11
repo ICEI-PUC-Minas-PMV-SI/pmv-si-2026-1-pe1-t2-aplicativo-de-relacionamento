@@ -134,7 +134,7 @@ formInteresses.addEventListener("submit", function (event) {
     mensagem.style.color = "green";
 
     setTimeout(function () {
-        window.location.href = "../pages/home/home-usuario.html";
+        window.location.href = "../../pages/home/home-usuario.html";
     }, 200);
 });
 
