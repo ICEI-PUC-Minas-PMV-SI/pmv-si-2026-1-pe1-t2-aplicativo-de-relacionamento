@@ -16,7 +16,7 @@ if (usuarioLogado) {
 if (dadosInteresses && dadosInteresses.fotos && dadosInteresses.fotos.length > 0) {
     fotoPerfilNavbar.src = dadosInteresses.fotos[0];
 } else {
-    fotoPerfilNavbar.src = "../../img/usuarioPadrao.png";
+    fotoPerfilNavbar.src = "../../assets/img/usuarioPadrao.png";
 }
 
 btnSair.addEventListener("click", function () {
