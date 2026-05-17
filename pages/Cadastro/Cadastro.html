@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Criar conta | MatchConnect</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    body {
+      background:
+        radial-gradient(circle at 18% 12%, rgba(253, 81, 179, 0.24), transparent 26%),
+        radial-gradient(circle at 82% 18%, rgba(94, 187, 246, 0.28), transparent 30%),
+        linear-gradient(180deg, #fff9fd 0%, #f4f2ff 52%, #effaff 100%);
+      color: #201d32;
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+    }
+
+    .auth-page {
+      min-height: 100vh;
+      padding: 28px 16px;
+    }
+
+    .auth-wrap {
+      align-items: center;
+      display: grid;
+      gap: 34px;
+      grid-template-columns: minmax(300px, 430px) minmax(420px, 520px);
+      justify-content: center;
+      min-height: calc(100vh - 56px);
+    }
+
+    .auth-card {
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(232, 225, 255, 0.9);
+      border-radius: 22px;
+      box-shadow: 0 24px 70px rgba(67, 45, 138, 0.14);
+      padding: 30px;
+    }
+
+    .brand-row {
+      align-items: center;
+      display: flex;
+      gap: 12px;
+      margin-bottom: 26px;
+    }
+
+    .brand-row img {
+      height: 58px;
+      width: auto;
+    }
+
+    .brand-row span {
+      color: #6e58d9;
+      font-size: 0.78rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .auth-card h1 {
+      color: #201d32;
+      font-size: 2rem;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .auth-card p {
+      color: #626779;
+    }
+
+    .form-label {
+      color: #30235f;
+      font-weight: 800;
+    }
+
+    .form-control {
+      background: #fbfbff;
+      border: 1px solid #ded5fb;
+      border-radius: 12px;
+      min-height: 48px;
+      padding: 11px 13px;
+    }
+
+    .form-control:focus {
+      background: #ffffff;
+      border-color: #8652f5;
+      box-shadow: 0 0 0 0.18rem rgba(134, 82, 245, 0.14);
+    }
+
+    .btn-cadastro {
+      background: linear-gradient(135deg, #fd51b3 0%, #8652f5 58%, #25a8df 100%);
+      border: 0;
+      border-radius: 12px;
+      box-shadow: 0 14px 28px rgba(134, 82, 245, 0.20);
+      color: #ffffff;
+      font-weight: 800;
+      min-height: 50px;
+    }
+
+    .btn-cadastro:hover {
+      color: #ffffff;
+      filter: brightness(0.97);
+    }
+
+    .link-login {
+      color: #5a45c8;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .link-login:hover {
+      color: #8652f5;
+    }
+
+    .auth-preview {
+      display: grid;
+      gap: 16px;
+    }
+
+    .preview-card {
+      background: #201d32;
+      border-radius: 24px;
+      box-shadow: 0 24px 70px rgba(67, 45, 138, 0.18);
+      color: #ffffff;
+      padding: 26px;
+    }
+
+    .preview-card span {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 999px;
+      display: inline-flex;
+      font-size: 0.78rem;
+      font-weight: 900;
+      margin-bottom: 16px;
+      padding: 8px 12px;
+      text-transform: uppercase;
+    }
+
+    .preview-card h2 {
+      font-size: 2.15rem;
+      font-weight: 900;
+      letter-spacing: 0;
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+
+    .preview-card p {
+      color: rgba(255, 255, 255, 0.74);
+      margin-bottom: 0;
+    }
+
+    .benefit-strip {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .benefit-strip div {
+      background: #ffffff;
+      border: 1px solid #eadfff;
+      border-radius: 18px;
+      box-shadow: 0 18px 50px rgba(67, 45, 138, 0.08);
+      padding: 16px;
+    }
+
+    .benefit-strip i {
+      color: #8652f5;
+      font-size: 1.4rem;
+    }
+
+    .benefit-strip strong {
+      color: #201d32;
+      display: block;
+      font-size: 0.95rem;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 980px) {
+      .auth-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .auth-preview {
+        order: -1;
+      }
+    }
+
+    @media (max-width: 575px) {
+      .benefit-strip {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="auth-page">
+    <div class="auth-wrap">
+      <aside class="auth-preview">
+        <div class="preview-card">
+          <span>Primeiro passo</span>
+          <h2>Crie um perfil que rende conversa.</h2>
+          <p>Depois você escolhe interesses e recebe matches com mais contexto.</p>
+        </div>
+        <div class="benefit-strip">
+          <div><i class="bi bi-heart-pulse"></i><strong>Afinidade</strong></div>
+          <div><i class="bi bi-robot"></i><strong>Cupido</strong></div>
+          <div><i class="bi bi-book"></i><strong>Eventos</strong></div>
+        </div>
+      </aside>
+
+      <section class="auth-card">
+        <a class="brand-row text-decoration-none" href="../../index.html">
+          <img src="../../assets/img/MatchConnectLOGO.PNG" alt="Logo MatchConnect">
+          <span>Nova conta</span>
+        </a>
+
+        <div class="mb-4">
+          <h1>Criar conta</h1>
+          <p class="mb-0">Preencha seus dados para começar.</p>
+        </div>
+
+        <form id="formCadastro">
+          <div class="mb-3">
+            <label for="nome" class="form-label">Nome completo</label>
+            <input type="text" class="form-control" id="nome" placeholder="Digite seu nome">
+          </div>
+
+          <div class="mb-3">
+            <label for="email" class="form-label">E-mail</label>
+            <input type="email" class="form-control" id="email" placeholder="seuemail@exemplo.com">
+          </div>
+
+          <div class="mb-3">
+            <label for="dataNascimento" class="form-label">Data de nascimento</label>
+            <input type="date" class="form-control" id="dataNascimento">
+          </div>
+
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label for="senha" class="form-label">Senha</label>
+              <input type="password" class="form-control" id="senha" placeholder="Crie uma senha">
+            </div>
+
+            <div class="col-md-6">
+              <label for="confirmarSenha" class="form-label">Confirmar senha</label>
+              <input type="password" class="form-control" id="confirmarSenha" placeholder="Confirme a senha">
+            </div>
+          </div>
+
+          <div class="form-check my-4">
+            <input class="form-check-input" type="checkbox" id="termos">
+            <label class="form-check-label" for="termos">
+              Aceito os <a href="../Termos/Termos.html" class="link-login">termos de uso e política de privacidade</a>.
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-cadastro w-100">Criar conta</button>
+        </form>
+
+        <p id="mensagem" class="text-center fw-semibold mt-3"></p>
+
+        <p class="text-center mt-4 mb-2">
+          Já tem uma conta?
+          <a href="../Login/login.html" class="link-login">Entrar</a>
+        </p>
+
+        <p class="text-center mb-0">
+          <a href="../../index.html" class="link-login">Voltar para tela inicial</a>
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <script src="cadastro.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

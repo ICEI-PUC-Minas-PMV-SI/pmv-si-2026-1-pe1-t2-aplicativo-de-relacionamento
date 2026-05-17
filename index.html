@@ -8,218 +8,185 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="css/MatchC.css">
+    <link rel="stylesheet" href="assets/css/MatchC.css">
 </head>
 
-<body>
-    <div class="hero-bg">
-        <header>
-            <nav class="navbar navbar-expand-lg navbar-custom">
-                <div class="container">
-                    <a class="navbar-brand" href="index.html">
-                        <img src="Img/MatchConnectLOGO.PNG" alt="Logo MatchConnect">
-                    </a>
-
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false"
-                        aria-label="Abrir navegação">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="menuPrincipal">
-                        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-4 text-center">
-                            <li class="nav-item"><a class="nav-link" href="#recursos">Recursos</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#como-funciona">Como funciona</a></li>
-                            <li class="nav-item"><a class="nav-link" href="Sobre/Sobre.html">Sobre</a></li>
-                            <li class="nav-item"><a class="nav-link" href="Planos/Planos.html">Planos</a></li>
-                            <li class="nav-item"><a href="Login/login.html" class="btn btn-entrar ms-lg-2">Entrar</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </header>
-
-        <section id="home" class="principal">
+<body class="landing-modern">
+    <header class="modern-header">
+        <nav class="navbar navbar-expand-lg">
             <div class="container">
-                <div class="row align-items-center g-5">
-                    <div class="col-lg-6">
-                        <div class="hero-conteudo text-white">
-                            <span class="hero-badge">Matches por afinidade, não só por aparência</span>
-                            <h1 class="display-4 fw-bold mb-3">Conexões reais começam com contexto</h1>
-                            <p class="lead mb-4">
-                                O MatchConnect aproxima pessoas por interesses, valores, personalidade e estilo de vida.
-                                Depois do match, o Cupido ajuda a conversa começar com naturalidade.
-                            </p>
+                <a class="modern-brand" href="index.html">
+                    <img src="assets/img/MatchConnectLOGO.PNG" alt="Logo MatchConnect">
+                </a>
 
-                            <div class="hero-actions mb-4">
-                                <a href="Cadastro/Cadastro.html" class="btn btn-cadastro btn-lg">
-                                    Criar conta
-                                </a>
-                                <a href="Login/login.html" class="btn btn-hero-outline btn-lg">
-                                    Já tenho conta
-                                </a>
-                            </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal"
+                    aria-controls="menuPrincipal" aria-expanded="false" aria-label="Abrir navegação">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                            <div class="hero-stats">
-                                <div>
-                                    <strong>98%</strong>
-                                    <span>compatibilidade máxima simulada</span>
-                                </div>
-                                <div>
-                                    <strong>6</strong>
-                                    <span>áreas novas para conectar melhor</span>
-                                </div>
-                                <div>
-                                    <strong>1</strong>
-                                    <span>assistente para quebrar o gelo</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6">
-                        <div class="hero-product">
-                            <img src="Img/img1.png" alt="Ilustração do MatchConnect" class="img-fluid img-hero">
-                            <div class="hero-floating-card card-one">
-                                <i class="bi bi-stars"></i>
-                                <strong>Cupido</strong>
-                                <span>mensagens e perguntas sugeridas</span>
-                            </div>
-                            <div class="hero-floating-card card-two">
-                                <i class="bi bi-shield-check"></i>
-                                <strong>Segurança</strong>
-                                <span>checklist para encontros</span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="collapse navbar-collapse" id="menuPrincipal">
+                    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3 text-center">
+                        <li class="nav-item"><a class="nav-link" href="#como-funciona">Como funciona</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#evento-dia">Evento do dia</a></li>
+                        <li class="nav-item"><a class="nav-link" href="pages/Planos/Planos.html">Planos</a></li>
+                        <li class="nav-item"><a class="btn btn-entrar" href="pages/Login/login.html">Entrar</a></li>
+                    </ul>
                 </div>
             </div>
-        </section>
-    </div>
+        </nav>
+    </header>
 
     <main>
-        <section id="recursos" class="secao-conteudo">
+        <section class="modern-hero">
             <div class="container">
-                <div class="section-title text-center mb-5">
-                    <span>Recursos</span>
-                    <h2>Um app para criar conversa antes do encontro</h2>
-                    <p>As telas principais ajudam o usuário a descobrir, conversar, salvar, planejar e se proteger.</p>
+                <div class="modern-hero-grid">
+                    <div class="modern-copy">
+                        <span class="modern-kicker">Match por afinidade</span>
+                        <h1>Menos swipe. Mais conexão.</h1>
+                        <p>
+                            O MatchConnect combina interesses, personalidade e eventos leves para transformar matches em
+                            conversas naturais.
+                        </p>
+
+                        <div class="modern-actions">
+                            <a class="btn btn-cadastro btn-lg" href="pages/Cadastro/Cadastro.html">Criar conta</a>
+                            <a class="btn btn-hero-outline btn-lg" href="pages/Login/login.html">Entrar</a>
+                        </div>
+
+                        <div class="robot-cupid landing-cupid-inline" aria-live="polite">
+                            <button id="robotCupidButton" class="robot-cupid-button" type="button"
+                                aria-label="Ouvir dica do Cupido">
+                                <span class="wing wing-left"></span>
+                                <span class="wing wing-right"></span>
+                                <span class="robot-antenna"></span>
+                                <span class="robot-face">
+                                    <span class="robot-eye"></span>
+                                    <span class="robot-eye"></span>
+                                    <span class="robot-mouth"></span>
+                                </span>
+                                <span class="robot-heart"><i class="bi bi-heart-fill"></i></span>
+                            </button>
+                            <div id="robotCupidSpeech" class="robot-cupid-speech show">
+                                Crie sua conta e eu te ajudo a puxar o primeiro assunto.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modern-preview" aria-label="Prévia do MatchConnect">
+                        <div class="phone-shell">
+                            <div class="phone-top">
+                                <span></span>
+                                <strong>Hoje</strong>
+                                <i class="bi bi-stars"></i>
+                            </div>
+
+                            <article class="match-card-preview">
+                                <div class="match-photo-preview">A</div>
+                                <div>
+                                    <span>94% compatível</span>
+                                    <h2>Ana, 24</h2>
+                                    <p>Livros, cinema e gastronomia.</p>
+                                </div>
+                            </article>
+
+                            <div class="ai-message-preview">
+                                <i class="bi bi-robot"></i>
+                                <p>“Pergunte qual livro ela indicaria para alguém conhecer melhor o gosto dela.”</p>
+                            </div>
+
+                            <div class="event-preview-pill">
+                                <i class="bi bi-book"></i>
+                                <div>
+                                    <strong>Clube do Livro</strong>
+                                    <span>Hoje, 19h30</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="como-funciona" class="modern-section">
+            <div class="container">
+                <div class="modern-section-title">
+                    <span>Como funciona</span>
+                    <h2>Menos deslizar sem sentido. Mais contexto.</h2>
                 </div>
 
-                <div class="landing-grid">
-                    <article class="landing-feature">
-                        <i class="bi bi-heart-pulse"></i>
-                        <h3>Compatibilidade explicada</h3>
-                        <p>Mostra interesses em comum, programa ideal e motivos do match.</p>
-                        <a href="Login/login.html">Ver matches</a>
+                <div class="modern-flow">
+                    <article>
+                        <i class="bi bi-person-heart"></i>
+                        <strong>Perfil com personalidade</strong>
+                        <p>Interesses e objetivos ajudam o app entender o que combina com você.</p>
                     </article>
-                    <article class="landing-feature">
-                        <i class="bi bi-stars"></i>
-                        <h3>Cupido inteligente</h3>
-                        <p>Sugere mensagens, perguntas e ideias de encontro para cada perfil.</p>
-                        <a href="Login/login.html">Abrir Cupido</a>
+                    <article>
+                        <i class="bi bi-chat-heart"></i>
+                        <strong>Cupido sugere o começo</strong>
+                        <p>Mensagens prontas ajudam a primeira conversa sair do básico.</p>
                     </article>
-                    <article class="landing-feature">
+                    <article>
                         <i class="bi bi-calendar-heart"></i>
-                        <h3>Eventos por interesse</h3>
-                        <p>Transforma afinidades em convites simples e seguros.</p>
-                        <a href="Login/login.html">Explorar eventos</a>
-                    </article>
-                    <article class="landing-feature">
-                        <i class="bi bi-bookmark-heart"></i>
-                        <h3>Favoritos</h3>
-                        <p>Permite salvar perfis interessantes para voltar depois.</p>
-                        <a href="Login/login.html">Salvar perfis</a>
-                    </article>
-                    <article class="landing-feature">
-                        <i class="bi bi-bell"></i>
-                        <h3>Notificações</h3>
-                        <p>Centraliza novos matches, mensagens e alertas importantes.</p>
-                        <a href="Login/login.html">Ver avisos</a>
-                    </article>
-                    <article class="landing-feature">
-                        <i class="bi bi-shield-check"></i>
-                        <h3>Primeiro encontro seguro</h3>
-                        <p>Checklist com local público, horário e contato de confiança.</p>
-                        <a href="Login/login.html">Planejar encontro</a>
+                        <strong>Eventos viram assunto</strong>
+                        <p>Clube do Livro, cinema e cafés criam encontros mais naturais.</p>
                     </article>
                 </div>
             </div>
         </section>
 
-        <section id="como-funciona" class="secao-conteudo secao-clara">
+        <section id="evento-dia" class="modern-event-section">
             <div class="container">
-                <div class="row align-items-center g-5">
-                    <div class="col-lg-5">
-                        <img src="Img/match2.png" alt="Perfis conectados por afinidade" class="img-fluid img-conteudo">
-                    </div>
-                    <div class="col-lg-7">
-                        <div class="section-title mb-4">
-                            <span>Como funciona</span>
-                            <h2>Da personalidade ao primeiro encontro</h2>
-                        </div>
-                        <div class="steps-list">
-                            <div>
-                                <strong>1. Cadastre interesses</strong>
-                                <p>O perfil recebe informações sobre objetivos, personalidade, hobbies e programa ideal.</p>
-                            </div>
-                            <div>
-                                <strong>2. Descubra perfis compatíveis</strong>
-                                <p>A Home ordena sugestões por afinidade e mostra os motivos de cada conexão.</p>
-                            </div>
-                            <div>
-                                <strong>3. Converse com apoio do Cupido</strong>
-                                <p>O assistente cria aberturas naturais para fugir de mensagens genéricas.</p>
-                            </div>
-                            <div>
-                                <strong>4. Planeje com segurança</strong>
-                                <p>Eventos, checklist e contato de confiança ajudam o encontro sair do app com cuidado.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="secao-conteudo cta-section">
-            <div class="container">
-                <div class="cta-band">
+                <div class="modern-event-card">
                     <div>
-                        <span>Pronto para começar?</span>
-                        <h2>Crie seu perfil e descubra conexões com mais sentido.</h2>
+                        <span class="modern-kicker">Evento do dia</span>
+                        <h2>Clube do Livro</h2>
+                        <p>Uma sala leve para falar de histórias, personagens favoritos e indicações.</p>
                     </div>
-                    <div class="hero-actions">
-                        <a href="Cadastro/Cadastro.html" class="btn btn-cadastro btn-lg">Cadastrar</a>
-                        <a href="Sobre/Sobre.html" class="btn btn-outline-cor btn-lg">Conhecer projeto</a>
+                    <div class="modern-event-meta">
+                        <i class="bi bi-book"></i>
+                        <strong>Hoje, 19h30</strong>
+                        <span>Para quem curte livros, cinema e boas conversas.</span>
                     </div>
+                    <a class="btn btn-cadastro btn-lg" href="pages/EventoDia/EventoDia.html">Ver evento</a>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="py-4 border-top footer-custom">
+    <footer class="modern-footer">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-7 mb-3 mb-md-0">
-                    <ul class="nav justify-content-center justify-content-md-start">
-                        <li class="nav-item"><a href="#home" class="nav-link px-2 text-muted">Home</a></li>
-                        <li class="nav-item"><a href="#recursos" class="nav-link px-2 text-muted">Recursos</a></li>
-                        <li class="nav-item"><a href="#como-funciona" class="nav-link px-2 text-muted">Como funciona</a></li>
-                        <li class="nav-item"><a href="Planos/Planos.html" class="nav-link px-2 text-muted">Planos</a></li>
-                        <li class="nav-item"><a href="Termos/Termos.html" class="nav-link px-2 text-muted">Termos</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-md-5 text-center text-md-end">
-                    <a href="#" class="text-muted fs-4 me-3" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-                    <a href="#" class="text-muted fs-4 me-3" aria-label="Youtube"><i class="bi bi-youtube"></i></a>
-                    <a href="#" class="text-muted fs-4" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-                </div>
-            </div>
+            <span>MatchConnect</span>
+            <nav>
+                <a href="pages/Sobre/Sobre.html">Sobre</a>
+                <a href="pages/Termos/Termos.html">Termos</a>
+                <a href="pages/Login/login.html">Entrar</a>
+            </nav>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const robotCupidMessages = [
+            "Eu começaria com algo simples: qual livro combina com sua semana?",
+            "Dica rápida: fale de um interesse em comum antes de chamar para sair.",
+            "Clube do Livro hoje às 19h30. Assunto pronto, pressão zero.",
+            "Um bom match começa quando a conversa parece fácil."
+        ];
+        const robotCupidButton = document.getElementById("robotCupidButton");
+        const robotCupidSpeech = document.getElementById("robotCupidSpeech");
+        let robotCupidIndex = 0;
+
+        robotCupidButton.addEventListener("click", function () {
+            robotCupidSpeech.textContent = robotCupidMessages[robotCupidIndex % robotCupidMessages.length];
+            robotCupidSpeech.classList.add("show");
+            robotCupidButton.classList.add("is-talking");
+            robotCupidIndex += 1;
+
+            window.setTimeout(function () {
+                robotCupidButton.classList.remove("is-talking");
+            }, 900);
+        });
+    </script>
 </body>
 
 </html>

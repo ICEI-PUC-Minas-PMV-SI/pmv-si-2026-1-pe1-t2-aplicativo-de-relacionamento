@@ -34,7 +34,24 @@ Além do sistema de match por afinidade, o aplicativo incorpora um assistente vi
 
 # Código
 
-<li><a href="src/MatchConnect/index.html"> Código Fonte</a></li>
+<li><a href="index.html"> Código Fonte</a></li>
+
+## Organização do projeto
+
+```txt
+assets/
+  css/        estilos globais e estilos de páginas
+  img/        imagens e identidade visual
+  js/         scripts compartilhados
+
+pages/
+  ...         telas do aplicativo separadas por área
+
+docs/         documentação do projeto
+help/         materiais de apoio
+presentation/ apresentação da solução
+index.html   página inicial pública
+```
 
 # Apresentação
 

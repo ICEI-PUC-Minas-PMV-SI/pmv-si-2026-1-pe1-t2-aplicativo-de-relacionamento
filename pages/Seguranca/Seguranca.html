@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Segurança | MatchConnect</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../../assets/css/App.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-match">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center gap-2" href="../home/Homeusuario.html">
+                    <i class="bi bi-heart-pulse-fill"></i> MatchConnect
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="menuPrincipal">
+                    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3 text-center">
+                        <li class="nav-item"><a class="nav-link" href="../home/Homeusuario.html">Início</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="Seguranca.html">Segurança</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../PrimeiroEncontro/PrimeiroEncontro.html">Encontro</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../Notificacoes/Notificacoes.html">Notificações</a></li>
+                        <li class="nav-item"><a class="nav-link"
+                                href="../Configuracoes/Configuracoes.html">Configurações</a></li>
+                        <li class="nav-item"><button id="btnSair" class="btn btn-entrar">Sair</button></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="page-shell">
+        <div class="container">
+            <section class="page-heading">
+                <div>
+                    <span class="section-kicker">Confiança</span>
+                    <h1>Central de segurança</h1>
+                    <p>Configure recursos de proteção para conversas e encontros presenciais.</p>
+                </div>
+                <a class="btn btn-match-primary" href="../PrimeiroEncontro/PrimeiroEncontro.html">Checklist de encontro</a>
+            </section>
+
+            <div class="row g-4">
+                <div class="col-lg-5">
+                    <form id="formContato" class="app-panel">
+                        <h2 class="h4 fw-bold">Contato de confiança</h2>
+                        <p class="text-muted">Salve uma pessoa para avisar antes de encontros.</p>
+                        <label for="nomeContato" class="form-label">Nome</label>
+                        <input id="nomeContato" class="form-control mb-3" type="text">
+                        <label for="telefoneContato" class="form-label">Telefone</label>
+                        <input id="telefoneContato" class="form-control mb-3" type="tel">
+                        <button class="btn btn-match-primary" type="submit">Salvar contato</button>
+                        <p id="mensagemSeguranca" class="status-message mt-3"></p>
+                    </form>
+                </div>
+                <div class="col-lg-7">
+                    <section class="app-panel">
+                        <h2 class="h4 fw-bold mb-3">Ações rápidas</h2>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <button class="app-card w-100 text-start border-0 acao-seguranca" type="button"
+                                    data-msg="Perfil enviado para verificação.">
+                                    <i class="bi bi-person-check fs-3 text-primary"></i>
+                                    <strong class="d-block mt-2">Verificar perfil</strong>
+                                    <span class="text-muted">Simule o selo de autenticidade.</span>
+                                </button>
+                            </div>
+                            <div class="col-md-6">
+                                <button class="app-card w-100 text-start border-0 acao-seguranca" type="button"
+                                    data-msg="Denúncia registrada para análise da equipe.">
+                                    <i class="bi bi-flag fs-3 text-danger"></i>
+                                    <strong class="d-block mt-2">Denúncia rápida</strong>
+                                    <span class="text-muted">Registre comportamento inadequado.</span>
+                                </button>
+                            </div>
+                            <div class="col-md-6">
+                                <button class="app-card w-100 text-start border-0 acao-seguranca" type="button"
+                                    data-msg="Usuário bloqueado nesta simulação.">
+                                    <i class="bi bi-slash-circle fs-3 text-warning"></i>
+                                    <strong class="d-block mt-2">Bloquear usuário</strong>
+                                    <span class="text-muted">Interrompa contatos indesejados.</span>
+                                </button>
+                            </div>
+                            <div class="col-md-6">
+                                <button class="app-card w-100 text-start border-0 acao-seguranca" type="button"
+                                    data-msg="Checklist de encontro seguro ativado.">
+                                    <i class="bi bi-shield-check fs-3 text-success"></i>
+                                    <strong class="d-block mt-2">Checklist seguro</strong>
+                                    <span class="text-muted">Local público, horário claro e contato avisado.</span>
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../../assets/js/navigation.js"></script>
+    <script src="../../assets/js/appData.js"></script>
+    <script src="Seguranca.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

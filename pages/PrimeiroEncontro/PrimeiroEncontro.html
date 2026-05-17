@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Primeiro encontro | MatchConnect</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../../assets/css/App.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-match">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center gap-2" href="../home/Homeusuario.html">
+                    <i class="bi bi-heart-pulse-fill"></i> MatchConnect
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="menuPrincipal">
+                    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3 text-center">
+                        <li class="nav-item"><a class="nav-link" href="../home/Homeusuario.html">Início</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../Eventos/Eventos.html">Eventos</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="PrimeiroEncontro.html">Encontro</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../Seguranca/Seguranca.html">Segurança</a></li>
+                        <li class="nav-item"><button id="btnSair" class="btn btn-entrar">Sair</button></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="page-shell">
+        <div class="container">
+            <section class="page-heading">
+                <div>
+                    <span class="section-kicker">Planejamento seguro</span>
+                    <h1>Primeiro encontro</h1>
+                    <p>Monte um plano simples: local público, horário combinado, contato avisado e assunto inicial.</p>
+                </div>
+            </section>
+
+            <div class="row g-4">
+                <div class="col-lg-5">
+                    <form id="formEncontro" class="app-panel">
+                        <label for="matchEncontro" class="form-label">Match</label>
+                        <select id="matchEncontro" class="form-select mb-3"></select>
+                        <label for="localEncontro" class="form-label">Local</label>
+                        <input id="localEncontro" class="form-control mb-3" type="text" placeholder="Ex: cafeteria no shopping">
+                        <label for="horarioEncontro" class="form-label">Horário</label>
+                        <input id="horarioEncontro" class="form-control mb-3" type="text" placeholder="Ex: sábado, 16h">
+                        <button class="btn btn-match-primary" type="submit">Salvar plano</button>
+                    </form>
+                </div>
+                <div class="col-lg-7">
+                    <section class="app-panel">
+                        <h2 class="h4 fw-bold">Checklist</h2>
+                        <div id="checklistEncontro" class="timeline-list mt-3"></div>
+                        <p id="statusEncontro" class="status-message mt-3"></p>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../../assets/js/navigation.js"></script>
+    <script src="../../assets/js/appData.js"></script>
+    <script src="PrimeiroEncontro.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
