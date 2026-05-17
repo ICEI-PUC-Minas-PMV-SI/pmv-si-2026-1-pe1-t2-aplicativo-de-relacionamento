@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MatchConnect - Home</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" href="../css/Dashboard.css">
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-match shadow-sm">
+            <div class="container">
+
+                <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="../index.html">
+                    <i class="bi bi-heart-pulse-fill"></i>
+                    MatchConnect
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="menuPrincipal">
+
+                    <form class="d-flex mx-lg-4 my-3 my-lg-0 flex-grow-1" role="search">
+                        <div class="input-group">
+                            <span class="input-group-text bg-white border-0">
+                                <i class="bi bi-search"></i>
+                            </span>
+                            <input id="buscaGlobal" class="form-control border-0" type="search"
+                                placeholder="Buscar perfis ou interesses">
+                        </div>
+                    </form>
+
+                    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3 text-center">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="Homeusuario.html">Início</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#descobrir">Descobrir</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Matches/Matches.html">Matches</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Conversas/Conversas.html">Conversas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Planos/Planos.html">Planos</a>
+                        </li>
+
+                        <li
+                            class="nav-item d-flex align-items-center gap-3 ms-lg-2 justify-content-center mt-3 mt-lg-0">
+                            <a href="../Seguranca/Seguranca.html" class="icone-topo">
+                                <i class="bi bi-bell"></i>
+                            </a>
+
+                            <a href="../Conversas/Conversas.html" class="icone-topo">
+                                <i class="bi bi-chat-dots"></i>
+                            </a>
+
+                            <a href="../Perfil/Perfil.html"
+                                class="avatar-topo d-flex align-items-center justify-content-center text-decoration-none">
+                                <img id="fotoPerfilNavbar" class="foto-perfil-navbar" src="" alt="Foto do perfil">
+                            </a>
+
+                            <button id="btnSair" class="btn btn-light btn-sm rounded-pill">
+                                Sair
+                            </button>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="py-4 dashboard-bg home-app">
+        <div class="container-fluid px-3 px-lg-4">
+            <section class="home-welcome mb-4">
+                <div>
+                    <span class="badge rounded-pill badge-custom mb-2">Sua central de conexões</span>
+                    <h1 class="h3 fw-bold mb-1">Olá, <span id="nomeUsuario"></span></h1>
+                    <p class="text-muted mb-0" id="resumoAfinidade">
+                        Complete seus interesses para receber conversas e perfis mais compatíveis.
+                    </p>
+                </div>
+
+                <a href="../EditarPerfil/EditarPerfil.html" class="btn btn-match-outline">
+                    Editar perfil
+                </a>
+            </section>
+
+            <section class="profile-summary home-panel mb-4">
+                <div class="profile-strip">
+                    <img id="fotoPerfilPrincipal" class="profile-photo" src="" alt="Foto principal do perfil">
+                    <div class="profile-summary-main">
+                        <span class="section-kicker">Seu perfil</span>
+                        <h2 class="mb-1" id="tituloPerfil">Interesses e afinidade</h2>
+                        <p class="text-muted mb-0" id="descricaoUsuario">
+                            Os dados do cadastro de interesses aparecem aqui.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="profile-summary-progress">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="fw-semibold">Força do perfil</span>
+                        <span id="perfilPercentual" class="small text-muted">0%</span>
+                    </div>
+                    <div class="progress">
+                        <div id="barraPerfilHome" class="progress-bar barra-match" style="width: 0%;"></div>
+                    </div>
+                </div>
+
+                <div class="profile-facts">
+                    <div>
+                        <span>Busca</span>
+                        <strong id="objetivoUsuario">Não informado</strong>
+                    </div>
+                    <div>
+                        <span>Personalidade</span>
+                        <strong id="personalidadeUsuario">Não informado</strong>
+                    </div>
+                    <div>
+                        <span>Programa ideal</span>
+                        <strong id="programaIdealUsuario">Não informado</strong>
+                    </div>
+                </div>
+            </section>
+
+            <section class="home-panel feature-tabs mb-4" id="cupido">
+                <div class="tabs-shell" role="tablist" aria-label="Novas abas do MatchConnect">
+                    <button class="tab-button active" type="button" role="tab" aria-selected="true"
+                        data-tab="cupido-panel">
+                        <i class="bi bi-stars"></i>
+                        Cupido
+                    </button>
+                    <button class="tab-button" type="button" role="tab" aria-selected="false" data-tab="matches-panel">
+                        <i class="bi bi-heart-fill"></i>
+                        Matches
+                    </button>
+                    <button class="tab-button" type="button" role="tab" aria-selected="false" data-tab="eventos-panel">
+                        <i class="bi bi-calendar-heart"></i>
+                        Eventos
+                    </button>
+                    <button class="tab-button" type="button" role="tab" aria-selected="false"
+                        data-tab="seguranca-panel">
+                        <i class="bi bi-shield-check"></i>
+                        Segurança
+                    </button>
+                </div>
+
+                <div class="tab-panels">
+                    <article class="tab-panel active cupid-panel" id="cupido-panel" role="tabpanel">
+                        <div class="cupid-orb" aria-hidden="true">
+                            <i class="bi bi-stars"></i>
+                        </div>
+                        <div class="cupid-content">
+                            <span class="section-kicker">Assistente virtual</span>
+                            <h2>Cupido MatchConnect</h2>
+                            <p id="cupidoDica">
+                                Vou analisar seus interesses e sugerir uma forma natural de começar a conversa.
+                            </p>
+                            <div class="cupid-message">
+                                <span id="cupidoAlvo">Mensagem sugerida</span>
+                                <strong id="cupidoMensagem">Carregando sugestão...</strong>
+                            </div>
+                        </div>
+                        <div class="cupid-actions">
+                            <button id="btnNovaDicaCupido" class="btn btn-match-primary" type="button">
+                                Gerar dica
+                            </button>
+                            <button id="btnCopiarCupido" class="btn btn-match-outline" type="button">
+                                Usar na conversa
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="tab-panel" id="matches-panel" role="tabpanel">
+                        <div class="section-heading compact">
+                            <div>
+                                <span class="section-kicker">Conexões recentes</span>
+                                <h2>Matches animados</h2>
+                            </div>
+                        </div>
+                        <div id="listaMatchesAnimados" class="match-animation-list"></div>
+                    </article>
+
+                    <article class="tab-panel ideas-grid" id="eventos-panel" role="tabpanel">
+                        <div class="idea-card">
+                            <i class="bi bi-cup-hot"></i>
+                            <strong>Café compatível</strong>
+                            <span>Convites rápidos baseados no programa ideal de vocês.</span>
+                            <button class="btn btn-match-outline btn-sm idea-action" type="button"
+                                data-action="evento-cafe">Sugerir encontro</button>
+                        </div>
+                        <div class="idea-card">
+                            <i class="bi bi-music-note-beamed"></i>
+                            <strong>Rolês por interesse</strong>
+                            <span>Eventos separados por música, cinema, games e gastronomia.</span>
+                            <button class="btn btn-match-outline btn-sm idea-action" type="button"
+                                data-action="evento-interesse">Ver ideias</button>
+                        </div>
+                        <div class="idea-card">
+                            <i class="bi bi-geo-alt"></i>
+                            <strong>Perto de mim</strong>
+                            <span>Sugestões de encontros em locais seguros e movimentados.</span>
+                            <button class="btn btn-match-outline btn-sm idea-action" type="button"
+                                data-action="evento-local">Explorar locais</button>
+                        </div>
+                    </article>
+
+                    <article class="tab-panel ideas-grid" id="seguranca-panel" role="tabpanel">
+                        <div class="idea-card">
+                            <i class="bi bi-person-check"></i>
+                            <strong>Perfil verificado</strong>
+                            <span>Selo para usuários com dados revisados.</span>
+                            <button class="btn btn-match-outline btn-sm idea-action" type="button"
+                                data-action="seguranca-verificar">Verificar perfil</button>
+                        </div>
+                        <div class="idea-card">
+                            <i class="bi bi-telephone"></i>
+                            <strong>Contato de confiança</strong>
+                            <span>Compartilhamento opcional de encontro com alguém escolhido.</span>
+                            <button class="btn btn-match-outline btn-sm idea-action" type="button"
+                                data-action="seguranca-contato">Configurar</button>
+                        </div>
+                        <div class="idea-card">
+                            <i class="bi bi-flag"></i>
+                            <strong>Denúncia rápida</strong>
+                            <span>Acesso direto para reportar comportamento inadequado.</span>
+                            <button class="btn btn-match-outline btn-sm idea-action" type="button"
+                                data-action="seguranca-denuncia">Abrir suporte</button>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <div class="home-grid">
+
+                <section class="home-panel swipe-panel main-discovery" id="descobrir">
+                    <div class="section-heading discovery-heading">
+                        <div>
+                            <span class="section-kicker">Descobrir</span>
+                            <h2>Perfis com mais afinidade</h2>
+                        </div>
+                        <span id="contadorSwipe" class="swipe-counter">1/1</span>
+                    </div>
+
+                    <article id="cardPerfilSwipe" class="discover-card"></article>
+
+                    <div class="swipe-actions">
+                        <div class="swipe-action-item">
+                            <button id="btnRecusar" class="btn-swipe reject" type="button" aria-label="Recusar perfil">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                            <span>Recusar</span>
+                        </div>
+                        <div class="swipe-action-item">
+                            <button id="btnVoltar" class="btn-swipe back" type="button" aria-label="Voltar perfil">
+                                <i class="bi bi-arrow-counterclockwise"></i>
+                            </button>
+                            <span>Voltar</span>
+                        </div>
+                        <div class="swipe-action-item">
+                            <button id="btnCurtir" class="btn-swipe like" type="button" aria-label="Curtir perfil">
+                                <i class="bi bi-heart-fill"></i>
+                            </button>
+                            <span>Curtir</span>
+                        </div>
+                    </div>
+
+                    <div id="resultadoSwipe" class="swipe-feedback" aria-live="polite"></div>
+                </section>
+
+                <aside class="home-sidebar">
+                    <section class="home-panel quick-interests-panel">
+                        <div class="section-heading compact">
+                            <div>
+                                <span class="section-kicker">Base do match</span>
+                                <h2>Meus interesses</h2>
+                            </div>
+                        </div>
+                        <div id="listaInteressesUsuario" class="interest-tags"></div>
+
+                        <div class="affinity-row">
+                            <div class="affinity-card">
+                                <i class="bi bi-heart-pulse"></i>
+                                <span id="totalInteresses">0 interesses</span>
+                                <strong>usados para sugerir perfis</strong>
+                            </div>
+                            <div class="affinity-card">
+                                <i class="bi bi-chat-heart"></i>
+                                <span id="tomConversa">Conversa leve</span>
+                                <strong>tom recomendado para novos chats</strong>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="home-panel conversas-panel" id="conversas">
+                        <div class="section-heading">
+                            <div>
+                                <span class="section-kicker">Mensagens</span>
+                                <h2>Conversas</h2>
+                            </div>
+                            <button class="icon-action" type="button" aria-label="Nova conversa">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                        </div>
+
+                        <div class="conversation-search">
+                            <i class="bi bi-search"></i>
+                            <input id="buscaConversas" type="search" placeholder="Buscar conversa">
+                        </div>
+
+                        <div id="listaConversas" class="conversation-list"></div>
+
+                        <div class="chat-preview">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <i class="bi bi-stars"></i>
+                                <strong>Sugestão para começar</strong>
+                            </div>
+                            <p id="sugestaoConversa" class="mb-3">
+                                Atualize seus interesses para receber ideias de abertura personalizadas.
+                            </p>
+                            <button id="btnEnviarSugestao" class="btn btn-match-primary w-100" type="button">Enviar
+                                sugestão</button>
+                        </div>
+                    </section>
+                </aside>
+            </div>
+        </div>
+
+        <div id="matchCelebration" class="match-celebration" aria-live="polite" aria-hidden="true">
+            <div class="match-burst">
+                <span class="heart heart-one"><i class="bi bi-heart-fill"></i></span>
+                <span class="heart heart-two"><i class="bi bi-heart-fill"></i></span>
+                <span class="heart heart-three"><i class="bi bi-heart-fill"></i></span>
+                <div class="match-badge-big">
+                    <i class="bi bi-hearts"></i>
+                    <strong>Deu Match!</strong>
+                    <span id="matchCelebrationText">A conversa já pode começar.</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="HomeUsuario.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
