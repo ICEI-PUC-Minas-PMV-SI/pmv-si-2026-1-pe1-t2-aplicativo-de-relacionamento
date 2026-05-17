@@ -12,9 +12,11 @@ const perfisBase = [
     {
         nome: "Ana",
         idade: 24,
+        distanciaKm: 4,
         inicial: "A",
         foto: "",
         interesses: ["Cinema", "Livros", "Gastronomia", "Viagens"],
+        objetivo: "Relacionamento sério",
         procura: "conversa leve e encontro tranquilo",
         programaIdeal: "cinema seguido de jantar",
         energia: "Calma e curiosa",
@@ -25,9 +27,11 @@ const perfisBase = [
     {
         nome: "Karol",
         idade: 26,
+        distanciaKm: 12,
         inicial: "K",
         foto: "",
         interesses: ["Música", "Academia", "Corrida", "Tecnologia"],
+        objetivo: "Conhecer pessoas novas",
         procura: "alguém animado para conversar e sair da rotina",
         programaIdeal: "show, treino ou café depois do trabalho",
         energia: "Alta e espontânea",
@@ -38,9 +42,11 @@ const perfisBase = [
     {
         nome: "Mariana",
         idade: 23,
+        distanciaKm: 7,
         inicial: "M",
         foto: "",
         interesses: ["Séries", "Praia", "Pets", "Cinema"],
+        objetivo: "Algo leve, sem pressão",
         procura: "conversas carinhosas e programas sem pressa",
         programaIdeal: "praia no fim da tarde",
         energia: "Doce e observadora",
@@ -51,9 +57,11 @@ const perfisBase = [
     {
         nome: "Beatriz",
         idade: 27,
+        distanciaKm: 18,
         inicial: "B",
         foto: "",
         interesses: ["Viagens", "Gastronomia", "Livros", "Música"],
+        objetivo: "Conhecer pessoas novas",
         procura: "companhia para descobrir lugares e histórias",
         programaIdeal: "restaurante novo ou bate-volta",
         energia: "Exploradora e bem-humorada",
@@ -64,9 +72,11 @@ const perfisBase = [
     {
         nome: "Luiza",
         idade: 25,
+        distanciaKm: 28,
         inicial: "L",
         foto: "",
         interesses: ["Games", "Tecnologia", "Séries", "Pets"],
+        objetivo: "Amizade",
         procura: "parceria para rir, jogar e conversar sem pressão",
         programaIdeal: "game cooperativo e comida em casa",
         energia: "Criativa e tranquila",
@@ -145,6 +155,18 @@ const cupidoGuideTitle = document.getElementById("cupidoGuideTitle");
 const cupidoGuideText = document.getElementById("cupidoGuideText");
 const btnPularGuiaCupido = document.getElementById("btnPularGuiaCupido");
 const btnProximoGuiaCupido = document.getElementById("btnProximoGuiaCupido");
+const btnCupidoPet = document.getElementById("btnCupidoPet");
+const cupidoPetPanel = document.getElementById("cupidoPetPanel");
+const cupidoSpeech = document.getElementById("cupidoSpeech");
+const cupidoNivel = document.getElementById("cupidoNivel");
+const cupidoEnergiaTexto = document.getElementById("cupidoEnergiaTexto");
+const cupidoEnergiaBarra = document.getElementById("cupidoEnergiaBarra");
+const cupidoMissao = document.getElementById("cupidoMissao");
+const cupidoDesbloqueio = document.getElementById("cupidoDesbloqueio");
+const cupidoHumor = document.getElementById("cupidoHumor");
+const btnAlimentarCupido = document.getElementById("btnAlimentarCupido");
+const btnMissaoCupido = document.getElementById("btnMissaoCupido");
+const cupidoRewardSteps = document.querySelectorAll(".cupido-reward-track span");
 
 let indiceSwipe = 0;
 let ultimoIndice = 0;
@@ -152,6 +174,8 @@ let indiceDicaCupido = 0;
 let indiceVariacaoCupido = 0;
 let indiceGuiaCupido = 0;
 let filtroGlobal = "";
+let cupidoXp = Number(localStorage.getItem("cupidoPetXp")) || 18;
+const filtrosMatchConnect = JSON.parse(localStorage.getItem("filtrosMatchConnect")) || {};
 const matchesCurtidos = [];
 const matchesSalvos = JSON.parse(localStorage.getItem("matchesUsuario")) || [];
 
@@ -192,7 +216,47 @@ function ordenarPerfisPorAfinidade() {
         });
 }
 
-let perfisDescoberta = ordenarPerfisPorAfinidade();
+function aplicarFiltrosSalvos(perfis) {
+    const temFiltros = Object.keys(filtrosMatchConnect).length > 0;
+
+    if (!temFiltros) {
+        return perfis;
+    }
+
+    const idadeMinima = Number(filtrosMatchConnect.idadeMinima) || 18;
+    const idadeMaxima = Number(filtrosMatchConnect.idadeMaxima) || 99;
+    const distanciaMaxima = Number(filtrosMatchConnect.distanciaMaxima) || 100;
+    const interesse = (filtrosMatchConnect.interesse || "").toLowerCase();
+    const objetivo = filtrosMatchConnect.objetivo || "";
+    const objetivosDisponiveis = perfis.map(function (perfil) {
+        return perfil.objetivo;
+    });
+    const objetivoAplicavel = objetivosDisponiveis.includes(objetivo) ? objetivo : "";
+
+    const filtrados = perfis.filter(function (perfil) {
+        const atendeIdade = perfil.idade >= idadeMinima && perfil.idade <= idadeMaxima;
+        const atendeDistancia = !perfil.distanciaKm || perfil.distanciaKm <= distanciaMaxima;
+        const atendeInteresse = !interesse || perfil.interesses.join(" ").toLowerCase().includes(interesse);
+        const atendeObjetivo = !objetivoAplicavel || perfil.objetivo === objetivoAplicavel;
+        return atendeIdade && atendeDistancia && atendeInteresse && atendeObjetivo;
+    });
+
+    return filtrados.length > 0 ? filtrados : perfis;
+}
+
+let perfisDescoberta = aplicarFiltrosSalvos(ordenarPerfisPorAfinidade());
+const filtrosSemResultado = Object.keys(filtrosMatchConnect).length > 0
+    && perfisDescoberta.length === ordenarPerfisPorAfinidade().length
+    && ordenarPerfisPorAfinidade().some(function (perfil) {
+        const idadeMinima = Number(filtrosMatchConnect.idadeMinima) || 18;
+        const idadeMaxima = Number(filtrosMatchConnect.idadeMaxima) || 99;
+        const distanciaMaxima = Number(filtrosMatchConnect.distanciaMaxima) || 100;
+        const interesse = (filtrosMatchConnect.interesse || "").toLowerCase();
+        return perfil.idade < idadeMinima
+            || perfil.idade > idadeMaxima
+            || (perfil.distanciaKm && perfil.distanciaKm > distanciaMaxima)
+            || (interesse && !perfil.interesses.join(" ").toLowerCase().includes(interesse));
+    });
 
 // Frases gerais do Cupido. A mensagem final também considera o perfil selecionado.
 const dicasCupido = [
@@ -230,6 +294,39 @@ const etapasGuiaCupido = [
         titulo: "Eventos e encontros",
         texto: "Use Eventos e Evento do Dia para transformar assunto em convite. Depois, confira o checklist de segurança."
     }
+];
+
+const falasCupidoPet = [
+    "Ei, tem compatibilidade alta passando na sua frente.",
+    "Alimente meu coração com uma curtida. Eu trabalho melhor com carinho.",
+    "Seu perfil está quase irresistível. Falta só caprichar um detalhe.",
+    "Hoje tem evento ao vivo. Vai deixar a sala falando sozinha?",
+    "Eu gerei uma frase boa. Use antes que eu fique dramático.",
+    "Missão do dia: curtir alguém sem pensar por 47 minutos."
+];
+
+const missoesCupidoPet = [
+    "Curta um perfil para alimentar o Cupido.",
+    "Use uma dica de conversa para ganhar foco.",
+    "Abra o evento do dia para ganhar energia social.",
+    "Complete seu perfil para liberar mais destaque.",
+    "Faça uma busca por interesse e encontre alguém novo."
+];
+
+const desbloqueiosCupidoPet = [
+    "Dica de conversa melhorada",
+    "Missão extra de perfil",
+    "Sugestão de evento compatível",
+    "Impulso visual nos matches",
+    "Super dica do Cupido"
+];
+
+const humoresCupidoPet = [
+    "curioso",
+    "animado",
+    "inspirado",
+    "confiante",
+    "lendário"
 ];
 
 // Mede a força do perfil com base nos campos mais importantes preenchidos.
@@ -277,6 +374,14 @@ function preencherPerfil() {
     resumoAfinidade.textContent = interessesUsuario.length > 0
         ? `Encontramos perfis e conversas usando ${interessesUsuario.slice(0, 3).join(", ")} como ponto de partida.`
         : "Complete seus interesses para receber conversas e perfis mais compatíveis.";
+
+    if (Object.keys(filtrosMatchConnect).length > 0) {
+        resumoAfinidade.textContent += ` Filtros ativos: ${filtrosMatchConnect.idadeMinima || 18}-${filtrosMatchConnect.idadeMaxima || 99} anos, até ${filtrosMatchConnect.distanciaMaxima || 100} km.`;
+    }
+
+    if (filtrosSemResultado) {
+        resumoAfinidade.textContent += " Como nenhum perfil bateu exatamente com os filtros, mostramos sugestões por afinidade.";
+    }
 
     listaInteressesUsuario.innerHTML = "";
 
@@ -376,6 +481,65 @@ function montarMensagemCupido(perfil) {
     return `Vi que a gente combina em ${interessePrincipal}. Qual detalhe desse assunto mais prende sua atenção ultimamente?`;
 }
 
+function nivelCupido() {
+    return Math.max(1, Math.min(5, Math.floor(cupidoXp / 25) + 1));
+}
+
+function atualizarCupidoPet(fala) {
+    const nivel = nivelCupido();
+    const energia = cupidoXp % 25;
+    const percentual = Math.min(100, (energia / 25) * 100);
+    const xpProximoNivel = 25 - energia;
+
+    if (cupidoNivel) {
+        cupidoNivel.textContent = `Nível ${nivel}`;
+    }
+
+    if (cupidoHumor) {
+        cupidoHumor.textContent = `Humor: ${humoresCupidoPet[nivel - 1]}`;
+    }
+
+    if (cupidoEnergiaTexto) {
+        cupidoEnergiaTexto.textContent = `${cupidoXp} XP • ${xpProximoNivel === 25 ? 25 : xpProximoNivel} para subir`;
+    }
+
+    if (cupidoEnergiaBarra) {
+        cupidoEnergiaBarra.style.width = `${percentual}%`;
+    }
+
+    if (cupidoMissao) {
+        cupidoMissao.textContent = missoesCupidoPet[cupidoXp % missoesCupidoPet.length];
+    }
+
+    if (cupidoDesbloqueio) {
+        const proximo = desbloqueiosCupidoPet[Math.min(nivel, desbloqueiosCupidoPet.length - 1)];
+        cupidoDesbloqueio.textContent = nivel >= 5
+            ? "Super dica desbloqueada. CupiBot está impossível hoje."
+            : `Próximo: ${proximo}`;
+    }
+
+    cupidoRewardSteps.forEach(function (step, index) {
+        step.classList.toggle("active", index < nivel);
+    });
+
+    if (cupidoSpeech) {
+        cupidoSpeech.textContent = fala || falasCupidoPet[cupidoXp % falasCupidoPet.length];
+        cupidoSpeech.classList.add("show");
+    }
+}
+
+function ganharXpCupido(pontos, fala) {
+    cupidoXp += pontos;
+    localStorage.setItem("cupidoPetXp", String(cupidoXp));
+    atualizarCupidoPet(fala);
+
+    if (cupidoOrb) {
+        cupidoOrb.classList.remove("is-guiding");
+        void cupidoOrb.offsetWidth;
+        cupidoOrb.classList.add("is-guiding");
+    }
+}
+
 // Atualiza a aba Cupido e dispara a animação do robozinho.
 function atualizarCupido() {
     const perfil = obterPerfilAtual();
@@ -394,6 +558,8 @@ function atualizarCupido() {
         void cupidoOrb.offsetWidth;
         cupidoOrb.classList.add("is-guiding");
     }
+
+    atualizarCupidoPet(`Estou olhando para ${nomePerfil}. Minha antena apitou.`);
 }
 
 // Explica no card por que aquele perfil combina com o usuário.
@@ -468,7 +634,7 @@ function renderizarSwipe() {
             <div class="d-flex justify-content-between align-items-start gap-3 mb-2">
                 <div>
                     <h3>${perfil.nome}, ${perfil.idade}</h3>
-                    <p>${perfil.percentual}% compatível</p>
+                    <p>${perfil.percentual}% compatível • ${perfil.distanciaKm} km</p>
                 </div>
                 <span class="compat-badge">${perfil.interessesEmComum.length} em comum</span>
             </div>
@@ -493,6 +659,10 @@ function renderizarSwipe() {
                 <div>
                     <span>Programa ideal</span>
                     <strong>${perfil.programaIdeal}</strong>
+                </div>
+                <div>
+                    <span>Distância</span>
+                    <strong>${perfil.distanciaKm} km de você</strong>
                 </div>
             </div>
         </div>
@@ -539,7 +709,7 @@ function aplicarBuscaGlobal(termo) {
     ultimoIndice = 0;
     indiceVariacaoCupido = 0;
 
-    perfisDescoberta = ordenarPerfisPorAfinidade().filter(function (perfil) {
+    perfisDescoberta = aplicarFiltrosSalvos(ordenarPerfisPorAfinidade()).filter(function (perfil) {
         if (!filtroGlobal) {
             return true;
         }
@@ -666,6 +836,7 @@ btnCurtir.addEventListener("click", function () {
     }
     renderizarMatchesAnimados();
     mostrarAnimacaoMatch(perfil);
+    ganharXpCupido(8, `Nhac! Curtida em ${perfil.nome}. Minha energia subiu.`);
     avancarSwipe(`Você curtiu ${perfil.nome}. A conversa já pode começar.`, "like");
 });
 
@@ -682,7 +853,27 @@ btnNovaDicaCupido.addEventListener("click", function () {
     indiceVariacaoCupido += 1;
     atualizarCupido();
     atualizarSugestao();
+    ganharXpCupido(4, "Dica gerada. Eu aceito pagamento em atenção e curtidas.");
 });
+
+if (btnCupidoPet) {
+    btnCupidoPet.addEventListener("click", function () {
+        cupidoPetPanel.classList.toggle("show");
+        atualizarCupidoPet();
+    });
+}
+
+if (btnAlimentarCupido) {
+    btnAlimentarCupido.addEventListener("click", function () {
+        ganharXpCupido(5, "Coração abastecido. Agora posso julgar seus matches com mais carinho.");
+    });
+}
+
+if (btnMissaoCupido) {
+    btnMissaoCupido.addEventListener("click", function () {
+        ganharXpCupido(2, missoesCupidoPet[(cupidoXp + 1) % missoesCupidoPet.length]);
+    });
+}
 
 if (btnCopiarCupido) {
     btnCopiarCupido.addEventListener("click", function () {
@@ -721,6 +912,7 @@ listaMatchesAnimados.addEventListener("click", function (event) {
 ideaActions.forEach(function (button) {
     button.addEventListener("click", function () {
         resultadoSwipe.textContent = sugestoesAcao[button.dataset.action] || "Ação preparada.";
+        ganharXpCupido(3, "Boa ação. Eu anotei isso no meu diário de romance.");
     });
 });
 
@@ -749,4 +941,5 @@ renderizarConversas();
 atualizarSugestao();
 renderizarSwipe();
 renderizarMatchesAnimados();
+atualizarCupidoPet();
 abrirGuiaCupidoSeNecessario();

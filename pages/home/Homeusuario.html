@@ -18,7 +18,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark navbar-match shadow-sm">
             <div class="container">
 
-                <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="../../index.html">
+                <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="Homeusuario.html">
                     <i class="bi bi-heart-pulse-fill"></i>
                     MatchConnect
                 </a>
@@ -50,10 +50,16 @@
                             <a class="nav-link" href="../Matches/Matches.html">Matches</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="../CentralMatch/CentralMatch.html">Central</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="../Conversas/Conversas.html">Conversas</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="../Eventos/Eventos.html">Eventos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Experiencias/Experiencias.html">Experiências</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="../EventoDia/EventoDia.html">Evento do dia</a>
@@ -63,6 +69,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="../Planos/Planos.html">Planos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Onboarding/Onboarding.html">Preferências</a>
                         </li>
 
                         <li
@@ -107,7 +116,7 @@
                 </a>
             </section>
 
-            <section class="profile-summary home-panel mb-4">
+            <section class="profile-summary home-panel compact-profile mb-4">
                 <div class="profile-strip">
                     <img id="fotoPerfilPrincipal" class="profile-photo" src="" alt="Foto principal do perfil">
                     <div class="profile-summary-main">
@@ -145,125 +154,6 @@
                 </div>
             </section>
 
-            <section class="home-panel feature-tabs mb-4" id="cupido">
-                <div class="tabs-shell" role="tablist" aria-label="Novas abas do MatchConnect">
-                    <button class="tab-button active" type="button" role="tab" aria-selected="true"
-                        data-tab="cupido-panel">
-                        <i class="bi bi-stars"></i>
-                        Cupido
-                    </button>
-                    <button class="tab-button" type="button" role="tab" aria-selected="false" data-tab="matches-panel">
-                        <i class="bi bi-heart-fill"></i>
-                        Matches
-                    </button>
-                    <button class="tab-button" type="button" role="tab" aria-selected="false" data-tab="eventos-panel">
-                        <i class="bi bi-calendar-heart"></i>
-                        Eventos
-                    </button>
-                    <button class="tab-button" type="button" role="tab" aria-selected="false"
-                        data-tab="seguranca-panel">
-                        <i class="bi bi-shield-check"></i>
-                        Segurança
-                    </button>
-                </div>
-
-                <div class="tab-panels">
-                    <article class="tab-panel active cupid-panel" id="cupido-panel" role="tabpanel">
-                        <div class="cupid-robot" aria-hidden="true">
-                            <span class="cupid-wing cupid-wing-left"></span>
-                            <span class="cupid-wing cupid-wing-right"></span>
-                            <span class="cupid-antenna"></span>
-                            <span class="cupid-robot-face">
-                                <span class="cupid-robot-eye"></span>
-                                <span class="cupid-robot-eye"></span>
-                                <span class="cupid-robot-mouth"></span>
-                            </span>
-                            <span class="cupid-robot-heart"><i class="bi bi-heart-fill"></i></span>
-                        </div>
-                        <div class="cupid-content">
-                            <span class="section-kicker">Assistente virtual</span>
-                            <h2>Cupido MatchConnect</h2>
-                            <p id="cupidoDica">
-                                Vou analisar seus interesses e sugerir uma forma natural de começar a conversa.
-                            </p>
-                            <div class="cupid-message">
-                                <span id="cupidoAlvo">Mensagem sugerida</span>
-                                <strong id="cupidoMensagem">Carregando sugestão...</strong>
-                            </div>
-                        </div>
-                        <div class="cupid-actions">
-                            <button id="btnNovaDicaCupido" class="btn btn-match-primary" type="button">
-                                Gerar dica
-                            </button>
-                            <a href="../Cupido/Cupido.html" class="btn btn-match-outline">Abrir Cupido</a>
-                        </div>
-                    </article>
-
-                    <article class="tab-panel" id="matches-panel" role="tabpanel">
-                        <div class="section-heading compact">
-                            <div>
-                                <span class="section-kicker">Conexões recentes</span>
-                                <h2>Matches animados</h2>
-                            </div>
-                        </div>
-                        <div id="listaMatchesAnimados" class="match-animation-list"></div>
-                    </article>
-
-                    <article class="tab-panel ideas-grid" id="eventos-panel" role="tabpanel">
-                        <div class="idea-card">
-                            <i class="bi bi-cup-hot"></i>
-                            <strong>Café compatível</strong>
-                            <span>Convites rápidos baseados no programa ideal de vocês.</span>
-                            <button class="btn btn-match-outline btn-sm idea-action" type="button"
-                                data-action="evento-cafe">Sugerir encontro</button>
-                            <a class="btn btn-match-primary btn-sm idea-action-link" href="../Eventos/Eventos.html">Abrir eventos</a>
-                        </div>
-                        <div class="idea-card">
-                            <i class="bi bi-music-note-beamed"></i>
-                            <strong>Rolês por interesse</strong>
-                            <span>Eventos separados por música, cinema, games e gastronomia.</span>
-                            <button class="btn btn-match-outline btn-sm idea-action" type="button"
-                                data-action="evento-interesse">Ver ideias</button>
-                            <a class="btn btn-match-primary btn-sm idea-action-link" href="../Eventos/Eventos.html">Explorar</a>
-                        </div>
-                        <div class="idea-card">
-                            <i class="bi bi-geo-alt"></i>
-                            <strong>Perto de mim</strong>
-                            <span>Sugestões de encontros em locais seguros e movimentados.</span>
-                            <button class="btn btn-match-outline btn-sm idea-action" type="button"
-                                data-action="evento-local">Explorar locais</button>
-                            <a class="btn btn-match-primary btn-sm idea-action-link" href="../PrimeiroEncontro/PrimeiroEncontro.html">Planejar</a>
-                        </div>
-                    </article>
-
-                    <article class="tab-panel ideas-grid" id="seguranca-panel" role="tabpanel">
-                        <div class="idea-card">
-                            <i class="bi bi-person-check"></i>
-                            <strong>Perfil verificado</strong>
-                            <span>Selo para usuários com dados revisados.</span>
-                            <button class="btn btn-match-outline btn-sm idea-action" type="button"
-                                data-action="seguranca-verificar">Verificar perfil</button>
-                        </div>
-                        <div class="idea-card">
-                            <i class="bi bi-telephone"></i>
-                            <strong>Contato de confiança</strong>
-                            <span>Compartilhamento opcional de encontro com alguém escolhido.</span>
-                            <button class="btn btn-match-outline btn-sm idea-action" type="button"
-                                data-action="seguranca-contato">Configurar</button>
-                            <a class="btn btn-match-primary btn-sm idea-action-link" href="../PrimeiroEncontro/PrimeiroEncontro.html">Checklist</a>
-                        </div>
-                        <div class="idea-card">
-                            <i class="bi bi-flag"></i>
-                            <strong>Denúncia rápida</strong>
-                            <span>Acesso direto para reportar comportamento inadequado.</span>
-                            <button class="btn btn-match-outline btn-sm idea-action" type="button"
-                                data-action="seguranca-denuncia">Abrir suporte</button>
-                            <a class="btn btn-match-primary btn-sm idea-action-link" href="../Seguranca/Seguranca.html">Central</a>
-                        </div>
-                    </article>
-                </div>
-            </section>
-
             <div class="home-grid">
 
                 <section class="home-panel swipe-panel main-discovery" id="descobrir">
@@ -272,7 +162,10 @@
                             <span class="section-kicker">Descobrir</span>
                             <h2>Perfis com mais afinidade</h2>
                         </div>
-                        <span id="contadorSwipe" class="swipe-counter">1/1</span>
+                        <div class="discovery-actions">
+                            <a class="btn btn-match-outline btn-sm" href="../Filtros/Filtros.html">Filtros</a>
+                            <span id="contadorSwipe" class="swipe-counter">1/1</span>
+                        </div>
                     </div>
 
                     <article id="cardPerfilSwipe" class="discover-card"></article>
@@ -354,11 +247,178 @@
                             </p>
                             <button id="btnEnviarSugestao" class="btn btn-match-primary w-100" type="button">Enviar
                                 sugestão</button>
-                            <a href="../Cupido/Cupido.html" class="btn btn-match-outline w-100 mt-2">Gerar mais ideias</a>
+                            <a href="../Cupido/Cupido.html" class="btn btn-match-outline w-100 mt-2">Gerar mais
+                                ideias</a>
                         </div>
                     </section>
                 </aside>
             </div>
+
+            <section class="home-panel feature-tabs mt-4" id="atalhosHome">
+                <div class="tabs-shell" role="tablist" aria-label="Atalhos do MatchConnect">
+                    <button class="tab-button active" type="button" role="tab" aria-selected="true"
+                        data-tab="matches-panel">
+                        <i class="bi bi-heart-fill"></i>
+                        Matches
+                    </button>
+                    <button class="tab-button" type="button" role="tab" aria-selected="false" data-tab="eventos-panel">
+                        <i class="bi bi-calendar-heart"></i>
+                        Eventos
+                    </button>
+                    <button class="tab-button" type="button" role="tab" aria-selected="false"
+                        data-tab="seguranca-panel">
+                        <i class="bi bi-shield-check"></i>
+                        Segurança
+                    </button>
+                </div>
+
+                <div class="tab-panels">
+                    <article class="tab-panel active" id="matches-panel" role="tabpanel">
+                        <div class="section-heading compact">
+                            <div>
+                                <span class="section-kicker">Conexões recentes</span>
+                                <h2>Matches animados</h2>
+                            </div>
+                        </div>
+                        <div id="listaMatchesAnimados" class="match-animation-list"></div>
+                    </article>
+
+                    <article class="tab-panel ideas-grid" id="eventos-panel" role="tabpanel">
+                        <div class="idea-card">
+                            <i class="bi bi-broadcast"></i>
+                            <strong>Evento ao vivo</strong>
+                            <span>Entre na sala do evento do dia quando estiver acontecendo.</span>
+                            <a class="btn btn-match-primary btn-sm idea-action-link"
+                                href="../EventoDia/EventoDia.html">Ver agora</a>
+                        </div>
+                        <div class="idea-card">
+                            <i class="bi bi-cup-hot"></i>
+                            <strong>Café compatível</strong>
+                            <span>Convites rápidos baseados no programa ideal de vocês.</span>
+                            <button class="btn btn-match-outline btn-sm idea-action" type="button"
+                                data-action="evento-cafe">Sugerir encontro</button>
+                        </div>
+                        <div class="idea-card">
+                            <i class="bi bi-geo-alt"></i>
+                            <strong>Perto de mim</strong>
+                            <span>Sugestões de encontros em locais seguros e movimentados.</span>
+                            <a class="btn btn-match-primary btn-sm idea-action-link"
+                                href="../PrimeiroEncontro/PrimeiroEncontro.html">Planejar</a>
+                        </div>
+                    </article>
+
+                    <article class="tab-panel ideas-grid" id="seguranca-panel" role="tabpanel">
+                        <div class="idea-card">
+                            <i class="bi bi-person-check"></i>
+                            <strong>Perfil verificado</strong>
+                            <span>Selo para usuários com dados revisados.</span>
+                            <button class="btn btn-match-outline btn-sm idea-action" type="button"
+                                data-action="seguranca-verificar">Verificar perfil</button>
+                        </div>
+                        <div class="idea-card">
+                            <i class="bi bi-telephone"></i>
+                            <strong>Contato de confiança</strong>
+                            <span>Compartilhamento opcional de encontro com alguém escolhido.</span>
+                            <a class="btn btn-match-primary btn-sm idea-action-link"
+                                href="../PrimeiroEncontro/PrimeiroEncontro.html">Checklist</a>
+                        </div>
+                        <div class="idea-card">
+                            <i class="bi bi-flag"></i>
+                            <strong>Denúncia rápida</strong>
+                            <span>Acesso direto para reportar comportamento inadequado.</span>
+                            <a class="btn btn-match-primary btn-sm idea-action-link"
+                                href="../Seguranca/Seguranca.html">Central</a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </div>
+
+        <div id="cupidoPet" class="cupido-pet" aria-live="polite">
+            <button id="btnCupidoPet" class="cupido-pet-orb" type="button" aria-label="Abrir Cupido flutuante">
+                <span class="cupid-robot pet-robot" aria-hidden="true">
+                    <span class="cupid-wing cupid-wing-left"></span>
+                    <span class="cupid-wing cupid-wing-right"></span>
+                    <span class="cupid-antenna"></span>
+                    <span class="cupid-robot-face">
+                        <span class="cupid-robot-eye"></span>
+                        <span class="cupid-robot-eye"></span>
+                        <span class="cupid-robot-mouth"></span>
+                    </span>
+                    <span class="cupid-robot-heart"><i class="bi bi-heart-fill"></i></span>
+                </span>
+            </button>
+            <div id="cupidoSpeech" class="cupido-pet-speech">
+                Alimente meu coração com uma curtida.
+            </div>
+            <section id="cupidoPetPanel" class="cupido-pet-panel">
+                <div class="cupido-pet-head">
+                    <div>
+                        <span class="section-kicker">Pet digital</span>
+                        <h2>CupiBot</h2>
+                        <small id="cupidoHumor">Humor: curioso</small>
+                    </div>
+                    <span id="cupidoNivel" class="cupido-level">Nível 1</span>
+                </div>
+
+                <div class="cupido-pet-bubble">
+                    <i class="bi bi-chat-heart"></i>
+                    <p id="cupidoDica">Vou te dar missões para ganhar energia, dicas e mais destaque.</p>
+                </div>
+
+                <div class="cupido-energy">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <strong>Energia</strong>
+                        <span id="cupidoEnergiaTexto">0 XP</span>
+                    </div>
+                    <div class="progress">
+                        <div id="cupidoEnergiaBarra" class="progress-bar barra-match" style="width: 0%;"></div>
+                    </div>
+                </div>
+
+                <div class="cupido-status-grid">
+                    <div class="cupido-mission">
+                        <i class="bi bi-lightning-charge"></i>
+                        <span>
+                            <small>Missão do dia</small>
+                            <strong id="cupidoMissao">Curta um perfil para alimentar o Cupido.</strong>
+                        </span>
+                    </div>
+                    <div class="cupido-unlock">
+                        <i class="bi bi-gift"></i>
+                        <span>
+                            <small>Recompensa</small>
+                            <strong id="cupidoDesbloqueio">Próximo: dica de conversa melhorada.</strong>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="cupido-reward-track" aria-hidden="true">
+                    <span class="active">Dica</span>
+                    <span>Evento</span>
+                    <span>Impulso</span>
+                    <span>Super</span>
+                </div>
+
+                <div class="cupid-message">
+                    <span id="cupidoAlvo">Mensagem sugerida</span>
+                    <strong id="cupidoMensagem">Carregando sugestão...</strong>
+                </div>
+
+                <div class="cupido-pet-actions">
+                    <button id="btnNovaDicaCupido" class="btn btn-match-primary btn-sm" type="button">
+                        Gerar frase
+                    </button>
+                    <button id="btnAlimentarCupido" class="btn btn-match-outline btn-sm" type="button">
+                        Alimentar
+                    </button>
+                    <button id="btnMissaoCupido" class="btn btn-match-outline btn-sm" type="button">
+                        Nova missão
+                    </button>
+                    <a href="#descobrir" class="btn btn-match-outline btn-sm">Encontrar match</a>
+                    <a href="../Cupido/Cupido.html" class="btn btn-match-outline btn-sm">Abrir Cupido</a>
+                </div>
+            </section>
         </div>
 
         <div id="matchCelebration" class="match-celebration" aria-live="polite" aria-hidden="true">

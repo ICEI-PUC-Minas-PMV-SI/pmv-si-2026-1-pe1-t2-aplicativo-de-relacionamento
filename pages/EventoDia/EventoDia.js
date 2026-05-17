@@ -13,6 +13,7 @@ const clubes = [
         icone: "bi-book",
         horario: "Hoje, 19h30",
         local: "Sala online MatchConnect",
+        aoVivo: true,
         interesses: ["Livros", "Cinema"],
         descricao: "Um encontro leve para conversar sobre histórias, personagens favoritos e recomendações.",
         perguntas: [
@@ -26,6 +27,7 @@ const clubes = [
         icone: "bi-film",
         horario: "Hoje, 20h",
         local: "Chat temático de cinema",
+        aoVivo: false,
         interesses: ["Cinema", "Séries"],
         descricao: "Conversa guiada sobre filmes confortáveis, séries recentes e cenas que renderiam horas de papo.",
         perguntas: [
@@ -39,6 +41,7 @@ const clubes = [
         icone: "bi-cup-hot",
         horario: "Hoje, 18h",
         local: "Mesa virtual de música",
+        aoVivo: false,
         interesses: ["Música", "Gastronomia"],
         descricao: "Um clube para trocar músicas, cafés favoritos e pequenas histórias do dia.",
         perguntas: [
@@ -52,6 +55,7 @@ const clubes = [
         icone: "bi-controller",
         horario: "Hoje, 21h",
         local: "Lobby gamer MatchConnect",
+        aoVivo: false,
         interesses: ["Games", "Tecnologia"],
         descricao: "Um espaço para formar dupla, falar de jogos cooperativos e rir sem pressão.",
         perguntas: [
@@ -77,6 +81,10 @@ function percentualClube(clube) {
     return Math.min(98, 62 + afinidades(clube).length * 16);
 }
 
+function statusClube(clube) {
+    return clube.aoVivo ? "Ao vivo agora" : "Ideia para participar depois";
+}
+
 // Lista os clubes no painel lateral e marca o clube selecionado.
 function renderizarClubes() {
     document.getElementById("listaClubesDia").innerHTML = clubes.map(function (clube, index) {
@@ -86,7 +94,7 @@ function renderizarClubes() {
                 <i class="bi ${clube.icone}"></i>
                 <span>
                     <strong>${clube.titulo}</strong>
-                    <small>${clube.horario} • ${comum.length ? comum.join(", ") : clube.interesses.join(", ")}</small>
+                    <small>${statusClube(clube)} • ${clube.horario} • ${comum.length ? comum.join(", ") : clube.interesses.join(", ")}</small>
                 </span>
                 <em>${percentualClube(clube)}%</em>
             </button>
@@ -115,13 +123,14 @@ function renderizarParticipantes(clube) {
 function renderizarEvento() {
     const clube = clubes[clubeAtual];
     const comum = afinidades(clube);
+    const botaoEntrar = document.getElementById("btnEntrarEvento");
 
     document.getElementById("tituloEventoDia").textContent = clube.titulo;
     document.getElementById("descricaoEventoDia").textContent = clube.descricao;
     document.getElementById("iconeEventoDia").className = `bi ${clube.icone}`;
-    document.getElementById("horarioEventoDia").textContent = clube.horario;
+    document.getElementById("horarioEventoDia").textContent = clube.aoVivo ? `${clube.horario} • ao vivo` : clube.horario;
     document.getElementById("localEventoDia").textContent = clube.local;
-    document.getElementById("afinidadeEventoDia").textContent = `${percentualClube(clube)}% alinhado ao seu perfil`;
+    document.getElementById("afinidadeEventoDia").textContent = `${percentualClube(clube)}% alinhado • ${statusClube(clube)}`;
     document.getElementById("tagsEventoDia").innerHTML = clube.interesses.map(function (interesse) {
         const destaque = comum.includes(interesse) ? " bi-check2-heart" : "";
         return `<span class="tag-match"><i class="bi${destaque}"></i>${interesse}</span>`;
@@ -129,6 +138,11 @@ function renderizarEvento() {
     document.getElementById("perguntaEvento").textContent = clube.perguntas[perguntaAtual % clube.perguntas.length];
     renderizarClubes();
     renderizarParticipantes(clube);
+
+    botaoEntrar.disabled = false;
+    botaoEntrar.innerHTML = clube.aoVivo
+        ? '<i class="bi bi-broadcast"></i> Entrar ao vivo'
+        : '<i class="bi bi-calendar-heart"></i> Ver ideia';
 }
 
 // Seleciona um clube quando o usuário clica em uma opção.
@@ -150,7 +164,14 @@ document.getElementById("btnNovaPergunta").addEventListener("click", function ()
 document.getElementById("btnEntrarEvento").addEventListener("click", function () {
     const clube = clubes[clubeAtual];
     localStorage.setItem("eventoDiaAtual", JSON.stringify(clube));
-    document.getElementById("statusEventoDia").textContent = `Você entrou em ${clube.titulo}. A pergunta do evento já está pronta para usar.`;
+
+    if (!clube.aoVivo) {
+        document.getElementById("statusEventoDia").textContent = `${clube.titulo} ainda não começou. Esta opção fica como ideia de encontro para salvar ou explorar.`;
+        return;
+    }
+
+    document.getElementById("statusEventoDia").textContent = `Você entrou em ${clube.titulo}. A sala ao vivo foi aberta.`;
+    window.location.href = "../EventoAoVivo/EventoAoVivo.html";
 });
 
 document.getElementById("btnSalvarEvento").addEventListener("click", function () {

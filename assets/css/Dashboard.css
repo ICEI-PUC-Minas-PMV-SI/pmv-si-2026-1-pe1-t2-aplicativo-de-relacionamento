@@ -552,6 +552,12 @@ body {
     box-shadow: 0 12px 30px rgba(33, 37, 41, 0.06);
 }
 
+.discovery-actions {
+    align-items: center;
+    display: flex;
+    gap: 10px;
+}
+
 .feature-tabs {
     display: grid;
     gap: 18px;
@@ -1260,7 +1266,7 @@ body {
 
 .profile-details-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     margin-top: 12px;
 }
@@ -1990,4 +1996,480 @@ body {
     background-color: #fbfbff;
     border-color: #ded5fb;
     border-radius: 12px;
+}
+
+/* ================= POLIMENTO GLOBAL ================= */
+:root {
+    --match-radius: 8px;
+    --match-shadow: 0 10px 26px rgba(67, 45, 138, 0.07);
+    --match-shadow-hover: 0 14px 34px rgba(67, 45, 138, 0.10);
+}
+
+body {
+    background: linear-gradient(180deg, #fbfcff 0%, #f7f8fc 48%, #f5fbff 100%);
+}
+
+.navbar-match {
+    background: linear-gradient(135deg, #2b173d 0%, #5431ad 58%, #1f8fbd 100%);
+    box-shadow: 0 8px 24px rgba(32, 29, 50, 0.16);
+}
+
+.navbar-match .nav-link {
+    font-size: 0.94rem;
+    font-weight: 800;
+}
+
+.home-panel,
+.discover-card,
+.tab-panel,
+.cupid-panel,
+.idea-card,
+.affinity-card,
+.conversation-item,
+.match-mini-card,
+.chat-preview,
+.profile-summary,
+.profile-facts div,
+.profile-details-grid div,
+.match-reasons,
+.discover-empty {
+    border-color: #e6eaf2;
+    border-radius: var(--match-radius);
+    box-shadow: var(--match-shadow);
+}
+
+.home-panel {
+    background: rgba(255, 255, 255, 0.96);
+}
+
+.home-welcome h1,
+.section-heading h2,
+.discover-info h3,
+.cupid-content h2 {
+    color: #222735;
+}
+
+.text-muted,
+.discover-bio,
+.cupid-content p,
+.conversation-text {
+    color: #626779 !important;
+}
+
+.btn-match-primary,
+.btn-match-outline,
+.tab-button,
+.btn-swipe {
+    border-radius: 8px;
+    font-weight: 900;
+}
+
+.btn-match-primary,
+.tab-button.active {
+    background: #6f50df;
+    box-shadow: none;
+}
+
+.btn-match-primary:hover {
+    background: #5f43c7;
+}
+
+.btn-match-outline {
+    background: #ffffff;
+    border-color: #c9d1e6;
+    color: #5042a8;
+}
+
+.btn-match-outline:hover {
+    background: #f6f7ff;
+    border-color: #9d91dc;
+    color: #42328f;
+}
+
+.tag-match,
+.compat-badge,
+.swipe-counter,
+.badge-custom {
+    background: #eef0ff;
+    color: #5042a8;
+    font-weight: 900;
+}
+
+.discover-card {
+    background: #ffffff;
+}
+
+.discover-photo {
+    min-height: 260px;
+}
+
+.cupid-panel,
+.chat-preview {
+    background: #f8f9ff;
+}
+
+.cupid-robot {
+    box-shadow: 0 0 0 6px rgba(111, 80, 223, 0.10), 0 12px 24px rgba(67, 45, 138, 0.16);
+}
+
+.form-control,
+.form-select,
+.conversation-search input {
+    background-color: #ffffff;
+    border-color: #dce2ef;
+    border-radius: 8px;
+}
+
+@media (max-width: 991.98px) {
+    .navbar-match .nav-link {
+        justify-content: center;
+        width: 100%;
+    }
+}
+
+/* ================= HOME: DESCOBRIR + CUPIDO PET ================= */
+.compact-profile {
+    grid-template-columns: minmax(260px, 1fr) minmax(220px, 0.42fr) minmax(280px, 0.72fr);
+    padding: 16px;
+}
+
+.compact-profile .profile-photo {
+    height: 58px;
+    width: 58px;
+}
+
+.compact-profile .profile-summary-main h2 {
+    font-size: 1.05rem;
+}
+
+.compact-profile .profile-summary-main p {
+    -webkit-line-clamp: 1;
+    font-size: 0.92rem;
+}
+
+.compact-profile .profile-facts div {
+    padding: 10px;
+}
+
+.compact-profile .profile-facts strong {
+    font-size: 0.86rem;
+}
+
+.home-grid {
+    grid-template-columns: minmax(0, 1.7fr) minmax(300px, 0.62fr);
+}
+
+.main-discovery {
+    border: 1px solid #dfe5f2;
+    padding: 26px;
+}
+
+.discovery-heading h2 {
+    font-size: clamp(1.45rem, 2.2vw, 2rem);
+}
+
+.discover-card {
+    display: grid;
+    grid-template-columns: minmax(260px, 0.78fr) minmax(0, 1fr);
+    min-height: 520px;
+}
+
+.discover-photo {
+    min-height: 100%;
+}
+
+.discover-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.discover-info h3 {
+    font-size: clamp(1.8rem, 3vw, 2.35rem);
+}
+
+.discover-bio {
+    font-size: 1.05rem;
+}
+
+.swipe-actions {
+    gap: 18px;
+}
+
+.btn-swipe {
+    height: 62px;
+    width: 62px;
+}
+
+.feature-tabs {
+    margin-bottom: 76px;
+}
+
+.cupido-pet {
+    bottom: 22px;
+    display: grid;
+    justify-items: end;
+    position: fixed;
+    right: 22px;
+    z-index: 1070;
+}
+
+.cupido-pet-orb {
+    background: transparent;
+    border: 0;
+    padding: 0;
+}
+
+.pet-robot {
+    cursor: pointer;
+    height: 82px;
+    width: 82px;
+}
+
+.cupido-pet-speech {
+    background: #ffffff;
+    border: 1px solid #e6eaf2;
+    border-radius: 8px;
+    box-shadow: var(--match-shadow-hover);
+    color: #222735;
+    font-size: 0.92rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    max-width: 260px;
+    opacity: 0;
+    padding: 10px 12px;
+    transform: translateY(6px);
+    transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.cupido-pet-speech.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.cupido-pet-panel {
+    background:
+        linear-gradient(#ffffff, #ffffff) padding-box,
+        linear-gradient(135deg, rgba(253, 81, 179, 0.32), rgba(37, 168, 223, 0.28)) border-box;
+    border: 1px solid #e6eaf2;
+    border-radius: 8px;
+    box-shadow: 0 22px 60px rgba(32, 29, 50, 0.22);
+    display: none;
+    gap: 13px;
+    margin-bottom: 12px;
+    padding: 14px;
+    width: min(380px, calc(100vw - 32px));
+}
+
+.cupido-pet-panel.show {
+    display: grid;
+}
+
+.cupido-pet-head {
+    align-items: flex-start;
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+}
+
+.cupido-pet-head h2 {
+    color: #222735;
+    font-size: 1.28rem;
+    font-weight: 900;
+    margin: 0;
+}
+
+.cupido-pet-head small {
+    color: #626779;
+    display: block;
+    font-weight: 800;
+    margin-top: 3px;
+}
+
+.cupido-pet-panel p {
+    color: #626779;
+    margin: 0;
+}
+
+.cupido-pet-bubble {
+    align-items: flex-start;
+    background: #25203c;
+    border-radius: 8px;
+    color: #ffffff;
+    display: flex;
+    gap: 10px;
+    padding: 12px;
+}
+
+.cupido-pet-bubble i {
+    color: #8fd7ff;
+    font-size: 1.1rem;
+    margin-top: 2px;
+}
+
+.cupido-pet-bubble p {
+    color: rgba(255, 255, 255, 0.88);
+    font-weight: 800;
+    line-height: 1.45;
+}
+
+.cupido-level {
+    background: #eef0ff;
+    border-radius: 999px;
+    color: #5042a8;
+    font-size: 0.78rem;
+    font-weight: 900;
+    padding: 7px 10px;
+    white-space: nowrap;
+}
+
+.cupido-energy {
+    background: #fbfcff;
+    border: 1px solid #e6eaf2;
+    border-radius: 8px;
+    padding: 12px;
+}
+
+.cupido-energy strong,
+.cupido-energy span {
+    color: #222735;
+    font-size: 0.86rem;
+}
+
+.cupido-status-grid {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr 1fr;
+}
+
+.cupido-mission,
+.cupido-unlock {
+    align-items: center;
+    background: #fff8fb;
+    border: 1px solid #ffd9ec;
+    border-radius: 8px;
+    color: #7b2b5b;
+    display: flex;
+    font-weight: 800;
+    gap: 10px;
+    padding: 11px;
+}
+
+.cupido-mission i,
+.cupido-unlock i {
+    flex: 0 0 auto;
+    font-size: 1.05rem;
+}
+
+.cupido-mission small,
+.cupido-unlock small {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 900;
+    opacity: 0.72;
+    text-transform: uppercase;
+}
+
+.cupido-mission strong,
+.cupido-unlock strong {
+    display: block;
+    font-size: 0.84rem;
+    line-height: 1.3;
+}
+
+.cupido-mission i {
+    color: #fd51b3;
+}
+
+.cupido-unlock {
+    background: #f5fbff;
+    border-color: #dff2ff;
+    color: #176f9f;
+}
+
+.cupido-unlock i {
+    color: #25a8df;
+}
+
+.cupido-reward-track {
+    display: grid;
+    gap: 6px;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.cupido-reward-track span {
+    background: #f6f7ff;
+    border: 1px solid #e6eaf2;
+    border-radius: 999px;
+    color: #626779;
+    font-size: 0.72rem;
+    font-weight: 900;
+    padding: 7px 6px;
+    text-align: center;
+}
+
+.cupido-reward-track span.active {
+    background: #6f50df;
+    border-color: #6f50df;
+    color: #ffffff;
+}
+
+.cupido-pet-actions {
+    display: grid;
+    gap: 8px;
+    grid-template-columns: 1fr 1fr;
+}
+
+.cupido-pet-actions a {
+    text-align: center;
+}
+
+@media (max-width: 1199.98px) {
+    .compact-profile,
+    .home-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .compact-profile .profile-facts {
+        grid-column: auto;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .discover-card {
+        grid-template-columns: 1fr;
+    }
+
+    .discover-photo {
+        min-height: 260px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .compact-profile .profile-facts {
+        display: none;
+    }
+
+    .cupido-pet {
+        bottom: 14px;
+        right: 14px;
+    }
+
+    .pet-robot {
+        height: 70px;
+        width: 70px;
+    }
+
+    .cupido-pet-speech {
+        max-width: 220px;
+    }
+
+    .cupido-pet-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .cupido-status-grid,
+    .cupido-reward-track {
+        grid-template-columns: 1fr;
+    }
 }
