@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Experiências | MatchConnect</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../../assets/css/App.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-match">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center gap-2" href="../home/Homeusuario.html">
+                    <i class="bi bi-heart-pulse-fill"></i> MatchConnect
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="menuPrincipal">
+                    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3 text-center">
+                        <li class="nav-item"><a class="nav-link" href="../home/Homeusuario.html">Início</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../Eventos/Eventos.html">Eventos</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="Experiencias.html">Experiências</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../EventoDia/EventoDia.html">Evento do dia</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../Cupido/Cupido.html">Cupido</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../PrimeiroEncontro/PrimeiroEncontro.html">Encontro</a></li>
+                        <li class="nav-item"><button id="btnSair" class="btn btn-entrar">Sair</button></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="page-shell">
+        <div class="container">
+            <section class="page-heading">
+                <div>
+                    <span class="section-kicker">Braço comercial</span>
+                    <h1>Experiências compatíveis</h1>
+                    <p>Playlists, shows, livros, cafés e ideias de parceiros escolhidas pelos interesses do perfil.</p>
+                </div>
+                <div class="page-actions">
+                    <a class="btn btn-match-outline" href="../Eventos/Eventos.html">Ver eventos</a>
+                    <a class="btn btn-match-primary" href="../Conversas/Conversas.html">Enviar na conversa</a>
+                </div>
+            </section>
+
+            <section class="app-panel commercial-panel">
+                <div class="commercial-head">
+                    <div>
+                        <span class="section-kicker">Para vocês</span>
+                        <h2>Ideias que viram convite, presente ou programa</h2>
+                        <p>As sugestões aparecem primeiro quando combinam com os interesses cadastrados.</p>
+                    </div>
+                    <span id="statusExperiencia" class="tag-match">Escolha uma ideia</span>
+                </div>
+
+                <div id="filtrosExperiencias" class="commercial-tabs" aria-label="Categorias de experiências"></div>
+                <div id="listaExperiencias" class="commercial-grid"></div>
+            </section>
+
+            <section class="app-panel mt-4 invite-builder">
+                <div class="invite-builder-head">
+                    <div>
+                        <span class="section-kicker">Ação comercial</span>
+                        <h2 id="tituloExperiencia" class="h4 fw-bold">Selecione uma experiência</h2>
+                        <p id="descricaoExperiencia" class="text-muted mb-0">
+                            A mensagem pronta aparece aqui para você usar como convite ou sugestão.
+                        </p>
+                    </div>
+                    <span id="categoriaExperiencia" class="tag-match">Aguardando escolha</span>
+                </div>
+
+                <div class="row g-4 mt-1">
+                    <div class="col-lg-4">
+                        <div class="feature-card h-100">
+                            <h3 class="h5">Enviar para</h3>
+                            <label for="matchExperiencia" class="form-label mt-3">Match</label>
+                            <select id="matchExperiencia" class="form-select mb-3"></select>
+
+                            <label for="tomExperiencia" class="form-label">Tom da mensagem</label>
+                            <select id="tomExperiencia" class="form-select">
+                                <option value="leve">Leve e casual</option>
+                                <option value="direto">Direto</option>
+                                <option value="presente">Sugestão de presente</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-8">
+                        <div class="invite-preview">
+                            <div class="d-flex align-items-center gap-2 mb-3">
+                                <i class="bi bi-stars"></i>
+                                <strong>Mensagem pronta</strong>
+                            </div>
+                            <p id="mensagemExperiencia" class="invite-message">
+                                Escolha uma experiência para gerar uma mensagem.
+                            </p>
+                            <div class="invite-checklist">
+                                <span><i class="bi bi-heart-pulse"></i> Baseada em interesses</span>
+                                <span><i class="bi bi-bag-heart"></i> Potencial de parceria</span>
+                                <span><i class="bi bi-chat-heart"></i> Pronta para conversa</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page-actions mt-4">
+                    <button id="btnSalvarExperiencia" class="btn btn-match-primary" type="button">Salvar ideia</button>
+                    <button id="btnCopiarExperiencia" class="btn btn-match-outline" type="button">Copiar mensagem</button>
+                    <button id="btnAbrirParceiro" class="btn btn-match-outline" type="button">Abrir parceiro</button>
+                    <a class="btn btn-match-outline" href="../PrimeiroEncontro/PrimeiroEncontro.html">Planejar encontro</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="../../assets/js/navigation.js"></script>
+    <script src="../../assets/js/appData.js"></script>
+    <script src="Experiencias.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

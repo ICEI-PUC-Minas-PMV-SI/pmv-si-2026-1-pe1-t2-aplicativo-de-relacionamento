@@ -62,6 +62,20 @@
                 <div class="col-lg-7">
                     <section class="app-panel">
                         <h2 class="h4 fw-bold mb-3">Ações rápidas</h2>
+                        <div class="metric-grid mb-4">
+                            <div class="metric-card">
+                                <span>Status</span>
+                                <strong id="statusVerificacao">Em análise</strong>
+                            </div>
+                            <div class="metric-card">
+                                <span>Contato</span>
+                                <strong id="statusContato">Não configurado</strong>
+                            </div>
+                            <div class="metric-card">
+                                <span>Denúncias</span>
+                                <strong id="statusDenuncia">Nenhuma</strong>
+                            </div>
+                        </div>
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <button class="app-card w-100 text-start border-0 acao-seguranca" type="button"
@@ -96,6 +110,20 @@
                                 </button>
                             </div>
                         </div>
+                    </section>
+
+                    <section class="app-panel mt-4">
+                        <h2 class="h4 fw-bold">Denúncia guiada</h2>
+                        <label for="perfilDenuncia" class="form-label mt-3">Perfil</label>
+                        <select id="perfilDenuncia" class="form-select mb-3"></select>
+                        <label for="motivoDenuncia" class="form-label">Motivo</label>
+                        <select id="motivoDenuncia" class="form-select mb-3">
+                            <option>Mensagem invasiva</option>
+                            <option>Perfil falso</option>
+                            <option>Comportamento ofensivo</option>
+                            <option>Outro</option>
+                        </select>
+                        <button id="btnRegistrarDenuncia" class="btn btn-match-outline" type="button">Registrar denúncia</button>
                     </section>
                 </div>
             </div>

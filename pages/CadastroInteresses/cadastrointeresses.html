@@ -11,22 +11,20 @@
     <style>
         body {
             min-height: 100vh;
-            background: linear-gradient(135deg, #f9c5e5 0%, #d7c4ff 50%, #bfe9ff 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background: linear-gradient(180deg, #fbfcff 0%, #f7f8fc 48%, #f5fbff 100%);
             padding: 40px 16px;
-            font-family: Arial, sans-serif;
+            font-family: Inter, "Segoe UI", Arial, Helvetica, sans-serif;
         }
 
         .card-cadastro {
             background: rgba(255, 255, 255, 0.96);
-            max-width: 860px;
+            max-width: 1120px;
             width: 100%;
+            margin: 0 auto;
             padding: 50px;
-            border-radius: 34px;
-            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.12);
-            backdrop-filter: blur(10px);
+            border: 1px solid #e6eaf2;
+            border-radius: 8px;
+            box-shadow: 0 10px 26px rgba(67, 45, 138, 0.07);
         }
 
         .logo-cadastro {
@@ -38,7 +36,7 @@
         h1 {
             color: #3d2d7a;
             font-weight: 800;
-            font-size: 3rem;
+            font-size: clamp(2rem, 4vw, 2.7rem);
             margin-bottom: 14px;
         }
 
@@ -63,24 +61,24 @@
 
         .form-control,
         .form-select {
-            border-radius: 18px;
+            border-radius: 8px;
             padding: 14px 16px;
-            border: 1px solid #e5dcff;
+            border: 1px solid #dce2ef;
             transition: 0.25s;
         }
 
         .form-control:focus,
         .form-select:focus {
-            border-color: #8652F5;
-            box-shadow: 0 0 0 0.2rem rgba(134, 82, 245, 0.15);
+            border-color: #8067e8;
+            box-shadow: 0 0 0 0.16rem rgba(111, 80, 223, 0.14);
         }
 
         .btn-interesse {
             border: 2px solid #d8c8ff;
             background: white;
             color: #6e58d9;
-            border-radius: 999px;
-            font-weight: 700;
+            border-radius: 8px;
+            font-weight: 900;
             margin: 8px;
             padding: 12px 18px;
             transition: 0.25s;
@@ -93,30 +91,30 @@
         }
 
         .btn-check:checked+.btn-interesse {
-            background: linear-gradient(135deg, #FD51B3, #8652F5);
+            background: #6f50df;
             color: white;
             border-color: transparent;
-            box-shadow: 0 10px 24px rgba(134, 82, 245, 0.25);
+            box-shadow: none;
         }
 
         .preview-img {
             width: 110px;
             height: 110px;
             object-fit: cover;
-            border-radius: 24px;
+            border-radius: 12px;
             border: 3px solid white;
-            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 10px 24px rgba(67, 45, 138, 0.10);
         }
 
         .btn-cadastro {
-            background: linear-gradient(135deg, #FD51B3 0%, #8652F5 55%, #5EBBF6 100%);
+            background: #6f50df;
             color: white;
             border: none;
-            border-radius: 18px;
-            font-weight: 700;
+            border-radius: 8px;
+            font-weight: 900;
             padding: 16px;
             font-size: 1.05rem;
-            box-shadow: 0 12px 30px rgba(134, 82, 245, 0.22);
+            box-shadow: none;
             transition: 0.25s;
         }
 
@@ -143,13 +141,13 @@
         }
 
         .progress-bar {
-            background: linear-gradient(135deg, #FD51B3, #8652F5, #5EBBF6);
+            background: #6f50df;
         }
 
         @media (max-width: 768px) {
             .card-cadastro {
                 padding: 28px;
-                border-radius: 28px;
+                border-radius: 8px;
             }
 
             h1 {
@@ -173,10 +171,148 @@
             z-index: 10;
             background: rgba(255, 255, 255, 0.92);
             padding: 16px;
-            border-radius: 20px;
+            border-radius: 8px;
             margin-bottom: 28px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e6eaf2;
+            box-shadow: 0 10px 26px rgba(67, 45, 138, 0.07);
             backdrop-filter: blur(8px);
+        }
+
+        .wizard-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+            gap: 24px;
+            align-items: start;
+        }
+
+        .wizard-step {
+            display: none;
+        }
+
+        .wizard-step.active {
+            display: block;
+        }
+
+        .step-tabs {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin: 20px 0 0;
+        }
+
+        .step-tab {
+            background: #f7f4ff;
+            border: 1px solid #e5dcff;
+            border-radius: 8px;
+            color: #6e58d9;
+            font-size: 0.82rem;
+            font-weight: 800;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .step-tab.active {
+            background: #6f50df;
+            color: #ffffff;
+            border-color: transparent;
+        }
+
+        .wizard-actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .btn-secundario {
+            border: 2px solid #c6b8fb;
+            color: #5a45c8;
+            border-radius: 8px;
+            font-weight: 900;
+            padding: 14px 18px;
+        }
+
+        .impact-grid,
+        .bio-suggestions {
+            display: grid;
+            gap: 10px;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .impact-card,
+        .bio-suggestion,
+        .preview-card {
+            background: #fbfcff;
+            border: 1px solid #ece7ff;
+            border-radius: 8px;
+            padding: 14px;
+        }
+
+        .impact-card strong,
+        .bio-suggestion {
+            color: #3d2d7a;
+            font-weight: 800;
+        }
+
+        .bio-suggestion {
+            text-align: left;
+        }
+
+        .preview-card {
+            position: sticky;
+            top: 16px;
+        }
+
+        .preview-avatar {
+            width: 96px;
+            height: 96px;
+            border-radius: 12px;
+            background: #6f50df;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 900;
+            overflow: hidden;
+        }
+
+        .preview-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .preview-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .preview-tags span {
+            background: #f1edff;
+            border-radius: 999px;
+            color: #5a45c8;
+            font-size: 0.82rem;
+            font-weight: 800;
+            padding: 7px 10px;
+        }
+
+        .field-hint {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 991px) {
+            .wizard-layout,
+            .impact-grid,
+            .bio-suggestions {
+                grid-template-columns: 1fr;
+            }
+
+            .preview-card {
+                position: static;
+            }
         }
     </style>
 </head>
@@ -200,134 +336,198 @@
 
         <form id="formInteresses">
             <div class="progresso-fixo">
-
                 <div class="d-flex justify-content-between align-items-center mb-2">
-
-                    <span class="fw-semibold">Progresso do perfil</span>
-
+                    <span id="textoEtapaAtual" class="fw-semibold">Etapa 1 de 4</span>
                     <span id="textoProgressoPerfil" class="small text-muted">0%</span>
-
                 </div>
-
                 <div class="progress">
-
                     <div id="barraProgressoPerfil" class="progress-bar" style="width: 0%;"></div>
-
                 </div>
-
-            </div>
-
-            <h5>📸 Suas fotos</h5>
-
-            <div class="mb-3">
-                <label for="fotos" class="form-label">Adicione fotos ao seu perfil</label>
-                <input type="file" class="form-control" id="fotos" accept="image/*" multiple>
-                <small class="text-muted">Por enquanto, as fotos serão salvas apenas no localStorage.</small>
-            </div>
-
-            <div id="previewFotos" class="d-flex flex-wrap gap-2 mb-4"></div>
-
-            <div class="bloco-formulario">
-                <h5>✨ Escolha pelo menos 3 interesses</h5>
-
-                <div class="mb-4">
-                    <input type="checkbox" class="btn-check" id="musica" value="Música">
-                    <label class="btn btn-interesse" for="musica">🎵 Música</label>
-
-                    <input type="checkbox" class="btn-check" id="cinema" value="Cinema">
-                    <label class="btn btn-interesse" for="cinema">🎬 Cinema</label>
-
-                    <input type="checkbox" class="btn-check" id="series" value="Séries">
-                    <label class="btn btn-interesse" for="series">📺 Séries</label>
-
-                    <input type="checkbox" class="btn-check" id="livros" value="Livros">
-                    <label class="btn btn-interesse" for="livros">📚 Livros</label>
-
-                    <input type="checkbox" class="btn-check" id="viagens" value="Viagens">
-                    <label class="btn btn-interesse" for="viagens">✈️ Viagens</label>
-
-                    <input type="checkbox" class="btn-check" id="academia" value="Academia">
-                    <label class="btn btn-interesse" for="academia">🏋️ Academia</label>
-
-                    <input type="checkbox" class="btn-check" id="corrida" value="Corrida">
-                    <label class="btn btn-interesse" for="corrida">🏃 Corrida</label>
-
-                    <input type="checkbox" class="btn-check" id="gastronomia" value="Gastronomia">
-                    <label class="btn btn-interesse" for="gastronomia">🍝 Gastronomia</label>
-
-                    <input type="checkbox" class="btn-check" id="tecnologia" value="Tecnologia">
-                    <label class="btn btn-interesse" for="tecnologia">💻 Tecnologia</label>
-
-                    <input type="checkbox" class="btn-check" id="games" value="Games">
-                    <label class="btn btn-interesse" for="games">🎮 Games</label>
-
-                    <input type="checkbox" class="btn-check" id="praia" value="Praia">
-                    <label class="btn btn-interesse" for="praia">🏖️ Praia</label>
-
-                    <input type="checkbox" class="btn-check" id="pets" value="Pets">
-                    <label class="btn btn-interesse" for="pets">🐶 Pets</label>
+                <div id="abasEtapas" class="step-tabs">
+                    <span class="step-tab active">Interesses</span>
+                    <span class="step-tab">Objetivo</span>
+                    <span class="step-tab">Perfil</span>
+                    <span class="step-tab">Descoberta</span>
                 </div>
             </div>
 
-            <div class="bloco-formulario">
-                <h5>💜 Sobre você</h5>
+            <div class="wizard-layout">
+                <div>
+                    <section class="wizard-step active" data-step="0">
+                        <h5>Escolha pelo menos 3 interesses</h5>
+                        <p class="field-hint">Eles alimentam matches, Cupido, eventos e experiências comerciais.</p>
 
-                <div class="mb-3">
-                    <label for="objetivo" class="form-label">O que você busca no MatchConnect?</label>
-                    <select class="form-select" id="objetivo">
-                        <option value="">Selecione uma opção</option>
-                        <option value="Relacionamento sério">Relacionamento sério</option>
-                        <option value="Conhecer pessoas novas">Conhecer pessoas novas</option>
-                        <option value="Amizade">Amizade</option>
-                        <option value="Algo leve, sem pressão">Algo leve, sem pressão</option>
-                        <option value="Ainda não sei">Ainda não sei</option>
-                    </select>
+                        <div class="mb-4">
+                            <input type="checkbox" class="btn-check" id="musica" value="Música">
+                            <label class="btn btn-interesse" for="musica">Música</label>
+
+                            <input type="checkbox" class="btn-check" id="cinema" value="Cinema">
+                            <label class="btn btn-interesse" for="cinema">Cinema</label>
+
+                            <input type="checkbox" class="btn-check" id="series" value="Séries">
+                            <label class="btn btn-interesse" for="series">Séries</label>
+
+                            <input type="checkbox" class="btn-check" id="livros" value="Livros">
+                            <label class="btn btn-interesse" for="livros">Livros</label>
+
+                            <input type="checkbox" class="btn-check" id="viagens" value="Viagens">
+                            <label class="btn btn-interesse" for="viagens">Viagens</label>
+
+                            <input type="checkbox" class="btn-check" id="academia" value="Academia">
+                            <label class="btn btn-interesse" for="academia">Academia</label>
+
+                            <input type="checkbox" class="btn-check" id="corrida" value="Corrida">
+                            <label class="btn btn-interesse" for="corrida">Corrida</label>
+
+                            <input type="checkbox" class="btn-check" id="gastronomia" value="Gastronomia">
+                            <label class="btn btn-interesse" for="gastronomia">Gastronomia</label>
+
+                            <input type="checkbox" class="btn-check" id="tecnologia" value="Tecnologia">
+                            <label class="btn btn-interesse" for="tecnologia">Tecnologia</label>
+
+                            <input type="checkbox" class="btn-check" id="games" value="Games">
+                            <label class="btn btn-interesse" for="games">Games</label>
+
+                            <input type="checkbox" class="btn-check" id="praia" value="Praia">
+                            <label class="btn btn-interesse" for="praia">Praia</label>
+
+                            <input type="checkbox" class="btn-check" id="pets" value="Pets">
+                            <label class="btn btn-interesse" for="pets">Pets</label>
+                        </div>
+
+                        <div class="impact-grid">
+                            <div class="impact-card"><strong>Matches</strong><br><span class="field-hint">Ordena pessoas por afinidade.</span></div>
+                            <div class="impact-card"><strong>Cupido</strong><br><span class="field-hint">Cria mensagens melhores.</span></div>
+                            <div class="impact-card"><strong>Experiências</strong><br><span class="field-hint">Sugere playlists, livros e eventos.</span></div>
+                        </div>
+                    </section>
+
+                    <section class="wizard-step" data-step="1">
+                        <h5>Objetivo e estilo</h5>
+
+                        <div class="mb-3">
+                            <label for="objetivo" class="form-label">O que você busca no MatchConnect?</label>
+                            <select class="form-select" id="objetivo">
+                                <option value="">Selecione uma opção</option>
+                                <option value="Relacionamento sério">Relacionamento sério</option>
+                                <option value="Conhecer pessoas novas">Conhecer pessoas novas</option>
+                                <option value="Amizade">Amizade</option>
+                                <option value="Algo leve, sem pressão">Algo leve, sem pressão</option>
+                                <option value="Ainda não sei">Ainda não sei</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="personalidade" class="form-label">Como você se define?</label>
+                            <select class="form-select" id="personalidade">
+                                <option value="">Selecione uma opção</option>
+                                <option value="Mais extrovertido(a)">Mais extrovertido(a)</option>
+                                <option value="Mais introvertido(a)">Mais introvertido(a)</option>
+                                <option value="Um equilíbrio dos dois">Um equilíbrio dos dois</option>
+                                <option value="Depende do ambiente">Depende do ambiente</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="programaIdeal" class="form-label">Programa ideal</label>
+                            <select class="form-select" id="programaIdeal">
+                                <option value="">Selecione uma opção</option>
+                                <option value="Jantar ou café tranquilo">Jantar ou café tranquilo</option>
+                                <option value="Cinema, show ou teatro">Cinema, show ou teatro</option>
+                                <option value="Praia, trilha ou ar livre">Praia, trilha ou ar livre</option>
+                                <option value="Festa ou barzinho">Festa ou barzinho</option>
+                                <option value="Chamada online primeiro">Chamada online primeiro</option>
+                            </select>
+                        </div>
+                    </section>
+
+                    <section class="wizard-step" data-step="2">
+                        <h5>Fotos e descrição</h5>
+
+                        <div class="mb-3">
+                            <label for="fotos" class="form-label">Adicione fotos ao seu perfil</label>
+                            <input type="file" class="form-control" id="fotos" accept="image/*" multiple>
+                            <small class="text-muted">Opcional no protótipo, mas melhora a força do perfil.</small>
+                        </div>
+
+                        <div id="previewFotos" class="d-flex flex-wrap gap-2 mb-4"></div>
+
+                        <div class="mb-3">
+                            <label for="descricao" class="form-label">Fale um pouco sobre você</label>
+                            <textarea class="form-control" id="descricao" rows="4"
+                                placeholder="Ex: gosto de cinema, praia e conversas leves..."></textarea>
+                        </div>
+
+                        <div class="bio-suggestions mb-3">
+                            <button class="bio-suggestion" type="button">Gosto de conversas leves, bons cafés e programas tranquilos.</button>
+                            <button class="bio-suggestion" type="button">Procuro alguém para compartilhar música, histórias e planos simples.</button>
+                            <button class="bio-suggestion" type="button">Curto conhecer lugares novos e conversar sem pressa.</button>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="qualidades" class="form-label">Quais qualidades você valoriza?</label>
+                            <textarea class="form-control" id="qualidades" rows="3"
+                                placeholder="Ex: bom humor, sinceridade, parceria..."></textarea>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="curiosidade" class="form-label">Uma curiosidade sobre você</label>
+                            <input type="text" class="form-control" id="curiosidade"
+                                placeholder="Ex: amo café, corro aos domingos, gosto de filmes de suspense...">
+                        </div>
+                    </section>
+
+                    <section class="wizard-step" data-step="3">
+                        <h5>Preferências de descoberta</h5>
+                        <p class="field-hint">Esses dados já configuram seus filtros iniciais.</p>
+
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <label for="idadeMinima" class="form-label">Idade mínima</label>
+                                <input id="idadeMinima" class="form-control" type="number" min="18" value="18">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="idadeMaxima" class="form-label">Idade máxima</label>
+                                <input id="idadeMaxima" class="form-control" type="number" min="18" value="35">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="distanciaMaxima" class="form-label">Distância máxima</label>
+                            <input id="distanciaMaxima" class="form-range" type="range" min="1" max="100" value="30">
+                            <strong id="distanciaResumo" class="field-hint">Até 30 km</strong>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="interessePrioritario" class="form-label">Interesse para priorizar</label>
+                            <input id="interessePrioritario" class="form-control" type="text" placeholder="Música, Cinema, Livros">
+                        </div>
+                    </section>
+
+                    <div class="wizard-actions">
+                        <button id="btnVoltarEtapa" class="btn btn-secundario" type="button">Voltar</button>
+                        <button id="btnProximaEtapa" class="btn btn-cadastro" type="button">Próximo</button>
+                        <button id="btnFinalizarCadastro" type="submit" class="btn btn-cadastro d-none">Finalizar cadastro</button>
+                    </div>
                 </div>
 
-                <div class="mb-3">
-                    <label for="personalidade" class="form-label">Como você se define?</label>
-                    <select class="form-select" id="personalidade">
-                        <option value="">Selecione uma opção</option>
-                        <option value="Mais extrovertido(a)">Mais extrovertido(a)</option>
-                        <option value="Mais introvertido(a)">Mais introvertido(a)</option>
-                        <option value="Um equilíbrio dos dois">Um equilíbrio dos dois</option>
-                        <option value="Depende do ambiente">Depende do ambiente</option>
-                    </select>
-                </div>
-
-                <div class="mb-3">
-                    <label for="programaIdeal" class="form-label">Programa ideal</label>
-                    <select class="form-select" id="programaIdeal">
-                        <option value="">Selecione uma opção</option>
-                        <option value="Jantar ou café tranquilo">Jantar ou café tranquilo</option>
-                        <option value="Cinema, show ou teatro">Cinema, show ou teatro</option>
-                        <option value="Praia, trilha ou ar livre">Praia, trilha ou ar livre</option>
-                        <option value="Festa ou barzinho">Festa ou barzinho</option>
-                    </select>
-                </div>
-
-                <div class="mb-3">
-                    <label for="descricao" class="form-label">Fale um pouco sobre você</label>
-                    <textarea class="form-control" id="descricao" rows="3"
-                        placeholder="Ex: gosto de cinema, praia e conversas leves..."></textarea>
-                </div>
-
-                <div class="mb-3">
-                    <label for="qualidades" class="form-label">Quais qualidades você valoriza?</label>
-                    <textarea class="form-control" id="qualidades" rows="3"
-                        placeholder="Ex: bom humor, sinceridade, parceria..."></textarea>
-                </div>
-
-                <div class="mb-4">
-                    <label for="curiosidade" class="form-label">Uma curiosidade sobre você</label>
-                    <input type="text" class="form-control" id="curiosidade"
-                        placeholder="Ex: amo café, corro aos domingos, gosto de filmes de suspense...">
-                </div>
+                <aside class="preview-card">
+                    <span class="field-hint">Preview do perfil</span>
+                    <div class="d-flex align-items-center gap-3 my-3">
+                        <div id="previewAvatar" class="preview-avatar">M</div>
+                        <div>
+                            <h5 id="previewNome" class="mb-1">Seu perfil</h5>
+                            <span id="previewObjetivo" class="field-hint">Objetivo não informado</span>
+                        </div>
+                    </div>
+                    <p id="previewDescricao" class="field-hint">Sua descrição aparece aqui conforme você preenche.</p>
+                    <div id="previewTags" class="preview-tags mb-3"></div>
+                    <div class="impact-card">
+                        <strong id="previewDescoberta">Descoberta inicial</strong><br>
+                        <span id="previewFiltros" class="field-hint">18 a 35 anos, até 30 km</span>
+                    </div>
+                </aside>
             </div>
-
-            <button type="submit" class="btn btn-cadastro w-100 mt-3">
-                Finalizar cadastro
-            </button>
 
             <p id="mensagemInteresses" class="text-center fw-semibold mt-3"></p>
 

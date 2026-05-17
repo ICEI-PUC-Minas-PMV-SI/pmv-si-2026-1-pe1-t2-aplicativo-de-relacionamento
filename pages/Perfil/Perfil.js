@@ -6,6 +6,12 @@ const dados = MatchConnectApp.interesses();
 const interesses = Array.isArray(dados.interesses) ? dados.interesses : [];
 const foto = MatchConnectApp.fotoPrincipal();
 const idade = MatchConnectApp.idade(usuario.dataNascimento);
+const verificacao = localStorage.getItem("perfilVerificado") === "true";
+const quebraGelos = [
+    { titulo: "Música ou silêncio?", texto: dados.personalidade ? `Meu tom de conversa é ${dados.personalidade}.` : "Prefiro conversas leves no começo." },
+    { titulo: "Programa ideal", texto: dados.programaIdeal || "Um encontro curto em lugar público." },
+    { titulo: "Assunto fácil", texto: interesses[0] ? `Pode começar por ${interesses[0]}.` : "Ainda estou completando meus interesses." }
+];
 
 function calcularForcaPerfil() {
     const campos = [
@@ -28,6 +34,7 @@ document.getElementById("descricaoPerfil").textContent = dados.descricao || "Com
 document.getElementById("objetivoPerfil").textContent = dados.objetivo || "Não informado";
 document.getElementById("personalidadePerfil").textContent = dados.personalidade || "Não informado";
 document.getElementById("programaPerfil").textContent = dados.programaIdeal || "Não informado";
+document.getElementById("seloVerificacao").textContent = verificacao ? "Perfil verificado" : "Perfil em análise";
 
 const forca = calcularForcaPerfil();
 document.getElementById("barraPerfil").style.width = `${forca}%`;
@@ -42,3 +49,15 @@ if (interesses.length === 0) {
         return `<span class="tag-match">${interesse}</span>`;
     }).join("");
 }
+
+document.getElementById("quebraGelosPerfil").innerHTML = quebraGelos.map(function (item) {
+    return `
+        <article class="timeline-item">
+            <i class="bi bi-chat-heart"></i>
+            <div>
+                <strong>${item.titulo}</strong>
+                <p class="text-muted mb-0">${item.texto}</p>
+            </div>
+        </article>
+    `;
+}).join("");

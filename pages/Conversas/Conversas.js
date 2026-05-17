@@ -41,11 +41,12 @@ function renderizarLista(filtro = "") {
 }
 
 function renderizarChat() {
+    const detalhes = MatchConnectApp.explicarCompatibilidade(conversaAtual);
     document.getElementById("chatCabecalho").innerHTML = `
         ${MatchConnectApp.avatarHtml(conversaAtual.inicial)}
         <div>
             <h2 class="h4 fw-bold mb-0">${conversaAtual.nome}</h2>
-            <span class="text-muted">${conversaAtual.percentual}% compatível</span>
+            <span class="text-muted">${detalhes.percentual}% compatível • ${detalhes.motivos.slice(0, 2).join(" • ")}</span>
         </div>
     `;
 
@@ -78,6 +79,26 @@ document.getElementById("buscaConversas").addEventListener("input", function (ev
 
 document.getElementById("btnUsarSugestao").addEventListener("click", function () {
     document.getElementById("campoMensagem").value = conversaAtual.mensagem;
+});
+
+document.querySelectorAll(".acao-chat").forEach(function (botao) {
+    botao.addEventListener("click", function () {
+        const comum = conversaAtual.interessesEmComum[0] || conversaAtual.interesses[0];
+
+        if (botao.dataset.acao === "evento") {
+            document.getElementById("campoMensagem").value = `${conversaAtual.nome}, pensei em um programa simples ligado a ${comum}. Topa combinar algo em local público?`;
+        }
+
+        if (botao.dataset.acao === "experiencia") {
+            document.getElementById("campoMensagem").value = `${conversaAtual.nome}, vi uma experiência de ${comum} que parece combinar com a gente. Quer que eu te mande?`;
+            MatchConnectApp.addSalvo("experienciasSalvasUsuario", { titulo: `Experiência de ${comum}`, pessoa: conversaAtual.nome, tipo: "Chat" });
+        }
+
+        if (botao.dataset.acao === "denuncia") {
+            localStorage.setItem("ultimaDenuncia", JSON.stringify({ pessoa: conversaAtual.nome, origem: "Conversas" }));
+            document.getElementById("sugestaoCupido").textContent = `Denúncia preparada para ${conversaAtual.nome}. Você pode finalizar na Central de segurança.`;
+        }
+    });
 });
 
 document.getElementById("formMensagem").addEventListener("submit", function (event) {

@@ -2,51 +2,131 @@ const formInteresses = document.getElementById("formInteresses");
 const mensagem = document.getElementById("mensagemInteresses");
 const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 
-// Só permite completar interesses depois da criação/login de uma conta.
 if (!usuarioLogado) {
     window.location.href = "../Login/login.html";
 }
 
 const inputFotos = document.getElementById("fotos");
 const previewFotos = document.getElementById("previewFotos");
-
 const barraProgressoPerfil = document.getElementById("barraProgressoPerfil");
 const textoProgressoPerfil = document.getElementById("textoProgressoPerfil");
+const textoEtapaAtual = document.getElementById("textoEtapaAtual");
+const btnVoltarEtapa = document.getElementById("btnVoltarEtapa");
+const btnProximaEtapa = document.getElementById("btnProximaEtapa");
+const btnFinalizarCadastro = document.getElementById("btnFinalizarCadastro");
+const distanciaMaxima = document.getElementById("distanciaMaxima");
+const distanciaResumo = document.getElementById("distanciaResumo");
 
 let fotosBase64 = [];
+let etapaAtual = 0;
+const totalEtapas = 4;
 
-// Atualiza a barra de progresso conforme o usuário preenche as etapas do perfil.
+function interessesSelecionados() {
+    return Array.from(document.querySelectorAll(".btn-check:checked")).map(function (checkbox) {
+        return checkbox.value;
+    });
+}
+
+function atualizarEtapa() {
+    document.querySelectorAll(".wizard-step").forEach(function (step, index) {
+        step.classList.toggle("active", index === etapaAtual);
+    });
+
+    document.querySelectorAll(".step-tab").forEach(function (tab, index) {
+        tab.classList.toggle("active", index <= etapaAtual);
+    });
+
+    textoEtapaAtual.textContent = `Etapa ${etapaAtual + 1} de ${totalEtapas}`;
+    btnVoltarEtapa.disabled = etapaAtual === 0;
+    btnProximaEtapa.classList.toggle("d-none", etapaAtual === totalEtapas - 1);
+    btnFinalizarCadastro.classList.toggle("d-none", etapaAtual !== totalEtapas - 1);
+    mensagem.textContent = "";
+}
+
+function calcularProgressoPerfil() {
+    const campos = [
+        fotosBase64.length > 0,
+        interessesSelecionados().length >= 3,
+        Boolean(document.getElementById("objetivo").value),
+        Boolean(document.getElementById("personalidade").value),
+        Boolean(document.getElementById("programaIdeal").value),
+        Boolean(document.getElementById("descricao").value.trim())
+    ];
+
+    return Math.round((campos.filter(Boolean).length / campos.length) * 100);
+}
+
 function atualizarProgressoPerfil() {
-    let pontos = 0;
-    const total = 6;
-
-    const interessesSelecionados = document.querySelectorAll(".btn-check:checked");
-    const objetivo = document.getElementById("objetivo").value;
-    const personalidade = document.getElementById("personalidade").value;
-    const programaIdeal = document.getElementById("programaIdeal").value;
-    const descricao = document.getElementById("descricao").value.trim();
-
-    if (fotosBase64.length > 0) pontos++;
-    if (interessesSelecionados.length >= 3) pontos++;
-    if (objetivo !== "") pontos++;
-    if (personalidade !== "") pontos++;
-    if (programaIdeal !== "") pontos++;
-    if (descricao !== "") pontos++;
-
-    const progresso = Math.round((pontos / total) * 100);
-
-    barraProgressoPerfil.style.width = progresso + "%";
+    const progresso = calcularProgressoPerfil();
+    barraProgressoPerfil.style.width = `${progresso}%`;
     textoProgressoPerfil.textContent = `Perfil ${progresso}% completo`;
 }
 
-// Lê as fotos escolhidas e salva em Base64 para funcionar sem backend.
+function atualizarPreview() {
+    const interesses = interessesSelecionados();
+    const foto = fotosBase64[0];
+    const nome = usuarioLogado ? usuarioLogado.nome.split(" ")[0] : "Seu perfil";
+    const inicial = nome.charAt(0).toUpperCase();
+    const objetivo = document.getElementById("objetivo").value || "Objetivo não informado";
+    const descricao = document.getElementById("descricao").value.trim() || "Sua descrição aparece aqui conforme você preenche.";
+    const idadeMinima = document.getElementById("idadeMinima").value || 18;
+    const idadeMaxima = document.getElementById("idadeMaxima").value || 35;
+
+    document.getElementById("previewNome").textContent = nome;
+    document.getElementById("previewObjetivo").textContent = objetivo;
+    document.getElementById("previewDescricao").textContent = descricao;
+    document.getElementById("previewFiltros").textContent = `${idadeMinima} a ${idadeMaxima} anos, até ${distanciaMaxima.value} km`;
+    distanciaResumo.textContent = `Até ${distanciaMaxima.value} km`;
+
+    document.getElementById("previewAvatar").innerHTML = foto ? `<img src="${foto}" alt="Foto principal">` : inicial;
+    document.getElementById("previewTags").innerHTML = interesses.slice(0, 6).map(function (interesse) {
+        return `<span>${interesse}</span>`;
+    }).join("") || "<span>Escolha seus interesses</span>";
+
+    atualizarProgressoPerfil();
+}
+
+function mostrarErro(texto) {
+    mensagem.textContent = texto;
+    mensagem.style.color = "red";
+}
+
+function etapaValida() {
+    if (etapaAtual === 0 && interessesSelecionados().length < 3) {
+        mostrarErro("Escolha pelo menos 3 interesses para continuar.");
+        return false;
+    }
+
+    if (etapaAtual === 1) {
+        if (!document.getElementById("objetivo").value) {
+            mostrarErro("Selecione o que você busca no MatchConnect.");
+            return false;
+        }
+
+        if (!document.getElementById("personalidade").value) {
+            mostrarErro("Selecione como você se define.");
+            return false;
+        }
+
+        if (!document.getElementById("programaIdeal").value) {
+            mostrarErro("Selecione seu programa ideal.");
+            return false;
+        }
+    }
+
+    if (etapaAtual === 2 && !document.getElementById("descricao").value.trim()) {
+        mostrarErro("Escreva uma breve descrição sobre você.");
+        return false;
+    }
+
+    return true;
+}
+
 inputFotos.addEventListener("change", function () {
     fotosBase64 = [];
     previewFotos.innerHTML = "";
 
-    const arquivos = Array.from(inputFotos.files);
-
-    arquivos.forEach(function (foto) {
+    Array.from(inputFotos.files).forEach(function (foto) {
         const reader = new FileReader();
 
         reader.onload = function (event) {
@@ -55,80 +135,55 @@ inputFotos.addEventListener("change", function () {
             const img = document.createElement("img");
             img.src = event.target.result;
             img.classList.add("preview-img");
-
             previewFotos.appendChild(img);
-
-            atualizarProgressoPerfil();
+            atualizarPreview();
         };
 
         reader.readAsDataURL(foto);
     });
 });
 
-// Recalcula o progresso sempre que qualquer campo importante muda.
 document.querySelectorAll("input, select, textarea").forEach(function (campo) {
-    campo.addEventListener("input", atualizarProgressoPerfil);
-    campo.addEventListener("change", atualizarProgressoPerfil);
+    campo.addEventListener("input", atualizarPreview);
+    campo.addEventListener("change", atualizarPreview);
 });
 
-// Valida e salva interesses, descrição e fotos no localStorage.
+document.querySelectorAll(".bio-suggestion").forEach(function (botao) {
+    botao.addEventListener("click", function () {
+        document.getElementById("descricao").value = botao.textContent.trim();
+        atualizarPreview();
+    });
+});
+
+btnProximaEtapa.addEventListener("click", function () {
+    if (!etapaValida()) return;
+    etapaAtual = Math.min(totalEtapas - 1, etapaAtual + 1);
+    atualizarEtapa();
+    atualizarPreview();
+});
+
+btnVoltarEtapa.addEventListener("click", function () {
+    etapaAtual = Math.max(0, etapaAtual - 1);
+    atualizarEtapa();
+});
+
 formInteresses.addEventListener("submit", function (event) {
     event.preventDefault();
 
-    const interessesSelecionados = [];
+    if (!etapaValida()) return;
 
-    const checkboxes = document.querySelectorAll(".btn-check:checked");
-
-    checkboxes.forEach(function (checkbox) {
-        interessesSelecionados.push(checkbox.value);
-    });
-
+    const interesses = interessesSelecionados();
     const objetivo = document.getElementById("objetivo").value;
     const personalidade = document.getElementById("personalidade").value;
     const programaIdeal = document.getElementById("programaIdeal").value;
     const descricao = document.getElementById("descricao").value.trim();
     const qualidades = document.getElementById("qualidades").value.trim();
     const curiosidade = document.getElementById("curiosidade").value.trim();
-
-    if (fotosBase64.length === 0) {
-        mensagem.textContent = "Adicione pelo menos uma foto.";
-        mensagem.style.color = "red";
-        return;
-    }
-
-    if (interessesSelecionados.length < 3) {
-        mensagem.textContent = "Escolha pelo menos 3 interesses.";
-        mensagem.style.color = "red";
-        return;
-    }
-
-    if (objetivo === "") {
-        mensagem.textContent = "Selecione o que você busca no MatchConnect.";
-        mensagem.style.color = "red";
-        return;
-    }
-
-    if (personalidade === "") {
-        mensagem.textContent = "Selecione como você se define.";
-        mensagem.style.color = "red";
-        return;
-    }
-
-    if (programaIdeal === "") {
-        mensagem.textContent = "Selecione seu programa ideal.";
-        mensagem.style.color = "red";
-        return;
-    }
-
-    if (descricao === "") {
-        mensagem.textContent = "Escreva uma breve descrição sobre você.";
-        mensagem.style.color = "red";
-        return;
-    }
+    const interessePrioritario = document.getElementById("interessePrioritario").value.trim().toLowerCase();
 
     const dadosInteresses = {
         fotos: fotosBase64,
-        interesses: interessesSelecionados,
+        interesses: interesses,
         objetivo: objetivo,
         personalidade: personalidade,
         programaIdeal: programaIdeal,
@@ -137,14 +192,26 @@ formInteresses.addEventListener("submit", function (event) {
         curiosidade: curiosidade
     };
 
+    const preferenciasDescoberta = {
+        idadeMinima: Number(document.getElementById("idadeMinima").value) || 18,
+        idadeMaxima: Number(document.getElementById("idadeMaxima").value) || 35,
+        distanciaMaxima: Number(distanciaMaxima.value) || 30,
+        interesse: interessePrioritario,
+        objetivo: objetivo === "Ainda não sei" ? "" : objetivo,
+        estiloEncontro: programaIdeal
+    };
+
     localStorage.setItem("interessesUsuario", JSON.stringify(dadosInteresses));
+    localStorage.setItem("filtrosMatchConnect", JSON.stringify(preferenciasDescoberta));
+    localStorage.setItem("preferenciasDescoberta", JSON.stringify(preferenciasDescoberta));
 
     mensagem.textContent = "Cadastro finalizado com sucesso!";
     mensagem.style.color = "green";
 
     setTimeout(function () {
         window.location.href = "../home/Homeusuario.html";
-    }, 200);
+    }, 250);
 });
 
-atualizarProgressoPerfil();
+atualizarEtapa();
+atualizarPreview();

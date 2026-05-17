@@ -8,6 +8,32 @@ let notificacoes = JSON.parse(localStorage.getItem("notificacoesUsuario")) || [
     { icone: "bi-calendar-heart", titulo: "Evento recomendado", texto: "Café compatível combina com seus interesses cadastrados.", lida: true }
 ];
 
+const experienciasSalvas = MatchConnectApp.getSalvos("experienciasSalvasUsuario");
+const eventosSalvos = MatchConnectApp.getSalvos("eventosSalvosUsuario");
+const ultimaDenuncia = JSON.parse(localStorage.getItem("ultimaDenuncia")) || null;
+
+function adicionarSeNaoExiste(icone, titulo, texto) {
+    const existe = notificacoes.some(function (item) {
+        return item.titulo === titulo && item.texto === texto;
+    });
+
+    if (!existe) {
+        notificacoes.unshift({ icone: icone, titulo: titulo, texto: texto, lida: false });
+    }
+}
+
+if (experienciasSalvas.length > 0) {
+    adicionarSeNaoExiste("bi-bag-heart", "Experiência salva", `${experienciasSalvas[0].titulo} está pronta para virar convite.`);
+}
+
+if (eventosSalvos.length > 0) {
+    adicionarSeNaoExiste("bi-calendar-heart", "Evento salvo", `${eventosSalvos[0].titulo} foi guardado para usar na Central do Match.`);
+}
+
+if (ultimaDenuncia) {
+    adicionarSeNaoExiste("bi-shield-exclamation", "Denúncia em rascunho", `Finalize a análise de ${ultimaDenuncia.pessoa} na Central de segurança.`);
+}
+
 function salvar() {
     localStorage.setItem("notificacoesUsuario", JSON.stringify(notificacoes));
 }

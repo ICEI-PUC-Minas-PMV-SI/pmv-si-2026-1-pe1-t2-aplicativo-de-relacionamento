@@ -5,6 +5,7 @@ const MatchConnectApp = (function () {
         {
             nome: "Ana",
             idade: 24,
+            distanciaKm: 4,
             inicial: "A",
             interesses: ["Cinema", "Livros", "Gastronomia", "Viagens"],
             objetivo: "Relacionamento sério",
@@ -16,6 +17,7 @@ const MatchConnectApp = (function () {
         {
             nome: "Karol",
             idade: 26,
+            distanciaKm: 12,
             inicial: "K",
             interesses: ["Música", "Academia", "Corrida", "Tecnologia"],
             objetivo: "Conhecer pessoas novas",
@@ -27,6 +29,7 @@ const MatchConnectApp = (function () {
         {
             nome: "Mariana",
             idade: 23,
+            distanciaKm: 7,
             inicial: "M",
             interesses: ["Séries", "Praia", "Pets", "Cinema"],
             objetivo: "Algo leve, sem pressão",
@@ -38,6 +41,7 @@ const MatchConnectApp = (function () {
         {
             nome: "Beatriz",
             idade: 27,
+            distanciaKm: 18,
             inicial: "B",
             interesses: ["Viagens", "Gastronomia", "Livros", "Música"],
             objetivo: "Conhecer pessoas novas",
@@ -49,6 +53,7 @@ const MatchConnectApp = (function () {
         {
             nome: "Luiza",
             idade: 25,
+            distanciaKm: 28,
             inicial: "L",
             interesses: ["Games", "Tecnologia", "Séries", "Pets"],
             objetivo: "Amizade",
@@ -128,6 +133,32 @@ const MatchConnectApp = (function () {
         };
     }
 
+    function explicarCompatibilidade(perfil) {
+        const dados = interesses();
+        const afinidade = compatibilidade(perfil);
+        const motivos = [];
+
+        if (afinidade.emComum.length > 0) {
+            motivos.push(`${afinidade.emComum.join(" + ")} em comum`);
+        }
+
+        if (dados.objetivo && perfil.objetivo) {
+            motivos.push(`Busca: ${perfil.objetivo}`);
+        }
+
+        if (perfil.distanciaKm) {
+            motivos.push(`${perfil.distanciaKm} km de distancia`);
+        }
+
+        motivos.push(`Programa: ${perfil.programaIdeal}`);
+
+        return {
+            percentual: afinidade.percentual,
+            emComum: afinidade.emComum,
+            motivos: motivos
+        };
+    }
+
     // Retorna os perfis já ordenados do mais compatível para o menos compatível.
     function perfisOrdenados() {
         return perfisBase.map(function (perfil) {
@@ -148,6 +179,20 @@ const MatchConnectApp = (function () {
 
     function setMatches(matches) {
         setJson("matchesUsuario", matches);
+    }
+
+    function getSalvos(chave) {
+        return getJson(chave, []);
+    }
+
+    function addSalvo(chave, item) {
+        const salvos = getSalvos(chave);
+        salvos.unshift({
+            ...item,
+            salvoEm: new Date().toISOString()
+        });
+        setJson(chave, salvos);
+        return salvos;
     }
 
     // Gera o HTML do avatar. Usa foto quando existir; caso contrário, mostra a inicial.
@@ -171,8 +216,11 @@ const MatchConnectApp = (function () {
     return {
         avatarHtml,
         configurarSair,
+        explicarCompatibilidade,
         fotoPrincipal,
         getMatches,
+        getSalvos,
+        addSalvo,
         idade,
         interesses,
         perfisOrdenados,

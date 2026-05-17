@@ -25,6 +25,7 @@
                         <li class="nav-item"><a class="nav-link" href="../home/Homeusuario.html">Início</a></li>
                         <li class="nav-item"><a class="nav-link" href="../Perfil/Perfil.html">Perfil</a></li>
                         <li class="nav-item"><a class="nav-link" href="../Matches/Matches.html">Matches</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../CentralMatch/CentralMatch.html">Central</a></li>
                         <li class="nav-item"><a class="nav-link active" href="Conversas.html">Conversas</a></li>
                         <li class="nav-item"><a class="nav-link" href="../Cupido/Cupido.html">Cupido</a></li>
                         <li class="nav-item"><a class="nav-link" href="../Eventos/Eventos.html">Eventos</a></li>
@@ -66,8 +67,12 @@
                         <div class="app-card mb-3">
                             <span class="section-kicker">Cupido</span>
                             <p id="sugestaoCupido" class="mb-3"></p>
-                            <button id="btnUsarSugestao" class="btn btn-match-outline btn-sm" type="button">Usar sugestão</button>
-                            <a class="btn btn-match-outline btn-sm" href="../Eventos/Eventos.html">Sugerir evento</a>
+                            <div class="page-actions">
+                                <button id="btnUsarSugestao" class="btn btn-match-outline btn-sm" type="button">Usar sugestão</button>
+                                <button class="btn btn-match-outline btn-sm acao-chat" type="button" data-acao="evento">Sugerir evento</button>
+                                <button class="btn btn-match-outline btn-sm acao-chat" type="button" data-acao="experiencia">Enviar experiência</button>
+                                <button class="btn btn-match-outline btn-sm acao-chat" type="button" data-acao="denuncia">Denunciar</button>
+                            </div>
                         </div>
 
                         <form id="formMensagem" class="d-flex gap-2">

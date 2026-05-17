@@ -46,22 +46,55 @@
                 <a class="btn btn-match-outline" href="../home/Homeusuario.html#descobrir">Voltar à descoberta</a>
             </section>
 
-            <div class="row g-4">
-                <div class="col-lg-4">
-                    <form id="formFiltros" class="app-panel">
-                        <div class="mb-3">
-                            <label for="idadeMinima" class="form-label">Idade mínima</label>
-                            <input id="idadeMinima" class="form-control" type="number" min="18" value="18">
+            <div class="filters-layout">
+                <div>
+                    <form id="formFiltros" class="app-panel filter-panel">
+                        <div class="filter-panel-heading">
+                            <div>
+                                <span class="section-kicker">Preferências</span>
+                                <h2>Ajustar busca</h2>
+                            </div>
+                            <i class="bi bi-sliders2"></i>
                         </div>
-                        <div class="mb-3">
-                            <label for="idadeMaxima" class="form-label">Idade máxima</label>
-                            <input id="idadeMaxima" class="form-control" type="number" min="18" value="35">
+
+                        <div class="filter-control">
+                            <div class="filter-label-row">
+                                <label for="idadeMinima" class="form-label">Faixa de idade</label>
+                                <strong id="idadeResumo">18 a 35 anos</strong>
+                            </div>
+                            <div class="filter-inline-grid">
+                                <div>
+                                    <span>Mínima</span>
+                                    <input id="idadeMinima" class="form-control" type="number" min="18" value="18">
+                                </div>
+                                <div>
+                                    <span>Máxima</span>
+                                    <input id="idadeMaxima" class="form-control" type="number" min="18" value="35">
+                                </div>
+                            </div>
                         </div>
-                        <div class="mb-3">
+
+                        <div class="filter-control">
+                            <div class="filter-label-row">
+                                <label for="distanciaMaxima" class="form-label">Distância máxima</label>
+                                <strong id="distanciaResumo">Até 30 km</strong>
+                            </div>
+                            <input id="distanciaMaxima" class="form-range match-range" type="range" min="1" max="100" value="30">
+                            <div class="range-scale">
+                                <span>1 km</span>
+                                <span>100 km</span>
+                            </div>
+                        </div>
+
+                        <div class="filter-control">
                             <label for="interesseFiltro" class="form-label">Interesse principal</label>
-                            <input id="interesseFiltro" class="form-control" type="text" placeholder="Cinema, Música, Games">
+                            <div class="input-icon-field">
+                                <i class="bi bi-search-heart"></i>
+                                <input id="interesseFiltro" class="form-control" type="text" placeholder="Cinema, Música, Games">
+                            </div>
                         </div>
-                        <div class="mb-4">
+
+                        <div class="filter-control">
                             <label for="objetivoFiltro" class="form-label">Objetivo</label>
                             <select id="objetivoFiltro" class="form-select">
                                 <option value="">Qualquer objetivo</option>
@@ -71,18 +104,32 @@
                                 <option>Algo leve, sem pressão</option>
                             </select>
                         </div>
-                        <button class="btn btn-match-primary w-100" type="submit">Aplicar filtros</button>
-                        <button id="btnLimparFiltros" class="btn btn-match-outline w-100 mt-2" type="button">Limpar</button>
+
+                        <div class="filter-summary" id="resumoFiltros"></div>
+
+                        <div class="filter-actions">
+                            <button class="btn btn-match-primary" type="submit">
+                                <i class="bi bi-check2-circle"></i>
+                                Aplicar
+                            </button>
+                            <button id="btnLimparFiltros" class="btn btn-match-outline" type="button">
+                                <i class="bi bi-arrow-counterclockwise"></i>
+                                Limpar
+                            </button>
+                        </div>
                     </form>
                 </div>
 
-                <div class="col-lg-8">
-                    <section class="app-panel">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h2 class="h4 fw-bold mb-0">Resultados</h2>
-                            <span id="totalResultados" class="text-muted"></span>
+                <div>
+                    <section class="app-panel results-panel">
+                        <div class="results-heading">
+                            <div>
+                                <span class="section-kicker">Perfis encontrados</span>
+                                <h2>Resultados</h2>
+                            </div>
+                            <span id="totalResultados" class="results-count"></span>
                         </div>
-                        <div id="resultadosFiltros"></div>
+                        <div id="resultadosFiltros" class="results-list"></div>
                     </section>
                 </div>
             </div>

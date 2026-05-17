@@ -2,6 +2,7 @@ MatchConnectApp.protegerPagina();
 MatchConnectApp.configurarSair();
 
 const perfis = MatchConnectApp.perfisOrdenados();
+let abaAtual = "perfis";
 let favoritos = JSON.parse(localStorage.getItem("favoritosUsuario")) || perfis.slice(0, 2).map(function (perfil) {
     return perfil.nome;
 });
@@ -12,6 +13,28 @@ function salvar() {
 
 function renderizar() {
     const lista = document.getElementById("listaFavoritos");
+
+    if (abaAtual !== "perfis") {
+        const mapa = {
+            eventos: "eventosSalvosUsuario",
+            experiencias: "experienciasSalvasUsuario",
+            mensagens: "mensagensSalvasUsuario"
+        };
+        const salvos = MatchConnectApp.getSalvos(mapa[abaAtual]);
+
+        lista.innerHTML = salvos.map(function (item) {
+            return `
+                <article class="feature-card">
+                    <span class="section-kicker">${item.tipo || abaAtual}</span>
+                    <h2 class="h5 fw-bold">${item.titulo || "Item salvo"}</h2>
+                    <p class="text-muted">${item.pessoa ? `Para ${item.pessoa}` : "Salvo para usar depois."}</p>
+                    <a class="btn btn-match-outline" href="../CentralMatch/CentralMatch.html">Usar na central</a>
+                </article>
+            `;
+        }).join("") || '<p class="empty-state">Nada salvo nessa categoria ainda.</p>';
+        return;
+    }
+
     const salvos = perfis.filter(function (perfil) {
         return favoritos.includes(perfil.nome);
     });
@@ -47,6 +70,17 @@ document.getElementById("listaFavoritos").addEventListener("click", function (ev
         return nome !== botao.dataset.nome;
     });
     salvar();
+    renderizar();
+});
+
+document.getElementById("abasFavoritos").addEventListener("click", function (event) {
+    const botao = event.target.closest("button");
+    if (!botao) return;
+
+    abaAtual = botao.dataset.tipo;
+    document.querySelectorAll("#abasFavoritos button").forEach(function (item) {
+        item.classList.toggle("active", item === botao);
+    });
     renderizar();
 });
 
