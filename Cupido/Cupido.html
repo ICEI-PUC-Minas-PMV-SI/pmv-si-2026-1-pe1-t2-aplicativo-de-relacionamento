@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cupido | MatchConnect</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../css/App.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-match">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center gap-2" href="../home/Homeusuario.html">
+                    <i class="bi bi-heart-pulse-fill"></i> MatchConnect
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="menuPrincipal">
+                    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3 text-center">
+                        <li class="nav-item"><a class="nav-link" href="../home/Homeusuario.html">Início</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="Cupido.html">Cupido</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../Conversas/Conversas.html">Conversas</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../Eventos/Eventos.html">Eventos</a></li>
+                        <li class="nav-item"><button id="btnSair" class="btn btn-entrar">Sair</button></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="page-shell">
+        <div class="container">
+            <section class="page-heading">
+                <div>
+                    <span class="section-kicker">Assistente virtual</span>
+                    <h1>Cupido MatchConnect</h1>
+                    <p>Gere mensagens, perguntas e ideias de encontro usando o perfil escolhido como ponto de partida.</p>
+                </div>
+                <a class="btn btn-match-outline" href="../Matches/Matches.html">Ver matches</a>
+            </section>
+
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <section class="app-panel">
+                        <label for="perfilCupido" class="form-label">Match</label>
+                        <select id="perfilCupido" class="form-select mb-3"></select>
+                        <label for="tomCupido" class="form-label">Tom</label>
+                        <select id="tomCupido" class="form-select">
+                            <option value="leve">Leve</option>
+                            <option value="curioso">Curioso</option>
+                            <option value="direto">Direto</option>
+                            <option value="divertido">Divertido</option>
+                        </select>
+                    </section>
+                </div>
+                <div class="col-lg-8">
+                    <section class="app-panel">
+                        <div id="resumoPerfilCupido" class="mb-4"></div>
+                        <div class="app-grid two mb-4">
+                            <article class="feature-card">
+                                <i class="bi bi-chat-heart"></i>
+                                <h2 class="h5 mt-3">Primeira mensagem</h2>
+                                <p id="mensagemCupido"></p>
+                            </article>
+                            <article class="feature-card">
+                                <i class="bi bi-question-circle"></i>
+                                <h2 class="h5 mt-3">Pergunta para continuar</h2>
+                                <p id="perguntaCupido"></p>
+                            </article>
+                        </div>
+                        <article class="feature-card mb-3">
+                            <i class="bi bi-calendar-heart"></i>
+                            <h2 class="h5 mt-3">Ideia de encontro</h2>
+                            <p id="encontroCupido"></p>
+                        </article>
+                        <div class="page-actions">
+                            <button id="btnGerarCupido" class="btn btn-match-primary" type="button">Gerar novas ideias</button>
+                            <a class="btn btn-match-outline" href="../Conversas/Conversas.html">Usar na conversa</a>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/appData.js"></script>
+    <script src="Cupido.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

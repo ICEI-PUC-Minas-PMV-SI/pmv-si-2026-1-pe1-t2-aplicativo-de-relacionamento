@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Eventos | MatchConnect</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../css/App.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-match">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center gap-2" href="../home/Homeusuario.html">
+                    <i class="bi bi-heart-pulse-fill"></i> MatchConnect
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="menuPrincipal">
+                    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3 text-center">
+                        <li class="nav-item"><a class="nav-link" href="../home/Homeusuario.html">Início</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="Eventos.html">Eventos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../EventoDia/EventoDia.html">Evento do dia</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../Cupido/Cupido.html">Cupido</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../PrimeiroEncontro/PrimeiroEncontro.html">Encontro</a></li>
+                        <li class="nav-item"><button id="btnSair" class="btn btn-entrar">Sair</button></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="page-shell">
+        <div class="container">
+            <section class="page-heading">
+                <div>
+                    <span class="section-kicker">Ideias para sair</span>
+                    <h1>Eventos por afinidade</h1>
+                    <p>Escolha programas alinhados aos interesses do seu perfil e transforme uma conversa em encontro com mais contexto.</p>
+                </div>
+                <div class="page-actions">
+                    <a class="btn btn-match-outline" href="../EventoDia/EventoDia.html">Evento do dia</a>
+                    <a class="btn btn-match-primary" href="../PrimeiroEncontro/PrimeiroEncontro.html">Planejar encontro</a>
+                </div>
+            </section>
+
+            <section id="listaEventos" class="app-grid"></section>
+
+            <section id="continuaConvite" class="app-panel mt-4 invite-builder">
+                <div class="invite-builder-head">
+                    <div>
+                        <span class="section-kicker">Convite montado</span>
+                        <h2 id="tituloRoteiro" class="h4 fw-bold">Selecione uma ideia</h2>
+                        <p id="descricaoRoteiro" class="text-muted mb-0">
+                            O MatchConnect monta um convite simples com local, motivo e ponto de segurança.
+                        </p>
+                    </div>
+                    <span id="statusConvite" class="tag-match">Aguardando escolha</span>
+                </div>
+
+                <div class="row g-4 mt-1">
+                    <div class="col-lg-5">
+                        <div class="feature-card h-100">
+                            <h3 class="h5">Personalizar detalhes</h3>
+                            <label for="matchConvite" class="form-label mt-3">Enviar para</label>
+                            <select id="matchConvite" class="form-select mb-3"></select>
+
+                            <label for="periodoConvite" class="form-label">Melhor horário</label>
+                            <select id="periodoConvite" class="form-select mb-3">
+                                <option>sábado à tarde</option>
+                                <option>sexta à noite</option>
+                                <option>domingo de manhã</option>
+                                <option>durante a semana depois do trabalho</option>
+                            </select>
+
+                            <label for="duracaoConvite" class="form-label">Duração sugerida</label>
+                            <select id="duracaoConvite" class="form-select">
+                                <option>cerca de 40 minutos</option>
+                                <option>até 1 hora</option>
+                                <option>sem pressa, se a conversa fluir</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-7">
+                        <div class="invite-preview">
+                            <div class="d-flex align-items-center gap-2 mb-3">
+                                <i class="bi bi-chat-heart"></i>
+                                <strong>Mensagem pronta</strong>
+                            </div>
+                            <p id="mensagemConvite" class="invite-message">
+                                Escolha um evento para gerar uma mensagem.
+                            </p>
+                            <div class="invite-checklist">
+                                <span><i class="bi bi-geo-alt"></i> Local público</span>
+                                <span><i class="bi bi-clock"></i> Tempo combinado</span>
+                                <span><i class="bi bi-shield-check"></i> Contato avisado</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page-actions mt-4">
+                    <button id="btnSalvarConvite" class="btn btn-match-primary" type="button">Salvar plano</button>
+                    <button id="btnCopiarConvite" class="btn btn-match-outline" type="button">Copiar mensagem</button>
+                    <a class="btn btn-match-outline" href="../Conversas/Conversas.html">Enviar na conversa</a>
+                    <a class="btn btn-match-outline" href="../PrimeiroEncontro/PrimeiroEncontro.html">Abrir checklist</a>
+                    <a class="btn btn-match-outline" href="../Seguranca/Seguranca.html">Ver segurança</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="../js/appData.js"></script>
+    <script src="Eventos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

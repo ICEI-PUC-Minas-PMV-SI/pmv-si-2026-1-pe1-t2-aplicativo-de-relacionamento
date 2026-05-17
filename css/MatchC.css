@@ -26,8 +26,8 @@ html {
 }
 
 .principal {
-    padding: 60px 0 0;
-    min-height: 88vh;
+    padding: 42px 0 56px;
+    min-height: auto;
     display: flex;
     align-items: center;
 }
@@ -36,10 +36,116 @@ html {
     max-width: 560px;
 }
 
+.hero-badge {
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.36);
+    border-radius: 999px;
+    display: inline-flex;
+    font-size: 0.86rem;
+    font-weight: 800;
+    margin-bottom: 18px;
+    padding: 8px 14px;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.hero-actions .btn {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    min-height: 48px;
+}
+
+.btn-hero-outline {
+    border: 2px solid rgba(255, 255, 255, 0.78);
+    border-radius: 12px;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.btn-hero-outline:hover {
+    background-color: #ffffff;
+    color: #3d2d7a;
+}
+
+.hero-stats {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.hero-stats div {
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 8px;
+    padding: 14px;
+}
+
+.hero-stats strong,
+.hero-stats span {
+    display: block;
+}
+
+.hero-stats strong {
+    font-size: 1.45rem;
+    line-height: 1;
+}
+
+.hero-stats span {
+    font-size: 0.82rem;
+    margin-top: 6px;
+}
+
+.hero-product {
+    align-items: center;
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-content: center;
+    justify-items: center;
+    min-height: 0;
+    position: relative;
+}
+
 .img-hero {
+    grid-column: 1 / -1;
     max-width: 500px;
     width: 100%;
     display: block;
+}
+
+.hero-floating-card {
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.74);
+    border-radius: 8px;
+    box-shadow: 0 16px 36px rgba(32, 28, 72, 0.18);
+    color: #30235f;
+    display: grid;
+    gap: 2px;
+    height: 100%;
+    max-width: none;
+    min-height: 118px;
+    padding: 14px;
+    position: static;
+    width: 100%;
+}
+
+.hero-floating-card i {
+    color: #8652f5;
+    font-size: 1.4rem;
+}
+
+.hero-floating-card strong {
+    font-weight: 800;
+}
+
+.hero-floating-card span {
+    color: #6c757d;
+    font-size: 0.84rem;
 }
 
 /* ================= NAVBAR ================= */
@@ -49,7 +155,7 @@ html {
 
 
 .navbar-brand img {
-    height: 135px;
+    height: 96px;
     width: auto;
     display: block;
 }
@@ -95,6 +201,7 @@ html {
     color: #ffffff;
     border: none;
     font-weight: 600;
+    border-radius: 12px;
 }
 
 .btn-cadastro:hover {
@@ -152,6 +259,108 @@ html {
     max-width: 320px;
 }
 
+.section-title span,
+.cta-band span {
+    color: #7b4fe0;
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.section-title h2,
+.cta-band h2 {
+    color: #30235f;
+    font-weight: 800;
+}
+
+.section-title p {
+    color: #6c757d;
+    margin: 10px auto 0;
+    max-width: 680px;
+}
+
+.landing-grid {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.landing-feature {
+    background: #ffffff;
+    border: 1px solid #ece7ff;
+    border-radius: 8px;
+    box-shadow: 0 12px 30px rgba(33, 37, 41, 0.06);
+    display: flex;
+    flex-direction: column;
+    min-height: 260px;
+    padding: 22px;
+}
+
+.landing-feature i {
+    color: #8652f5;
+    font-size: 1.9rem;
+}
+
+.landing-feature h3 {
+    color: #30235f;
+    font-size: 1.12rem;
+    font-weight: 800;
+    margin: 16px 0 8px;
+}
+
+.landing-feature p {
+    color: #6c757d;
+    flex: 1;
+}
+
+.landing-feature a {
+    color: #5c6cff;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.steps-list {
+    display: grid;
+    gap: 14px;
+}
+
+.steps-list div {
+    background: #ffffff;
+    border: 1px solid #ece7ff;
+    border-radius: 8px;
+    padding: 18px;
+}
+
+.steps-list strong {
+    color: #30235f;
+    display: block;
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+}
+
+.steps-list p {
+    color: #6c757d;
+    margin: 0;
+}
+
+.cta-section {
+    padding-top: 48px;
+}
+
+.cta-band {
+    align-items: center;
+    background: #f8f7ff;
+    border: 1px solid #ece7ff;
+    border-radius: 8px;
+    display: flex;
+    gap: 24px;
+    justify-content: space-between;
+    padding: 28px;
+}
+
 /* ================= RODAPÉ ================= */
 .footer-custom {
     background-color: #ffffff;
@@ -163,12 +372,16 @@ footer a:hover {
     transition: 0.3s;
 }
 
+footer .nav-link {
+    color: #6c757d !important;
+}
+
 /* ================= RESPONSIVO ================= */
 @media (max-width: 991.98px) {
     .principal {
         text-align: center;
         min-height: auto;
-        padding: 50px 0 20px;
+        padding: 34px 0 42px;
     }
 
     .hero-conteudo {
@@ -180,6 +393,34 @@ footer a:hover {
         justify-content: center;
     }
 
+    .hero-actions {
+        justify-content: center;
+    }
+
+    .hero-stats {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .landing-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-product {
+        grid-template-columns: 1fr;
+        min-height: auto;
+    }
+
+    .hero-floating-card {
+        margin: 10px auto 0;
+        max-width: 360px;
+        min-height: auto;
+    }
+
+    .cta-band {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
     .btn-entrar {
         margin-top: 8px;
     }
@@ -187,5 +428,34 @@ footer a:hover {
     .img-hero {
         max-width: 360px;
         margin-top: 20px;
+    }
+
+    .navbar-brand img {
+        height: 78px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .hero-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
+    }
+
+    .hero-badge {
+        border-radius: 8px;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .navbar-brand img {
+        height: 64px;
+    }
+
+    .section-title h2,
+    .cta-band h2 {
+        font-size: 1.55rem;
     }
 }

@@ -245,6 +245,276 @@ body {
     min-height: 24px;
 }
 
+.app-grid {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.app-grid.two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.feature-card {
+    background: #ffffff;
+    border: 1px solid #ece7ff;
+    border-radius: 8px;
+    box-shadow: 0 12px 30px rgba(33, 37, 41, 0.06);
+    padding: 20px;
+}
+
+.feature-card i {
+    color: #7b4fe0;
+    font-size: 1.8rem;
+}
+
+.feature-card h2,
+.feature-card h3 {
+    color: #30235f;
+    font-weight: 800;
+}
+
+.feature-card p {
+    color: #6c757d;
+}
+
+.timeline-list {
+    display: grid;
+    gap: 14px;
+}
+
+.timeline-item {
+    align-items: flex-start;
+    background: #fbfcff;
+    border: 1px solid #eef0f8;
+    border-radius: 8px;
+    display: flex;
+    gap: 14px;
+    padding: 16px;
+}
+
+.timeline-item i {
+    color: #7b4fe0;
+    font-size: 1.35rem;
+}
+
+.choice-button {
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid #e7e1ff;
+    border-radius: 8px;
+    color: #30235f;
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    padding: 14px 16px;
+    text-align: left;
+    width: 100%;
+}
+
+.choice-button:hover,
+.choice-button.active {
+    background: #f5f1ff;
+    border-color: #bba8ff;
+}
+
+.compat-meter {
+    background: #edf0f7;
+    border-radius: 999px;
+    height: 12px;
+    overflow: hidden;
+}
+
+.compat-meter span {
+    background: linear-gradient(135deg, #fd51b3 0%, #8652f5 55%, #5ebbf6 100%);
+    display: block;
+    height: 100%;
+}
+
+.page-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.nav-pill-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.nav-pill-row a {
+    background: #f8f7ff;
+    border: 1px solid #e8e1ff;
+    border-radius: 8px;
+    color: #5a45c8;
+    font-weight: 800;
+    padding: 10px 14px;
+    text-decoration: none;
+}
+
+.nav-pill-row a:hover {
+    background: #efe9ff;
+}
+
+.invite-builder {
+    scroll-margin-top: 18px;
+}
+
+.invite-builder-head {
+    align-items: flex-start;
+    display: flex;
+    gap: 18px;
+    justify-content: space-between;
+}
+
+.invite-preview {
+    background: linear-gradient(135deg, #fff8fb 0%, #f7f5ff 58%, #eef9ff 100%);
+    border: 1px solid #eadfff;
+    border-radius: 8px;
+    height: 100%;
+    padding: 20px;
+}
+
+.invite-preview i {
+    color: #7b4fe0;
+}
+
+.invite-message {
+    color: #30235f;
+    font-size: 1.04rem;
+    font-weight: 700;
+    line-height: 1.55;
+    margin-bottom: 18px;
+}
+
+.invite-checklist {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.invite-checklist span {
+    align-items: center;
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid #eadfff;
+    border-radius: 999px;
+    color: #5a45c8;
+    display: inline-flex;
+    font-size: 0.85rem;
+    font-weight: 800;
+    gap: 6px;
+    padding: 8px 12px;
+}
+
+.daily-event-hero {
+    align-items: stretch;
+    background: linear-gradient(135deg, #fff8fb 0%, #f7f5ff 58%, #eef9ff 100%);
+    border: 1px solid #eadfff;
+    border-radius: 8px;
+    display: grid;
+    gap: 22px;
+    grid-template-columns: minmax(0, 1fr) 280px;
+    padding: 28px;
+}
+
+.daily-event-hero h1 {
+    color: #30235f;
+    font-weight: 800;
+    margin: 0 0 10px;
+}
+
+.daily-event-hero p {
+    color: #596174;
+    max-width: 760px;
+}
+
+.daily-event-card {
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid #eadfff;
+    border-radius: 8px;
+    box-shadow: 0 12px 30px rgba(33, 37, 41, 0.06);
+    color: #30235f;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 230px;
+    padding: 22px;
+    text-align: center;
+}
+
+.daily-event-card i {
+    color: #7b4fe0;
+    font-size: 3rem;
+    margin-bottom: 14px;
+}
+
+.daily-event-card strong,
+.daily-event-card span,
+.daily-event-card small {
+    display: block;
+}
+
+.daily-event-card strong {
+    font-size: 1.2rem;
+}
+
+.daily-event-card span {
+    color: #596174;
+    margin: 6px 0 10px;
+}
+
+.daily-event-card small {
+    color: #5a45c8;
+    font-weight: 800;
+}
+
+.daily-club-list {
+    display: grid;
+    gap: 12px;
+}
+
+.daily-club-item {
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid #ece7ff;
+    border-radius: 8px;
+    color: #30235f;
+    display: grid;
+    gap: 14px;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    padding: 16px;
+    text-align: left;
+    width: 100%;
+}
+
+.daily-club-item.active,
+.daily-club-item:hover {
+    background: #f8f7ff;
+    border-color: #c6b8fb;
+}
+
+.daily-club-item i {
+    color: #7b4fe0;
+    font-size: 1.5rem;
+}
+
+.daily-club-item strong,
+.daily-club-item small {
+    display: block;
+}
+
+.daily-club-item small {
+    color: #6c757d;
+}
+
+.daily-club-item em {
+    color: #5a45c8;
+    font-style: normal;
+    font-weight: 800;
+}
+
 @media (max-width: 991.98px) {
     .navbar-nav {
         padding-top: 14px;
@@ -259,8 +529,21 @@ body {
         grid-template-columns: 1fr;
     }
 
+    .app-grid,
+    .app-grid.two {
+        grid-template-columns: 1fr;
+    }
+
     .avatar-xl {
         height: 170px;
         width: 170px;
+    }
+
+    .invite-builder-head {
+        flex-direction: column;
+    }
+
+    .daily-event-hero {
+        grid-template-columns: 1fr;
     }
 }

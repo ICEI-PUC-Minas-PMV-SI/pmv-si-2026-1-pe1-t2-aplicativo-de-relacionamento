@@ -593,15 +593,17 @@ btnNovaDicaCupido.addEventListener("click", function () {
     atualizarSugestao();
 });
 
-btnCopiarCupido.addEventListener("click", function () {
-    sugestaoConversa.textContent = cupidoMensagem.textContent;
-    resultadoSwipe.textContent = "Dica do Cupido enviada para a sugestão de conversa.";
-    btnCopiarCupido.textContent = "Sugestão adicionada";
-    window.setTimeout(function () {
-        btnCopiarCupido.textContent = "Usar na conversa";
-    }, 1400);
-    document.getElementById("conversas").scrollIntoView({ behavior: "smooth", block: "start" });
-});
+if (btnCopiarCupido) {
+    btnCopiarCupido.addEventListener("click", function () {
+        sugestaoConversa.textContent = cupidoMensagem.textContent;
+        resultadoSwipe.textContent = "Dica do Cupido enviada para a sugestão de conversa.";
+        btnCopiarCupido.textContent = "Sugestão adicionada";
+        window.setTimeout(function () {
+            btnCopiarCupido.textContent = "Usar na conversa";
+        }, 1400);
+        document.getElementById("conversas").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+}
 
 if (btnEnviarSugestao) {
     btnEnviarSugestao.addEventListener("click", function () {

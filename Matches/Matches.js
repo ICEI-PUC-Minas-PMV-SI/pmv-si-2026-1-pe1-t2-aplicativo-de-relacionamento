@@ -24,7 +24,10 @@ document.getElementById("listaMatches").innerHTML = matches.map(function (perfil
                 <div class="d-flex flex-wrap gap-2 mb-3">
                     ${comum.map(function (interesse) { return `<span class="tag-match">${interesse}</span>`; }).join("")}
                 </div>
-                <a class="btn btn-match-primary w-100" href="../Conversas/Conversas.html">Abrir conversa</a>
+                <div class="page-actions">
+                    <a class="btn btn-match-primary" href="../Conversas/Conversas.html">Abrir conversa</a>
+                    <a class="btn btn-match-outline" href="../Cupido/Cupido.html">Cupido</a>
+                </div>
             </div>
         </article>
     `;
