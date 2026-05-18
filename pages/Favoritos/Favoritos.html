@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../../assets/css/App.css">
+    <link rel="stylesheet" href="../../assets/css/Internal.css">
 </head>
 
 <body>
@@ -25,7 +26,7 @@
                         <li class="nav-item"><a class="nav-link" href="../home/Homeusuario.html">Início</a></li>
                         <li class="nav-item"><a class="nav-link" href="../Matches/Matches.html">Matches</a></li>
                         <li class="nav-item"><a class="nav-link active" href="Favoritos.html">Favoritos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="../Cupido/Cupido.html">Cupido</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../EROS/EROS.html">EROS</a></li>
                         <li class="nav-item"><button id="btnSair" class="btn btn-entrar">Sair</button></li>
                     </ul>
                 </div>
@@ -36,14 +37,17 @@
     <main class="page-shell">
         <div class="container">
             <section class="page-heading">
-                <div>
-                    <span class="section-kicker">Perfis salvos</span>
-                    <h1>Favoritos</h1>
-                    <p>Guarde perfis interessantes para conversar depois ou comparar afinidades com calma.</p>
+                <div class="page-heading-main">
+                    <span class="page-heading-icon"><i class="bi bi-bookmark-heart"></i></span>
+                    <div>
+                        <span class="section-kicker">Perfis salvos</span>
+                        <h1>Favoritos</h1>
+                        <p>Guarde perfis interessantes para conversar depois ou comparar afinidades com calma.</p>
+                    </div>
                 </div>
                 <a class="btn btn-match-primary" href="../home/Homeusuario.html#descobrir">Descobrir perfis</a>
             </section>
-            <section class="app-panel mb-4">
+            <section class="visual-panel mb-4">
                 <div class="commercial-tabs" id="abasFavoritos">
                     <button class="active" type="button" data-tipo="perfis">Perfis</button>
                     <button type="button" data-tipo="eventos">Eventos</button>

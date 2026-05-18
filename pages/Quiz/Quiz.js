@@ -21,7 +21,7 @@ function finalizar() {
     document.getElementById("perguntaQuiz").innerHTML = '<span class="section-kicker">Resultado</span><h2 class="h4 fw-bold">Seu estilo é ' + vencedor + '</h2>';
     document.getElementById("opcoesQuiz").innerHTML = "";
     document.getElementById("resultadoQuiz").innerHTML = `
-        <p class="text-muted">Atualizamos sua personalidade no cadastro de interesses. As sugestões do Cupido e os matches agora podem usar esse tom.</p>
+        <p class="text-muted">Atualizamos sua personalidade no cadastro de interesses. As sugestões do EROS e os matches agora podem usar esse tom.</p>
         <a class="btn btn-match-primary" href="../home/Homeusuario.html">Voltar para Home</a>
     `;
 }

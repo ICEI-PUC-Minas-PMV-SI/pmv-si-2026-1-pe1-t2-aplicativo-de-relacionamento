@@ -2,7 +2,10 @@ MatchConnectApp.protegerPagina();
 MatchConnectApp.configurarSair();
 
 const perfis = MatchConnectApp.perfisOrdenados();
-let conversaAtual = perfis[0];
+const conversaSalva = localStorage.getItem("conversaAberta");
+let conversaAtual = perfis.find(function (perfil) {
+    return perfil.nome === conversaSalva;
+}) || perfis[0];
 const mensagens = JSON.parse(localStorage.getItem("mensagensUsuario")) || {};
 
 function mensagensDoPerfil(nome) {
@@ -27,6 +30,18 @@ function renderizarLista(filtro = "") {
             || perfil.interesses.join(" ").toLowerCase().includes(termo);
     });
 
+    if (filtradas.length === 0) {
+        lista.innerHTML = `
+            <div class="empty-state">
+                <i class="bi bi-search-heart"></i>
+                <strong>Nenhuma conversa encontrada</strong>
+                <p>Tente buscar por outro interesse ou volte para Descobrir para criar novas conexões.</p>
+                <a class="btn btn-match-primary" href="../home/Homeusuario.html#descobrir">Descobrir</a>
+            </div>
+        `;
+        return;
+    }
+
     lista.innerHTML = filtradas.map(function (perfil) {
         return `
             <button class="list-row w-100 text-start bg-transparent border-0" type="button" data-nome="${perfil.nome}">
@@ -37,7 +52,7 @@ function renderizarLista(filtro = "") {
                 </span>
             </button>
         `;
-    }).join("") || '<p class="empty-state">Nenhuma conversa encontrada.</p>';
+    }).join("");
 }
 
 function renderizarChat() {
@@ -50,18 +65,20 @@ function renderizarChat() {
         </div>
     `;
 
-    document.getElementById("sugestaoCupido").textContent = conversaAtual.mensagem;
+    document.getElementById("sugestaoEROS").textContent = conversaAtual.mensagem;
 
     document.getElementById("chatMensagens").innerHTML = mensagensDoPerfil(conversaAtual.nome).map(function (mensagem) {
         const minha = mensagem.autor === "Você";
         return `
             <div class="d-flex ${minha ? "justify-content-end" : "justify-content-start"} mb-2">
-                <span class="app-card ${minha ? "text-white" : ""}" style="${minha ? "background:#8652f5;border-color:#8652f5;" : ""}">
+                <span class="chat-message ${minha ? "outgoing" : "incoming"}">
                     ${mensagem.texto}
                 </span>
             </div>
         `;
     }).join("");
+
+    document.getElementById("chatMensagens").scrollIntoView({ behavior: "smooth", block: "end" });
 }
 
 document.getElementById("listaConversas").addEventListener("click", function (event) {
@@ -70,6 +87,7 @@ document.getElementById("listaConversas").addEventListener("click", function (ev
     conversaAtual = perfis.find(function (perfil) {
         return perfil.nome === botao.dataset.nome;
     });
+    localStorage.setItem("conversaAberta", conversaAtual.nome);
     renderizarChat();
 });
 
@@ -96,7 +114,7 @@ document.querySelectorAll(".acao-chat").forEach(function (botao) {
 
         if (botao.dataset.acao === "denuncia") {
             localStorage.setItem("ultimaDenuncia", JSON.stringify({ pessoa: conversaAtual.nome, origem: "Conversas" }));
-            document.getElementById("sugestaoCupido").textContent = `Denúncia preparada para ${conversaAtual.nome}. Você pode finalizar na Central de segurança.`;
+            document.getElementById("sugestaoEROS").textContent = `Denúncia preparada para ${conversaAtual.nome}. Você pode finalizar na Central de segurança.`;
         }
     });
 });

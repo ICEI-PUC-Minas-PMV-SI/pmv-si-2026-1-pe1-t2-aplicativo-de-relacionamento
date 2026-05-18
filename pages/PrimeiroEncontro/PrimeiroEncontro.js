@@ -17,7 +17,7 @@ function renderizarChecklist() {
         { icone: "bi-geo-alt", titulo: "Local público", texto: document.getElementById("localEncontro").value || "Escolha um lugar movimentado." },
         { icone: "bi-clock", titulo: "Horário claro", texto: document.getElementById("horarioEncontro").value || "Combine início e limite de tempo." },
         { icone: "bi-telephone", titulo: "Contato de confiança", texto: contato.nome ? `${contato.nome} está salvo na Central de Segurança.` : "Cadastre um contato de confiança." },
-        { icone: "bi-chat-heart", titulo: "Assunto inicial", texto: "Use o Cupido para chegar com uma pergunta simples." }
+        { icone: "bi-chat-heart", titulo: "Assunto inicial", texto: "Use o EROS para chegar com uma pergunta simples." }
     ];
 
     document.getElementById("checklistEncontro").innerHTML = itens.map(function (item) {

@@ -43,6 +43,15 @@ body {
     color: #8652f5 !important;
 }
 
+.modern-header .navbar-toggler {
+    background: rgba(255, 255, 255, 0.72);
+    border-color: rgba(134, 82, 245, 0.34);
+}
+
+.modern-header .navbar-toggler-icon {
+    filter: none;
+}
+
 .modern-hero {
     min-height: calc(100vh - 90px);
     padding: 56px 0 72px;
@@ -396,7 +405,7 @@ body {
     color: #8652f5;
 }
 
-.robot-cupid {
+.robot-eros {
     align-items: flex-end;
     bottom: 22px;
     display: flex;
@@ -407,7 +416,7 @@ body {
     z-index: 1050;
 }
 
-.landing-cupid-inline {
+.landing-eros-inline {
     align-items: center;
     bottom: auto;
     flex-direction: row;
@@ -417,14 +426,14 @@ body {
     z-index: 1;
 }
 
-.landing-cupid-inline .robot-cupid-speech {
+.landing-eros-inline .robot-eros-speech {
     max-width: 330px;
     opacity: 1;
     transform: none;
     visibility: visible;
 }
 
-.robot-cupid-button {
+.robot-eros-button {
     align-items: center;
     animation: robotFloat 4.8s ease-in-out infinite, robotGlow 2.4s ease-in-out infinite;
     background: linear-gradient(180deg, #ffffff 0%, #f7efff 52%, #eaf8ff 100%);
@@ -528,11 +537,11 @@ body {
     width: 24px;
 }
 
-.robot-cupid-button.is-talking .robot-mouth {
+.robot-eros-button.is-talking .robot-mouth {
     animation: robotTalk 260ms ease-in-out 3;
 }
 
-.robot-cupid-speech {
+.robot-eros-speech {
     background: #ffffff;
     border: 1px solid #eadfff;
     border-radius: 18px;
@@ -548,13 +557,14 @@ body {
     visibility: hidden;
 }
 
-.robot-cupid-speech.show {
+.robot-eros-speech.show {
     opacity: 1;
     transform: translateY(0);
     visibility: visible;
 }
 
 @keyframes robotFloat {
+
     0%,
     100% {
         transform: translateY(0);
@@ -566,6 +576,7 @@ body {
 }
 
 @keyframes robotGlow {
+
     0%,
     100% {
         box-shadow: 0 0 0 8px rgba(134, 82, 245, 0.1), 0 18px 34px rgba(67, 45, 138, 0.24);
@@ -577,6 +588,7 @@ body {
 }
 
 @keyframes robotBlink {
+
     0%,
     88%,
     100% {
@@ -777,7 +789,7 @@ html {
 }
 
 .preview-topbar i,
-.preview-cupid-box i,
+.preview-eros-box i,
 .preview-event i {
     color: #8652f5;
 }
@@ -855,7 +867,7 @@ html {
     width: 94%;
 }
 
-.preview-cupid-box {
+.preview-eros-box {
     background: #ffffff;
     border: 1px solid #eadfff;
     border-radius: 8px;
@@ -864,7 +876,7 @@ html {
     padding: 14px;
 }
 
-.preview-cupid-box p {
+.preview-eros-box p {
     color: #30235f;
     font-weight: 700;
     margin: 0;
@@ -1180,7 +1192,7 @@ html {
     padding: 14px;
 }
 
-.floating-cupid {
+.floating-eros {
     align-items: flex-end;
     bottom: 22px;
     display: flex;
@@ -1191,7 +1203,7 @@ html {
     z-index: 1050;
 }
 
-.floating-cupid-button {
+.floating-eros-button {
     align-items: center;
     background: linear-gradient(135deg, #fd51b3 0%, #8652f5 55%, #5ebbf6 100%);
     border: 0;
@@ -1204,23 +1216,23 @@ html {
     justify-content: center;
     position: relative;
     width: 72px;
-    animation: cupidFloat 4.8s ease-in-out infinite, cupidGlow 2.4s ease-in-out infinite;
+    animation: erosFloat 4.8s ease-in-out infinite, erosGlow 2.4s ease-in-out infinite;
 }
 
-.floating-cupid-button::before,
-.floating-cupid-button::after {
+.floating-eros-button::before,
+.floating-eros-button::after {
     content: "";
     border-radius: 999px;
     pointer-events: none;
     position: absolute;
 }
 
-.floating-cupid-button::before {
+.floating-eros-button::before {
     inset: -10px;
     border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
-.floating-cupid-button::after {
+.floating-eros-button::after {
     background: rgba(255, 255, 255, 0.72);
     height: 8px;
     right: 14px;
@@ -1228,11 +1240,11 @@ html {
     width: 8px;
 }
 
-.floating-cupid-button.is-speaking {
-    animation: cupidSpeak 780ms ease both, cupidGlow 2.4s ease-in-out infinite;
+.floating-eros-button.is-speaking {
+    animation: erosSpeak 780ms ease both, erosGlow 2.4s ease-in-out infinite;
 }
 
-.floating-cupid-speech {
+.floating-eros-speech {
     background: #ffffff;
     border: 1px solid #eadfff;
     border-radius: 8px;
@@ -1248,13 +1260,14 @@ html {
     visibility: hidden;
 }
 
-.floating-cupid-speech.show {
+.floating-eros-speech.show {
     opacity: 1;
     transform: translateY(0);
     visibility: visible;
 }
 
-@keyframes cupidFloat {
+@keyframes erosFloat {
+
     0%,
     100% {
         transform: translateY(0);
@@ -1265,7 +1278,8 @@ html {
     }
 }
 
-@keyframes cupidGlow {
+@keyframes erosGlow {
+
     0%,
     100% {
         box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.26), 0 0 26px rgba(253, 81, 179, 0.48);
@@ -1276,7 +1290,7 @@ html {
     }
 }
 
-@keyframes cupidSpeak {
+@keyframes erosSpeak {
     0% {
         transform: scale(1);
     }
@@ -1460,25 +1474,25 @@ footer .nav-link {
         width: 88px;
     }
 
-    .robot-cupid {
+    .robot-eros {
         bottom: 14px;
         left: 14px;
         right: 14px;
     }
 
-    .landing-cupid-inline {
+    .landing-eros-inline {
         align-items: flex-start;
         bottom: auto;
         left: auto;
         right: auto;
     }
 
-    .robot-cupid-button {
+    .robot-eros-button {
         height: 72px;
         width: 72px;
     }
 
-    .robot-cupid-speech {
+    .robot-eros-speech {
         max-width: none;
         width: 100%;
     }
@@ -1506,19 +1520,864 @@ footer .nav-link {
         font-size: 1.55rem;
     }
 
-    .floating-cupid {
+    .floating-eros {
         bottom: 14px;
         left: 14px;
         right: 14px;
     }
 
-    .floating-cupid-button {
+    .floating-eros-button {
         height: 62px;
         width: 62px;
     }
 
-    .floating-cupid-speech {
+    .floating-eros-speech {
         max-width: none;
         width: 100%;
     }
+}
+
+/* EROS landing: asas holograficas, tunica prateada e arco de luz. */
+.robot-eros-button {
+    background:
+        radial-gradient(circle at 30% 18%, rgba(255, 255, 255, 0.95) 0 8%, transparent 9%),
+        linear-gradient(155deg, rgba(255, 255, 255, 0.96) 0 22%, rgba(226, 244, 255, 0.92) 23% 48%, rgba(143, 92, 255, 0.42) 49% 72%, rgba(16, 22, 45, 0.96) 73% 100%);
+    border: 1px solid rgba(186, 242, 255, 0.78);
+    border-radius: 30px 30px 24px 24px;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.62) inset, 0 0 22px rgba(0, 224, 255, 0.32), 0 0 36px rgba(155, 78, 255, 0.30), 0 18px 40px rgba(40, 33, 92, 0.25);
+    overflow: visible;
+}
+
+.robot-eros-button .eros-aura {
+    background: radial-gradient(circle, rgba(0, 224, 255, 0.26), transparent 58%), conic-gradient(from 20deg, rgba(155, 78, 255, 0.04), rgba(0, 224, 255, 0.22), rgba(255, 255, 255, 0.10), rgba(155, 78, 255, 0.04));
+    border: 1px solid rgba(180, 246, 255, 0.26);
+    border-radius: 50%;
+    inset: -18px;
+    opacity: 0.9;
+    position: absolute;
+    z-index: -2;
+}
+
+.robot-face {
+    background: linear-gradient(180deg, rgba(16, 22, 45, 0.96), rgba(10, 13, 30, 0.98));
+    border: 1px solid rgba(0, 224, 255, 0.32);
+    border-radius: 20px 20px 16px 16px;
+    box-shadow: inset 0 1px 10px rgba(255, 255, 255, 0.10), 0 0 18px rgba(0, 224, 255, 0.24);
+    height: 44px;
+    margin-top: -8px;
+    width: 56px;
+    z-index: 2;
+}
+
+.robot-eye {
+    background: linear-gradient(90deg, #ffffff 0%, #00e0ff 45%, #9b4eff 100%);
+    height: 5px;
+    width: 14px;
+}
+
+.robot-mouth {
+    background: transparent;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.78);
+    height: 6px;
+    opacity: 0.78;
+    width: 18px;
+}
+
+.wing {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.34), rgba(0, 224, 255, 0.14) 42%, rgba(155, 78, 255, 0.10)), repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.0) 0 7px, rgba(0, 224, 255, 0.35) 8px 9px);
+    border: 1px solid rgba(0, 224, 255, 0.42);
+    box-shadow: 0 0 18px rgba(0, 224, 255, 0.28), inset 0 0 14px rgba(255, 255, 255, 0.18);
+    clip-path: polygon(0 50%, 28% 8%, 100% 0, 74% 52%, 100% 100%, 26% 86%);
+    height: 50px;
+    opacity: 0.86;
+    top: 20px;
+    width: 45px;
+}
+
+.wing-left {
+    left: -30px;
+    transform: rotate(-12deg);
+}
+
+.wing-right {
+    right: -30px;
+    transform: scaleX(-1) rotate(-12deg);
+}
+
+.robot-eros-button .eros-robe {
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.92) 0 44%, rgba(210, 242, 255, 0.74) 45% 62%, rgba(155, 78, 255, 0.32) 63%), linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(196, 231, 255, 0.72));
+    border: 1px solid rgba(255, 255, 255, 0.64);
+    border-radius: 4px 4px 16px 16px;
+    bottom: 5px;
+    box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.35), 0 0 16px rgba(0, 224, 255, 0.16);
+    height: 27px;
+    left: 23px;
+    position: absolute;
+    transform: skewX(-9deg);
+    width: 31px;
+    z-index: 1;
+}
+
+.robot-eros-button .eros-bow {
+    border: 2px solid rgba(0, 224, 255, 0.82);
+    border-left: 0;
+    border-radius: 0 999px 999px 0;
+    box-shadow: 0 0 14px rgba(0, 224, 255, 0.72), 0 0 20px rgba(155, 78, 255, 0.36);
+    height: 56px;
+    position: absolute;
+    right: -15px;
+    top: 16px;
+    transform: rotate(-12deg);
+    width: 22px;
+    z-index: 3;
+}
+
+.robot-eros-button .eros-arrow {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.0), #ffffff 24%, #00e0ff 58%, #9b4eff 100%);
+    border-radius: 999px;
+    box-shadow: 0 0 12px rgba(0, 224, 255, 0.72);
+    height: 2px;
+    position: absolute;
+    right: -12px;
+    top: 42px;
+    transform: rotate(-12deg);
+    width: 52px;
+    z-index: 4;
+}
+
+.robot-eros-button .eros-arrow::after {
+    border-bottom: 5px solid transparent;
+    border-left: 9px solid #00e0ff;
+    border-top: 5px solid transparent;
+    content: "";
+    position: absolute;
+    right: -6px;
+    top: -4px;
+}
+
+.robot-heart {
+    background: linear-gradient(135deg, #9b4eff, #00e0ff);
+    box-shadow: 0 0 18px rgba(0, 224, 255, 0.56);
+}
+
+.robot-eros-speech {
+    background: radial-gradient(circle at 12% 10%, rgba(0, 224, 255, 0.12), transparent 30%), linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(244, 248, 255, 0.84)) padding-box, linear-gradient(135deg, rgba(155, 78, 255, 0.34), rgba(0, 224, 255, 0.34)) border-box;
+    border: 1px solid transparent;
+}
+
+/* EROS v2 landing: avatar premium limpo e memoravel. */
+.robot-eros-button {
+    align-items: center;
+    animation: robotFloat 6s ease-in-out infinite;
+    background:
+        radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.22), transparent 18%),
+        radial-gradient(circle at 62% 78%, rgba(0, 224, 255, 0.18), transparent 34%),
+        linear-gradient(145deg, rgba(16, 25, 51, 0.94), rgba(7, 11, 25, 0.98));
+    border: 1px solid rgba(181, 244, 255, 0.36);
+    border-radius: 50%;
+    box-shadow: inset 0 1px 16px rgba(255, 255, 255, 0.10), inset 0 -18px 28px rgba(20, 10, 55, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.10), 0 0 22px rgba(0, 224, 255, 0.20), 0 18px 42px rgba(18, 14, 48, 0.30);
+    height: 82px;
+    justify-content: center;
+    overflow: visible;
+    width: 82px;
+}
+
+.robot-eros-button .eros-aura {
+    animation: erosLandingHaloSpin 14s linear infinite;
+    background: conic-gradient(from 0deg, transparent 0 16%, rgba(0, 224, 255, 0.62) 18% 24%, transparent 26% 50%, rgba(155, 78, 255, 0.48) 52% 58%, transparent 60% 100%);
+    border: 1px solid rgba(165, 236, 255, 0.22);
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(0, 224, 255, 0.16);
+    inset: -12px;
+    opacity: 0.82;
+    position: absolute;
+    z-index: -2;
+}
+
+.robot-eros-button::after {
+    background: radial-gradient(circle, rgba(0, 224, 255, 0.14), transparent 66%);
+    border-radius: 50%;
+    content: "";
+    inset: -20px;
+    opacity: 0.55;
+    position: absolute;
+    z-index: -3;
+}
+
+.wing {
+    background: linear-gradient(90deg, rgba(0, 224, 255, 0.0), rgba(0, 224, 255, 0.38), rgba(155, 78, 255, 0.08)), linear-gradient(135deg, transparent 0 38%, rgba(255, 255, 255, 0.22) 39% 41%, transparent 42% 100%);
+    border: 0;
+    clip-path: polygon(0 50%, 100% 0, 74% 50%, 100% 100%);
+    filter: drop-shadow(0 0 8px rgba(0, 224, 255, 0.34));
+    height: 38px;
+    opacity: 0.72;
+    top: 22px;
+    width: 34px;
+}
+
+.wing-left {
+    left: -20px;
+    transform: rotate(-8deg);
+}
+
+.wing-right {
+    right: -20px;
+    transform: scaleX(-1) rotate(-8deg);
+}
+
+.robot-face {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    display: grid;
+    gap: 7px;
+    grid-template-columns: repeat(2, auto);
+    height: auto;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 44px;
+    z-index: 3;
+}
+
+.robot-eye {
+    animation: robotBlink 5.5s ease-in-out infinite;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.96), #78ecff 48%, #8f6bff);
+    border-radius: 999px;
+    box-shadow: 0 0 10px rgba(0, 224, 255, 0.54);
+    height: 4px;
+    width: 13px;
+}
+
+.robot-mouth {
+    background: transparent;
+    border-bottom: 2px solid rgba(190, 245, 255, 0.72);
+    border-radius: 0 0 999px 999px;
+    grid-column: 1 / -1;
+    height: 6px;
+    justify-self: center;
+    opacity: 0.84;
+    width: 17px;
+}
+
+.robot-eros-button .eros-particle {
+    background: rgba(190, 245, 255, 0.86);
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(0, 224, 255, 0.42);
+    height: 3px;
+    position: absolute;
+    width: 3px;
+}
+
+.robot-eros-button .eros-particle-one {
+    left: 4px;
+    top: 18px;
+}
+
+.robot-eros-button .eros-particle-two {
+    right: 7px;
+    top: 13px;
+}
+
+.robot-eros-button .eros-particle-three {
+    bottom: 10px;
+    left: 16px;
+}
+
+.robot-antenna,
+.robot-eros-button .eros-robe,
+.robot-eros-button .eros-bow,
+.robot-eros-button .eros-arrow,
+.robot-heart {
+    display: none;
+}
+
+.robot-eros-speech {
+    background:
+        radial-gradient(circle at 12% 0%, rgba(0, 224, 255, 0.10), transparent 28%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(245, 249, 255, 0.82)) padding-box,
+        linear-gradient(135deg, rgba(155, 78, 255, 0.24), rgba(0, 224, 255, 0.28)) border-box;
+    border: 1px solid transparent;
+    box-shadow: 0 18px 44px rgba(23, 18, 62, 0.14);
+}
+
+@keyframes erosLandingHaloSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ================= LANDING 2026 ================= */
+:root {
+    --landing-ink: #201d32;
+    --landing-muted: #626779;
+    --landing-purple: #8652f5;
+    --landing-pink: #fd51b3;
+    --landing-blue: #25a8df;
+    --landing-glass: rgba(255, 255, 255, 0.78);
+    --landing-glass-strong: rgba(255, 255, 255, 0.92);
+    --landing-line: rgba(134, 82, 245, 0.16);
+    --landing-shadow: 0 24px 62px rgba(67, 45, 138, 0.12);
+    --landing-shadow-soft: 0 16px 40px rgba(67, 45, 138, 0.08);
+}
+
+body.landing-modern {
+    background:
+        radial-gradient(circle at 8% 8%, rgba(253, 81, 179, 0.12), transparent 28%),
+        radial-gradient(circle at 92% 10%, rgba(94, 187, 246, 0.17), transparent 30%),
+        radial-gradient(circle at 54% 90%, rgba(134, 82, 245, 0.08), transparent 34%),
+        linear-gradient(180deg, #fcfbff 0%, #f7f8ff 48%, #f4fbff 100%);
+    background-attachment: fixed;
+    font-family: Inter, "Segoe UI", Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+.modern-header .navbar {
+    background: rgba(255, 255, 255, 0.76);
+    border-bottom: 1px solid rgba(134, 82, 245, 0.12);
+    box-shadow: 0 14px 34px rgba(67, 45, 138, 0.06);
+}
+
+.modern-hero {
+    min-height: calc(100vh - 88px);
+    overflow: hidden;
+    padding: clamp(42px, 6vw, 76px) 0 clamp(58px, 7vw, 88px);
+    position: relative;
+}
+
+.modern-hero::before {
+    display: none;
+}
+
+.modern-copy h1 {
+    max-width: 760px;
+}
+
+.modern-hero-grid {
+    align-items: center;
+    background:
+        radial-gradient(circle at 8% 0%, rgba(253, 81, 179, 0.10), transparent 34%),
+        radial-gradient(circle at 92% 4%, rgba(94, 187, 246, 0.14), transparent 36%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.60), rgba(247, 249, 255, 0.42)) padding-box,
+        linear-gradient(135deg, rgba(134, 82, 245, 0.14), rgba(94, 187, 246, 0.14)) border-box;
+    backdrop-filter: blur(12px);
+    border: 1px solid transparent;
+    border-radius: 32px;
+    box-shadow: 0 28px 76px rgba(67, 45, 138, 0.08);
+    gap: clamp(28px, 5vw, 64px);
+    grid-template-columns: minmax(0, 1.05fr) minmax(320px, 430px);
+    min-width: 0;
+    padding: clamp(28px, 5vw, 54px);
+}
+
+.modern-copy {
+    min-width: 0;
+}
+
+.modern-preview {
+    justify-content: flex-end;
+    min-width: 0;
+}
+
+.modern-copy p {
+    color: var(--landing-muted);
+}
+
+.landing-modes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.landing-modes span {
+    align-items: center;
+    background: rgba(255, 255, 255, 0.68);
+    border: 1px solid rgba(134, 82, 245, 0.14);
+    border-radius: 999px;
+    color: #5a45c8;
+    display: inline-flex;
+    font-size: 0.86rem;
+    font-weight: 900;
+    gap: 7px;
+    padding: 8px 12px;
+}
+
+.phone-shell,
+.modern-flow article,
+.landing-feature-grid article {
+    background:
+        linear-gradient(180deg, var(--landing-glass-strong), var(--landing-glass)) padding-box,
+        linear-gradient(135deg, rgba(134, 82, 245, 0.18), rgba(94, 187, 246, 0.18)) border-box;
+    backdrop-filter: blur(14px);
+    border: 1px solid transparent;
+    box-shadow: var(--landing-shadow);
+}
+
+.phone-shell {
+    border-radius: 30px;
+    max-width: 430px;
+    width: min(100%, 430px);
+}
+
+.match-card-preview,
+.event-preview-pill,
+.preview-experience,
+.preview-mode-row span {
+    background: rgba(255, 255, 255, 0.70);
+    border: 1px solid rgba(134, 82, 245, 0.13);
+    box-shadow: 0 12px 28px rgba(67, 45, 138, 0.06);
+}
+
+.ai-message-preview {
+    background:
+        radial-gradient(circle at 10% 0%, rgba(253, 81, 179, 0.26), transparent 34%),
+        linear-gradient(135deg, #32234d 0%, #5732b8 58%, #218fc7 100%);
+    box-shadow: 0 16px 36px rgba(67, 45, 138, 0.18);
+}
+
+.preview-mode-row {
+    display: grid;
+    gap: 8px;
+    grid-template-columns: repeat(3, 1fr);
+    margin-bottom: 14px;
+}
+
+.preview-mode-row span {
+    align-items: center;
+    border-radius: 999px;
+    color: #626779;
+    display: inline-flex;
+    font-size: 0.75rem;
+    font-weight: 900;
+    gap: 5px;
+    justify-content: center;
+    min-height: 34px;
+    padding: 6px 8px;
+    white-space: nowrap;
+}
+
+.preview-mode-row span.active {
+    background: linear-gradient(135deg, rgba(253, 81, 179, 0.14), rgba(94, 187, 246, 0.18));
+    color: #5a45c8;
+}
+
+.event-preview-pill.live i {
+    color: #fd51b3;
+}
+
+.preview-experience {
+    border-radius: 18px;
+    display: grid;
+    gap: 3px;
+    margin-top: 14px;
+    padding: 14px;
+}
+
+.preview-experience i {
+    color: var(--landing-purple);
+    font-size: 1.2rem;
+}
+
+.preview-experience span {
+    color: #6e58d9;
+    font-size: 0.75rem;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.preview-experience strong {
+    color: var(--landing-ink);
+}
+
+.landing-feature-section {
+    background: transparent;
+}
+
+.landing-feature-grid {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(5, minmax(180px, 1fr));
+}
+
+.landing-feature-grid article {
+    border-radius: 18px;
+    min-height: 220px;
+    padding: 20px;
+    transition: box-shadow 180ms ease, transform 180ms ease;
+}
+
+.landing-feature-grid article:hover,
+.modern-flow article:hover {
+    box-shadow: 0 28px 70px rgba(67, 45, 138, 0.13);
+    transform: translateY(-3px);
+}
+
+.landing-feature-grid i {
+    align-items: center;
+    background: linear-gradient(135deg, rgba(253, 81, 179, 0.14), rgba(94, 187, 246, 0.18));
+    border-radius: 14px;
+    color: var(--landing-purple);
+    display: inline-flex;
+    font-size: 1.55rem;
+    height: 48px;
+    justify-content: center;
+    width: 48px;
+}
+
+.landing-feature-grid strong {
+    color: var(--landing-ink);
+    display: block;
+    font-size: 1rem;
+    font-weight: 900;
+    margin: 15px 0 8px;
+}
+
+.landing-feature-grid p {
+    color: var(--landing-muted);
+    font-size: 0.94rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.modern-event-card {
+    background:
+        radial-gradient(circle at 88% 14%, rgba(94, 187, 246, 0.28), transparent 30%),
+        radial-gradient(circle at 0% 0%, rgba(253, 81, 179, 0.20), transparent 34%),
+        linear-gradient(135deg, #2b173d 0%, #5732b8 58%, #218fc7 100%);
+    box-shadow: 0 28px 76px rgba(67, 45, 138, 0.18);
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 280px) auto;
+}
+
+.landing-event-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.landing-event-tags span {
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    color: #ffffff;
+    font-size: 0.82rem;
+    font-weight: 900;
+    padding: 7px 10px;
+}
+
+.robot-eros-button {
+    background:
+        radial-gradient(circle at 28% 20%, rgba(255, 255, 255, 0.98) 0 12%, transparent 13%),
+        linear-gradient(145deg, #ffffff 0%, #fff0fa 42%, #eaf8ff 100%);
+    border-radius: 30px;
+}
+
+.robot-eros-speech {
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(248, 250, 255, 0.84)) padding-box,
+        linear-gradient(135deg, rgba(253, 81, 179, 0.24), rgba(94, 187, 246, 0.22)) border-box;
+    border: 1px solid transparent;
+    border-radius: 14px;
+}
+
+@media (max-width: 1199.98px) {
+    .modern-hero-grid {
+        grid-template-columns: minmax(0, 1fr) minmax(300px, 390px);
+    }
+
+    .landing-feature-grid {
+        grid-template-columns: repeat(3, minmax(220px, 1fr));
+    }
+
+    .modern-event-card {
+        grid-template-columns: minmax(0, 1fr) minmax(220px, 280px);
+    }
+
+    .modern-event-card .btn {
+        grid-column: 1 / -1;
+        justify-self: start;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .modern-hero-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .modern-preview {
+        justify-content: center;
+    }
+
+    .landing-modes {
+        justify-content: center;
+    }
+
+    .landing-feature-grid {
+        grid-template-columns: repeat(2, minmax(240px, 1fr));
+    }
+
+    .modern-event-card {
+        grid-template-columns: 1fr;
+    }
+
+    .modern-event-card .btn {
+        justify-self: stretch;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .modern-hero {
+        padding-top: 30px;
+    }
+
+    .preview-mode-row,
+    .landing-feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .landing-modes span {
+        flex: 1 1 100%;
+        justify-content: center;
+    }
+
+    .modern-copy,
+    .modern-copy p,
+    .modern-actions,
+    .landing-modes {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+        min-width: 0;
+        width: 100%;
+    }
+
+    .modern-hero .container,
+    .modern-hero-grid,
+    .modern-hero-grid>*,
+    .modern-preview {
+        max-width: 100%;
+        min-width: 0;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .modern-hero-grid {
+        border-radius: 22px;
+        padding: 22px 16px 26px;
+    }
+
+    .modern-copy h1 {
+        font-size: clamp(1.95rem, 10vw, 2.3rem);
+        line-height: 1.02;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+        overflow-wrap: anywhere;
+        text-wrap: balance;
+        width: min(100%, 290px);
+    }
+
+    .modern-copy p {
+        font-size: 1rem;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 260px;
+        overflow-wrap: break-word;
+    }
+
+    .modern-actions,
+    .landing-modes {
+        max-width: 260px;
+    }
+
+    .phone-shell {
+        max-width: 270px;
+        width: 100%;
+    }
+
+    .preview-mode-row span {
+        justify-content: flex-start;
+        padding-inline: 12px;
+    }
+
+    .landing-eros-inline {
+        align-items: center;
+        flex-direction: column;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .landing-eros-inline .robot-eros-speech {
+        max-width: 260px;
+        min-width: 0;
+        overflow-wrap: break-word;
+        text-align: center;
+        white-space: normal;
+        width: auto;
+    }
+}
+
+/* EROS final override: landing com mitologia futurista. */
+.robot-eros-button {
+    background:
+        radial-gradient(circle at 30% 18%, rgba(255, 255, 255, 0.95) 0 8%, transparent 9%),
+        linear-gradient(155deg, rgba(255, 255, 255, 0.96) 0 22%, rgba(226, 244, 255, 0.92) 23% 48%, rgba(143, 92, 255, 0.42) 49% 72%, rgba(16, 22, 45, 0.96) 73% 100%);
+    border: 1px solid rgba(186, 242, 255, 0.78);
+    border-radius: 30px 30px 24px 24px;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.62) inset, 0 0 22px rgba(0, 224, 255, 0.32), 0 0 36px rgba(155, 78, 255, 0.30), 0 18px 40px rgba(40, 33, 92, 0.25);
+    overflow: visible;
+}
+
+.robot-eros-button .eros-aura {
+    background: radial-gradient(circle, rgba(0, 224, 255, 0.26), transparent 58%), conic-gradient(from 20deg, rgba(155, 78, 255, 0.04), rgba(0, 224, 255, 0.22), rgba(255, 255, 255, 0.10), rgba(155, 78, 255, 0.04));
+    border: 1px solid rgba(180, 246, 255, 0.26);
+    border-radius: 50%;
+    inset: -18px;
+    opacity: 0.9;
+    position: absolute;
+    z-index: -2;
+}
+
+.robot-face {
+    background: linear-gradient(180deg, rgba(16, 22, 45, 0.96), rgba(10, 13, 30, 0.98));
+    border: 1px solid rgba(0, 224, 255, 0.32);
+    border-radius: 20px 20px 16px 16px;
+    box-shadow: inset 0 1px 10px rgba(255, 255, 255, 0.10), 0 0 18px rgba(0, 224, 255, 0.24);
+    height: 44px;
+    margin-top: -8px;
+    width: 56px;
+    z-index: 2;
+}
+
+.robot-eye {
+    background: linear-gradient(90deg, #ffffff 0%, #00e0ff 45%, #9b4eff 100%);
+    height: 5px;
+    width: 14px;
+}
+
+.robot-mouth {
+    background: transparent;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.78);
+    height: 6px;
+    opacity: 0.78;
+    width: 18px;
+}
+
+.wing {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.34), rgba(0, 224, 255, 0.14) 42%, rgba(155, 78, 255, 0.10)), repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.0) 0 7px, rgba(0, 224, 255, 0.35) 8px 9px);
+    border: 1px solid rgba(0, 224, 255, 0.42);
+    box-shadow: 0 0 18px rgba(0, 224, 255, 0.28), inset 0 0 14px rgba(255, 255, 255, 0.18);
+    clip-path: polygon(0 50%, 28% 8%, 100% 0, 74% 52%, 100% 100%, 26% 86%);
+    height: 50px;
+    opacity: 0.86;
+    top: 20px;
+    width: 45px;
+}
+
+.wing-left {
+    left: -30px;
+    transform: rotate(-12deg);
+}
+
+.wing-right {
+    right: -30px;
+    transform: scaleX(-1) rotate(-12deg);
+}
+
+.robot-eros-button .eros-robe {
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.92) 0 44%, rgba(210, 242, 255, 0.74) 45% 62%, rgba(155, 78, 255, 0.32) 63%), linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(196, 231, 255, 0.72));
+    border: 1px solid rgba(255, 255, 255, 0.64);
+    border-radius: 4px 4px 16px 16px;
+    bottom: 5px;
+    box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.35), 0 0 16px rgba(0, 224, 255, 0.16);
+    height: 27px;
+    left: 23px;
+    position: absolute;
+    transform: skewX(-9deg);
+    width: 31px;
+    z-index: 1;
+}
+
+.robot-eros-button .eros-bow {
+    border: 2px solid rgba(0, 224, 255, 0.82);
+    border-left: 0;
+    border-radius: 0 999px 999px 0;
+    box-shadow: 0 0 14px rgba(0, 224, 255, 0.72), 0 0 20px rgba(155, 78, 255, 0.36);
+    height: 56px;
+    position: absolute;
+    right: -15px;
+    top: 16px;
+    transform: rotate(-12deg);
+    width: 22px;
+    z-index: 3;
+}
+
+.robot-eros-button .eros-arrow {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.0), #ffffff 24%, #00e0ff 58%, #9b4eff 100%);
+    border-radius: 999px;
+    box-shadow: 0 0 12px rgba(0, 224, 255, 0.72);
+    height: 2px;
+    position: absolute;
+    right: -12px;
+    top: 42px;
+    transform: rotate(-12deg);
+    width: 52px;
+    z-index: 4;
+}
+
+.robot-eros-button .eros-arrow::after {
+    border-bottom: 5px solid transparent;
+    border-left: 9px solid #00e0ff;
+    border-top: 5px solid transparent;
+    content: "";
+    position: absolute;
+    right: -6px;
+    top: -4px;
+}
+
+.robot-heart {
+    background: linear-gradient(135deg, #9b4eff, #00e0ff);
+    box-shadow: 0 0 18px rgba(0, 224, 255, 0.56);
+}
+
+.robot-eros-speech {
+    background: radial-gradient(circle at 12% 10%, rgba(0, 224, 255, 0.12), transparent 30%), linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(244, 248, 255, 0.84)) padding-box, linear-gradient(135deg, rgba(155, 78, 255, 0.34), rgba(0, 224, 255, 0.34)) border-box;
+    border: 1px solid transparent;
+}
+
+
+.modern-header,
+.modern-header .navbar,
+.modern-header .container,
+.modern-header .navbar-collapse {
+    overflow: visible !important;
+}
+
+.modern-header {
+    position: relative;
+    z-index: 9999;
+}
+
+.menu-mais {
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 18px;
+    padding: 10px;
+    min-width: 220px;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(18px);
+    box-shadow: 0 20px 50px rgba(39, 20, 85, 0.25);
+    z-index: 99999;
+}
+
+.menu-mais .dropdown-item {
+    border-radius: 12px;
+    padding: 10px 12px;
+    font-weight: 500;
+}
+
+.menu-mais .dropdown-item:hover {
+    background: rgba(134, 82, 245, 0.12);
+    color: #6f3df4;
 }

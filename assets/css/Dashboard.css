@@ -402,6 +402,232 @@ body {
     }
 }
 
+/* ================= HOME ALIGNMENT PASS ================= */
+.home-app > .container-fluid {
+    margin-inline: auto;
+    max-width: 1360px;
+}
+
+.home-welcome,
+.home-grid {
+    max-width: none;
+}
+
+.today-mode-panel {
+    align-items: center;
+    grid-template-columns: minmax(0, 0.95fr) minmax(420px, 1.05fr);
+    margin-inline: auto;
+    max-width: 1360px;
+    padding: 22px;
+}
+
+.today-mode-copy h2 {
+    font-size: clamp(1.7rem, 2.8vw, 2.6rem);
+}
+
+.today-mode-copy p {
+    max-width: 560px;
+}
+
+.today-mode-actions {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.today-mode-btn {
+    border-radius: 999px;
+    justify-content: center;
+    min-height: 42px;
+    padding: 10px 12px;
+    white-space: nowrap;
+}
+
+.home-quick-actions {
+    display: none;
+}
+
+.home-grid {
+    align-items: start;
+    gap: 22px;
+    grid-template-columns: minmax(0, 1.42fr) minmax(360px, 0.58fr);
+}
+
+.main-discovery,
+.conversas-panel {
+    min-height: auto;
+}
+
+.main-discovery {
+    padding: 22px;
+}
+
+.section-heading.discovery-heading {
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.discovery-heading h2 {
+    font-size: clamp(1.45rem, 2.2vw, 2rem);
+}
+
+.discover-card {
+    grid-template-columns: minmax(230px, 0.48fr) minmax(0, 1fr);
+    min-height: 430px;
+}
+
+.discover-photo {
+    min-height: 430px;
+}
+
+.human-avatar-premium {
+    height: clamp(170px, 20vw, 230px);
+    width: clamp(135px, 16vw, 180px);
+}
+
+.human-avatar-premium::before {
+    height: 62px;
+    top: 30px;
+    width: 62px;
+}
+
+.discover-info {
+    justify-content: center;
+    padding: clamp(20px, 3vw, 32px);
+}
+
+.discover-info h3 {
+    font-size: clamp(1.9rem, 3vw, 2.55rem);
+}
+
+.discover-bio,
+.discover-quote {
+    font-size: 0.98rem;
+}
+
+.match-reasons,
+.discover-eros-tip {
+    border-radius: 18px;
+    padding: 14px;
+}
+
+.swipe-actions {
+    align-items: center;
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.78), rgba(246, 249, 255, 0.62)) padding-box,
+        linear-gradient(135deg, rgba(155, 78, 255, 0.16), rgba(0, 224, 255, 0.14)) border-box;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    box-shadow: 0 18px 44px rgba(35, 28, 92, 0.10);
+    display: inline-flex;
+    gap: 12px;
+    left: 50%;
+    margin-top: 18px;
+    padding: 8px;
+    position: relative;
+    transform: translateX(-50%);
+}
+
+.swipe-action-item {
+    display: contents;
+}
+
+.swipe-action-item span {
+    display: none;
+}
+
+.btn-swipe {
+    align-items: center;
+    border: 0;
+    border-radius: 50%;
+    box-shadow: none;
+    display: inline-flex;
+    font-size: 1.05rem;
+    height: 52px;
+    justify-content: center;
+    width: 52px;
+}
+
+.btn-swipe.reject {
+    background: rgba(255, 255, 255, 0.72);
+    color: #6c7285;
+}
+
+.btn-swipe.back {
+    background: rgba(91, 111, 255, 0.12);
+    color: #5364d8;
+}
+
+.btn-swipe.like {
+    background: linear-gradient(135deg, #fd51b3, #7657ff);
+    box-shadow: 0 12px 28px rgba(253, 81, 179, 0.22);
+    color: #ffffff;
+    height: 58px;
+    width: 58px;
+}
+
+.btn-swipe:hover {
+    box-shadow: 0 14px 32px rgba(35, 28, 92, 0.14);
+    transform: translateY(-2px) scale(1.04);
+}
+
+.swipe-feedback {
+    min-height: 24px;
+    text-align: center;
+}
+
+.home-command-panel .conversas-panel {
+    min-height: 100%;
+    padding: 20px;
+}
+
+.home-command-panel .conversation-list {
+    max-height: 322px;
+}
+
+.conversation-item {
+    background: rgba(255, 255, 255, 0.62);
+    border: 1px solid rgba(134, 82, 245, 0.10);
+    box-shadow: none;
+}
+
+.conversation-item:hover {
+    background: rgba(255, 255, 255, 0.86);
+    transform: translateY(-2px);
+}
+
+.chat-preview {
+    margin-top: 16px;
+}
+
+@media (max-width: 1199.98px) {
+    .today-mode-panel,
+    .home-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .today-mode-actions {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 767.98px) {
+    .discover-card {
+        grid-template-columns: 1fr;
+        min-height: auto;
+    }
+
+    .discover-photo {
+        min-height: 320px;
+    }
+
+    .today-mode-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .swipe-actions {
+        width: max-content;
+    }
+}
+
 /* Telas até 575px */
 @media (max-width: 575.98px) {
     .navbar-match {
@@ -458,6 +684,973 @@ body {
     .atividade-item i {
         font-size: 1rem;
     }
+}
+
+/* EROS: mitologia futurista, com asas holograficas e arco energetico. */
+.eros-robot,
+.pet-robot,
+.guide-robot {
+    background:
+        radial-gradient(circle at 30% 18%, rgba(255, 255, 255, 0.95) 0 8%, transparent 9%),
+        linear-gradient(155deg, rgba(255, 255, 255, 0.96) 0 22%, rgba(226, 244, 255, 0.92) 23% 48%, rgba(143, 92, 255, 0.42) 49% 72%, rgba(16, 22, 45, 0.96) 73% 100%);
+    border: 1px solid rgba(186, 242, 255, 0.78);
+    border-radius: 30px 30px 24px 24px;
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.62) inset,
+        0 0 22px rgba(0, 224, 255, 0.32),
+        0 0 36px rgba(155, 78, 255, 0.30),
+        0 18px 40px rgba(40, 33, 92, 0.25);
+    overflow: visible;
+}
+
+.eros-aura {
+    background:
+        radial-gradient(circle, rgba(0, 224, 255, 0.26), transparent 58%),
+        conic-gradient(from 20deg, rgba(155, 78, 255, 0.04), rgba(0, 224, 255, 0.22), rgba(255, 255, 255, 0.10), rgba(155, 78, 255, 0.04));
+    border: 1px solid rgba(180, 246, 255, 0.26);
+    border-radius: 50%;
+    content: "";
+    inset: -18px;
+    opacity: 0.9;
+    position: absolute;
+    z-index: -2;
+}
+
+.eros-robot::after,
+.pet-robot::after,
+.guide-robot::after {
+    background:
+        radial-gradient(circle at 20% 40%, rgba(0, 224, 255, 0.85) 0 2px, transparent 3px),
+        radial-gradient(circle at 62% 22%, rgba(255, 255, 255, 0.85) 0 2px, transparent 3px),
+        radial-gradient(circle at 78% 70%, rgba(155, 78, 255, 0.85) 0 2px, transparent 3px);
+    border-radius: 50%;
+    content: "";
+    inset: -23px;
+    opacity: 0.88;
+    position: absolute;
+    transform: none;
+    width: auto;
+    height: auto;
+    z-index: -1;
+}
+
+.eros-robot-face {
+    background:
+        linear-gradient(180deg, rgba(16, 22, 45, 0.96), rgba(10, 13, 30, 0.98));
+    border: 1px solid rgba(0, 224, 255, 0.32);
+    border-radius: 20px 20px 16px 16px;
+    box-shadow:
+        inset 0 1px 10px rgba(255, 255, 255, 0.10),
+        0 0 18px rgba(0, 224, 255, 0.24);
+    height: 44px;
+    margin-top: -8px;
+    padding: 10px 10px 8px;
+    width: 56px;
+    z-index: 2;
+}
+
+.eros-robot-eye {
+    background: linear-gradient(90deg, #ffffff 0%, #00e0ff 45%, #9b4eff 100%);
+    border-radius: 999px;
+    box-shadow: 0 0 14px rgba(0, 224, 255, 0.84);
+    height: 5px;
+    width: 14px;
+}
+
+.eros-robot-mouth {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.78);
+    height: 6px;
+    opacity: 0.78;
+    width: 18px;
+}
+
+.eros-antenna {
+    background: linear-gradient(180deg, transparent, rgba(0, 224, 255, 0.9));
+    box-shadow: 0 0 14px rgba(0, 224, 255, 0.6);
+}
+
+.eros-antenna::before {
+    background: #00e0ff;
+    box-shadow: 0 0 18px rgba(0, 224, 255, 0.9), 0 0 28px rgba(155, 78, 255, 0.5);
+}
+
+.eros-wing {
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.34), rgba(0, 224, 255, 0.14) 42%, rgba(155, 78, 255, 0.10)),
+        repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.0) 0 7px, rgba(0, 224, 255, 0.35) 8px 9px);
+    border: 1px solid rgba(0, 224, 255, 0.42);
+    box-shadow: 0 0 18px rgba(0, 224, 255, 0.28), inset 0 0 14px rgba(255, 255, 255, 0.18);
+    clip-path: polygon(0 50%, 28% 8%, 100% 0, 74% 52%, 100% 100%, 26% 86%);
+    height: 50px;
+    opacity: 0.86;
+    top: 20px;
+    width: 45px;
+}
+
+.eros-wing-left {
+    left: -30px;
+    transform: rotate(-12deg);
+}
+
+.eros-wing-right {
+    right: -30px;
+    transform: scaleX(-1) rotate(-12deg);
+}
+
+.eros-robe {
+    background:
+        linear-gradient(120deg, rgba(255, 255, 255, 0.92) 0 44%, rgba(210, 242, 255, 0.74) 45% 62%, rgba(155, 78, 255, 0.32) 63%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(196, 231, 255, 0.72));
+    border: 1px solid rgba(255, 255, 255, 0.64);
+    border-radius: 4px 4px 16px 16px;
+    bottom: 5px;
+    box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.35), 0 0 16px rgba(0, 224, 255, 0.16);
+    height: 27px;
+    left: 23px;
+    position: absolute;
+    transform: skewX(-9deg);
+    width: 31px;
+    z-index: 1;
+}
+
+.eros-bow {
+    border: 2px solid rgba(0, 224, 255, 0.82);
+    border-left: 0;
+    border-radius: 0 999px 999px 0;
+    box-shadow: 0 0 14px rgba(0, 224, 255, 0.72), 0 0 20px rgba(155, 78, 255, 0.36);
+    height: 56px;
+    position: absolute;
+    right: -15px;
+    top: 16px;
+    transform: rotate(-12deg);
+    width: 22px;
+    z-index: 3;
+}
+
+.eros-arrow {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.0), #ffffff 24%, #00e0ff 58%, #9b4eff 100%);
+    border-radius: 999px;
+    box-shadow: 0 0 12px rgba(0, 224, 255, 0.72);
+    height: 2px;
+    position: absolute;
+    right: -12px;
+    top: 42px;
+    transform: rotate(-12deg);
+    width: 52px;
+    z-index: 4;
+}
+
+.eros-arrow::after {
+    border-bottom: 5px solid transparent;
+    border-left: 9px solid #00e0ff;
+    border-top: 5px solid transparent;
+    content: "";
+    position: absolute;
+    right: -6px;
+    top: -4px;
+}
+
+.eros-robot-heart {
+    background: linear-gradient(135deg, #9b4eff, #00e0ff);
+    box-shadow: 0 0 18px rgba(0, 224, 255, 0.56);
+}
+
+/* EROS v2: IA social premium, limpa e holografica. */
+.eros-robot,
+.pet-robot,
+.guide-robot {
+    align-items: center;
+    animation: erosFloat 6s ease-in-out infinite;
+    background:
+        radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.22), transparent 18%),
+        radial-gradient(circle at 62% 78%, rgba(0, 224, 255, 0.18), transparent 34%),
+        linear-gradient(145deg, rgba(16, 25, 51, 0.94), rgba(7, 11, 25, 0.98));
+    border: 1px solid rgba(181, 244, 255, 0.36);
+    border-radius: 50%;
+    box-shadow:
+        inset 0 1px 16px rgba(255, 255, 255, 0.10),
+        inset 0 -18px 28px rgba(20, 10, 55, 0.28),
+        0 0 0 1px rgba(255, 255, 255, 0.10),
+        0 0 22px rgba(0, 224, 255, 0.20),
+        0 18px 42px rgba(18, 14, 48, 0.30);
+    height: 82px;
+    justify-content: center;
+    overflow: visible;
+    width: 82px;
+}
+
+.guide-robot {
+    height: 86px;
+    width: 86px;
+}
+
+.eros-aura {
+    animation: erosHaloSpin 14s linear infinite;
+    background:
+        conic-gradient(from 0deg, transparent 0 16%, rgba(0, 224, 255, 0.62) 18% 24%, transparent 26% 50%, rgba(155, 78, 255, 0.48) 52% 58%, transparent 60% 100%);
+    border: 1px solid rgba(165, 236, 255, 0.22);
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(0, 224, 255, 0.16);
+    inset: -12px;
+    opacity: 0.82;
+    position: absolute;
+    z-index: -2;
+}
+
+.eros-robot::after,
+.pet-robot::after,
+.guide-robot::after {
+    background: radial-gradient(circle, rgba(0, 224, 255, 0.14), transparent 66%);
+    border-radius: 50%;
+    content: "";
+    inset: -20px;
+    opacity: 0.55;
+    position: absolute;
+    transform: none;
+    z-index: -3;
+}
+
+.eros-wing {
+    background:
+        linear-gradient(90deg, rgba(0, 224, 255, 0.0), rgba(0, 224, 255, 0.38), rgba(155, 78, 255, 0.08)),
+        linear-gradient(135deg, transparent 0 38%, rgba(255, 255, 255, 0.22) 39% 41%, transparent 42% 100%);
+    border: 0;
+    clip-path: polygon(0 50%, 100% 0, 74% 50%, 100% 100%);
+    filter: drop-shadow(0 0 8px rgba(0, 224, 255, 0.34));
+    height: 38px;
+    opacity: 0.72;
+    top: 22px;
+    width: 34px;
+}
+
+.eros-wing-left {
+    left: -20px;
+    transform: rotate(-8deg);
+}
+
+.eros-wing-right {
+    right: -20px;
+    transform: scaleX(-1) rotate(-8deg);
+}
+
+.eros-robot-face {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    display: grid;
+    gap: 7px;
+    grid-template-columns: repeat(2, auto);
+    height: auto;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 44px;
+    z-index: 3;
+}
+
+.eros-robot-eye {
+    animation: erosRobotBlink 5.5s ease-in-out infinite;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.96), #78ecff 48%, #8f6bff);
+    border-radius: 999px;
+    box-shadow: 0 0 10px rgba(0, 224, 255, 0.54);
+    height: 4px;
+    width: 13px;
+}
+
+.eros-robot-mouth {
+    background: transparent;
+    border-bottom: 2px solid rgba(190, 245, 255, 0.72);
+    border-radius: 0 0 999px 999px;
+    grid-column: 1 / -1;
+    height: 6px;
+    justify-self: center;
+    opacity: 0.84;
+    width: 17px;
+}
+
+.eros-particle,
+.global-eros-particle {
+    background: rgba(190, 245, 255, 0.86);
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(0, 224, 255, 0.42);
+    height: 3px;
+    position: absolute;
+    width: 3px;
+}
+
+.eros-particle-one {
+    left: 4px;
+    top: 18px;
+}
+
+.eros-particle-two {
+    right: 7px;
+    top: 13px;
+}
+
+.eros-particle-three {
+    bottom: 10px;
+    left: 16px;
+}
+
+.eros-antenna,
+.eros-robe,
+.eros-bow,
+.eros-arrow,
+.eros-robot-heart {
+    display: none;
+}
+
+.eros-pet-orb {
+    background:
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.10), rgba(0, 224, 255, 0.08) 48%, transparent 70%);
+    border: 1px solid rgba(190, 245, 255, 0.28);
+    border-radius: 50%;
+    box-shadow: 0 16px 40px rgba(20, 16, 52, 0.20);
+    padding: 10px;
+}
+
+.eros-pet-orb:hover {
+    box-shadow: 0 18px 48px rgba(20, 16, 52, 0.26), 0 0 28px rgba(0, 224, 255, 0.18);
+}
+
+.eros-pet-speech,
+.eros-pet-panel {
+    background:
+        radial-gradient(circle at 12% 0%, rgba(0, 224, 255, 0.10), transparent 28%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(245, 249, 255, 0.82)) padding-box,
+        linear-gradient(135deg, rgba(155, 78, 255, 0.24), rgba(0, 224, 255, 0.28)) border-box;
+    border: 1px solid transparent;
+    box-shadow: 0 18px 44px rgba(23, 18, 62, 0.14);
+}
+
+@keyframes erosHaloSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ================= HOME PREMIUM IA SOCIAL ================= */
+body {
+    background:
+        radial-gradient(circle at 8% -6%, rgba(111, 80, 223, 0.20), transparent 34%),
+        radial-gradient(circle at 92% 10%, rgba(37, 168, 223, 0.18), transparent 28%),
+        radial-gradient(circle at 55% 105%, rgba(253, 81, 179, 0.10), transparent 34%),
+        linear-gradient(180deg, #fbfcff 0%, #f6f8ff 46%, #f3fbff 100%);
+    background-attachment: fixed;
+}
+
+.navbar-match {
+    backdrop-filter: blur(18px);
+    background:
+        linear-gradient(135deg, rgba(37, 31, 78, 0.90), rgba(40, 43, 94, 0.78)) padding-box,
+        linear-gradient(135deg, rgba(255, 255, 255, 0.20), rgba(94, 187, 246, 0.16)) border-box;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+    box-shadow: 0 12px 34px rgba(26, 20, 68, 0.18);
+    min-height: 64px;
+    padding-bottom: 8px;
+    padding-top: 8px;
+}
+
+.navbar-match .navbar-brand {
+    font-size: 1.02rem;
+}
+
+.navbar-match .nav-link {
+    border-radius: 999px;
+    font-size: 0.86rem;
+    font-weight: 800;
+    padding: 7px 9px;
+}
+
+.navbar-match .input-group {
+    background: rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.navbar-match .input-group-text,
+.navbar-match .form-control {
+    background: transparent !important;
+    color: #ffffff;
+}
+
+.navbar-match .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.68);
+}
+
+.home-app {
+    position: relative;
+}
+
+.home-app::before {
+    background:
+        radial-gradient(circle at 14% 18%, rgba(0, 224, 255, 0.08), transparent 26%),
+        radial-gradient(circle at 82% 24%, rgba(155, 78, 255, 0.10), transparent 24%);
+    content: "";
+    inset: 0;
+    pointer-events: none;
+    position: fixed;
+    z-index: -1;
+}
+
+.home-welcome {
+    align-items: flex-end;
+    display: flex;
+    gap: 18px;
+    justify-content: space-between;
+    margin-inline: auto;
+    max-width: 1420px;
+}
+
+.home-welcome h1 {
+    font-size: clamp(1.7rem, 3vw, 2.55rem);
+    letter-spacing: 0;
+}
+
+.home-welcome .badge-custom {
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(134, 82, 245, 0.16);
+    color: #5542b8;
+}
+
+.today-mode-panel {
+    align-items: stretch;
+    background:
+        radial-gradient(circle at 6% 0%, rgba(0, 224, 255, 0.12), transparent 34%),
+        radial-gradient(circle at 96% 10%, rgba(155, 78, 255, 0.12), transparent 32%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(246, 249, 255, 0.76)) padding-box,
+        linear-gradient(135deg, rgba(155, 78, 255, 0.22), rgba(0, 224, 255, 0.20)) border-box;
+    border: 1px solid transparent;
+    border-radius: 22px;
+    box-shadow: 0 22px 60px rgba(35, 28, 92, 0.12);
+    display: grid;
+    gap: 20px;
+    grid-template-columns: minmax(280px, 0.95fr) minmax(320px, 1.15fr);
+    overflow: hidden;
+    padding: clamp(18px, 2.8vw, 28px);
+    position: relative;
+}
+
+.today-mode-panel::after {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.58), transparent);
+    content: "";
+    height: 1px;
+    left: 24px;
+    position: absolute;
+    right: 24px;
+    top: 0;
+}
+
+.today-mode-copy h2 {
+    color: #151a2f;
+    font-size: clamp(1.9rem, 3.8vw, 3.2rem);
+    font-weight: 950;
+    letter-spacing: 0;
+    line-height: 1;
+    margin: 8px 0 10px;
+}
+
+.today-mode-copy p {
+    color: #596074;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.55;
+    margin: 0;
+    max-width: 620px;
+}
+
+.mood-chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-top: 18px;
+}
+
+.mood-chip,
+.tag-match {
+    align-items: center;
+    animation: chipIn 420ms ease both;
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.70), rgba(245, 249, 255, 0.48)) padding-box,
+        linear-gradient(135deg, rgba(155, 78, 255, 0.22), rgba(0, 224, 255, 0.20)) border-box;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    box-shadow: 0 10px 24px rgba(35, 28, 92, 0.06);
+    color: #36345f;
+    display: inline-flex;
+    font-size: 0.84rem;
+    font-weight: 900;
+    gap: 7px;
+    padding: 8px 11px;
+    transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.mood-chip:hover,
+.tag-match:hover {
+    box-shadow: 0 14px 30px rgba(35, 28, 92, 0.12), 0 0 18px rgba(0, 224, 255, 0.10);
+    transform: translateY(-2px);
+}
+
+.today-mode-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.today-mode-actions {
+    align-content: center;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.today-mode-btn {
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.68), rgba(246, 249, 255, 0.42)) padding-box,
+        linear-gradient(135deg, rgba(155, 78, 255, 0.16), rgba(0, 224, 255, 0.14)) border-box;
+    border: 1px solid transparent;
+    border-radius: 16px;
+    color: #34365d;
+    justify-content: flex-start;
+    min-height: 48px;
+    padding: 12px 14px;
+}
+
+.today-mode-btn:hover,
+.today-mode-btn.active {
+    background:
+        linear-gradient(135deg, rgba(67, 49, 142, 0.96), rgba(25, 139, 196, 0.88)) padding-box,
+        linear-gradient(135deg, rgba(255, 255, 255, 0.36), rgba(0, 224, 255, 0.30)) border-box;
+    box-shadow: 0 14px 34px rgba(67, 45, 138, 0.18);
+    color: #ffffff;
+}
+
+.home-quick-actions {
+    grid-template-columns: 1.35fr repeat(4, minmax(0, 1fr));
+}
+
+.quick-action-card,
+.home-action-status,
+.home-panel {
+    border-radius: 20px;
+}
+
+.quick-action-card {
+    min-height: 104px;
+}
+
+.quick-action-card.primary {
+    background:
+        radial-gradient(circle at 10% 0%, rgba(0, 224, 255, 0.14), transparent 34%),
+        linear-gradient(135deg, rgba(30, 25, 72, 0.95), rgba(70, 55, 150, 0.88)) padding-box,
+        linear-gradient(135deg, rgba(255, 255, 255, 0.22), rgba(0, 224, 255, 0.22)) border-box;
+    color: #ffffff;
+}
+
+.quick-action-card.primary small,
+.quick-action-card.primary strong {
+    color: #ffffff;
+}
+
+.quick-action-card.primary i {
+    background: rgba(255, 255, 255, 0.14);
+    color: #bff6ff;
+}
+
+.home-grid {
+    align-items: stretch;
+    grid-template-columns: minmax(0, 1.55fr) minmax(330px, 0.58fr);
+    margin-inline: auto;
+    max-width: 1420px;
+}
+
+.main-discovery {
+    background:
+        radial-gradient(circle at 5% 0%, rgba(0, 224, 255, 0.10), transparent 30%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(247, 250, 255, 0.72)) padding-box,
+        linear-gradient(135deg, rgba(155, 78, 255, 0.20), rgba(0, 224, 255, 0.16)) border-box;
+    border: 1px solid transparent;
+    border-radius: 26px;
+    box-shadow: 0 28px 80px rgba(23, 18, 62, 0.12);
+    padding: clamp(18px, 2.5vw, 28px);
+}
+
+.discover-card {
+    background:
+        linear-gradient(135deg, rgba(17, 24, 46, 0.98), rgba(28, 31, 72, 0.92)) padding-box,
+        linear-gradient(135deg, rgba(155, 78, 255, 0.24), rgba(0, 224, 255, 0.20)) border-box;
+    border: 1px solid transparent;
+    border-radius: 28px;
+    box-shadow: 0 30px 80px rgba(20, 16, 52, 0.22);
+    color: #ffffff;
+    grid-template-columns: minmax(240px, 0.58fr) minmax(0, 1fr);
+    min-height: 520px;
+    overflow: hidden;
+}
+
+.discover-photo {
+    align-items: center;
+    background:
+        radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.24), transparent 16%),
+        radial-gradient(circle at 28% 76%, rgba(0, 224, 255, 0.24), transparent 30%),
+        linear-gradient(145deg, rgba(118, 77, 255, 0.70), rgba(34, 41, 88, 0.96));
+    display: flex;
+    justify-content: center;
+    min-height: 100%;
+    overflow: hidden;
+}
+
+.discover-photo::after {
+    background:
+        linear-gradient(180deg, rgba(8, 12, 26, 0.00), rgba(8, 12, 26, 0.62)),
+        radial-gradient(circle at 50% 40%, transparent 0 24%, rgba(0, 0, 0, 0.18) 72%);
+}
+
+.human-avatar-premium {
+    align-items: center;
+    background:
+        radial-gradient(circle at 34% 20%, rgba(255, 255, 255, 0.62), transparent 17%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.05));
+    border: 1px solid rgba(255, 255, 255, 0.30);
+    border-radius: 42% 42% 48% 48%;
+    box-shadow: inset 0 1px 20px rgba(255, 255, 255, 0.10), 0 30px 70px rgba(0, 0, 0, 0.28), 0 0 42px rgba(0, 224, 255, 0.16);
+    display: flex;
+    height: clamp(190px, 24vw, 280px);
+    justify-content: center;
+    position: relative;
+    width: clamp(150px, 19vw, 220px);
+    z-index: 2;
+}
+
+.human-avatar-premium::before {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.70), rgba(208, 233, 255, 0.38));
+    border-radius: 50%;
+    content: "";
+    height: 74px;
+    position: absolute;
+    top: 34px;
+    width: 74px;
+}
+
+.human-avatar-premium span {
+    color: rgba(255, 255, 255, 0.92);
+    font-size: clamp(3.4rem, 8vw, 5.8rem);
+    font-weight: 950;
+    position: relative;
+    text-shadow: 0 12px 32px rgba(0, 0, 0, 0.24);
+    z-index: 2;
+}
+
+.photo-depth {
+    background:
+        linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.24), transparent);
+    height: 1px;
+    left: 18%;
+    position: absolute;
+    right: 18%;
+    top: 22%;
+    z-index: 2;
+}
+
+.photo-signal,
+.photo-caption {
+    backdrop-filter: blur(14px);
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    color: #ffffff;
+    position: absolute;
+    z-index: 3;
+}
+
+.photo-signal {
+    align-items: center;
+    display: inline-flex;
+    font-size: 0.8rem;
+    font-weight: 900;
+    gap: 7px;
+    left: 18px;
+    padding: 8px 11px;
+    top: 18px;
+}
+
+.photo-caption {
+    border-radius: 18px;
+    bottom: 18px;
+    display: grid;
+    gap: 2px;
+    left: 18px;
+    padding: 12px 14px;
+    right: 18px;
+}
+
+.photo-caption strong {
+    font-size: 1rem;
+}
+
+.photo-caption small {
+    color: rgba(255, 255, 255, 0.72);
+    font-weight: 800;
+}
+
+.discover-info {
+    color: #ffffff;
+    padding: clamp(22px, 4vw, 42px);
+}
+
+.discover-info h3 {
+    color: #ffffff;
+    font-size: clamp(2.2rem, 4vw, 3.4rem);
+}
+
+.discover-info p,
+.discover-bio {
+    color: rgba(255, 255, 255, 0.72) !important;
+}
+
+.discover-quote {
+    color: rgba(255, 255, 255, 0.90) !important;
+    font-size: 1.05rem;
+}
+
+.compat-badge {
+    background: rgba(0, 224, 255, 0.12);
+    border: 1px solid rgba(0, 224, 255, 0.22);
+    border-radius: 999px;
+    color: #bff6ff;
+    font-weight: 950;
+    padding: 8px 12px;
+}
+
+.discover-card .tag-match {
+    background: rgba(255, 255, 255, 0.10);
+    border-color: rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.match-reasons {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+}
+
+.match-reasons span {
+    align-items: center;
+    color: #bff6ff;
+    display: inline-flex;
+    gap: 7px;
+}
+
+.match-reasons strong {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.discover-eros-tip {
+    align-items: flex-start;
+    background:
+        radial-gradient(circle at 0% 0%, rgba(0, 224, 255, 0.16), transparent 28%),
+        rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(0, 224, 255, 0.18);
+    border-radius: 22px;
+    box-shadow: inset 0 1px 18px rgba(255, 255, 255, 0.06);
+    display: flex;
+    gap: 13px;
+}
+
+.eros-mini-orb {
+    background:
+        radial-gradient(circle at 32% 24%, rgba(255, 255, 255, 0.52), transparent 22%),
+        linear-gradient(145deg, #121a36, #050914);
+    border: 1px solid rgba(0, 224, 255, 0.32);
+    border-radius: 50%;
+    box-shadow: 0 0 18px rgba(0, 224, 255, 0.22);
+    flex: 0 0 auto;
+    height: 30px;
+    margin-top: 2px;
+    width: 30px;
+}
+
+.discover-eros-tip small {
+    color: #bff6ff;
+}
+
+.discover-eros-tip strong {
+    color: rgba(255, 255, 255, 0.90);
+}
+
+.swipe-actions {
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.swipe-action-item span {
+    color: #697086;
+    font-size: 0.78rem;
+    font-weight: 900;
+}
+
+.btn-swipe {
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.64);
+    border-radius: 50%;
+    box-shadow: 0 18px 42px rgba(35, 28, 92, 0.14);
+    height: 64px;
+    transition: box-shadow 180ms ease, transform 180ms ease, filter 180ms ease;
+    width: 64px;
+}
+
+.btn-swipe:hover {
+    box-shadow: 0 22px 54px rgba(35, 28, 92, 0.20);
+    filter: saturate(1.05);
+    transform: translateY(-4px) scale(1.05);
+}
+
+.btn-swipe.like {
+    background: linear-gradient(135deg, #fd51b3, #8652f5);
+    color: #ffffff;
+}
+
+.btn-swipe.reject {
+    background: rgba(255, 255, 255, 0.92);
+    color: #6b7280;
+}
+
+.btn-swipe.back {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(230, 245, 255, 0.88));
+    color: #4d57b8;
+}
+
+.conversas-panel,
+.chat-preview {
+    border-radius: 24px;
+}
+
+.conversation-item {
+    border-radius: 18px;
+    padding: 13px;
+}
+
+.conversation-avatar {
+    position: relative;
+}
+
+.conversation-avatar b {
+    background: #35d399;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    bottom: 1px;
+    height: 11px;
+    position: absolute;
+    right: 0;
+    width: 11px;
+}
+
+.conversation-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 7px;
+}
+
+.conversation-meta em {
+    align-items: center;
+    background: rgba(111, 80, 223, 0.08);
+    border: 1px solid rgba(111, 80, 223, 0.08);
+    border-radius: 999px;
+    color: #4d57a8;
+    display: inline-flex;
+    font-size: 0.72rem;
+    font-style: normal;
+    font-weight: 900;
+    gap: 5px;
+    padding: 4px 7px;
+}
+
+.conversation-meta i {
+    color: #35d399;
+    font-size: 0.45rem;
+}
+
+.chat-preview {
+    background:
+        radial-gradient(circle at 0% 0%, rgba(0, 224, 255, 0.10), transparent 26%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.86), rgba(246, 249, 255, 0.72)) padding-box,
+        linear-gradient(135deg, rgba(155, 78, 255, 0.18), rgba(0, 224, 255, 0.18)) border-box;
+    border: 1px solid transparent;
+}
+
+.eros-pet .eros-wing {
+    opacity: 0.46;
+}
+
+.eros-pet .eros-aura {
+    opacity: 0.62;
+}
+
+@keyframes chipIn {
+    from {
+        opacity: 0;
+        transform: translateY(6px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (max-width: 1199.98px) {
+    .today-mode-panel,
+    .home-grid,
+    .home-quick-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .today-mode-actions {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 767.98px) {
+    .home-welcome {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .discover-card {
+        grid-template-columns: 1fr;
+    }
+
+    .discover-photo {
+        min-height: 360px;
+    }
+
+    .today-mode-actions {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+.eros-pet-orb {
+    background:
+        radial-gradient(circle at 50% 45%, rgba(255, 255, 255, 0.78), rgba(0, 224, 255, 0.12) 55%, transparent 70%),
+        linear-gradient(135deg, rgba(155, 78, 255, 0.28), rgba(0, 224, 255, 0.20));
+    border-color: rgba(180, 246, 255, 0.62);
+}
+
+.eros-pet-speech,
+.eros-pet-panel {
+    background:
+        radial-gradient(circle at 12% 10%, rgba(0, 224, 255, 0.12), transparent 30%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(244, 248, 255, 0.84)) padding-box,
+        linear-gradient(135deg, rgba(155, 78, 255, 0.34), rgba(0, 224, 255, 0.34)) border-box;
+    border: 1px solid transparent;
 }
 
 /* ================= SWIPE MOBILE ================= */
@@ -601,7 +1794,7 @@ body {
     display: block;
 }
 
-.cupid-panel {
+.eros-panel {
     align-items: center;
     background: linear-gradient(135deg, #fff8fb 0%, #f7f5ff 58%, #eef9ff 100%);
     border: 1px solid #f0e8ff;
@@ -614,17 +1807,19 @@ body {
     position: relative;
 }
 
-.cupid-panel.active {
+.eros-panel.active {
     display: grid;
 }
 
-.cupid-robot {
+.eros-robot {
     align-items: center;
-    animation: cupidFloat 5.4s ease-in-out infinite, cupidRobotGlow 2.8s ease-in-out infinite;
-    background: linear-gradient(180deg, #ffffff 0%, #f7efff 52%, #eaf8ff 100%);
-    border: 2px solid #ffffff;
-    border-radius: 24px;
-    box-shadow: 0 0 0 8px rgba(253, 81, 179, 0.10), 0 14px 30px rgba(134, 82, 245, 0.22);
+    animation: erosFloat 5.4s ease-in-out infinite, erosRobotGlow 2.8s ease-in-out infinite;
+    background:
+        radial-gradient(circle at 28% 20%, rgba(255, 255, 255, 0.98) 0 12%, transparent 13%),
+        linear-gradient(145deg, #ffffff 0%, #fff0fa 42%, #eaf8ff 100%);
+    border: 2px solid rgba(255, 255, 255, 0.96);
+    border-radius: 30px;
+    box-shadow: 0 0 0 8px rgba(253, 81, 179, 0.10), 0 16px 34px rgba(134, 82, 245, 0.24);
     display: flex;
     height: 86px;
     justify-content: center;
@@ -633,37 +1828,55 @@ body {
     width: 86px;
 }
 
-.cupid-robot-face {
+.eros-robot::after {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.68), transparent);
+    border-radius: 999px;
+    content: "";
+    height: 34px;
+    left: 13px;
+    opacity: 0.78;
+    position: absolute;
+    top: 12px;
+    transform: rotate(-24deg);
+    width: 12px;
+}
+
+.eros-robot-face {
     align-items: center;
-    background: #222735;
-    border-radius: 18px;
+    background: linear-gradient(180deg, #2b3043 0%, #181c2b 100%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 22px;
+    box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.10), 0 9px 18px rgba(37, 31, 78, 0.18);
     display: grid;
-    gap: 7px;
+    gap: 8px;
     grid-template-columns: repeat(2, 1fr);
-    height: 50px;
+    height: 52px;
     justify-items: center;
-    padding: 10px;
-    width: 58px;
+    padding: 11px 10px 9px;
+    position: relative;
+    width: 60px;
 }
 
-.cupid-robot-eye {
-    animation: cupidRobotBlink 4s ease-in-out infinite;
-    background: #9dd9f9;
+.eros-robot-eye {
+    animation: erosRobotBlink 4s ease-in-out infinite;
+    background: radial-gradient(circle at 35% 30%, #ffffff 0 18%, #aee6ff 20% 58%, #54c4f3 60% 100%);
     border-radius: 999px;
-    box-shadow: 0 0 10px rgba(157, 217, 249, 0.85);
-    height: 9px;
-    width: 9px;
+    box-shadow: 0 0 12px rgba(157, 217, 249, 0.9);
+    height: 11px;
+    width: 11px;
 }
 
-.cupid-robot-mouth {
-    background: #fd51b3;
-    border-radius: 999px;
+.eros-robot-mouth {
+    background: transparent;
+    border-bottom: 4px solid #fd79c5;
+    border-radius: 0 0 999px 999px;
     grid-column: 1 / -1;
-    height: 5px;
-    width: 22px;
+    height: 8px;
+    margin-top: -3px;
+    width: 24px;
 }
 
-.cupid-antenna {
+.eros-antenna {
     background: #8652f5;
     border-radius: 999px;
     height: 20px;
@@ -674,7 +1887,7 @@ body {
     width: 5px;
 }
 
-.cupid-antenna::before {
+.eros-antenna::before {
     background: #fd51b3;
     border-radius: 50%;
     box-shadow: 0 0 14px rgba(253, 81, 179, 0.8);
@@ -687,70 +1900,72 @@ body {
     width: 12px;
 }
 
-.cupid-wing {
-    background: rgba(255, 255, 255, 0.92);
-    border: 2px solid #dff2ff;
-    height: 42px;
+.eros-wing {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(229, 246, 255, 0.86));
+    border: 2px solid rgba(223, 242, 255, 0.98);
+    box-shadow: 0 8px 18px rgba(94, 187, 246, 0.14);
+    height: 44px;
     position: absolute;
-    top: 22px;
-    width: 34px;
+    top: 23px;
+    width: 36px;
 }
 
-.cupid-wing-left {
+.eros-wing-left {
     border-radius: 80% 20% 70% 30%;
     left: -22px;
     transform: rotate(-18deg);
 }
 
-.cupid-wing-right {
+.eros-wing-right {
     border-radius: 20% 80% 30% 70%;
     right: -22px;
     transform: rotate(18deg);
 }
 
-.cupid-robot-heart {
+.eros-robot-heart {
     align-items: center;
-    background: #fd51b3;
+    background: linear-gradient(135deg, #fd51b3, #8652f5);
     border-radius: 50%;
     bottom: -8px;
+    box-shadow: 0 8px 18px rgba(253, 81, 179, 0.34);
     color: #ffffff;
     display: flex;
-    font-size: 0.74rem;
-    height: 24px;
+    font-size: 0.78rem;
+    height: 26px;
     justify-content: center;
     position: absolute;
-    right: 8px;
-    width: 24px;
+    right: 7px;
+    width: 26px;
 }
 
-.cupid-robot.is-guiding {
-    animation: cupidRobotGuide 780ms ease both, cupidRobotGlow 2.8s ease-in-out infinite;
+.eros-robot.is-guiding {
+    animation: erosRobotGuide 780ms ease both, erosRobotGlow 2.8s ease-in-out infinite;
 }
 
-.cupid-robot.is-guiding .cupid-robot-mouth {
-    animation: cupidRobotTalk 260ms ease-in-out 3;
+.eros-robot.is-guiding .eros-robot-mouth {
+    animation: erosRobotTalk 260ms ease-in-out 3;
 }
 
-.cupid-content h2 {
+.eros-content h2 {
     color: #222735;
     font-size: 1.2rem;
     font-weight: 800;
     margin: 0 0 6px;
 }
 
-.cupid-content p {
+.eros-content p {
     color: #596174;
     margin: 0 0 12px;
 }
 
-.cupid-message {
+.eros-message {
     border: 1px solid #eadfff;
     border-radius: 8px;
     background: rgba(255, 255, 255, 0.78);
     padding: 12px;
 }
 
-.cupid-message span {
+.eros-message span {
     color: #6e58d9;
     display: block;
     font-size: 0.78rem;
@@ -759,14 +1974,14 @@ body {
     text-transform: uppercase;
 }
 
-.cupid-message strong {
+.eros-message strong {
     color: #222735;
     display: block;
     font-size: 0.98rem;
     line-height: 1.45;
 }
 
-.cupid-actions {
+.eros-actions {
     display: grid;
     gap: 10px;
     min-width: 170px;
@@ -1234,13 +2449,49 @@ body {
 }
 
 .match-reasons {
-    background: #f8f7ff;
-    border: 1px solid #eadfff;
+    background: #fbfcff;
+    border: 1px solid #eef0f8;
     border-radius: 8px;
     display: grid;
     gap: 8px;
     margin-top: 14px;
     padding: 12px;
+}
+
+.discover-eros-tip {
+    align-items: flex-start;
+    background: #fff8fb;
+    border: 1px solid #ffd9ec;
+    border-radius: 8px;
+    display: flex;
+    gap: 10px;
+    margin-top: 14px;
+    padding: 12px;
+}
+
+.discover-eros-tip i {
+    color: #fd51b3;
+    font-size: 1rem;
+    margin-top: 2px;
+}
+
+.discover-eros-tip small,
+.discover-eros-tip strong {
+    display: block;
+}
+
+.discover-eros-tip small {
+    color: #b82778;
+    font-size: 0.74rem;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.discover-eros-tip strong {
+    color: #30235f;
+    font-size: 0.92rem;
+    line-height: 1.4;
+    margin-top: 2px;
 }
 
 .match-reasons span,
@@ -1382,7 +2633,7 @@ body {
     display: flex;
 }
 
-.cupido-guide {
+.eros-guide {
     align-items: center;
     background: rgba(32, 29, 50, 0.54);
     backdrop-filter: blur(8px);
@@ -1394,11 +2645,11 @@ body {
     z-index: 1100;
 }
 
-.cupido-guide.show {
+.eros-guide.show {
     display: flex;
 }
 
-.cupido-guide-card {
+.eros-guide-card {
     align-items: center;
     background: #ffffff;
     border: 1px solid #eadfff;
@@ -1416,20 +2667,20 @@ body {
     grid-row: span 2;
 }
 
-.cupido-guide-card h2 {
+.eros-guide-card h2 {
     color: #222735;
     font-size: 1.55rem;
     font-weight: 900;
     margin: 0 0 8px;
 }
 
-.cupido-guide-card p {
+.eros-guide-card p {
     color: #596174;
     font-size: 1.02rem;
     margin: 0;
 }
 
-.cupido-guide-actions {
+.eros-guide-actions {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
@@ -1505,7 +2756,7 @@ body {
     }
 }
 
-@keyframes cupidFloat {
+@keyframes erosFloat {
     0%,
     100% {
         transform: translate3d(0, 0, 0) rotate(-2deg) scale(1);
@@ -1524,7 +2775,7 @@ body {
     }
 }
 
-@keyframes cupidRobotGlow {
+@keyframes erosRobotGlow {
     0%,
     100% {
         box-shadow: 0 0 0 8px rgba(253, 81, 179, 0.10), 0 14px 30px rgba(134, 82, 245, 0.22);
@@ -1535,7 +2786,7 @@ body {
     }
 }
 
-@keyframes cupidRobotBlink {
+@keyframes erosRobotBlink {
     0%,
     88%,
     100% {
@@ -1547,7 +2798,7 @@ body {
     }
 }
 
-@keyframes cupidRobotGuide {
+@keyframes erosRobotGuide {
     0% {
         transform: translateY(0) scale(1) rotate(0deg);
     }
@@ -1561,7 +2812,7 @@ body {
     }
 }
 
-@keyframes cupidRobotTalk {
+@keyframes erosRobotTalk {
     50% {
         height: 10px;
         width: 14px;
@@ -1727,11 +2978,11 @@ body {
         min-height: 500px;
     }
 
-    .cupid-panel {
+    .eros-panel {
         grid-template-columns: 1fr;
     }
 
-    .cupid-actions {
+    .eros-actions {
         grid-template-columns: 1fr 1fr;
         min-width: 0;
     }
@@ -1807,21 +3058,21 @@ body {
         justify-content: center;
     }
 
-    .cupid-robot {
+    .eros-robot {
         height: 76px;
         width: 76px;
     }
 
-    .cupid-wing {
+    .eros-wing {
         height: 36px;
         width: 28px;
     }
 
-    .cupid-wing-left {
+    .eros-wing-left {
         left: -18px;
     }
 
-    .cupid-wing-right {
+    .eros-wing-right {
         right: -18px;
     }
 
@@ -1858,22 +3109,22 @@ body {
         margin-top: 10px;
     }
 
-    .cupid-actions {
+    .eros-actions {
         grid-template-columns: 1fr;
     }
 
-    .cupido-guide-card {
+    .eros-guide-card {
         grid-template-columns: 1fr;
         justify-items: center;
         text-align: center;
     }
 
     .guide-robot,
-    .cupido-guide-actions {
+    .eros-guide-actions {
         grid-column: 1;
     }
 
-    .cupido-guide-actions {
+    .eros-guide-actions {
         justify-content: center;
     }
 
@@ -1883,10 +3134,10 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .cupid-robot,
-    .cupid-robot-eye,
-    .cupid-robot.is-guiding,
-    .cupid-robot.is-guiding .cupid-robot-mouth {
+    .eros-robot,
+    .eros-robot-eye,
+    .eros-robot.is-guiding,
+    .eros-robot.is-guiding .eros-robot-mouth {
         animation: none;
     }
 }
@@ -1904,7 +3155,7 @@ body {
 .affinity-card,
 .idea-card,
 .match-mini-card,
-.cupid-panel,
+.eros-panel,
 .discover-empty {
     background: var(--match-surface);
     border: 1px solid var(--match-line);
@@ -1921,7 +3172,7 @@ body {
 .section-heading h2,
 .section-heading.compact h2,
 .profile-summary-main h2,
-.cupid-content h2,
+.eros-content h2,
 .discover-info h3,
 .row-main strong {
     color: var(--match-ink);
@@ -1929,7 +3180,7 @@ body {
 }
 
 .text-muted,
-.cupid-content p,
+.eros-content p,
 .discover-bio,
 .conversation-text,
 .empty-state {
@@ -1976,7 +3227,7 @@ body {
     background: linear-gradient(135deg, var(--match-pink) 0%, var(--match-purple) 60%, var(--match-blue) 100%);
 }
 
-.cupid-panel {
+.eros-panel {
     background:
         radial-gradient(circle at 94% 0%, rgba(94, 187, 246, 0.18), transparent 34%),
         linear-gradient(135deg, #fff8fb 0%, #f4f0ff 58%, #eef9ff 100%);
@@ -2009,6 +3260,12 @@ body {
     background: linear-gradient(180deg, #fbfcff 0%, #f7f8fc 48%, #f5fbff 100%);
 }
 
+body.page-transition-out {
+    opacity: 0;
+    transform: translateY(8px) scale(0.995);
+    transition: opacity 260ms ease, transform 260ms ease;
+}
+
 .navbar-match {
     background: linear-gradient(135deg, #2b173d 0%, #5431ad 58%, #1f8fbd 100%);
     box-shadow: 0 8px 24px rgba(32, 29, 50, 0.16);
@@ -2022,7 +3279,7 @@ body {
 .home-panel,
 .discover-card,
 .tab-panel,
-.cupid-panel,
+.eros-panel,
 .idea-card,
 .affinity-card,
 .conversation-item,
@@ -2045,13 +3302,13 @@ body {
 .home-welcome h1,
 .section-heading h2,
 .discover-info h3,
-.cupid-content h2 {
+.eros-content h2 {
     color: #222735;
 }
 
 .text-muted,
 .discover-bio,
-.cupid-content p,
+.eros-content p,
 .conversation-text {
     color: #626779 !important;
 }
@@ -2103,12 +3360,12 @@ body {
     min-height: 260px;
 }
 
-.cupid-panel,
+.eros-panel,
 .chat-preview {
     background: #f8f9ff;
 }
 
-.cupid-robot {
+.eros-robot {
     box-shadow: 0 0 0 6px rgba(111, 80, 223, 0.10), 0 12px 24px rgba(67, 45, 138, 0.16);
 }
 
@@ -2128,8 +3385,178 @@ body {
 }
 
 /* ================= HOME: DESCOBRIR + CUPIDO PET ================= */
+.home-quick-actions {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: 1.25fr repeat(3, 1fr);
+}
+
+.today-mode-panel {
+    align-items: center;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.90), rgba(248, 249, 255, 0.82)) padding-box,
+        linear-gradient(135deg, rgba(134, 82, 245, 0.18), rgba(94, 187, 246, 0.18)) border-box;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    box-shadow: 0 12px 30px rgba(67, 45, 138, 0.07);
+    display: flex;
+    gap: 18px;
+    justify-content: space-between;
+    padding: 16px;
+}
+
+.today-mode-panel h2 {
+    color: #222735;
+    font-size: 1.12rem;
+    font-weight: 900;
+    margin: 0;
+}
+
+.today-mode-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.today-mode-btn {
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid #dce2ef;
+    border-radius: 999px;
+    color: #5042a8;
+    display: inline-flex;
+    font-weight: 900;
+    gap: 7px;
+    padding: 9px 12px;
+    transition: background 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.today-mode-btn:hover,
+.today-mode-btn.active {
+    background: #6f50df;
+    box-shadow: 0 12px 26px rgba(111, 80, 223, 0.18);
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.quick-action-card {
+    align-items: center;
+    backdrop-filter: blur(10px);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(248, 249, 255, 0.86)) padding-box,
+        linear-gradient(135deg, rgba(134, 82, 245, 0.16), rgba(94, 187, 246, 0.16)) border-box;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    box-shadow: 0 12px 30px rgba(67, 45, 138, 0.07);
+    color: #222735;
+    cursor: pointer;
+    display: flex;
+    gap: 12px;
+    min-height: 92px;
+    padding: 16px;
+    text-align: left;
+    text-decoration: none;
+    transition: background 220ms ease, border-color 220ms ease, box-shadow 220ms ease, filter 220ms ease, transform 220ms ease;
+    width: 100%;
+}
+
+.quick-action-card:hover {
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(246, 248, 255, 0.92)) padding-box,
+        linear-gradient(135deg, rgba(134, 82, 245, 0.28), rgba(94, 187, 246, 0.26)) border-box;
+    box-shadow: 0 18px 42px rgba(67, 45, 138, 0.13);
+    color: #222735;
+    filter: brightness(1.015);
+    transform: translateY(-4px) scale(1.012);
+}
+
+.quick-action-card i {
+    align-items: center;
+    background: linear-gradient(135deg, rgba(134, 82, 245, 0.14), rgba(94, 187, 246, 0.16));
+    border-radius: 8px;
+    color: #5042a8;
+    display: inline-flex;
+    flex: 0 0 auto;
+    font-size: 1.35rem;
+    height: 48px;
+    justify-content: center;
+    transition: background 220ms ease, color 220ms ease, transform 220ms ease;
+    width: 48px;
+}
+
+.quick-action-card:hover i {
+    background: linear-gradient(135deg, rgba(134, 82, 245, 0.22), rgba(94, 187, 246, 0.24));
+    color: #3f2a9f;
+    transform: scale(1.04);
+}
+
+.quick-action-card.primary {
+    background:
+        radial-gradient(circle at 18% 12%, rgba(253, 81, 179, 0.11), transparent 34%),
+        linear-gradient(135deg, rgba(134, 82, 245, 0.15), rgba(94, 187, 246, 0.15)) padding-box,
+        linear-gradient(135deg, rgba(134, 82, 245, 0.34), rgba(94, 187, 246, 0.34)) border-box;
+    border: 1px solid transparent;
+    box-shadow: 0 16px 40px rgba(67, 45, 138, 0.12);
+    color: #222735;
+}
+
+.quick-action-card.primary:hover {
+    background:
+        radial-gradient(circle at 18% 12%, rgba(253, 81, 179, 0.14), transparent 34%),
+        linear-gradient(135deg, rgba(134, 82, 245, 0.20), rgba(94, 187, 246, 0.20)) padding-box,
+        linear-gradient(135deg, rgba(134, 82, 245, 0.44), rgba(94, 187, 246, 0.42)) border-box;
+    box-shadow: 0 22px 52px rgba(67, 45, 138, 0.17);
+    color: #222735;
+}
+
+.quick-action-card.primary i {
+    background: rgba(255, 255, 255, 0.58);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.34);
+    color: #5f43c7;
+}
+
+.quick-action-card strong,
+.quick-action-card small {
+    display: block;
+}
+
+.quick-action-card strong {
+    font-size: 1rem;
+    font-weight: 900;
+}
+
+.quick-action-card small {
+    color: #626779;
+    font-weight: 800;
+    margin-top: 2px;
+}
+
+.quick-action-card.primary small {
+    color: #626779;
+}
+
+.home-action-status {
+    backdrop-filter: blur(8px);
+    background: rgba(248, 249, 255, 0.78);
+    border: 1px solid rgba(230, 234, 242, 0.92);
+    border-radius: 8px;
+    box-shadow: 0 10px 24px rgba(67, 45, 138, 0.05);
+    color: #5042a8;
+    font-weight: 800;
+    grid-column: 1 / -1;
+    padding: 10px 12px;
+    transition: box-shadow 220ms ease, transform 220ms ease;
+}
+
+.home-action-status:hover {
+    box-shadow: 0 16px 36px rgba(67, 45, 138, 0.10);
+    transform: translateY(-2px);
+}
+
 .compact-profile {
-    grid-template-columns: minmax(260px, 1fr) minmax(220px, 0.42fr) minmax(280px, 0.72fr);
+    display: grid;
+    gap: 14px;
+    grid-template-columns: 1fr;
     padding: 16px;
 }
 
@@ -2155,13 +3582,22 @@ body {
     font-size: 0.86rem;
 }
 
+.compact-profile .profile-facts {
+    grid-template-columns: 1fr;
+}
+
 .home-grid {
-    grid-template-columns: minmax(0, 1.7fr) minmax(300px, 0.62fr);
+    grid-template-columns: minmax(0, 1.55fr) minmax(320px, 0.55fr);
+    gap: 18px;
 }
 
 .main-discovery {
-    border: 1px solid #dfe5f2;
-    padding: 26px;
+    background:
+        radial-gradient(circle at 92% 8%, rgba(253, 81, 179, 0.08), transparent 30%),
+        radial-gradient(circle at 8% 0%, rgba(37, 168, 223, 0.10), transparent 32%),
+        linear-gradient(180deg, #ffffff 0%, #fbfcff 100%);
+    border: 1px solid #eadfff;
+    padding: 22px;
 }
 
 .discovery-heading h2 {
@@ -2169,19 +3605,107 @@ body {
 }
 
 .discover-card {
+    background: #ffffff;
+    border-color: #ece7ff;
+    box-shadow: 0 14px 34px rgba(67, 45, 138, 0.07);
     display: grid;
-    grid-template-columns: minmax(260px, 0.78fr) minmax(0, 1fr);
-    min-height: 520px;
+    grid-template-columns: minmax(220px, 0.52fr) minmax(0, 1fr);
+    min-height: 440px;
 }
 
 .discover-photo {
     min-height: 100%;
+    position: relative;
+}
+
+.discover-photo::after {
+    background: linear-gradient(180deg, transparent 0%, rgba(32, 29, 50, 0.10) 100%);
+    content: "";
+    inset: 0;
+    position: absolute;
+}
+
+.discover-photo span {
+    position: relative;
+    z-index: 1;
 }
 
 .discover-info {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding: clamp(18px, 3vw, 28px);
+}
+
+.home-command-panel {
+    align-self: stretch;
+}
+
+.home-command-panel .conversas-panel {
+    display: grid;
+    min-height: 100%;
+}
+
+.home-command-panel .conversation-list {
+    max-height: 250px;
+    overflow-y: auto;
+    padding-right: 2px;
+}
+
+.home-command-panel .chat-preview {
+    margin-top: 14px;
+}
+
+.eros-missions-panel {
+    display: grid;
+    gap: 12px;
+}
+
+.home-mission-list {
+    display: grid;
+    gap: 9px;
+}
+
+.home-mission-item {
+    align-items: center;
+    background: #fbfcff;
+    border: 1px solid #e6eaf2;
+    border-radius: 8px;
+    color: #222735;
+    display: flex;
+    gap: 10px;
+    padding: 11px;
+    text-align: left;
+    transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.home-mission-item:hover {
+    border-color: #c9d1e6;
+    box-shadow: 0 10px 24px rgba(67, 45, 138, 0.08);
+    transform: translateY(-2px);
+}
+
+.home-mission-item.done {
+    background: #f2fff9;
+    border-color: #ccefe2;
+}
+
+.home-mission-item i {
+    color: #6f50df;
+}
+
+.home-mission-item strong,
+.home-mission-item small {
+    display: block;
+}
+
+.home-mission-item strong {
+    font-size: 0.9rem;
+}
+
+.home-mission-item small {
+    color: #626779;
+    font-weight: 800;
 }
 
 .discover-info h3 {
@@ -2205,115 +3729,387 @@ body {
     margin-bottom: 76px;
 }
 
-.cupido-pet {
-    bottom: 22px;
-    display: grid;
-    justify-items: end;
+.eros-pet {
+    bottom: 34px;
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 10px;
+    max-height: calc(100vh - 44px);
     position: fixed;
-    right: 22px;
+    right: 34px;
     z-index: 1070;
 }
 
-.cupido-pet-orb {
-    background: transparent;
-    border: 0;
-    padding: 0;
+.eros-pet-orb {
+    background:
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.28) 54%, transparent 68%),
+        linear-gradient(135deg, rgba(253, 81, 179, 0.16), rgba(94, 187, 246, 0.16));
+    border: 1px solid rgba(255, 255, 255, 0.66);
+    border-radius: 32px;
+    box-shadow: 0 16px 36px rgba(67, 45, 138, 0.15);
+    padding: 8px;
+    position: relative;
+    transition: box-shadow 220ms ease, transform 220ms ease;
+    z-index: 2;
+}
+
+.eros-pet-orb::before {
+    background: linear-gradient(135deg, rgba(253, 81, 179, 0.34), rgba(94, 187, 246, 0.34));
+    border-radius: inherit;
+    content: "";
+    inset: -5px;
+    opacity: 0;
+    position: absolute;
+    transition: opacity 220ms ease, transform 220ms ease;
+    z-index: -1;
+}
+
+.eros-pet-orb:hover {
+    box-shadow: 0 20px 44px rgba(67, 45, 138, 0.22);
+    transform: translateY(-3px) scale(1.02);
+}
+
+.eros-pet-orb:hover::before {
+    opacity: 0.58;
+    transform: scale(1.03);
 }
 
 .pet-robot {
     cursor: pointer;
     height: 82px;
+    transition: box-shadow 220ms ease, filter 220ms ease, transform 220ms ease;
     width: 82px;
 }
 
-.cupido-pet-speech {
-    background: #ffffff;
-    border: 1px solid #e6eaf2;
-    border-radius: 8px;
-    box-shadow: var(--match-shadow-hover);
-    color: #222735;
+.pet-robot::before {
+    content: "";
+    opacity: 0;
+    position: absolute;
+    transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.eros-state-curioso .pet-robot {
+    filter: saturate(1.05);
+}
+
+.eros-state-animado .pet-robot {
+    box-shadow: 0 0 0 8px rgba(253, 81, 179, 0.13), 0 18px 34px rgba(134, 82, 245, 0.24);
+    transform: translateY(-2px);
+}
+
+.eros-state-inspirado .eros-antenna::before {
+    animation: erosAntennaPulse 1.6s ease-in-out infinite;
+}
+
+.eros-state-confiante .pet-robot {
+    box-shadow: 0 0 0 8px rgba(94, 187, 246, 0.16), 0 18px 36px rgba(37, 168, 223, 0.18);
+}
+
+.eros-state-lendario .pet-robot {
+    box-shadow: 0 0 0 8px rgba(253, 81, 179, 0.14), 0 0 0 16px rgba(94, 187, 246, 0.10), 0 20px 42px rgba(134, 82, 245, 0.28);
+}
+
+.eros-skin-agente .pet-robot {
+    background:
+        radial-gradient(circle at 28% 20%, rgba(255, 255, 255, 0.72) 0 12%, transparent 13%),
+        linear-gradient(145deg, #ffffff 0%, #dfe7ff 36%, #202538 100%);
+}
+
+.eros-skin-agente .eros-robot-face {
+    background: linear-gradient(180deg, #111827 0%, #070a12 100%);
+    border-color: rgba(157, 217, 249, 0.28);
+}
+
+.eros-skin-agente .eros-robot-eye {
+    background: radial-gradient(circle at 35% 30%, #ffffff 0 16%, #aee6ff 20% 56%, #4e8cff 60% 100%);
+}
+
+.eros-skin-agente .eros-robot-heart {
+    background: linear-gradient(135deg, #222735, #8652f5);
+}
+
+.eros-skin-cinema .pet-robot {
+    background:
+        radial-gradient(circle at 28% 20%, rgba(255, 255, 255, 0.94) 0 12%, transparent 13%),
+        linear-gradient(145deg, #fff8df 0%, #ffe2f2 45%, #f1edff 100%);
+}
+
+.eros-skin-cinema .eros-antenna::before {
+    background: #ffd15c;
+    box-shadow: 0 0 18px rgba(255, 209, 92, 0.9);
+}
+
+.eros-skin-cinema .eros-robot-heart {
+    background: linear-gradient(135deg, #ffd15c, #fd51b3);
+}
+
+.eros-skin-cinema .pet-robot::before {
+    background:
+        linear-gradient(135deg, #222735 0 30%, #ffffff 31% 38%, #222735 39% 62%, #ffffff 63% 70%, #222735 71%),
+        linear-gradient(180deg, #ffffff, #f4f6ff);
+    border: 2px solid #222735;
+    border-radius: 5px;
+    bottom: 7px;
+    box-shadow: 0 8px 16px rgba(32, 39, 53, 0.18);
+    height: 22px;
+    opacity: 1;
+    right: -13px;
+    transform: rotate(-9deg);
+    width: 28px;
+}
+
+.eros-skin-esportista .pet-robot {
+    background:
+        radial-gradient(circle at 28% 20%, rgba(255, 255, 255, 0.94) 0 12%, transparent 13%),
+        linear-gradient(145deg, #ffffff 0%, #e8fff5 42%, #dff2ff 100%);
+}
+
+.eros-skin-esportista .eros-robot-face {
+    background: linear-gradient(180deg, #173b3b 0%, #132333 100%);
+}
+
+.eros-skin-esportista .eros-robot-eye {
+    background: radial-gradient(circle at 35% 30%, #ffffff 0 16%, #b8ffe8 20% 56%, #34d399 60% 100%);
+    box-shadow: 0 0 12px rgba(52, 211, 153, 0.82);
+}
+
+.eros-skin-esportista .eros-robot-heart {
+    background: linear-gradient(135deg, #34d399, #25a8df);
+}
+
+.eros-skin-esportista .pet-robot::before {
+    background:
+        radial-gradient(circle at 52% 52%, transparent 0 34%, #34d399 36% 47%, transparent 49%),
+        linear-gradient(90deg, #25a8df, #34d399);
+    border-radius: 999px;
+    bottom: 10px;
+    box-shadow: 0 8px 16px rgba(52, 211, 153, 0.18);
+    height: 24px;
+    opacity: 1;
+    right: -15px;
+    transform: rotate(-16deg);
+    width: 32px;
+}
+
+.eros-skin-gastronomia .pet-robot {
+    background:
+        radial-gradient(circle at 28% 20%, rgba(255, 255, 255, 0.94) 0 12%, transparent 13%),
+        linear-gradient(145deg, #ffffff 0%, #fff2f7 44%, #f1edff 100%);
+}
+
+.eros-skin-gastronomia .eros-robot-heart {
+    background: linear-gradient(135deg, #ff8fb8, #fd51b3);
+}
+
+.eros-skin-gastronomia .pet-robot::before {
+    background:
+        radial-gradient(circle at 50% 82%, #ffffff 0 26%, transparent 27%),
+        linear-gradient(180deg, #fd51b3 0 46%, #ffffff 47% 54%, #8652f5 55%);
+    border-radius: 5px 5px 12px 12px;
+    bottom: 6px;
+    box-shadow: 0 8px 16px rgba(253, 81, 179, 0.18);
+    height: 28px;
+    opacity: 1;
+    right: -12px;
+    transform: rotate(-10deg);
+    width: 24px;
+}
+
+.eros-skin-evento .pet-robot {
+    background:
+        radial-gradient(circle at 28% 20%, rgba(255, 255, 255, 0.94) 0 12%, transparent 13%),
+        linear-gradient(145deg, #ffffff 0%, #f1edff 46%, #dff2ff 100%);
+}
+
+.eros-skin-evento .eros-antenna::before {
+    background: #ff3d71;
+    box-shadow: 0 0 18px rgba(255, 61, 113, 0.88);
+}
+
+.eros-skin-evento .eros-robot-heart {
+    background: linear-gradient(135deg, #8652f5, #25a8df);
+}
+
+.eros-skin-evento .pet-robot::before {
+    background:
+        radial-gradient(circle at 50% 50%, #ffffff 0 22%, transparent 24%),
+        linear-gradient(135deg, #ff3d71, #8652f5);
+    border-radius: 999px;
+    bottom: 7px;
+    box-shadow: 0 8px 16px rgba(134, 82, 245, 0.20);
+    height: 28px;
+    opacity: 1;
+    right: -13px;
+    transform: rotate(-10deg);
+    width: 28px;
+}
+
+.eros-skin-games .pet-robot {
+    background:
+        radial-gradient(circle at 28% 20%, rgba(255, 255, 255, 0.78) 0 12%, transparent 13%),
+        linear-gradient(145deg, #ffffff 0%, #e9f7ff 40%, #252a44 100%);
+}
+
+.eros-skin-games .eros-robot-face {
+    background: linear-gradient(180deg, #101827 0%, #132333 100%);
+}
+
+.eros-skin-games .pet-robot::before {
+    background:
+        radial-gradient(circle at 30% 52%, #ffffff 0 8%, transparent 9%),
+        radial-gradient(circle at 70% 52%, #ffffff 0 8%, transparent 9%),
+        linear-gradient(135deg, #8652f5, #25a8df);
+    border-radius: 12px;
+    bottom: 8px;
+    box-shadow: 0 8px 16px rgba(67, 45, 138, 0.20);
+    height: 22px;
+    opacity: 1;
+    right: -16px;
+    transform: rotate(-8deg);
+    width: 34px;
+}
+
+.eros-pet-speech {
+    background:
+        radial-gradient(circle at 12% 12%, rgba(253, 81, 179, 0.12), transparent 32%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(244, 249, 255, 0.88)) padding-box,
+        linear-gradient(135deg, rgba(253, 81, 179, 0.32), rgba(134, 82, 245, 0.28), rgba(94, 187, 246, 0.30)) border-box;
+    backdrop-filter: blur(12px);
+    border: 1px solid transparent;
+    border-radius: 14px;
+    box-shadow: 0 16px 34px rgba(37, 31, 78, 0.16), 0 0 0 1px rgba(255, 255, 255, 0.42) inset;
+    color: #28243f;
     font-size: 0.92rem;
     font-weight: 800;
-    margin-bottom: 10px;
+    line-height: 1.38;
     max-width: 260px;
     opacity: 0;
-    padding: 10px 12px;
-    transform: translateY(6px);
-    transition: opacity 180ms ease, transform 180ms ease;
+    padding: 12px 14px 12px 38px;
+    position: relative;
+    transform: translateY(8px) scale(0.98);
+    transition: opacity 220ms ease, transform 220ms ease, box-shadow 220ms ease;
 }
 
-.cupido-pet-speech.show {
+.eros-pet-speech::before {
+    align-items: center;
+    background: linear-gradient(135deg, #fd51b3, #8652f5);
+    border-radius: 50%;
+    box-shadow: 0 8px 16px rgba(253, 81, 179, 0.24);
+    color: #ffffff;
+    content: "♥";
+    display: flex;
+    font-size: 0.72rem;
+    height: 21px;
+    justify-content: center;
+    left: 11px;
+    position: absolute;
+    top: 12px;
+    width: 21px;
+}
+
+.eros-pet-speech::after {
+    background: rgba(255, 255, 255, 0.92);
+    border-bottom: 1px solid rgba(134, 82, 245, 0.18);
+    border-right: 1px solid rgba(134, 82, 245, 0.18);
+    bottom: -7px;
+    content: "";
+    height: 14px;
+    position: absolute;
+    right: 28px;
+    transform: rotate(45deg);
+    width: 14px;
+}
+
+.eros-pet-speech.show {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
 }
 
-.cupido-pet-panel {
+.eros-pet-panel {
     background:
-        linear-gradient(#ffffff, #ffffff) padding-box,
-        linear-gradient(135deg, rgba(253, 81, 179, 0.32), rgba(37, 168, 223, 0.28)) border-box;
-    border: 1px solid #e6eaf2;
+        radial-gradient(circle at 18% 0%, rgba(253, 81, 179, 0.13), transparent 34%),
+        radial-gradient(circle at 86% 12%, rgba(37, 168, 223, 0.16), transparent 34%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(246, 248, 255, 0.88)) padding-box,
+        linear-gradient(135deg, rgba(134, 82, 245, 0.36), rgba(94, 187, 246, 0.34)) border-box;
+    backdrop-filter: blur(14px);
+    border: 1px solid transparent;
     border-radius: 8px;
     box-shadow: 0 22px 60px rgba(32, 29, 50, 0.22);
     display: none;
     gap: 13px;
-    margin-bottom: 12px;
+    max-height: min(680px, calc(100vh - 142px));
+    overflow-y: auto;
     padding: 14px;
     width: min(380px, calc(100vw - 32px));
 }
 
-.cupido-pet-panel.show {
+.eros-pet-panel.show {
     display: grid;
 }
 
-.cupido-pet-head {
+.eros-pet-panel::-webkit-scrollbar {
+    width: 8px;
+}
+
+.eros-pet-panel::-webkit-scrollbar-thumb {
+    background: #d7ddf0;
+    border-radius: 999px;
+}
+
+.eros-pet-head {
     align-items: flex-start;
     display: flex;
     gap: 12px;
     justify-content: space-between;
 }
 
-.cupido-pet-head h2 {
+.eros-pet-head h2 {
     color: #222735;
     font-size: 1.28rem;
     font-weight: 900;
     margin: 0;
 }
 
-.cupido-pet-head small {
+.eros-pet-head small {
     color: #626779;
     display: block;
     font-weight: 800;
     margin-top: 3px;
 }
 
-.cupido-pet-panel p {
+.eros-pet-panel p {
     color: #626779;
     margin: 0;
 }
 
-.cupido-pet-bubble {
+.eros-pet-bubble {
     align-items: flex-start;
-    background: #25203c;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.76), rgba(248, 249, 255, 0.68)) padding-box,
+        linear-gradient(135deg, rgba(134, 82, 245, 0.22), rgba(94, 187, 246, 0.22)) border-box;
+    border: 1px solid transparent;
     border-radius: 8px;
-    color: #ffffff;
+    box-shadow: 0 10px 24px rgba(67, 45, 138, 0.06);
+    color: #30235f;
     display: flex;
     gap: 10px;
     padding: 12px;
 }
 
-.cupido-pet-bubble i {
-    color: #8fd7ff;
+.eros-pet-bubble i {
+    color: #6f50df;
     font-size: 1.1rem;
     margin-top: 2px;
 }
 
-.cupido-pet-bubble p {
-    color: rgba(255, 255, 255, 0.88);
+.eros-pet-bubble p {
+    color: #30235f;
     font-weight: 800;
     line-height: 1.45;
 }
 
-.cupido-level {
+.eros-level {
     background: #eef0ff;
     border-radius: 999px;
     color: #5042a8;
@@ -2323,30 +4119,30 @@ body {
     white-space: nowrap;
 }
 
-.cupido-energy {
-    background: #fbfcff;
-    border: 1px solid #e6eaf2;
+.eros-energy {
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(230, 234, 242, 0.88);
     border-radius: 8px;
     padding: 12px;
 }
 
-.cupido-energy strong,
-.cupido-energy span {
+.eros-energy strong,
+.eros-energy span {
     color: #222735;
     font-size: 0.86rem;
 }
 
-.cupido-status-grid {
+.eros-status-grid {
     display: grid;
     gap: 10px;
     grid-template-columns: 1fr 1fr;
 }
 
-.cupido-mission,
-.cupido-unlock {
+.eros-mission,
+.eros-unlock {
     align-items: center;
-    background: #fff8fb;
-    border: 1px solid #ffd9ec;
+    background: rgba(255, 248, 251, 0.78);
+    border: 1px solid rgba(255, 217, 236, 0.92);
     border-radius: 8px;
     color: #7b2b5b;
     display: flex;
@@ -2355,14 +4151,14 @@ body {
     padding: 11px;
 }
 
-.cupido-mission i,
-.cupido-unlock i {
+.eros-mission i,
+.eros-unlock i {
     flex: 0 0 auto;
     font-size: 1.05rem;
 }
 
-.cupido-mission small,
-.cupido-unlock small {
+.eros-mission small,
+.eros-unlock small {
     display: block;
     font-size: 0.7rem;
     font-weight: 900;
@@ -2370,68 +4166,172 @@ body {
     text-transform: uppercase;
 }
 
-.cupido-mission strong,
-.cupido-unlock strong {
+.eros-mission strong,
+.eros-unlock strong {
     display: block;
     font-size: 0.84rem;
     line-height: 1.3;
 }
 
-.cupido-mission i {
+.eros-mission i {
     color: #fd51b3;
 }
 
-.cupido-unlock {
-    background: #f5fbff;
-    border-color: #dff2ff;
+.eros-unlock {
+    background: rgba(245, 251, 255, 0.82);
+    border-color: rgba(223, 242, 255, 0.94);
     color: #176f9f;
 }
 
-.cupido-unlock i {
+.eros-unlock i {
     color: #25a8df;
 }
 
-.cupido-reward-track {
+.eros-reward-track {
     display: grid;
     gap: 6px;
     grid-template-columns: repeat(4, 1fr);
 }
 
-.cupido-reward-track span {
-    background: #f6f7ff;
+.eros-reward-track button {
+    background: rgba(246, 247, 255, 0.86);
     border: 1px solid #e6eaf2;
     border-radius: 999px;
     color: #626779;
+    cursor: pointer;
     font-size: 0.72rem;
     font-weight: 900;
     padding: 7px 6px;
     text-align: center;
+    transition: background 180ms ease, box-shadow 180ms ease, color 180ms ease, transform 180ms ease;
 }
 
-.cupido-reward-track span.active {
+.eros-reward-track button:hover {
+    box-shadow: 0 8px 18px rgba(67, 45, 138, 0.10);
+    transform: translateY(-1px);
+}
+
+.eros-reward-track button.active {
     background: #6f50df;
     border-color: #6f50df;
     color: #ffffff;
 }
 
-.cupido-pet-actions {
+.eros-panel-missions {
+    background: rgba(255, 255, 255, 0.62);
+    border: 1px solid rgba(230, 234, 242, 0.88);
+    border-radius: 8px;
+    display: grid;
+    gap: 10px;
+    padding: 12px;
+}
+
+.eros-panel-title {
+    align-items: flex-start;
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.eros-panel-title small {
+    color: #626779;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-align: right;
+}
+
+.eros-pet-panel .eros-message {
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(248, 249, 255, 0.74)) padding-box,
+        linear-gradient(135deg, rgba(253, 81, 179, 0.18), rgba(134, 82, 245, 0.20)) border-box;
+    border: 1px solid transparent;
+    box-shadow: 0 10px 24px rgba(67, 45, 138, 0.06);
+}
+
+.home-mission-item em {
+    background: #e9edf8;
+    border-radius: 999px;
+    display: block;
+    height: 6px;
+    margin-top: 7px;
+    overflow: hidden;
+}
+
+.home-mission-item em b {
+    background: linear-gradient(135deg, #fd51b3 0%, #6f50df 62%, #25a8df 100%);
+    display: block;
+    height: 100%;
+}
+
+.eros-pet-actions {
     display: grid;
     gap: 8px;
     grid-template-columns: 1fr 1fr;
 }
 
-.cupido-pet-actions a {
+.eros-pet-actions a {
     text-align: center;
 }
 
+.eros-feed-heart {
+    animation: erosFeedHeart 1050ms ease-out forwards;
+    bottom: 58px;
+    color: #fd51b3;
+    filter: drop-shadow(0 8px 14px rgba(253, 81, 179, 0.24));
+    font-size: 1.15rem;
+    pointer-events: none;
+    position: absolute;
+    right: 30px;
+    transform: translateX(var(--heart-x));
+    z-index: 1;
+}
+
+.eros-feed-heart:nth-of-type(even) {
+    color: #6f50df;
+}
+
+@keyframes erosFeedHeart {
+    0% {
+        opacity: 0;
+        transform: translate(var(--heart-x), 0) scale(0.7);
+    }
+
+    16% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(calc(var(--heart-x) * 1.4), -118px) scale(1.28);
+    }
+}
+
+@keyframes erosAntennaPulse {
+    0%,
+    100% {
+        box-shadow: 0 0 12px rgba(253, 81, 179, 0.72);
+        transform: translateX(-50%) scale(1);
+    }
+
+    50% {
+        box-shadow: 0 0 22px rgba(94, 187, 246, 0.86);
+        transform: translateX(-50%) scale(1.18);
+    }
+}
+
 @media (max-width: 1199.98px) {
-    .compact-profile,
+    .home-quick-actions,
     .home-grid {
         grid-template-columns: 1fr;
     }
 
-    .compact-profile .profile-facts {
-        grid-column: auto;
+    .home-quick-actions {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .today-mode-panel {
+        align-items: flex-start;
+        flex-direction: column;
     }
 }
 
@@ -2446,13 +4346,14 @@ body {
 }
 
 @media (max-width: 575.98px) {
-    .compact-profile .profile-facts {
-        display: none;
+    .home-quick-actions {
+        grid-template-columns: 1fr;
     }
 
-    .cupido-pet {
-        bottom: 14px;
-        right: 14px;
+    .eros-pet {
+        bottom: 22px;
+        max-height: calc(100vh - 28px);
+        right: 18px;
     }
 
     .pet-robot {
@@ -2460,16 +4361,265 @@ body {
         width: 70px;
     }
 
-    .cupido-pet-speech {
+    .eros-pet-speech {
         max-width: 220px;
     }
 
-    .cupido-pet-actions {
+    .eros-pet-panel {
+        max-height: calc(100vh - 118px);
+        width: calc(100vw - 28px);
+    }
+
+    .eros-pet-actions {
         grid-template-columns: 1fr;
     }
 
-    .cupido-status-grid,
-    .cupido-reward-track {
+    .eros-status-grid,
+    .eros-reward-track {
         grid-template-columns: 1fr;
     }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .quick-action-card,
+    .quick-action-card i,
+    .home-action-status {
+        transition: none;
+    }
+
+    .quick-action-card:hover,
+    .quick-action-card:hover i,
+    .home-action-status:hover {
+        transform: none;
+    }
+
+    body.page-transition-out {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+/* ================= TEMA SOFT GLASS HOME ================= */
+:root {
+    --match-page-bg: #f7f8ff;
+    --match-glass: rgba(255, 255, 255, 0.78);
+    --match-glass-strong: rgba(255, 255, 255, 0.90);
+    --match-glass-line: rgba(134, 82, 245, 0.14);
+    --match-glass-line-blue: rgba(94, 187, 246, 0.16);
+    --match-soft-shadow: 0 18px 44px rgba(67, 45, 138, 0.08);
+    --match-soft-shadow-hover: 0 24px 58px rgba(67, 45, 138, 0.12);
+}
+
+body {
+    background:
+        radial-gradient(circle at 9% 7%, rgba(253, 81, 179, 0.11), transparent 26%),
+        radial-gradient(circle at 92% 12%, rgba(94, 187, 246, 0.15), transparent 28%),
+        radial-gradient(circle at 52% 92%, rgba(134, 82, 245, 0.08), transparent 32%),
+        linear-gradient(180deg, #fcfbff 0%, var(--match-page-bg) 48%, #f4fbff 100%);
+    background-attachment: fixed;
+}
+
+.home-panel,
+.card-match,
+.profile-summary,
+.discover-card,
+.conversas-panel,
+.quick-interests-panel,
+.feature-tabs,
+.conversation-item,
+.chat-preview,
+.affinity-card,
+.idea-card,
+.match-mini-card,
+.eros-panel,
+.discover-empty,
+.today-mode-panel,
+.quick-action-card,
+.home-action-status,
+.home-mission-item {
+    background:
+        linear-gradient(180deg, var(--match-glass-strong), var(--match-glass)) padding-box,
+        linear-gradient(135deg, var(--match-glass-line), var(--match-glass-line-blue)) border-box;
+    backdrop-filter: blur(14px);
+    border: 1px solid transparent;
+    box-shadow: var(--match-soft-shadow);
+}
+
+.discover-card,
+.quick-action-card.primary {
+    background:
+        radial-gradient(circle at 10% 0%, rgba(253, 81, 179, 0.10), transparent 32%),
+        linear-gradient(135deg, rgba(134, 82, 245, 0.15), rgba(94, 187, 246, 0.15)) padding-box,
+        linear-gradient(135deg, rgba(134, 82, 245, 0.30), rgba(94, 187, 246, 0.28)) border-box;
+}
+
+.home-panel:hover,
+.quick-action-card:hover,
+.idea-card:hover,
+.affinity-card:hover,
+.match-mini-card:hover,
+.home-mission-item:hover {
+    box-shadow: var(--match-soft-shadow-hover);
+}
+
+.profile-facts div,
+.profile-details-grid div,
+.match-reasons,
+.eros-message,
+.eros-energy,
+.eros-panel-missions,
+.eros-pet-bubble {
+    background: rgba(255, 255, 255, 0.62);
+    border-color: rgba(134, 82, 245, 0.12);
+}
+
+.tag-match,
+.interest-pill,
+.discover-chip,
+.eros-level {
+    background: rgba(241, 237, 255, 0.74);
+    border: 1px solid rgba(134, 82, 245, 0.12);
+}
+
+/* EROS final override: mitologia futurista na Home. */
+.eros-robot,
+.pet-robot,
+.guide-robot {
+    background:
+        radial-gradient(circle at 30% 18%, rgba(255, 255, 255, 0.95) 0 8%, transparent 9%),
+        linear-gradient(155deg, rgba(255, 255, 255, 0.96) 0 22%, rgba(226, 244, 255, 0.92) 23% 48%, rgba(143, 92, 255, 0.42) 49% 72%, rgba(16, 22, 45, 0.96) 73% 100%);
+    border: 1px solid rgba(186, 242, 255, 0.78);
+    border-radius: 30px 30px 24px 24px;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.62) inset, 0 0 22px rgba(0, 224, 255, 0.32), 0 0 36px rgba(155, 78, 255, 0.30), 0 18px 40px rgba(40, 33, 92, 0.25);
+    overflow: visible;
+}
+
+.eros-aura {
+    background: radial-gradient(circle, rgba(0, 224, 255, 0.26), transparent 58%), conic-gradient(from 20deg, rgba(155, 78, 255, 0.04), rgba(0, 224, 255, 0.22), rgba(255, 255, 255, 0.10), rgba(155, 78, 255, 0.04));
+    border: 1px solid rgba(180, 246, 255, 0.26);
+    border-radius: 50%;
+    inset: -18px;
+    opacity: 0.9;
+    position: absolute;
+    z-index: -2;
+}
+
+.eros-robot::after,
+.pet-robot::after,
+.guide-robot::after {
+    background: radial-gradient(circle at 20% 40%, rgba(0, 224, 255, 0.85) 0 2px, transparent 3px), radial-gradient(circle at 62% 22%, rgba(255, 255, 255, 0.85) 0 2px, transparent 3px), radial-gradient(circle at 78% 70%, rgba(155, 78, 255, 0.85) 0 2px, transparent 3px);
+    border-radius: 50%;
+    content: "";
+    inset: -23px;
+    opacity: 0.88;
+    position: absolute;
+    transform: none;
+    width: auto;
+    height: auto;
+    z-index: -1;
+}
+
+.eros-robot-face {
+    background: linear-gradient(180deg, rgba(16, 22, 45, 0.96), rgba(10, 13, 30, 0.98));
+    border: 1px solid rgba(0, 224, 255, 0.32);
+    border-radius: 20px 20px 16px 16px;
+    box-shadow: inset 0 1px 10px rgba(255, 255, 255, 0.10), 0 0 18px rgba(0, 224, 255, 0.24);
+    height: 44px;
+    margin-top: -8px;
+    padding: 10px 10px 8px;
+    width: 56px;
+    z-index: 2;
+}
+
+.eros-robot-eye {
+    background: linear-gradient(90deg, #ffffff 0%, #00e0ff 45%, #9b4eff 100%);
+    border-radius: 999px;
+    box-shadow: 0 0 14px rgba(0, 224, 255, 0.84);
+    height: 5px;
+    width: 14px;
+}
+
+.eros-robot-mouth {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.78);
+    height: 6px;
+    opacity: 0.78;
+    width: 18px;
+}
+
+.eros-wing {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.34), rgba(0, 224, 255, 0.14) 42%, rgba(155, 78, 255, 0.10)), repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.0) 0 7px, rgba(0, 224, 255, 0.35) 8px 9px);
+    border: 1px solid rgba(0, 224, 255, 0.42);
+    box-shadow: 0 0 18px rgba(0, 224, 255, 0.28), inset 0 0 14px rgba(255, 255, 255, 0.18);
+    clip-path: polygon(0 50%, 28% 8%, 100% 0, 74% 52%, 100% 100%, 26% 86%);
+    height: 50px;
+    opacity: 0.86;
+    top: 20px;
+    width: 45px;
+}
+
+.eros-wing-left {
+    left: -30px;
+    transform: rotate(-12deg);
+}
+
+.eros-wing-right {
+    right: -30px;
+    transform: scaleX(-1) rotate(-12deg);
+}
+
+.eros-robe {
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.92) 0 44%, rgba(210, 242, 255, 0.74) 45% 62%, rgba(155, 78, 255, 0.32) 63%), linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(196, 231, 255, 0.72));
+    border: 1px solid rgba(255, 255, 255, 0.64);
+    border-radius: 4px 4px 16px 16px;
+    bottom: 5px;
+    box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.35), 0 0 16px rgba(0, 224, 255, 0.16);
+    height: 27px;
+    left: 23px;
+    position: absolute;
+    transform: skewX(-9deg);
+    width: 31px;
+    z-index: 1;
+}
+
+.eros-bow {
+    border: 2px solid rgba(0, 224, 255, 0.82);
+    border-left: 0;
+    border-radius: 0 999px 999px 0;
+    box-shadow: 0 0 14px rgba(0, 224, 255, 0.72), 0 0 20px rgba(155, 78, 255, 0.36);
+    height: 56px;
+    position: absolute;
+    right: -15px;
+    top: 16px;
+    transform: rotate(-12deg);
+    width: 22px;
+    z-index: 3;
+}
+
+.eros-arrow {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.0), #ffffff 24%, #00e0ff 58%, #9b4eff 100%);
+    border-radius: 999px;
+    box-shadow: 0 0 12px rgba(0, 224, 255, 0.72);
+    height: 2px;
+    position: absolute;
+    right: -12px;
+    top: 42px;
+    transform: rotate(-12deg);
+    width: 52px;
+    z-index: 4;
+}
+
+.eros-arrow::after {
+    border-bottom: 5px solid transparent;
+    border-left: 9px solid #00e0ff;
+    border-top: 5px solid transparent;
+    content: "";
+    position: absolute;
+    right: -6px;
+    top: -4px;
+}
+
+.eros-robot-heart {
+    background: linear-gradient(135deg, #9b4eff, #00e0ff);
+    box-shadow: 0 0 18px rgba(0, 224, 255, 0.56);
 }

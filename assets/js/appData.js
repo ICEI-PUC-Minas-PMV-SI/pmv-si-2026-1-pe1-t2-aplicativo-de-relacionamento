@@ -1,5 +1,5 @@
 const MatchConnectApp = (function () {
-    // Dados simulados usados pelas telas de matches, conversas, filtros e Cupido.
+    // Dados simulados usados pelas telas de matches, conversas, filtros e EROS.
     // Em uma versão com backend, essa lista viria de uma API ou banco de dados.
     const perfisBase = [
         {
@@ -201,7 +201,8 @@ const MatchConnectApp = (function () {
             return `<span class="${classe}"><img src="${foto}" alt="Foto do perfil"></span>`;
         }
 
-        return `<span class="${classe}">${inicial}</span>`;
+        const variante = String(inicial || "m").toLowerCase();
+        return `<span class="${classe} avatar-person avatar-${variante}"><span>${inicial}</span></span>`;
     }
 
     // Conecta o botão "Sair" ao fluxo de logout nas páginas que usam esse módulo.

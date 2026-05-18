@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../../assets/css/App.css">
+    <link rel="stylesheet" href="../../assets/css/Internal.css">
 </head>
 
 <body>
@@ -27,7 +28,7 @@
                         <li class="nav-item"><a class="nav-link active" href="Matches.html">Matches</a></li>
                         <li class="nav-item"><a class="nav-link" href="../Favoritos/Favoritos.html">Favoritos</a></li>
                         <li class="nav-item"><a class="nav-link" href="../Conversas/Conversas.html">Conversas</a></li>
-                        <li class="nav-item"><a class="nav-link" href="../Cupido/Cupido.html">Cupido</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../EROS/EROS.html">EROS</a></li>
                         <li class="nav-item"><a class="nav-link" href="../Filtros/Filtros.html">Filtros</a></li>
                         <li class="nav-item"><button id="btnSair" class="btn btn-entrar">Sair</button></li>
                     </ul>
@@ -39,10 +40,13 @@
     <main class="page-shell">
         <div class="container">
             <section class="page-heading">
-                <div>
-                    <span class="section-kicker">Conexões</span>
-                    <h1>Seus matches</h1>
-                    <p>Veja perfis com maior compatibilidade e envie uma primeira mensagem com ajuda do Cupido.</p>
+                <div class="page-heading-main">
+                    <span class="page-heading-icon"><i class="bi bi-heart-fill"></i></span>
+                    <div>
+                        <span class="section-kicker">Conexões</span>
+                        <h1>Seus matches</h1>
+                        <p>Veja perfis com maior compatibilidade e envie uma primeira mensagem com ajuda do EROS.</p>
+                    </div>
                 </div>
                 <div class="page-actions">
                     <a class="btn btn-match-outline" href="../Favoritos/Favoritos.html">Favoritos</a>
@@ -50,7 +54,7 @@
                 </div>
             </section>
 
-            <section class="app-panel">
+            <section class="visual-panel">
                 <div id="listaMatches" class="row g-3"></div>
             </section>
         </div>

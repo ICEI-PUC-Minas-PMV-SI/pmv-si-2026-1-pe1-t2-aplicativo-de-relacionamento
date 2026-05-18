@@ -73,10 +73,26 @@ function atualizarConvite() {
     document.getElementById("mensagemConvite").textContent = montarMensagemConvite();
 }
 
+function enviarMensagemParaConversa(match, texto) {
+    const mensagens = JSON.parse(localStorage.getItem("mensagensUsuario")) || {};
+
+    if (!mensagens[match]) {
+        mensagens[match] = [
+            { autor: match, texto: "Oi! Vi que a gente tem alguns interesses em comum." }
+        ];
+    }
+
+    mensagens[match].push({ autor: "Você", texto: texto });
+    localStorage.setItem("mensagensUsuario", JSON.stringify(mensagens));
+    localStorage.setItem("conversaAberta", match);
+    localStorage.setItem("mensagemEnviadaRecentemente", texto);
+}
+
 // Ativa o painel de continuação após clicar em "Montar convite".
 function selecionarEvento(index) {
     eventoSelecionado = eventos[index];
     const comum = afinidade(eventoSelecionado);
+    const match = document.getElementById("matchConvite").value || "seu match";
 
     document.getElementById("tituloRoteiro").textContent = eventoSelecionado.titulo;
     document.getElementById("descricaoRoteiro").textContent = `${eventoSelecionado.tipo} em ${eventoSelecionado.local}. ${eventoSelecionado.convite}`;
@@ -85,6 +101,11 @@ function selecionarEvento(index) {
         : "Sugestão leve";
     atualizarConvite();
     document.getElementById("continuaConvite").scrollIntoView({ behavior: "smooth", block: "start" });
+
+    window.MatchConnectEROS?.react({
+        tema: `${eventoSelecionado.titulo} ${eventoSelecionado.tipo} ${eventoSelecionado.interesses.join(" ")}`,
+        fala: `Eu chamaria ${match} assim: ${eventoSelecionado.convite}`
+    });
 }
 
 // Delegação de clique: identifica qual card foi escolhido sem criar vários listeners.
@@ -122,6 +143,22 @@ document.getElementById("btnCopiarConvite").addEventListener("click", function (
     const mensagem = montarMensagemConvite();
     navigator.clipboard?.writeText(mensagem);
     document.getElementById("statusConvite").textContent = "Mensagem pronta para usar";
+});
+
+document.getElementById("btnEnviarConvite").addEventListener("click", function () {
+    if (!eventoSelecionado) {
+        document.getElementById("statusConvite").textContent = "Escolha um evento primeiro";
+        return;
+    }
+
+    const match = document.getElementById("matchConvite").value;
+    const mensagem = montarMensagemConvite();
+    enviarMensagemParaConversa(match, mensagem);
+    document.getElementById("statusConvite").textContent = `Mensagem enviada para ${match}`;
+
+    window.setTimeout(function () {
+        window.location.href = "../Conversas/Conversas.html";
+    }, 500);
 });
 
 renderizarEventos();

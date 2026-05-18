@@ -142,6 +142,21 @@ function atualizarPreview() {
     document.getElementById("mensagemExperiencia").textContent = mensagemDaExperiencia();
 }
 
+function enviarMensagemParaConversa(match, texto) {
+    const mensagens = JSON.parse(localStorage.getItem("mensagensUsuario")) || {};
+
+    if (!mensagens[match]) {
+        mensagens[match] = [
+            { autor: match, texto: "Oi! Vi que a gente tem alguns interesses em comum." }
+        ];
+    }
+
+    mensagens[match].push({ autor: "Você", texto: texto });
+    localStorage.setItem("mensagensUsuario", JSON.stringify(mensagens));
+    localStorage.setItem("conversaAberta", match);
+    localStorage.setItem("mensagemEnviadaRecentemente", texto);
+}
+
 function selecionarExperiencia(index) {
     experienciaSelecionada = experiencias[index];
     const sugestao = matchSugerido(experienciaSelecionada);
@@ -156,6 +171,11 @@ function selecionarExperiencia(index) {
     document.getElementById("statusExperiencia").textContent = experienciaSelecionada.acao;
     atualizarPreview();
     document.getElementById("mensagemExperiencia").scrollIntoView({ behavior: "smooth", block: "center" });
+
+    window.MatchConnectEROS?.react({
+        tema: `${experienciaSelecionada.titulo} ${experienciaSelecionada.categoria} ${experienciaSelecionada.interesses.join(" ")}`,
+        fala: `Essa experiência combina com ${document.getElementById("matchExperiencia").value}: ${experienciaSelecionada.convite}.`
+    });
 }
 
 function renderizarCategorias() {
@@ -279,6 +299,22 @@ document.getElementById("btnSalvarExperiencia").addEventListener("click", functi
 document.getElementById("btnCopiarExperiencia").addEventListener("click", function () {
     navigator.clipboard?.writeText(mensagemDaExperiencia());
     document.getElementById("statusExperiencia").textContent = "Mensagem pronta para usar";
+});
+
+document.getElementById("btnEnviarExperiencia").addEventListener("click", function () {
+    if (!experienciaSelecionada) {
+        document.getElementById("statusExperiencia").textContent = "Escolha uma experiência";
+        return;
+    }
+
+    const match = document.getElementById("matchExperiencia").value;
+    const mensagem = mensagemDaExperiencia();
+    enviarMensagemParaConversa(match, mensagem);
+    document.getElementById("statusExperiencia").textContent = `Mensagem enviada para ${match}`;
+
+    window.setTimeout(function () {
+        window.location.href = "../Conversas/Conversas.html";
+    }, 500);
 });
 
 document.getElementById("btnAbrirParceiro").addEventListener("click", function () {

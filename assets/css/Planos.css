@@ -413,3 +413,32 @@ body {
 .text-muted {
     color: var(--match-muted) !important;
 }
+
+@media (max-width: 575.98px) {
+    .hero-planos {
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+
+    .hero-planos h1 {
+        font-size: clamp(2rem, 12vw, 3rem);
+    }
+
+    .card-plano,
+    .tabela-planos,
+    .accordion-match .accordion-item,
+    .cta-final {
+        border-radius: 8px;
+    }
+
+    .tabela-planos {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .accordion-button {
+        align-items: flex-start;
+        gap: 10px;
+    }
+}

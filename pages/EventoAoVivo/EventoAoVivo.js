@@ -128,6 +128,13 @@ function renderizarChat() {
 function adicionarMensagem(texto, tipo = "usuario", autor = "Você") {
     mensagens.push({ autor, tipo, texto });
     renderizarChat();
+
+    if (tipo === "usuario") {
+        window.MatchConnectEROS?.react({
+            tema: "ao vivo sala conversa",
+            fala: "Boa entrada: agora faz uma pergunta curta para alguém continuar o papo."
+        });
+    }
 }
 
 function simularMensagem() {
@@ -164,6 +171,10 @@ document.getElementById("btnNovaRodada").addEventListener("click", function () {
     rodadaAtual = (rodadaAtual + 1) % eventoAtual.perguntas.length;
     renderizarCabecalho();
     adicionarMensagem(`Nova rodada: ${perguntaAtual()}`, "sistema", "MatchConnect");
+    window.MatchConnectEROS?.react({
+        tema: `${eventoAtual.titulo} ao vivo`,
+        fala: `Nova rodada no ar. Eu responderia com algo pessoal e terminaria perguntando: "${perguntaAtual()}"`
+    });
 });
 
 eventoAtual = getEventoAtual();

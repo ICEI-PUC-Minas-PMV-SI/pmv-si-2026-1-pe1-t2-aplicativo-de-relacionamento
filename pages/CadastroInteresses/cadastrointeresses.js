@@ -204,6 +204,8 @@ formInteresses.addEventListener("submit", function (event) {
     localStorage.setItem("interessesUsuario", JSON.stringify(dadosInteresses));
     localStorage.setItem("filtrosMatchConnect", JSON.stringify(preferenciasDescoberta));
     localStorage.setItem("preferenciasDescoberta", JSON.stringify(preferenciasDescoberta));
+    localStorage.setItem("mostrarTourEROSHome", "true");
+    localStorage.removeItem("guiaEROSHomeVisto");
 
     mensagem.textContent = "Cadastro finalizado com sucesso!";
     mensagem.style.color = "green";

@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sala de Jogos | MatchConnect</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../../assets/css/App.css">
+    <link rel="stylesheet" href="../../assets/css/Internal.css">
+    <link rel="stylesheet" href="SalaJogos.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-match">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center gap-2" href="../home/Homeusuario.html">
+                    <i class="bi bi-heart-pulse-fill"></i> MatchConnect
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="menuPrincipal">
+                    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3 text-center">
+                        <li class="nav-item"><a class="nav-link" href="../home/Homeusuario.html">Início</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../Matches/Matches.html">Matches</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../EventoDia/EventoDia.html">Evento do dia</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link active" href="SalaJogos.html">Jogos</a></li>
+                        <li class="nav-item"><button id="btnSair" class="btn btn-entrar">Sair</button></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="eros-game-shell">
+        <div class="game-atmosphere" aria-hidden="true">
+            <span class="game-glow game-glow-one"></span>
+            <span class="game-glow game-glow-two"></span>
+            <span class="game-grid-light"></span>
+            <span class="game-particles"></span>
+        </div>
+
+        <div class="container-fluid game-container">
+            <section class="game-hero">
+                <div class="game-hero-copy">
+                    <span class="game-kicker">Sala de Jogos MatchConnect</span>
+                    <h1>O game show das conexões humanas</h1>
+                    <p>
+                        EROS conduz uma leitura social em rodadas cinematográficas para descobrir como você cria
+                        sintonia, conversa e presença.
+                    </p>
+                    <div class="game-actions">
+                        <button id="btnIniciarQuiz" class="btn game-primary-action" type="button">
+                            <i class="bi bi-play-fill"></i>
+                            Entrar na experiência
+                        </button>
+                        <button id="btnNovaPerguntaJogo" class="btn game-secondary-action" type="button">
+                            <i class="bi bi-shuffle"></i>
+                            Sinal relâmpago
+                        </button>
+                    </div>
+                </div>
+
+                <aside class="eros-host-card" aria-label="EROS apresentador">
+                    <div class="eros-hologram" aria-hidden="true">
+                        <span class="eros-core"></span>
+                        <span class="eros-ring eros-ring-one"></span>
+                        <span class="eros-ring eros-ring-two"></span>
+                        <span class="eros-face">
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </div>
+                    <span class="game-kicker">Apresentador neural</span>
+                    <h2>EROS</h2>
+                    <p id="feedbackQuiz">Aguardando seu sinal para iniciar a leitura social.</p>
+                </aside>
+            </section>
+
+            <section class="game-status-strip" aria-label="Estado da experiência">
+                <div>
+                    <span>Status</span>
+                    <strong id="statusJogo">Aguardando abertura</strong>
+                </div>
+                <div>
+                    <span>Rodada</span>
+                    <strong id="rodadaQuiz">0/5</strong>
+                </div>
+                <div>
+                    <span>Sinal social</span>
+                    <strong id="pontuacaoJogo">0%</strong>
+                </div>
+            </section>
+
+            <div class="game-room-grid">
+                <section class="game-stage-panel">
+                    <div class="round-panel">
+                        <span id="roundLabel" class="game-kicker">Experiência bloqueada</span>
+                        <h2 id="perguntaQuiz">EROS ainda não abriu a transmissão.</h2>
+                        <p id="roundDescription">Quando começar, cada escolha vai revelar uma camada do seu DNA social.
+                        </p>
+                    </div>
+
+                    <div id="opcoesQuiz" class="quiz-options cinematic-options d-none"></div>
+
+                    <section id="resultadoSocial" class="social-result-panel d-none" aria-live="polite">
+                        <span class="game-kicker">DNA Social</span>
+                        <h2 id="resultadoTitulo">Leitura concluída</h2>
+                        <p id="resultadoResumo"></p>
+                        <div id="resultadoTags" class="result-tag-grid"></div>
+                        <div class="result-actions">
+                            <button id="btnReiniciarExperiencia" class="btn game-primary-action" type="button">
+                                <i class="bi bi-arrow-clockwise"></i>
+                                Recalibrar
+                            </button>
+                            <a class="btn game-secondary-action" href="../Matches/Matches.html">
+                                <i class="bi bi-heart-fill"></i>
+                                Ver matches
+                            </a>
+                            <a id="btnAplicarNaHome" class="btn game-secondary-action" href="../home/Homeusuario.html">
+                                <i class="bi bi-house-heart"></i>
+                                Aplicar na Home
+                            </a>
+                        </div>
+                    </section>
+                </section>
+
+                <aside class="game-side">
+                    <section class="game-side-panel">
+                        <span class="game-kicker">Participantes em sintonia</span>
+                        <div id="jogadoresSala" class="game-player-list"></div>
+                        <div class="game-side-actions">
+                            <a class="btn game-secondary-action w-100" href="../Matches/Matches.html">
+                                <i class="bi bi-heart-fill"></i>
+                                Abrir matches
+                            </a>
+                            <a class="btn game-secondary-action w-100" href="../home/Homeusuario.html">
+                                <i class="bi bi-house-heart"></i>
+                                Voltar para Home
+                            </a>
+                        </div>
+                    </section>
+
+                    <section class="game-side-panel lightning-panel">
+                        <span class="game-kicker">Sinal relâmpago</span>
+                        <h2 id="perguntaQuebraGelo">Qual conversa faria você esquecer o celular na mesa por horas?</h2>
+                        <button id="btnResponderQuebraGelo" class="btn game-secondary-action w-100 mt-3" type="button">
+                            <i class="bi bi-stars"></i>
+                            Interpretar com EROS
+                        </button>
+                    </section>
+                </aside>
+            </div>
+        </div>
+
+        <section id="introCinematica" class="intro-cinematic" aria-hidden="true">
+            <div class="intro-stage">
+                <div class="intro-eros" aria-hidden="true">
+                    <span class="eros-core"></span>
+                    <span class="eros-ring eros-ring-one"></span>
+                    <span class="eros-ring eros-ring-two"></span>
+                    <span class="eros-face">
+                        <span></span>
+                        <span></span>
+                    </span>
+                </div>
+                <p id="introLine">Você está cansado de conversas que morrem no 'oi, tudo bem?'</p>
+                <button id="btnPularIntro" class="btn game-secondary-action intro-skip" type="button">
+                    Ver perguntas agora
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <script src="../../assets/js/navigation.js"></script>
+    <script src="../../assets/js/appData.js"></script>
+    <script src="SalaJogos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -1,13 +1,5 @@
-function lerJsonHome(chave, fallback) {
-    try {
-        return JSON.parse(localStorage.getItem(chave)) || fallback;
-    } catch (error) {
-        return fallback;
-    }
-}
-
-const usuarioLogado = lerJsonHome("usuarioLogado", null);
-const dadosInteresses = lerJsonHome("interessesUsuario", {});
+const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+const dadosInteresses = JSON.parse(localStorage.getItem("interessesUsuario")) || {};
 
 // A Home só pode ser acessada depois do login.
 if (!usuarioLogado) {
@@ -131,8 +123,6 @@ const personalidadeUsuario = document.getElementById("personalidadeUsuario");
 const programaIdealUsuario = document.getElementById("programaIdealUsuario");
 const perfilPercentual = document.getElementById("perfilPercentual");
 const barraPerfilHome = document.getElementById("barraPerfilHome");
-const perfilPercentualTopo = document.getElementById("perfilPercentualTopo");
-const barraPerfilTopo = document.getElementById("barraPerfilTopo");
 const totalInteresses = document.getElementById("totalInteresses");
 const tomConversa = document.getElementById("tomConversa");
 const listaConversas = document.getElementById("listaConversas");
@@ -148,11 +138,11 @@ const btnVoltar = document.getElementById("btnVoltar");
 const btnSair = document.getElementById("btnSair");
 const tabButtons = document.querySelectorAll(".tab-button");
 const tabPanels = document.querySelectorAll(".tab-panel");
-const cupidoDica = document.getElementById("erosDica");
-const cupidoAlvo = document.getElementById("erosAlvo");
-const cupidoMensagem = document.getElementById("erosMensagem");
-const cupidoOrb = document.querySelector(".pet-robot");
-const btnNovaDicaCupido = document.getElementById("btnNovaDicaEROS");
+const cupidoDica = document.getElementById("cupidoDica");
+const cupidoAlvo = document.getElementById("cupidoAlvo");
+const cupidoMensagem = document.getElementById("cupidoMensagem");
+const cupidoOrb = document.querySelector(".cupid-robot");
+const btnNovaDicaCupido = document.getElementById("btnNovaDicaCupido");
 const btnCopiarCupido = document.getElementById("btnCopiarCupido");
 const btnEnviarSugestao = document.getElementById("btnEnviarSugestao");
 const listaMatchesAnimados = document.getElementById("listaMatchesAnimados");
@@ -163,26 +153,26 @@ const quickActionCards = document.querySelectorAll(".quick-action-card");
 const homeActionStatus = document.getElementById("homeActionStatus");
 const todayModeButtons = document.querySelectorAll(".today-mode-btn");
 const listaMissoesHome = document.getElementById("listaMissoesHome");
-const cupidoGuide = document.getElementById("erosGuide");
-const cupidoGuideStep = document.getElementById("erosGuideStep");
-const cupidoGuideTitle = document.getElementById("erosGuideTitle");
-const cupidoGuideText = document.getElementById("erosGuideText");
-const btnPularGuiaCupido = document.getElementById("btnPularGuiaEROS");
-const btnProximoGuiaCupido = document.getElementById("btnProximoGuiaEROS");
-const btnCupidoPet = document.getElementById("btnEROSPet");
-const cupidoPet = document.getElementById("erosPet");
-const cupidoPetPanel = document.getElementById("erosPetPanel");
-const cupidoSpeech = document.getElementById("erosSpeech");
-const cupidoNivel = document.getElementById("erosNivel");
-const cupidoEnergiaTexto = document.getElementById("erosEnergiaTexto");
-const cupidoEnergiaBarra = document.getElementById("erosEnergiaBarra");
-const cupidoMissao = document.getElementById("erosMissao");
-const cupidoDesbloqueio = document.getElementById("erosDesbloqueio");
-const cupidoHumor = document.getElementById("erosHumor");
-const btnAlimentarCupido = document.getElementById("btnAlimentarEROS");
-const btnMissaoCupido = document.getElementById("btnMissaoEROS");
-const btnEnviarCupidoPet = document.getElementById("btnEnviarEROSPet");
-const cupidoRewardSteps = document.querySelectorAll(".eros-reward-track button");
+const cupidoGuide = document.getElementById("cupidoGuide");
+const cupidoGuideStep = document.getElementById("cupidoGuideStep");
+const cupidoGuideTitle = document.getElementById("cupidoGuideTitle");
+const cupidoGuideText = document.getElementById("cupidoGuideText");
+const btnPularGuiaCupido = document.getElementById("btnPularGuiaCupido");
+const btnProximoGuiaCupido = document.getElementById("btnProximoGuiaCupido");
+const btnCupidoPet = document.getElementById("btnCupidoPet");
+const cupidoPet = document.getElementById("cupidoPet");
+const cupidoPetPanel = document.getElementById("cupidoPetPanel");
+const cupidoSpeech = document.getElementById("cupidoSpeech");
+const cupidoNivel = document.getElementById("cupidoNivel");
+const cupidoEnergiaTexto = document.getElementById("cupidoEnergiaTexto");
+const cupidoEnergiaBarra = document.getElementById("cupidoEnergiaBarra");
+const cupidoMissao = document.getElementById("cupidoMissao");
+const cupidoDesbloqueio = document.getElementById("cupidoDesbloqueio");
+const cupidoHumor = document.getElementById("cupidoHumor");
+const btnAlimentarCupido = document.getElementById("btnAlimentarCupido");
+const btnMissaoCupido = document.getElementById("btnMissaoCupido");
+const btnEnviarCupidoPet = document.getElementById("btnEnviarCupidoPet");
+const cupidoRewardSteps = document.querySelectorAll(".cupido-reward-track button");
 
 let indiceSwipe = 0;
 let ultimoIndice = 0;
@@ -190,13 +180,15 @@ let indiceDicaCupido = 0;
 let indiceVariacaoCupido = 0;
 let indiceGuiaCupido = 0;
 let indiceHumorCupido = 0;
+let skinCupidoPreferida = null;
 let filtroGlobal = "";
 let cupidoXp = Number(localStorage.getItem("cupidoPetXp")) || 18;
 let intervaloCupidoPet = null;
+let intervaloHumorCupido = null;
 const cupidoStatsPadrao = { likes: 0, sugestoes: 0, eventos: 0, quizzes: 0 };
-const filtrosMatchConnect = lerJsonHome("filtrosMatchConnect", {});
+const filtrosMatchConnect = JSON.parse(localStorage.getItem("filtrosMatchConnect")) || {};
 const matchesCurtidos = [];
-const matchesSalvos = lerJsonHome("matchesUsuario", []);
+const matchesSalvos = JSON.parse(localStorage.getItem("matchesUsuario")) || [];
 
 const interessesUsuario = Array.isArray(dadosInteresses.interesses) ? dadosInteresses.interesses : [];
 const fotoPrincipal = dadosInteresses.fotos && dadosInteresses.fotos.length > 0
@@ -277,7 +269,7 @@ const filtrosSemResultado = Object.keys(filtrosMatchConnect).length > 0
             || (interesse && !perfil.interesses.join(" ").toLowerCase().includes(interesse));
     });
 
-// Frases gerais do EROS. A mensagem final também considera o perfil selecionado.
+// Frases gerais do Cupido. A mensagem final também considera o perfil selecionado.
 const dicasCupido = [
     "Comece pelo ponto em comum e faça uma pergunta simples. Isso deixa a conversa leve e fácil de responder.",
     "Evite abrir com elogio genérico. Mostre que você reparou em algo do perfil ou dos interesses.",
@@ -299,14 +291,14 @@ const sugestoesAcao = {
 const etapasGuiaCupido = [
     {
         titulo: "Bem-vindo ao MatchConnect",
-        texto: "Eu sou o EROS. Vou te mostrar rapidinho onde encontrar matches, conversas, eventos e minhas missões."
+        texto: "Eu sou o CupiBot. Vou te mostrar rapidinho onde encontrar matches, conversas, eventos e minhas missões."
     },
     {
         titulo: "Descobrir perfis",
         texto: "A área Descobrir é o centro da Home: veja compatibilidade, interesses em comum e use curtir, recusar ou voltar."
     },
     {
-        titulo: "EROS flutuante",
+        titulo: "CupiBot flutuante",
         texto: "Eu fico no canto da tela com energia, missões, recompensas e frases para te ajudar a puxar assunto."
     },
     {
@@ -336,15 +328,18 @@ const falasContextuaisCupido = [
     "Tem mensagem esperando resposta. Eu não quero pressionar, mas minha antena já leu três vezes.",
     "Chama alguém para conversar antes que eu mesmo escreva uma cantada duvidosa.",
     "Mensagem não lida combina com resposta boa. Quer que eu sugira uma?",
+    "Meu nome é Cupi. CupiBot. E minha missão é impedir primeira mensagem sem graça.",
+    "Chama esse match para ver um filme e discutir a pipoca depois.",
+    "Chama alguém para correr, caminhar ou fingir que alonga direito.",
     "Eu estou vendo esse perfil e minha antena está fazendo barulho.",
-    "Dica do EROS: procure o interesse em comum antes de mandar mensagem.",
+    "Dica de CupiBot: procure o interesse em comum antes de mandar mensagem.",
     "Se travar, eu gero uma frase. Se funcionar, digo que foi estratégia.",
     "Você pode abrir o evento do dia e deixar o assunto acontecer sozinho.",
     "Respira. Curtir um perfil não assina contrato com o universo."
 ];
 
 const missoesCupidoPet = [
-    "Curta um perfil para calibrar o EROS.",
+    "Curta um perfil para alimentar o Cupido.",
     "Use uma dica de conversa para ganhar foco.",
     "Abra o evento do dia para ganhar energia social.",
     "Complete seu perfil para liberar mais destaque.",
@@ -354,19 +349,23 @@ const missoesCupidoPet = [
 const modosHoje = {
     conversar: {
         status: "Modo conversa ativado: vou priorizar perfis com bons assuntos em comum.",
-        fala: "Modo conversa ligado. Prometo tentar evitar papo com energia de formulário."
+        fala: "Modo conversa ligado. Meu nome é Cupi. CupiBot. Licença para salvar primeiras mensagens concedida.",
+        skin: "agente"
     },
     sair: {
         status: "Modo sair ativado: eventos, cafés e convites inteligentes ganham prioridade.",
-        fala: "Modo sair ligado. Local público, horário combinado e charme moderado."
+        fala: "Modo sair ligado. Chama para algo leve, público e com sobremesa como plano B.",
+        skin: "gastronomia"
     },
     evento: {
         status: "Modo evento ativado: o Evento do Dia e salas ao vivo entram no centro da experiência.",
-        fala: "Modo evento ligado. Assunto pronto é meio caminho para não travar."
+        fala: "Modo evento ligado. Entra na sala, manda uma resposta curta e puxa uma pergunta.",
+        skin: "evento"
     },
     jogar: {
         status: "Modo jogar ativado: use a Sala de Jogos para quebrar o gelo antes da conversa.",
-        fala: "Modo jogar ligado. Competição leve revela mais que bio de três linhas."
+        fala: "Modo jogar ligado. Chama para um quiz e deixa a compatibilidade aparecer no placar.",
+        skin: "games"
     }
 };
 
@@ -375,7 +374,7 @@ const desbloqueiosCupidoPet = [
     "Missão extra de perfil",
     "Sugestão de evento compatível",
     "Impulso visual nos matches",
-    "Super dica do EROS"
+    "Super dica do Cupido"
 ];
 
 const recompensasCupidoPet = {
@@ -393,8 +392,17 @@ const humoresCupidoPet = [
     "lendário"
 ];
 
+const skinsCupidoPet = ["padrao", "agente", "cinema", "esportista", "gastronomia", "evento", "games"];
+
 function humorAtualCupido(nivel) {
     return humoresCupidoPet[(nivel - 1 + indiceHumorCupido) % humoresCupidoPet.length];
+}
+
+function aplicarSkinCupido(skin) {
+    if (!cupidoPet) return;
+
+    cupidoPet.classList.remove("cupido-skin-padrao", "cupido-skin-agente", "cupido-skin-cinema", "cupido-skin-esportista", "cupido-skin-gastronomia", "cupido-skin-evento", "cupido-skin-games");
+    cupidoPet.classList.add(`cupido-skin-${skin}`);
 }
 
 // Mede a força do perfil com base nos campos mais importantes preenchidos.
@@ -436,15 +444,6 @@ function preencherPerfil() {
     programaIdealUsuario.textContent = dadosInteresses.programaIdeal || "Não informado";
     perfilPercentual.textContent = `${progresso}% completo`;
     barraPerfilHome.style.width = `${progresso}%`;
-
-    if (perfilPercentualTopo) {
-        perfilPercentualTopo.textContent = `${progresso}%`;
-    }
-
-    if (barraPerfilTopo) {
-        barraPerfilTopo.style.width = `${progresso}%`;
-    }
-
     totalInteresses.textContent = `${interessesUsuario.length} interesse${interessesUsuario.length === 1 ? "" : "s"}`;
     tomConversa.textContent = dadosInteresses.personalidade || "Conversa leve";
 
@@ -458,20 +457,6 @@ function preencherPerfil() {
 
     if (filtrosSemResultado) {
         resumoAfinidade.textContent += " Como nenhum perfil bateu exatamente com os filtros, mostramos sugestões por afinidade.";
-    }
-
-    const radarTags = document.getElementById("radarTags");
-    if (radarTags) {
-        const distancia = filtrosMatchConnect.distanciaMaxima ? `${filtrosMatchConnect.distanciaMaxima} km` : "Até 30 km";
-        const tagsRadar = [
-            ...interessesUsuario.slice(0, 3),
-            dadosInteresses.personalidade || "Conversas leves",
-            distancia
-        ].filter(Boolean);
-
-        radarTags.innerHTML = tagsRadar.slice(0, 5).map(function (tag) {
-            return `<span class="mood-chip"><i class="bi bi-stars"></i>${tag}</span>`;
-        }).join("");
     }
 
     listaInteressesUsuario.innerHTML = "";
@@ -543,10 +528,10 @@ function obterPerfilAtual() {
     return perfisDescoberta[indiceSwipe] || perfisDescoberta[0];
 }
 
-// Monta variações de mensagem do EROS para evitar sempre o mesmo texto.
+// Monta variações de mensagem do Cupido para evitar sempre o mesmo texto.
 function montarMensagemCupido(perfil) {
     if (!perfil) {
-        return "Complete seus interesses para o EROS criar uma abertura mais personalizada.";
+        return "Complete seus interesses para o Cupido criar uma abertura mais personalizada.";
     }
 
     const interessePrincipal = perfil.interessesEmComum[0] || perfil.interesses[0] || "um assunto em comum";
@@ -595,16 +580,10 @@ function registrarAcaoCupido(tipo, quantidade = 1) {
     renderizarMissoesHome();
 }
 
-function atualizarCupidoPet(fala) {
+function atualizarAparenciaCupido() {
     const nivel = nivelCupido();
     const humor = humorAtualCupido(nivel);
-    const energia = cupidoXp % 25;
-    const percentual = Math.min(100, (energia / 25) * 100);
-    const xpProximoNivel = 25 - energia;
-
-    if (cupidoNivel) {
-        cupidoNivel.textContent = `Nível ${nivel}`;
-    }
+    const skin = skinCupidoPreferida || skinsCupidoPet[indiceHumorCupido % skinsCupidoPet.length];
 
     if (cupidoHumor) {
         cupidoHumor.textContent = `Humor: ${humor}`;
@@ -614,6 +593,21 @@ function atualizarCupidoPet(fala) {
         cupidoPet.classList.remove("cupido-state-curioso", "cupido-state-animado", "cupido-state-inspirado", "cupido-state-confiante", "cupido-state-lendario");
         cupidoPet.classList.add(`cupido-state-${humor.replace("á", "a")}`);
     }
+
+    aplicarSkinCupido(skin);
+}
+
+function atualizarCupidoPet(fala) {
+    const nivel = nivelCupido();
+    const energia = cupidoXp % 25;
+    const percentual = Math.min(100, (energia / 25) * 100);
+    const xpProximoNivel = 25 - energia;
+
+    if (cupidoNivel) {
+        cupidoNivel.textContent = `Nível ${nivel}`;
+    }
+
+    atualizarAparenciaCupido();
 
     if (cupidoEnergiaTexto) {
         cupidoEnergiaTexto.textContent = `${cupidoXp} XP • ${xpProximoNivel === 25 ? 25 : xpProximoNivel} para subir`;
@@ -630,7 +624,7 @@ function atualizarCupidoPet(fala) {
     if (cupidoDesbloqueio) {
         const proximo = desbloqueiosCupidoPet[Math.min(nivel, desbloqueiosCupidoPet.length - 1)];
         cupidoDesbloqueio.textContent = nivel >= 5
-            ? "Super dica desbloqueada. EROS está impossível hoje."
+            ? "Super dica desbloqueada. CupiBot está impossível hoje."
             : `Próximo: ${proximo}`;
     }
 
@@ -640,12 +634,7 @@ function atualizarCupidoPet(fala) {
 
     if (cupidoSpeech) {
         cupidoSpeech.textContent = fala || falasCupidoPet[cupidoXp % falasCupidoPet.length];
-
-        if (cupidoPetPanel?.classList.contains("show")) {
-            cupidoSpeech.classList.remove("show");
-        } else {
-            cupidoSpeech.classList.add("show");
-        }
+        cupidoSpeech.classList.add("show");
     }
 }
 
@@ -689,9 +678,12 @@ function falarCupidoContextual() {
     const falasRotativas = [
         "Caraaa, ela está tão na sua!! Só não deixa o momento esfriar.",
         falaMensagem,
+        "Meu nome é Cupi. CupiBot. Licença para criar assunto melhor concedida.",
+        "Chama esse match para um filme e deixa eu escolher uma frase boa.",
+        "Chama alguém para uma caminhada e finge naturalidade.",
         "Puxa uma mensagem agora. Começa pelo interesse em comum e deixa o resto comigo.",
         "Eu estou analisando esse match e minha antena está brilhando de intrometida.",
-        "Se travar, abre o EROS: eu monto uma frase menos genérica."
+        "Se travar, abre o CupiBot: eu monto uma frase menos genérica."
     ];
     const base = falasRotativas[indiceHumorCupido % falasRotativas.length];
     const fala = perfil
@@ -699,6 +691,11 @@ function falarCupidoContextual() {
         : base;
 
     atualizarCupidoPet(fala);
+}
+
+function alternarHumorCupido() {
+    indiceHumorCupido += 1;
+    atualizarAparenciaCupido();
 }
 
 function ganharXpCupido(pontos, fala) {
@@ -743,8 +740,10 @@ function enviarMensagemCupidoPet() {
 
 function iniciarInteracoesCupido() {
     clearInterval(intervaloCupidoPet);
-    window.setTimeout(falarCupidoContextual, 900);
-    intervaloCupidoPet = window.setInterval(falarCupidoContextual, 5000);
+    clearInterval(intervaloHumorCupido);
+    window.setTimeout(falarCupidoContextual, 1000);
+    intervaloCupidoPet = window.setInterval(falarCupidoContextual, 8000);
+    intervaloHumorCupido = window.setInterval(alternarHumorCupido, 2800);
 }
 
 function interagirCupidoAoClique() {
@@ -752,21 +751,18 @@ function interagirCupidoAoClique() {
 
     if (painelAberto) {
         cupidoPetPanel.classList.remove("show");
-        cupidoPet?.classList.remove("is-panel-open");
         atualizarCupidoPet("Fechando meu painel. Mas continuo de olho nos matches.");
         return;
     }
 
     const perfil = obterPerfilAtual();
-    const acoes = ["coracoes", "dica", "descobrir", "missao", "evento"];
+    const acoes = ["coracoes", "dica", "descobrir", "missao", "evento", "agente", "cinema", "esportista"];
     const acao = acoes[(cupidoXp + indiceHumorCupido + indiceSwipe) % acoes.length];
 
     indiceHumorCupido += 1;
 
     if (cupidoPetPanel) {
         cupidoPetPanel.classList.add("show");
-        cupidoPet?.classList.add("is-panel-open");
-        cupidoSpeech?.classList.remove("show");
     }
 
     if (acao === "coracoes") {
@@ -791,9 +787,30 @@ function interagirCupidoAoClique() {
 
     if (acao === "evento") {
         if (homeActionStatus) {
-            homeActionStatus.textContent = "EROS lembrou do evento do dia: entrar em uma sala ao vivo pode render assunto sem esforço.";
+            homeActionStatus.textContent = "CupiBot lembrou do evento do dia: entrar em uma sala ao vivo pode render assunto sem esforço.";
         }
         ganharXpCupido(1, "Sugestão do momento: entre no evento do dia e deixe o assunto começar sozinho.");
+        return;
+    }
+
+    if (acao === "agente") {
+        ganharXpCupido(1, "Meu nome é Cupi. CupiBot. Missão secreta: mandar uma mensagem boa hoje.");
+        skinCupidoPreferida = "agente";
+        aplicarSkinCupido("agente");
+        return;
+    }
+
+    if (acao === "cinema") {
+        ganharXpCupido(1, "Chama o match para ver um filme e discutir qual pipoca vence.");
+        skinCupidoPreferida = "cinema";
+        aplicarSkinCupido("cinema");
+        return;
+    }
+
+    if (acao === "esportista") {
+        ganharXpCupido(1, "Chama alguém para correr, caminhar ou só comprar água com estilo.");
+        skinCupidoPreferida = "esportista";
+        aplicarSkinCupido("esportista");
         return;
     }
 
@@ -845,6 +862,7 @@ function prepararAcaoHome(acao) {
 
 function ativarModoHoje(modo) {
     const config = modosHoje[modo] || modosHoje.conversar;
+    skinCupidoPreferida = config.skin;
 
     todayModeButtons.forEach(function (button) {
         button.classList.toggle("active", button.dataset.mode === modo);
@@ -854,6 +872,7 @@ function ativarModoHoje(modo) {
     if (homeActionStatus) {
         homeActionStatus.textContent = config.status;
     }
+    atualizarAparenciaCupido();
     atualizarCupidoPet(config.fala);
 }
 
@@ -881,7 +900,7 @@ function animarCoracoesCupido() {
 
     for (let index = 0; index < 6; index += 1) {
         const heart = document.createElement("span");
-        heart.className = "eros-feed-heart";
+        heart.className = "cupido-feed-heart";
         heart.innerHTML = '<i class="bi bi-heart-fill"></i>';
         heart.style.setProperty("--heart-x", `${(index - 2.5) * 16}px`);
         heart.style.setProperty("--heart-delay", `${index * 70}ms`);
@@ -893,7 +912,7 @@ function animarCoracoesCupido() {
     }
 }
 
-// Atualiza o EROS e dispara a animação do robozinho.
+// Atualiza a aba Cupido e dispara a animação do robozinho.
 function atualizarCupido() {
     const perfil = obterPerfilAtual();
     const dica = dicasCupido[indiceDicaCupido % dicasCupido.length];
@@ -903,7 +922,7 @@ function atualizarCupido() {
         cupidoAlvo.textContent = `Mensagem sugerida para ${nomePerfil}`;
     }
 
-    cupidoDica.textContent = `${dica} Agora o EROS está olhando para ${nomePerfil}.`;
+    cupidoDica.textContent = `${dica} Agora o Cupido está olhando para ${nomePerfil}.`;
     cupidoMensagem.textContent = montarMensagemCupido(perfil);
 
     if (cupidoOrb) {
@@ -963,7 +982,7 @@ function renderizarSwipe() {
         `;
         contadorSwipe.textContent = "0/0";
         cupidoAlvo.textContent = "Mensagem sugerida";
-        cupidoDica.textContent = "Ajuste a busca ou edite seus interesses para o EROS encontrar novas conexões.";
+        cupidoDica.textContent = "Ajuste a busca ou edite seus interesses para o Cupido encontrar novas conexões.";
         cupidoMensagem.textContent = "Sem perfil selecionado no momento.";
         sugestaoConversa.textContent = "Quando um perfil aparecer, a sugestão de conversa será atualizada aqui.";
         btnRecusar.disabled = true;
@@ -982,12 +1001,7 @@ function renderizarSwipe() {
 
     cardPerfilSwipe.innerHTML = `
         <div class="discover-photo discover-photo-${perfil.inicial.toLowerCase()}">
-            <div class="photo-signal"><i class="bi bi-heart-pulse"></i>${perfil.percentual}% match</div>
             <span>${perfil.inicial}</span>
-            <div class="photo-caption">
-                <small>Principal afinidade</small>
-                <strong>${interessesParaExibir[0] || "Conversa"}</strong>
-            </div>
         </div>
         <div class="discover-info">
             <div class="d-flex justify-content-between align-items-start gap-3 mb-2">
@@ -1013,7 +1027,7 @@ function renderizarSwipe() {
             <div class="discover-cupid-tip">
                 <i class="bi bi-stars"></i>
                 <span>
-                    <small>EROS sugere</small>
+                    <small>CupiBot sugere</small>
                     <strong>${sugestaoCupido}</strong>
                 </span>
             </div>
@@ -1095,7 +1109,7 @@ function mostrarAnimacaoMatch(perfil) {
     }, 1800);
 }
 
-// Controla a troca entre abas: EROS, Matches, Eventos e Segurança.
+// Controla a troca entre abas: Cupido, Matches, Eventos e Segurança.
 function ativarAba(idPainel) {
     tabButtons.forEach(function (button) {
         const ativo = button.dataset.tab === idPainel;
@@ -1114,7 +1128,7 @@ function marcarGuiaCupidoComoVisto() {
     localStorage.removeItem("mostrarTourCupidoHome");
 }
 
-// Fecha o guia inicial do EROS.
+// Fecha o guia inicial do Cupido.
 function fecharGuiaCupido() {
     if (!cupidoGuide) {
         return;
@@ -1236,22 +1250,20 @@ if (listaMissoesHome) {
     });
 }
 
-document.querySelector(".eros-reward-track")?.addEventListener("click", function (event) {
+document.querySelector(".cupido-reward-track")?.addEventListener("click", function (event) {
     const botao = event.target.closest("[data-reward]");
     if (!botao) return;
 
     atualizarCupidoPet(recompensasCupidoPet[botao.dataset.reward]);
 });
 
-if (btnNovaDicaCupido) {
-    btnNovaDicaCupido.addEventListener("click", function () {
-        indiceDicaCupido += 1;
-        indiceVariacaoCupido += 1;
-        atualizarCupido();
-        atualizarSugestao();
-        ganharXpCupido(4, "Dica gerada. Eu aceito pagamento em atenção e curtidas.");
-    });
-}
+btnNovaDicaCupido.addEventListener("click", function () {
+    indiceDicaCupido += 1;
+    indiceVariacaoCupido += 1;
+    atualizarCupido();
+    atualizarSugestao();
+    ganharXpCupido(4, "Dica gerada. Eu aceito pagamento em atenção e curtidas.");
+});
 
 if (btnCupidoPet) {
     btnCupidoPet.addEventListener("click", function () {
@@ -1279,7 +1291,7 @@ if (btnEnviarCupidoPet) {
 if (btnCopiarCupido) {
     btnCopiarCupido.addEventListener("click", function () {
         sugestaoConversa.textContent = cupidoMensagem.textContent;
-        resultadoSwipe.textContent = "Dica do EROS enviada para a sugestão de conversa.";
+        resultadoSwipe.textContent = "Dica do Cupido enviada para a sugestão de conversa.";
         btnCopiarCupido.textContent = "Sugestão adicionada";
         window.setTimeout(function () {
             btnCopiarCupido.textContent = "Usar na conversa";

@@ -1280,6 +1280,989 @@ body {
     }
 }
 
+/* EROS global: deus do amor em versao holografica/futurista. */
+.global-eros-orb {
+    background:
+        radial-gradient(circle at 50% 45%, rgba(255, 255, 255, 0.78), rgba(0, 224, 255, 0.12) 55%, transparent 70%),
+        linear-gradient(135deg, rgba(155, 78, 255, 0.28), rgba(0, 224, 255, 0.20));
+    border-color: rgba(180, 246, 255, 0.62);
+}
+
+.global-eros-robot {
+    background:
+        radial-gradient(circle at 30% 18%, rgba(255, 255, 255, 0.95) 0 8%, transparent 9%),
+        linear-gradient(155deg, rgba(255, 255, 255, 0.96) 0 22%, rgba(226, 244, 255, 0.92) 23% 48%, rgba(143, 92, 255, 0.42) 49% 72%, rgba(16, 22, 45, 0.96) 73% 100%);
+    border: 1px solid rgba(186, 242, 255, 0.78);
+    border-radius: 30px 30px 24px 24px;
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.62) inset,
+        0 0 22px rgba(0, 224, 255, 0.32),
+        0 0 36px rgba(155, 78, 255, 0.30),
+        0 18px 40px rgba(40, 33, 92, 0.25);
+    overflow: visible;
+}
+
+.global-eros-aura {
+    background:
+        radial-gradient(circle, rgba(0, 224, 255, 0.26), transparent 58%),
+        conic-gradient(from 20deg, rgba(155, 78, 255, 0.04), rgba(0, 224, 255, 0.22), rgba(255, 255, 255, 0.10), rgba(155, 78, 255, 0.04));
+    border: 1px solid rgba(180, 246, 255, 0.26);
+    border-radius: 50%;
+    inset: -18px;
+    opacity: 0.9;
+    position: absolute;
+    z-index: -2;
+}
+
+.global-eros-robot::after {
+    background:
+        radial-gradient(circle at 20% 40%, rgba(0, 224, 255, 0.85) 0 2px, transparent 3px),
+        radial-gradient(circle at 62% 22%, rgba(255, 255, 255, 0.85) 0 2px, transparent 3px),
+        radial-gradient(circle at 78% 70%, rgba(155, 78, 255, 0.85) 0 2px, transparent 3px);
+    border: 0;
+    border-radius: 50%;
+    content: "";
+    inset: -23px;
+    opacity: 0.88;
+    position: absolute;
+    transform: none;
+    width: auto;
+    height: auto;
+    z-index: -1;
+}
+
+.global-eros-face {
+    background: linear-gradient(180deg, rgba(16, 22, 45, 0.96), rgba(10, 13, 30, 0.98));
+    border: 1px solid rgba(0, 224, 255, 0.32);
+    border-radius: 20px 20px 16px 16px;
+    box-shadow: inset 0 1px 10px rgba(255, 255, 255, 0.10), 0 0 18px rgba(0, 224, 255, 0.24);
+    height: 42px;
+    margin-top: -8px;
+    padding: 10px 9px 8px;
+    width: 54px;
+    z-index: 2;
+}
+
+.global-eros-eye {
+    background: linear-gradient(90deg, #ffffff 0%, #00e0ff 45%, #9b4eff 100%);
+    border-radius: 999px;
+    box-shadow: 0 0 14px rgba(0, 224, 255, 0.84);
+    height: 5px;
+    width: 13px;
+}
+
+.global-eros-mouth {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.78);
+    height: 6px;
+    opacity: 0.78;
+    width: 17px;
+}
+
+.global-eros-antenna {
+    background: linear-gradient(180deg, transparent, rgba(0, 224, 255, 0.9));
+    box-shadow: 0 0 14px rgba(0, 224, 255, 0.6);
+}
+
+.global-eros-antenna::before {
+    background: #00e0ff;
+    box-shadow: 0 0 18px rgba(0, 224, 255, 0.9), 0 0 28px rgba(155, 78, 255, 0.5);
+}
+
+.global-eros-wing {
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.34), rgba(0, 224, 255, 0.14) 42%, rgba(155, 78, 255, 0.10)),
+        repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.0) 0 7px, rgba(0, 224, 255, 0.35) 8px 9px);
+    border: 1px solid rgba(0, 224, 255, 0.42);
+    box-shadow: 0 0 18px rgba(0, 224, 255, 0.28), inset 0 0 14px rgba(255, 255, 255, 0.18);
+    clip-path: polygon(0 50%, 28% 8%, 100% 0, 74% 52%, 100% 100%, 26% 86%);
+    height: 46px;
+    opacity: 0.86;
+    top: 19px;
+    width: 40px;
+}
+
+.global-eros-wing-left {
+    left: -28px;
+    transform: rotate(-12deg);
+}
+
+.global-eros-wing-right {
+    right: -28px;
+    transform: scaleX(-1) rotate(-12deg);
+}
+
+.global-eros-robe {
+    background:
+        linear-gradient(120deg, rgba(255, 255, 255, 0.92) 0 44%, rgba(210, 242, 255, 0.74) 45% 62%, rgba(155, 78, 255, 0.32) 63%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(196, 231, 255, 0.72));
+    border: 1px solid rgba(255, 255, 255, 0.64);
+    border-radius: 4px 4px 16px 16px;
+    bottom: 5px;
+    box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.35), 0 0 16px rgba(0, 224, 255, 0.16);
+    height: 24px;
+    left: 22px;
+    position: absolute;
+    transform: skewX(-9deg);
+    width: 28px;
+    z-index: 1;
+}
+
+.global-eros-bow {
+    border: 2px solid rgba(0, 224, 255, 0.82);
+    border-left: 0;
+    border-radius: 0 999px 999px 0;
+    box-shadow: 0 0 14px rgba(0, 224, 255, 0.72), 0 0 20px rgba(155, 78, 255, 0.36);
+    height: 50px;
+    position: absolute;
+    right: -14px;
+    top: 15px;
+    transform: rotate(-12deg);
+    width: 20px;
+    z-index: 3;
+}
+
+.global-eros-arrow {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.0), #ffffff 24%, #00e0ff 58%, #9b4eff 100%);
+    border-radius: 999px;
+    box-shadow: 0 0 12px rgba(0, 224, 255, 0.72);
+    height: 2px;
+    position: absolute;
+    right: -11px;
+    top: 39px;
+    transform: rotate(-12deg);
+    width: 47px;
+    z-index: 4;
+}
+
+.global-eros-arrow::after {
+    border-bottom: 5px solid transparent;
+    border-left: 9px solid #00e0ff;
+    border-top: 5px solid transparent;
+    content: "";
+    position: absolute;
+    right: -6px;
+    top: -4px;
+}
+
+.global-eros-heart {
+    background: linear-gradient(135deg, #9b4eff, #00e0ff);
+    box-shadow: 0 0 18px rgba(0, 224, 255, 0.56);
+}
+
+/* ================= INTERNAL VISUAL FINAL OVERRIDES ================= */
+.page-heading {
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(244, 251, 255, 0.80)) padding-box,
+        linear-gradient(135deg, rgba(253, 81, 179, 0.22), rgba(134, 82, 245, 0.18), rgba(37, 168, 223, 0.20)) border-box;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    box-shadow: 0 18px 48px rgba(67, 45, 138, 0.08);
+    padding: clamp(20px, 3vw, 30px);
+}
+
+.page-heading-main {
+    align-items: center;
+    display: flex;
+    gap: 16px;
+}
+
+.page-heading-icon,
+.visual-icon {
+    align-items: center;
+    background:
+        radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.74), transparent 28%),
+        linear-gradient(135deg, var(--match-pink), var(--match-purple) 58%, var(--match-blue));
+    border-radius: 8px;
+    box-shadow: 0 18px 38px rgba(134, 82, 245, 0.18);
+    color: #ffffff;
+    display: inline-flex;
+    flex: 0 0 auto;
+    font-size: 1.45rem;
+    height: 58px;
+    justify-content: center;
+    width: 58px;
+}
+
+.visual-panel {
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 255, 0.90)) padding-box,
+        linear-gradient(135deg, rgba(134, 82, 245, 0.18), rgba(37, 168, 223, 0.18)) border-box;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    box-shadow: 0 16px 42px rgba(67, 45, 138, 0.08);
+    padding: clamp(18px, 2.6vw, 26px);
+}
+
+.visual-card,
+.feature-card.visual-card,
+.match-profile-card {
+    background:
+        radial-gradient(circle at 100% 0%, rgba(37, 168, 223, 0.08), transparent 32%),
+        linear-gradient(180deg, #ffffff 0%, #fbfcff 100%);
+    border: 1px solid #ece7ff;
+    border-radius: 8px;
+    box-shadow: 0 14px 34px rgba(67, 45, 138, 0.07);
+    overflow: hidden;
+    padding: 22px;
+    position: relative;
+}
+
+.visual-card::before,
+.match-profile-card::before {
+    background: linear-gradient(90deg, var(--match-pink), var(--match-purple), var(--match-blue));
+    content: "";
+    height: 4px;
+    inset: 0 0 auto;
+    opacity: 0.78;
+    position: absolute;
+}
+
+.match-profile-card {
+    display: grid;
+    gap: 16px;
+}
+
+.match-profile-head {
+    align-items: center;
+    display: flex;
+    gap: 14px;
+}
+
+.match-profile-meta {
+    color: var(--match-muted);
+    font-size: 0.92rem;
+}
+
+.match-profile-actions {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.empty-state {
+    align-items: center;
+    background:
+        radial-gradient(circle at 50% 0%, rgba(253, 81, 179, 0.10), transparent 34%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(244, 251, 255, 0.88)) padding-box,
+        linear-gradient(135deg, rgba(253, 81, 179, 0.24), rgba(134, 82, 245, 0.18), rgba(37, 168, 223, 0.20)) border-box;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    color: var(--match-muted);
+    display: grid;
+    gap: 12px;
+    justify-items: center;
+    min-height: 260px;
+    padding: 34px 24px;
+    text-align: center;
+    width: 100%;
+}
+
+.empty-state i {
+    align-items: center;
+    background: linear-gradient(135deg, var(--match-pink), var(--match-purple) 58%, var(--match-blue));
+    border-radius: 50%;
+    box-shadow: 0 18px 40px rgba(134, 82, 245, 0.22);
+    color: #ffffff;
+    display: inline-flex;
+    font-size: 2rem;
+    height: 76px;
+    justify-content: center;
+    width: 76px;
+}
+
+.empty-state strong {
+    color: var(--match-ink);
+    font-size: 1.24rem;
+    font-weight: 900;
+}
+
+.empty-state p {
+    margin: 0;
+    max-width: 440px;
+}
+
+.notification-item {
+    align-items: flex-start;
+    background: #ffffff;
+    border: 1px solid #ece7ff;
+    border-radius: 8px;
+    display: flex;
+    gap: 13px;
+    padding: 15px;
+}
+
+.notification-item.is-new {
+    background: linear-gradient(135deg, #fff8fb 0%, #f7f5ff 58%, #eef9ff 100%);
+}
+
+.notification-item>i {
+    align-items: center;
+    background: #f2efff;
+    border-radius: 8px;
+    color: var(--match-purple);
+    display: inline-flex;
+    flex: 0 0 auto;
+    font-size: 1.1rem;
+    height: 42px;
+    justify-content: center;
+    width: 42px;
+}
+
+.chat-message {
+    border-radius: 8px;
+    display: inline-block;
+    max-width: min(620px, 88%);
+    padding: 12px 14px;
+}
+
+.chat-message.incoming {
+    background: #ffffff;
+    border: 1px solid #ece7ff;
+    color: var(--match-ink);
+}
+
+.chat-message.outgoing {
+    background: linear-gradient(135deg, var(--match-pink), var(--match-purple) 58%, var(--match-blue));
+    color: #ffffff;
+}
+
+.avatar-md.avatar-person,
+.avatar-xl.avatar-person {
+    background:
+        radial-gradient(circle at 50% 24%, rgba(255, 255, 255, 0.78), transparent 18%),
+        linear-gradient(145deg, #fd51b3 0%, #8652f5 56%, #25a8df 100%);
+    position: relative;
+}
+
+.avatar-person::before {
+    background: radial-gradient(circle at 50% 35%, #fff3fa 0 29%, transparent 30%);
+    border-radius: 50%;
+    content: "";
+    height: 58%;
+    left: 21%;
+    opacity: 0.78;
+    position: absolute;
+    top: 14%;
+    width: 58%;
+}
+
+.avatar-person::after {
+    background: rgba(32, 29, 50, 0.18);
+    border-radius: 50% 50% 18% 18%;
+    bottom: -15%;
+    content: "";
+    height: 48%;
+    left: 13%;
+    position: absolute;
+    width: 74%;
+}
+
+.avatar-person>span {
+    position: relative;
+    z-index: 1;
+}
+
+@media (max-width: 767.98px) {
+    .page-heading,
+    .page-heading-main,
+    .page-heading .page-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .page-actions .btn,
+    .match-profile-actions .btn,
+    #formMensagem .btn {
+        width: 100%;
+    }
+}
+
+/* ================= INTERNAL VISUAL SYSTEM ================= */
+.navbar-match {
+    position: sticky;
+    top: 0;
+    z-index: 1040;
+}
+
+.navbar-match .app-main-nav {
+    gap: 0.35rem !important;
+}
+
+.navbar-match .app-main-nav .nav-link {
+    min-height: 38px;
+}
+
+.navbar-match .app-main-nav .dropdown-menu {
+    min-width: 268px;
+}
+
+.page-shell {
+    overflow: hidden;
+    position: relative;
+}
+
+.page-shell::before {
+    background:
+        radial-gradient(circle at 8% 0%, rgba(253, 81, 179, 0.10), transparent 30%),
+        radial-gradient(circle at 92% 4%, rgba(37, 168, 223, 0.12), transparent 32%);
+    content: "";
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+    z-index: -1;
+}
+
+.page-heading {
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(244, 251, 255, 0.78)) padding-box,
+        linear-gradient(135deg, rgba(253, 81, 179, 0.22), rgba(134, 82, 245, 0.18), rgba(37, 168, 223, 0.20)) border-box;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    box-shadow: 0 18px 48px rgba(67, 45, 138, 0.08);
+    padding: clamp(20px, 3vw, 30px);
+}
+
+.page-heading-icon,
+.visual-icon {
+    align-items: center;
+    background:
+        radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.74), transparent 28%),
+        linear-gradient(135deg, var(--match-pink), var(--match-purple) 58%, var(--match-blue));
+    border-radius: 8px;
+    box-shadow: 0 18px 38px rgba(134, 82, 245, 0.18);
+    color: #ffffff;
+    display: inline-flex;
+    flex: 0 0 auto;
+    font-size: 1.45rem;
+    height: 58px;
+    justify-content: center;
+    width: 58px;
+}
+
+.page-heading-main {
+    align-items: center;
+    display: flex;
+    gap: 16px;
+}
+
+.page-heading .page-actions,
+.page-actions {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.visual-panel {
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 255, 0.90)) padding-box,
+        linear-gradient(135deg, rgba(134, 82, 245, 0.18), rgba(37, 168, 223, 0.18)) border-box;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    box-shadow: 0 16px 42px rgba(67, 45, 138, 0.08);
+    padding: clamp(18px, 2.6vw, 26px);
+}
+
+.visual-card,
+.feature-card.visual-card,
+.match-profile-card {
+    background:
+        radial-gradient(circle at 100% 0%, rgba(37, 168, 223, 0.08), transparent 32%),
+        linear-gradient(180deg, #ffffff 0%, #fbfcff 100%);
+    border: 1px solid #ece7ff;
+    border-radius: 8px;
+    box-shadow: 0 14px 34px rgba(67, 45, 138, 0.07);
+    overflow: hidden;
+    padding: 22px;
+    position: relative;
+}
+
+.visual-card::before,
+.match-profile-card::before {
+    background: linear-gradient(90deg, var(--match-pink), var(--match-purple), var(--match-blue));
+    content: "";
+    height: 4px;
+    inset: 0 0 auto;
+    opacity: 0.78;
+    position: absolute;
+}
+
+.match-profile-card {
+    display: grid;
+    gap: 16px;
+}
+
+.match-profile-head {
+    align-items: center;
+    display: flex;
+    gap: 14px;
+}
+
+.match-profile-meta {
+    color: var(--match-muted);
+    font-size: 0.92rem;
+}
+
+.match-profile-actions {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.empty-state {
+    align-items: center;
+    background:
+        radial-gradient(circle at 50% 0%, rgba(253, 81, 179, 0.10), transparent 34%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(244, 251, 255, 0.88)) padding-box,
+        linear-gradient(135deg, rgba(253, 81, 179, 0.24), rgba(134, 82, 245, 0.18), rgba(37, 168, 223, 0.20)) border-box;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    color: var(--match-muted);
+    display: grid;
+    gap: 12px;
+    justify-items: center;
+    min-height: 260px;
+    padding: 34px 24px;
+    text-align: center;
+    width: 100%;
+}
+
+.empty-state i {
+    align-items: center;
+    background: linear-gradient(135deg, var(--match-pink), var(--match-purple) 58%, var(--match-blue));
+    border-radius: 50%;
+    box-shadow: 0 18px 40px rgba(134, 82, 245, 0.22);
+    color: #ffffff;
+    display: inline-flex;
+    font-size: 2rem;
+    height: 76px;
+    justify-content: center;
+    width: 76px;
+}
+
+.empty-state strong {
+    color: var(--match-ink);
+    font-size: 1.24rem;
+    font-weight: 900;
+}
+
+.empty-state p {
+    margin: 0;
+    max-width: 440px;
+}
+
+.empty-state .btn {
+    margin-top: 4px;
+}
+
+.settings-action-list {
+    display: grid;
+    gap: 10px;
+}
+
+.settings-action {
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid #ece7ff;
+    border-radius: 8px;
+    color: #30235f;
+    display: flex;
+    gap: 12px;
+    padding: 13px 14px;
+    text-decoration: none;
+    transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.settings-action:hover {
+    border-color: #c6b8fb;
+    box-shadow: 0 12px 28px rgba(67, 45, 138, 0.08);
+    color: #30235f;
+    transform: translateY(-1px);
+}
+
+.settings-action i {
+    color: var(--match-purple);
+    font-size: 1.2rem;
+}
+
+.terms-layout {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: minmax(0, 0.78fr) minmax(260px, 0.32fr);
+}
+
+.terms-list {
+    display: grid;
+    gap: 14px;
+}
+
+.terms-item {
+    border-bottom: 1px solid #ece7ff;
+    display: grid;
+    gap: 6px;
+    grid-template-columns: auto minmax(0, 1fr);
+    padding-bottom: 16px;
+}
+
+.terms-item:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+}
+
+.terms-item i {
+    color: var(--match-purple);
+    font-size: 1.35rem;
+    margin-top: 2px;
+}
+
+.notification-item {
+    align-items: flex-start;
+    background: #ffffff;
+    border: 1px solid #ece7ff;
+    border-radius: 8px;
+    display: flex;
+    gap: 13px;
+    padding: 15px;
+}
+
+.notification-item.is-new {
+    background: linear-gradient(135deg, #fff8fb 0%, #f7f5ff 58%, #eef9ff 100%);
+}
+
+.notification-item > i {
+    align-items: center;
+    background: #f2efff;
+    border-radius: 8px;
+    color: var(--match-purple);
+    display: inline-flex;
+    flex: 0 0 auto;
+    font-size: 1.1rem;
+    height: 42px;
+    justify-content: center;
+    width: 42px;
+}
+
+.chat-shell {
+    min-height: 620px;
+}
+
+.chat-list-panel,
+.chat-main-panel {
+    height: 100%;
+}
+
+.chat-message {
+    border-radius: 8px;
+    display: inline-block;
+    max-width: min(620px, 88%);
+    padding: 12px 14px;
+}
+
+.chat-message.incoming {
+    background: #ffffff;
+    border: 1px solid #ece7ff;
+    color: var(--match-ink);
+}
+
+.chat-message.outgoing {
+    background: linear-gradient(135deg, var(--match-pink), var(--match-purple) 58%, var(--match-blue));
+    color: #ffffff;
+}
+
+.app-grid {
+    align-items: stretch;
+}
+
+.app-grid > .empty-state {
+    grid-column: 1 / -1;
+}
+
+.chat-list-panel .empty-state {
+    min-height: 360px;
+}
+
+.avatar-md,
+.avatar-xl {
+    position: relative;
+}
+
+.avatar-md.avatar-person,
+.avatar-xl.avatar-person {
+    background:
+        radial-gradient(circle at 50% 24%, rgba(255, 255, 255, 0.78), transparent 18%),
+        linear-gradient(145deg, #fd51b3 0%, #8652f5 56%, #25a8df 100%);
+}
+
+.avatar-person::before {
+    background: radial-gradient(circle at 50% 35%, #fff3fa 0 29%, transparent 30%);
+    border-radius: 50%;
+    content: "";
+    height: 58%;
+    left: 21%;
+    opacity: 0.78;
+    position: absolute;
+    top: 14%;
+    width: 58%;
+}
+
+.avatar-person::after {
+    background: rgba(32, 29, 50, 0.18);
+    border-radius: 50% 50% 18% 18%;
+    bottom: -15%;
+    content: "";
+    height: 48%;
+    left: 13%;
+    position: absolute;
+    width: 74%;
+}
+
+.avatar-person > span {
+    position: relative;
+    z-index: 1;
+}
+
+.avatar-a {
+    background: linear-gradient(145deg, #fd51b3, #8652f5 58%, #25a8df) !important;
+}
+
+.avatar-k {
+    background: linear-gradient(145deg, #34d399, #25a8df 58%, #8652f5) !important;
+}
+
+.avatar-m {
+    background: linear-gradient(145deg, #ffb86c, #fd51b3 58%, #8652f5) !important;
+}
+
+.avatar-b {
+    background: linear-gradient(145deg, #8652f5, #355cb9 58%, #25a8df) !important;
+}
+
+.avatar-l {
+    background: linear-gradient(145deg, #25a8df, #34d399 58%, #8652f5) !important;
+}
+
+.public-nav .navbar-nav {
+    gap: 0.55rem !important;
+}
+
+@media (max-width: 991.98px) {
+    .page-heading,
+    .terms-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .page-heading {
+        align-items: flex-start;
+    }
+
+    .terms-layout {
+        display: grid;
+    }
+
+    .navbar-match .app-main-nav {
+        align-items: stretch !important;
+        padding-top: 12px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .page-shell {
+        padding: 22px 0 42px;
+    }
+
+    .page-heading,
+    .page-heading-main,
+    .page-heading .page-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .page-heading-icon {
+        height: 52px;
+        width: 52px;
+    }
+
+    .page-actions .btn,
+    .match-profile-actions .btn,
+    #formMensagem .btn {
+        width: 100%;
+    }
+
+    #formMensagem {
+        flex-direction: column;
+    }
+
+    .chat-message {
+        max-width: 100%;
+    }
+}
+
+/* EROS v2 global: orb premium para paginas internas. */
+.global-eros-orb {
+    background:
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.10), rgba(0, 224, 255, 0.08) 48%, transparent 70%);
+    border: 1px solid rgba(190, 245, 255, 0.28);
+    border-radius: 50%;
+    box-shadow: 0 16px 40px rgba(20, 16, 52, 0.20);
+    padding: 10px;
+}
+
+.global-eros-robot {
+    align-items: center;
+    animation: globalEROSFloat 6s ease-in-out infinite;
+    background:
+        radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.22), transparent 18%),
+        radial-gradient(circle at 62% 78%, rgba(0, 224, 255, 0.18), transparent 34%),
+        linear-gradient(145deg, rgba(16, 25, 51, 0.94), rgba(7, 11, 25, 0.98));
+    border: 1px solid rgba(181, 244, 255, 0.36);
+    border-radius: 50%;
+    box-shadow: inset 0 1px 16px rgba(255, 255, 255, 0.10), inset 0 -18px 28px rgba(20, 10, 55, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.10), 0 0 22px rgba(0, 224, 255, 0.20), 0 18px 42px rgba(18, 14, 48, 0.30);
+    height: 78px;
+    justify-content: center;
+    overflow: visible;
+    width: 78px;
+}
+
+.global-eros-aura {
+    animation: globalEROSHaloSpin 14s linear infinite;
+    background: conic-gradient(from 0deg, transparent 0 16%, rgba(0, 224, 255, 0.62) 18% 24%, transparent 26% 50%, rgba(155, 78, 255, 0.48) 52% 58%, transparent 60% 100%);
+    border: 1px solid rgba(165, 236, 255, 0.22);
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(0, 224, 255, 0.16);
+    inset: -12px;
+    opacity: 0.82;
+    position: absolute;
+    z-index: -2;
+}
+
+.global-eros-robot::after {
+    background: radial-gradient(circle, rgba(0, 224, 255, 0.14), transparent 66%);
+    border: 0;
+    border-radius: 50%;
+    content: "";
+    inset: -20px;
+    opacity: 0.55;
+    position: absolute;
+    transform: none;
+    z-index: -3;
+}
+
+.global-eros-wing {
+    background: linear-gradient(90deg, rgba(0, 224, 255, 0.0), rgba(0, 224, 255, 0.38), rgba(155, 78, 255, 0.08)), linear-gradient(135deg, transparent 0 38%, rgba(255, 255, 255, 0.22) 39% 41%, transparent 42% 100%);
+    border: 0;
+    clip-path: polygon(0 50%, 100% 0, 74% 50%, 100% 100%);
+    filter: drop-shadow(0 0 8px rgba(0, 224, 255, 0.34));
+    height: 36px;
+    opacity: 0.72;
+    top: 21px;
+    width: 32px;
+}
+
+.global-eros-wing-left {
+    left: -19px;
+    transform: rotate(-8deg);
+}
+
+.global-eros-wing-right {
+    right: -19px;
+    transform: scaleX(-1) rotate(-8deg);
+}
+
+.global-eros-face {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    display: grid;
+    gap: 7px;
+    grid-template-columns: repeat(2, auto);
+    height: auto;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 42px;
+    z-index: 3;
+}
+
+.global-eros-eye {
+    animation: globalEROSBlink 5.5s ease-in-out infinite;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.96), #78ecff 48%, #8f6bff);
+    border-radius: 999px;
+    box-shadow: 0 0 10px rgba(0, 224, 255, 0.54);
+    height: 4px;
+    width: 13px;
+}
+
+.global-eros-mouth {
+    background: transparent;
+    border-bottom: 2px solid rgba(190, 245, 255, 0.72);
+    border-radius: 0 0 999px 999px;
+    grid-column: 1 / -1;
+    height: 6px;
+    justify-self: center;
+    opacity: 0.84;
+    width: 17px;
+}
+
+.global-eros-particle {
+    background: rgba(190, 245, 255, 0.86);
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(0, 224, 255, 0.42);
+    height: 3px;
+    position: absolute;
+    width: 3px;
+}
+
+.global-eros-particle-one {
+    left: 4px;
+    top: 17px;
+}
+
+.global-eros-particle-two {
+    right: 7px;
+    top: 13px;
+}
+
+.global-eros-particle-three {
+    bottom: 10px;
+    left: 16px;
+}
+
+.global-eros-antenna,
+.global-eros-robe,
+.global-eros-bow,
+.global-eros-arrow,
+.global-eros-heart {
+    display: none;
+}
+
+.global-eros-bubble {
+    background:
+        radial-gradient(circle at 12% 0%, rgba(0, 224, 255, 0.10), transparent 28%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(245, 249, 255, 0.82)) padding-box,
+        linear-gradient(135deg, rgba(155, 78, 255, 0.24), rgba(0, 224, 255, 0.28)) border-box;
+    border: 1px solid transparent;
+    box-shadow: 0 18px 44px rgba(23, 18, 62, 0.14);
+}
+
+@keyframes globalEROSHaloSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.global-eros-bubble {
+    background:
+        radial-gradient(circle at 12% 10%, rgba(0, 224, 255, 0.12), transparent 30%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(244, 248, 255, 0.84)) padding-box,
+        linear-gradient(135deg, rgba(155, 78, 255, 0.34), rgba(0, 224, 255, 0.34)) border-box;
+    border: 1px solid transparent;
+}
+
 /* ================= CAMADA VISUAL GLOBAL ================= */
 .page-shell {
     padding: 44px 0 64px;
@@ -1547,7 +2530,7 @@ body {
 
 .invite-preview,
 .daily-event-hero,
-.cupid-message {
+.eros-message {
     background: #f8f9ff;
 }
 
@@ -1755,4 +2738,756 @@ body {
     .live-room-chat {
         min-height: 600px;
     }
+}
+
+/* ================= SALA DE JOGOS ================= */
+.game-room-shell {
+    background:
+        radial-gradient(circle at 12% 0%, rgba(253, 81, 179, 0.08), transparent 28%),
+        radial-gradient(circle at 90% 4%, rgba(37, 168, 223, 0.10), transparent 30%),
+        linear-gradient(180deg, #fbfcff 0%, #f7f8fc 100%);
+}
+
+.game-room-hero {
+    align-items: center;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(248, 249, 255, 0.86)) padding-box,
+        linear-gradient(135deg, rgba(134, 82, 245, 0.20), rgba(94, 187, 246, 0.20)) border-box;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    box-shadow: var(--match-shadow);
+    display: grid;
+    gap: 22px;
+    grid-template-columns: minmax(0, 1fr) 240px;
+    padding: 26px;
+}
+
+.game-room-hero h1 {
+    color: #222735;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 900;
+    margin: 0 0 8px;
+}
+
+.game-room-hero p {
+    color: #626779;
+    margin: 0 0 18px;
+    max-width: 680px;
+}
+
+.game-score-card {
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid #e6eaf2;
+    border-radius: 8px;
+    display: grid;
+    gap: 8px;
+    justify-items: center;
+    padding: 20px;
+    text-align: center;
+}
+
+.game-score-card i {
+    color: #6f50df;
+    font-size: 2rem;
+}
+
+.game-score-card strong {
+    color: #222735;
+    font-size: 1.35rem;
+    font-weight: 900;
+}
+
+.game-score-card span {
+    color: #626779;
+    font-weight: 800;
+}
+
+.game-room-grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: minmax(0, 1fr) 320px;
+}
+
+.game-panel-head {
+    align-items: flex-start;
+    display: flex;
+    gap: 16px;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.game-panel-head h2 {
+    color: #222735;
+    font-size: 1.45rem;
+    font-weight: 900;
+    margin: 0;
+}
+
+.quiz-options {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.quiz-option {
+    background: #fbfcff;
+    border: 1px solid #e6eaf2;
+    border-radius: 8px;
+    color: #222735;
+    font-weight: 900;
+    padding: 14px;
+    text-align: left;
+    transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.quiz-option:hover {
+    border-color: #c9d1e6;
+    box-shadow: 0 10px 24px rgba(67, 45, 138, 0.08);
+    transform: translateY(-2px);
+}
+
+.game-side {
+    display: grid;
+    gap: 20px;
+}
+
+.game-player-list {
+    display: grid;
+}
+
+.game-player {
+    align-items: center;
+    border-bottom: 1px solid #eef0f8;
+    display: flex;
+    gap: 12px;
+    padding: 12px 0;
+}
+
+.game-player:last-child {
+    border-bottom: 0;
+}
+
+.game-player strong,
+.game-player small {
+    display: block;
+}
+
+.game-player small {
+    color: #626779;
+}
+
+@media (max-width: 991.98px) {
+    .game-room-hero,
+    .game-room-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .quiz-options {
+        grid-template-columns: 1fr;
+    }
+}
+
+.global-eros {
+    align-items: flex-end;
+    bottom: 28px;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 10px;
+    position: fixed;
+    right: 28px;
+    transition: opacity 240ms ease, transform 240ms ease;
+    z-index: 1070;
+}
+
+.global-eros.is-switching {
+    opacity: 0;
+    transform: translateY(16px) scale(0.88) rotate(4deg);
+}
+
+.global-eros-orb {
+    background:
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.28) 58%, transparent 70%),
+        linear-gradient(135deg, rgba(253, 81, 179, 0.16), rgba(94, 187, 246, 0.18));
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 30px;
+    box-shadow: 0 18px 42px rgba(67, 45, 138, 0.18);
+    cursor: pointer;
+    padding: 8px;
+    transition: box-shadow 220ms ease, transform 220ms ease;
+}
+
+.global-eros-orb:hover {
+    box-shadow: 0 24px 54px rgba(67, 45, 138, 0.24);
+    transform: translateY(-3px) scale(1.02);
+}
+
+.global-eros-robot {
+    align-items: center;
+    animation: globalEROSFloat 5.2s ease-in-out infinite;
+    background:
+        radial-gradient(circle at 28% 20%, rgba(255, 255, 255, 0.98) 0 12%, transparent 13%),
+        linear-gradient(145deg, #ffffff 0%, #fff0fa 42%, #eaf8ff 100%);
+    border: 2px solid rgba(255, 255, 255, 0.96);
+    border-radius: 28px;
+    box-shadow: 0 0 0 8px rgba(253, 81, 179, 0.10), 0 16px 34px rgba(134, 82, 245, 0.24);
+    display: flex;
+    height: 78px;
+    justify-content: center;
+    position: relative;
+    width: 78px;
+}
+
+.global-eros-robot::after {
+    content: "";
+    opacity: 0;
+    position: absolute;
+    transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.global-eros-face {
+    align-items: center;
+    background: linear-gradient(180deg, #2b3043 0%, #181c2b 100%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+    box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.10), 0 9px 18px rgba(37, 31, 78, 0.18);
+    display: grid;
+    gap: 7px;
+    grid-template-columns: repeat(2, 1fr);
+    height: 48px;
+    justify-items: center;
+    padding: 10px 9px 8px;
+    width: 56px;
+}
+
+.global-eros-eye {
+    animation: globalEROSBlink 4s ease-in-out infinite;
+    background: radial-gradient(circle at 35% 30%, #ffffff 0 18%, #aee6ff 20% 58%, #54c4f3 60% 100%);
+    border-radius: 999px;
+    box-shadow: 0 0 12px rgba(157, 217, 249, 0.9);
+    height: 10px;
+    width: 10px;
+}
+
+.global-eros-mouth {
+    background: transparent;
+    border-bottom: 4px solid #fd79c5;
+    border-radius: 0 0 999px 999px;
+    grid-column: 1 / -1;
+    height: 8px;
+    margin-top: -3px;
+    width: 22px;
+}
+
+.global-eros-antenna {
+    background: #8652f5;
+    border-radius: 999px;
+    height: 18px;
+    left: 50%;
+    position: absolute;
+    top: -15px;
+    transform: translateX(-50%);
+    width: 5px;
+}
+
+.global-eros-antenna::before {
+    background: #fd51b3;
+    border-radius: 50%;
+    box-shadow: 0 0 14px rgba(253, 81, 179, 0.8);
+    content: "";
+    height: 11px;
+    left: 50%;
+    position: absolute;
+    top: -8px;
+    transform: translateX(-50%);
+    width: 11px;
+}
+
+.global-eros-wing {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(229, 246, 255, 0.86));
+    border: 2px solid rgba(223, 242, 255, 0.98);
+    box-shadow: 0 8px 18px rgba(94, 187, 246, 0.14);
+    height: 38px;
+    position: absolute;
+    top: 21px;
+    width: 31px;
+}
+
+.global-eros-wing-left {
+    border-radius: 80% 20% 70% 30%;
+    left: -20px;
+    transform: rotate(-18deg);
+}
+
+.global-eros-wing-right {
+    border-radius: 20% 80% 30% 70%;
+    right: -20px;
+    transform: rotate(18deg);
+}
+
+.global-eros-heart {
+    align-items: center;
+    background: linear-gradient(135deg, #fd51b3, #8652f5);
+    border-radius: 50%;
+    bottom: -8px;
+    box-shadow: 0 8px 18px rgba(253, 81, 179, 0.34);
+    color: #ffffff;
+    display: flex;
+    font-size: 0.72rem;
+    height: 24px;
+    justify-content: center;
+    position: absolute;
+    right: 7px;
+    width: 24px;
+}
+
+.global-eros-bubble {
+    background:
+        radial-gradient(circle at 12% 12%, rgba(253, 81, 179, 0.12), transparent 32%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(244, 249, 255, 0.90)) padding-box,
+        linear-gradient(135deg, rgba(253, 81, 179, 0.32), rgba(134, 82, 245, 0.28), rgba(94, 187, 246, 0.30)) border-box;
+    backdrop-filter: blur(12px);
+    border: 1px solid transparent;
+    border-radius: 14px;
+    box-shadow: 0 16px 34px rgba(37, 31, 78, 0.16), 0 0 0 1px rgba(255, 255, 255, 0.42) inset;
+    color: #28243f;
+    font-size: 0.9rem;
+    font-weight: 800;
+    line-height: 1.38;
+    max-width: min(290px, calc(100vw - 34px));
+    opacity: 0;
+    padding: 12px 14px 12px 38px;
+    position: relative;
+    transform: translateY(8px) scale(0.98);
+    transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.global-eros-bubble::before {
+    align-items: center;
+    background: linear-gradient(135deg, #fd51b3, #8652f5);
+    border-radius: 50%;
+    box-shadow: 0 8px 16px rgba(253, 81, 179, 0.24);
+    color: #ffffff;
+    content: "♥";
+    display: flex;
+    font-size: 0.72rem;
+    height: 21px;
+    justify-content: center;
+    left: 11px;
+    position: absolute;
+    top: 12px;
+    width: 21px;
+}
+
+.global-eros-bubble.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.global-eros.is-speaking .global-eros-mouth {
+    animation: globalEROSTalk 260ms ease-in-out 3;
+}
+
+.global-eros-skin-evento .global-eros-heart {
+    background: linear-gradient(135deg, #8652f5, #5ebbf6);
+}
+
+.global-eros-skin-experiencia .global-eros-robot,
+.global-eros-skin-cinema .global-eros-robot {
+    background:
+        radial-gradient(circle at 28% 20%, rgba(255, 255, 255, 0.94) 0 12%, transparent 13%),
+        linear-gradient(145deg, #fff8df 0%, #ffe2f2 45%, #f1edff 100%);
+}
+
+.global-eros-skin-cinema .global-eros-robot::after {
+    background:
+        linear-gradient(135deg, #222735 0 30%, #ffffff 31% 38%, #222735 39% 62%, #ffffff 63% 70%, #222735 71%),
+        linear-gradient(180deg, #ffffff, #f4f6ff);
+    border: 2px solid #222735;
+    border-radius: 5px;
+    bottom: 7px;
+    box-shadow: 0 8px 16px rgba(32, 39, 53, 0.18);
+    height: 22px;
+    opacity: 1;
+    right: -13px;
+    transform: rotate(-9deg);
+    width: 28px;
+}
+
+.global-eros-skin-live .global-eros-antenna::before {
+    background: #ff3d71;
+    box-shadow: 0 0 18px rgba(255, 61, 113, 0.88);
+}
+
+.global-eros-skin-esportista .global-eros-robot {
+    background:
+        radial-gradient(circle at 28% 20%, rgba(255, 255, 255, 0.94) 0 12%, transparent 13%),
+        linear-gradient(145deg, #ffffff 0%, #e8fff5 42%, #dff2ff 100%);
+}
+
+.global-eros-skin-esportista .global-eros-eye {
+    background: radial-gradient(circle at 35% 30%, #ffffff 0 16%, #b8ffe8 20% 56%, #34d399 60% 100%);
+    box-shadow: 0 0 12px rgba(52, 211, 153, 0.82);
+}
+
+.global-eros-skin-esportista .global-eros-robot::after {
+    background:
+        radial-gradient(circle at 52% 52%, transparent 0 34%, #34d399 36% 47%, transparent 49%),
+        linear-gradient(90deg, #25a8df, #34d399);
+    border-radius: 999px;
+    bottom: 10px;
+    box-shadow: 0 8px 16px rgba(52, 211, 153, 0.18);
+    height: 24px;
+    opacity: 1;
+    right: -15px;
+    transform: rotate(-16deg);
+    width: 32px;
+}
+
+.global-eros-skin-musica .global-eros-robot::after {
+    border: 4px solid #8652f5;
+    border-bottom: 0;
+    border-radius: 18px 18px 4px 4px;
+    box-shadow: -8px 12px 0 -2px #fd51b3, 8px 12px 0 -2px #fd51b3, 0 8px 16px rgba(134, 82, 245, 0.20);
+    height: 23px;
+    opacity: 1;
+    right: -13px;
+    top: 16px;
+    transform: rotate(10deg);
+    width: 30px;
+}
+
+.global-eros-skin-games .global-eros-face {
+    background: linear-gradient(180deg, #101827 0%, #132333 100%);
+}
+
+.global-eros-skin-games .global-eros-robot::after {
+    background:
+        radial-gradient(circle at 30% 52%, #ffffff 0 8%, transparent 9%),
+        radial-gradient(circle at 70% 52%, #ffffff 0 8%, transparent 9%),
+        linear-gradient(135deg, #8652f5, #25a8df);
+    border-radius: 12px;
+    bottom: 8px;
+    box-shadow: 0 8px 16px rgba(67, 45, 138, 0.20);
+    height: 22px;
+    opacity: 1;
+    right: -16px;
+    transform: rotate(-8deg);
+    width: 34px;
+}
+
+.global-eros-skin-livros .global-eros-robot {
+    background:
+        radial-gradient(circle at 28% 20%, rgba(255, 255, 255, 0.94) 0 12%, transparent 13%),
+        linear-gradient(145deg, #ffffff 0%, #f4edff 48%, #e9f7ff 100%);
+}
+
+.global-eros-skin-livros .global-eros-robot::after {
+    background:
+        linear-gradient(90deg, #8652f5 0 48%, #ffffff 49% 51%, #5ebbf6 52%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.34), transparent);
+    border: 2px solid #ffffff;
+    border-radius: 4px;
+    bottom: 8px;
+    box-shadow: 0 8px 16px rgba(67, 45, 138, 0.18);
+    height: 28px;
+    opacity: 1;
+    right: -13px;
+    transform: rotate(-11deg);
+    width: 30px;
+}
+
+.global-eros-skin-gastronomia .global-eros-heart {
+    background: linear-gradient(135deg, #ff8fb8, #fd51b3);
+}
+
+.global-eros-skin-gastronomia .global-eros-robot::after {
+    background:
+        radial-gradient(circle at 50% 82%, #ffffff 0 26%, transparent 27%),
+        linear-gradient(180deg, #fd51b3 0 46%, #ffffff 47% 54%, #8652f5 55%);
+    border-radius: 5px 5px 12px 12px;
+    bottom: 6px;
+    box-shadow: 0 8px 16px rgba(253, 81, 179, 0.18);
+    height: 28px;
+    opacity: 1;
+    right: -12px;
+    transform: rotate(-10deg);
+    width: 24px;
+}
+
+@keyframes globalEROSFloat {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-7px);
+    }
+}
+
+@keyframes globalEROSBlink {
+    0%,
+    88%,
+    100% {
+        transform: scaleY(1);
+    }
+
+    92% {
+        transform: scaleY(0.18);
+    }
+}
+
+@keyframes globalEROSTalk {
+    0%,
+    100% {
+        width: 22px;
+    }
+
+    50% {
+        width: 13px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .global-eros {
+        bottom: 18px;
+        right: 16px;
+    }
+
+    .global-eros-robot {
+        height: 68px;
+        width: 68px;
+    }
+}
+
+/* ================= TEMA SOFT GLASS ================= */
+:root {
+    --match-page-bg: #f7f8ff;
+    --match-glass: rgba(255, 255, 255, 0.78);
+    --match-glass-strong: rgba(255, 255, 255, 0.90);
+    --match-glass-line: rgba(134, 82, 245, 0.14);
+    --match-glass-line-blue: rgba(94, 187, 246, 0.16);
+    --match-soft-shadow: 0 18px 44px rgba(67, 45, 138, 0.08);
+    --match-soft-shadow-hover: 0 24px 58px rgba(67, 45, 138, 0.12);
+}
+
+body {
+    background:
+        radial-gradient(circle at 9% 7%, rgba(253, 81, 179, 0.11), transparent 26%),
+        radial-gradient(circle at 92% 12%, rgba(94, 187, 246, 0.15), transparent 28%),
+        radial-gradient(circle at 52% 92%, rgba(134, 82, 245, 0.08), transparent 32%),
+        linear-gradient(180deg, #fcfbff 0%, var(--match-page-bg) 48%, #f4fbff 100%);
+    background-attachment: fixed;
+}
+
+.page-shell {
+    position: relative;
+}
+
+.page-heading,
+.app-panel,
+.app-card,
+.feature-card,
+.metric-card,
+.timeline-item,
+.daily-event-card,
+.daily-club-item,
+.invite-preview,
+.choice-button,
+.filter-control,
+.filter-result-card,
+.commercial-card,
+.action-card,
+.daily-landing-card,
+.game-score-card,
+.game-room-card,
+.live-side-card,
+.live-topic-card,
+.live-room-chat,
+.live-message {
+    background:
+        linear-gradient(180deg, var(--match-glass-strong), var(--match-glass)) padding-box,
+        linear-gradient(135deg, var(--match-glass-line), var(--match-glass-line-blue)) border-box;
+    backdrop-filter: blur(14px);
+    border: 1px solid transparent;
+    box-shadow: var(--match-soft-shadow);
+}
+
+.feature-card:hover,
+.filter-result-card:hover,
+.commercial-card:hover,
+.action-card:hover,
+.choice-button:hover,
+.daily-event-card:hover,
+.daily-club-item:hover {
+    box-shadow: var(--match-soft-shadow-hover);
+}
+
+.page-heading {
+    background:
+        radial-gradient(circle at 8% 0%, rgba(253, 81, 179, 0.08), transparent 34%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(248, 250, 255, 0.78)) padding-box,
+        linear-gradient(135deg, rgba(134, 82, 245, 0.18), rgba(94, 187, 246, 0.18)) border-box;
+}
+
+.form-control,
+.form-select,
+.quiz-option {
+    background: rgba(255, 255, 255, 0.76);
+    border-color: rgba(134, 82, 245, 0.16);
+}
+
+.tag-match,
+.commercial-badge {
+    background: rgba(241, 237, 255, 0.74);
+    border: 1px solid rgba(134, 82, 245, 0.12);
+}
+
+/* EROS final override: mitologia futurista em todo o site. */
+.global-eros-orb {
+    background:
+        radial-gradient(circle at 50% 45%, rgba(255, 255, 255, 0.78), rgba(0, 224, 255, 0.12) 55%, transparent 70%),
+        linear-gradient(135deg, rgba(155, 78, 255, 0.28), rgba(0, 224, 255, 0.20));
+    border-color: rgba(180, 246, 255, 0.62);
+}
+
+.global-eros-robot {
+    background:
+        radial-gradient(circle at 30% 18%, rgba(255, 255, 255, 0.95) 0 8%, transparent 9%),
+        linear-gradient(155deg, rgba(255, 255, 255, 0.96) 0 22%, rgba(226, 244, 255, 0.92) 23% 48%, rgba(143, 92, 255, 0.42) 49% 72%, rgba(16, 22, 45, 0.96) 73% 100%);
+    border: 1px solid rgba(186, 242, 255, 0.78);
+    border-radius: 30px 30px 24px 24px;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.62) inset, 0 0 22px rgba(0, 224, 255, 0.32), 0 0 36px rgba(155, 78, 255, 0.30), 0 18px 40px rgba(40, 33, 92, 0.25);
+    overflow: visible;
+}
+
+.global-eros-aura {
+    background: radial-gradient(circle, rgba(0, 224, 255, 0.26), transparent 58%), conic-gradient(from 20deg, rgba(155, 78, 255, 0.04), rgba(0, 224, 255, 0.22), rgba(255, 255, 255, 0.10), rgba(155, 78, 255, 0.04));
+    border: 1px solid rgba(180, 246, 255, 0.26);
+    border-radius: 50%;
+    inset: -18px;
+    opacity: 0.9;
+    position: absolute;
+    z-index: -2;
+}
+
+.global-eros-robot::after {
+    background: radial-gradient(circle at 20% 40%, rgba(0, 224, 255, 0.85) 0 2px, transparent 3px), radial-gradient(circle at 62% 22%, rgba(255, 255, 255, 0.85) 0 2px, transparent 3px), radial-gradient(circle at 78% 70%, rgba(155, 78, 255, 0.85) 0 2px, transparent 3px);
+    border: 0;
+    border-radius: 50%;
+    content: "";
+    inset: -23px;
+    opacity: 0.88;
+    position: absolute;
+    transform: none;
+    width: auto;
+    height: auto;
+    z-index: -1;
+}
+
+.global-eros-face {
+    background: linear-gradient(180deg, rgba(16, 22, 45, 0.96), rgba(10, 13, 30, 0.98));
+    border: 1px solid rgba(0, 224, 255, 0.32);
+    border-radius: 20px 20px 16px 16px;
+    box-shadow: inset 0 1px 10px rgba(255, 255, 255, 0.10), 0 0 18px rgba(0, 224, 255, 0.24);
+    height: 42px;
+    margin-top: -8px;
+    padding: 10px 9px 8px;
+    width: 54px;
+    z-index: 2;
+}
+
+.global-eros-eye {
+    background: linear-gradient(90deg, #ffffff 0%, #00e0ff 45%, #9b4eff 100%);
+    border-radius: 999px;
+    box-shadow: 0 0 14px rgba(0, 224, 255, 0.84);
+    height: 5px;
+    width: 13px;
+}
+
+.global-eros-mouth {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.78);
+    height: 6px;
+    opacity: 0.78;
+    width: 17px;
+}
+
+.global-eros-wing {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.34), rgba(0, 224, 255, 0.14) 42%, rgba(155, 78, 255, 0.10)), repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.0) 0 7px, rgba(0, 224, 255, 0.35) 8px 9px);
+    border: 1px solid rgba(0, 224, 255, 0.42);
+    box-shadow: 0 0 18px rgba(0, 224, 255, 0.28), inset 0 0 14px rgba(255, 255, 255, 0.18);
+    clip-path: polygon(0 50%, 28% 8%, 100% 0, 74% 52%, 100% 100%, 26% 86%);
+    height: 46px;
+    opacity: 0.86;
+    top: 19px;
+    width: 40px;
+}
+
+.global-eros-wing-left {
+    left: -28px;
+    transform: rotate(-12deg);
+}
+
+.global-eros-wing-right {
+    right: -28px;
+    transform: scaleX(-1) rotate(-12deg);
+}
+
+.global-eros-robe {
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.92) 0 44%, rgba(210, 242, 255, 0.74) 45% 62%, rgba(155, 78, 255, 0.32) 63%), linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(196, 231, 255, 0.72));
+    border: 1px solid rgba(255, 255, 255, 0.64);
+    border-radius: 4px 4px 16px 16px;
+    bottom: 5px;
+    box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.35), 0 0 16px rgba(0, 224, 255, 0.16);
+    height: 24px;
+    left: 22px;
+    position: absolute;
+    transform: skewX(-9deg);
+    width: 28px;
+    z-index: 1;
+}
+
+.global-eros-bow {
+    border: 2px solid rgba(0, 224, 255, 0.82);
+    border-left: 0;
+    border-radius: 0 999px 999px 0;
+    box-shadow: 0 0 14px rgba(0, 224, 255, 0.72), 0 0 20px rgba(155, 78, 255, 0.36);
+    height: 50px;
+    position: absolute;
+    right: -14px;
+    top: 15px;
+    transform: rotate(-12deg);
+    width: 20px;
+    z-index: 3;
+}
+
+.global-eros-arrow {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.0), #ffffff 24%, #00e0ff 58%, #9b4eff 100%);
+    border-radius: 999px;
+    box-shadow: 0 0 12px rgba(0, 224, 255, 0.72);
+    height: 2px;
+    position: absolute;
+    right: -11px;
+    top: 39px;
+    transform: rotate(-12deg);
+    width: 47px;
+    z-index: 4;
+}
+
+.global-eros-arrow::after {
+    border-bottom: 5px solid transparent;
+    border-left: 9px solid #00e0ff;
+    border-top: 5px solid transparent;
+    content: "";
+    position: absolute;
+    right: -6px;
+    top: -4px;
+}
+
+.global-eros-heart {
+    background: linear-gradient(135deg, #9b4eff, #00e0ff);
+    box-shadow: 0 0 18px rgba(0, 224, 255, 0.56);
 }

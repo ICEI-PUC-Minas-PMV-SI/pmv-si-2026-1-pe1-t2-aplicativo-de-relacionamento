@@ -3,7 +3,7 @@ MatchConnectApp.configurarSair();
 
 let notificacoes = JSON.parse(localStorage.getItem("notificacoesUsuario")) || [
     { icone: "bi-heart-fill", titulo: "Novo match disponível", texto: "Ana apareceu com alta compatibilidade no seu perfil.", lida: false },
-    { icone: "bi-chat-dots", titulo: "Mensagem sugerida", texto: "O Cupido preparou uma nova abertura para sua conversa.", lida: false },
+    { icone: "bi-chat-dots", titulo: "Mensagem sugerida", texto: "O EROS preparou uma nova abertura para sua conversa.", lida: false },
     { icone: "bi-shield-check", titulo: "Dica de segurança", texto: "Configure um contato de confiança antes do primeiro encontro.", lida: false },
     { icone: "bi-calendar-heart", titulo: "Evento recomendado", texto: "Café compatível combina com seus interesses cadastrados.", lida: true }
 ];
@@ -39,9 +39,23 @@ function salvar() {
 }
 
 function renderizar() {
-    document.getElementById("listaNotificacoes").innerHTML = notificacoes.map(function (item) {
+    const lista = document.getElementById("listaNotificacoes");
+
+    if (notificacoes.length === 0) {
+        lista.innerHTML = `
+            <div class="empty-state">
+                <i class="bi bi-bell-slash"></i>
+                <strong>Nada novo por aqui</strong>
+                <p>Quando surgirem matches, mensagens, eventos ou alertas de segurança, eles aparecem nesta central.</p>
+                <a class="btn btn-match-primary" href="../home/Homeusuario.html#descobrir">Voltar para o início</a>
+            </div>
+        `;
+        return;
+    }
+
+    lista.innerHTML = notificacoes.map(function (item) {
         return `
-            <article class="timeline-item">
+            <article class="notification-item ${item.lida ? "" : "is-new"}">
                 <i class="bi ${item.icone}"></i>
                 <div>
                     <strong>${item.titulo}${item.lida ? "" : " • novo"}</strong>
