@@ -3,6 +3,13 @@ MatchConnectApp.configurarSair();
 
 const usuario = MatchConnectApp.usuario();
 const dados = MatchConnectApp.interesses();
+const camadas = MatchConnectApp.camadasInteresses();
+
+function textoEmLista(valor) {
+    return valor.split(",")
+        .map(function (item) { return item.trim(); })
+        .filter(Boolean);
+}
 
 document.getElementById("nome").value = usuario.nome || "";
 document.getElementById("email").value = usuario.email || "";
@@ -11,6 +18,10 @@ document.getElementById("personalidade").value = dados.personalidade || "";
 document.getElementById("programaIdeal").value = dados.programaIdeal || "";
 document.getElementById("descricao").value = dados.descricao || "";
 document.getElementById("interesses").value = Array.isArray(dados.interesses) ? dados.interesses.join(", ") : "";
+document.getElementById("gostaMuito").value = camadas.gostoMuito.join(", ");
+document.getElementById("queroExplorar").value = camadas.queroExplorar.join(", ");
+document.getElementById("naoCurto").value = camadas.naoCurto.join(", ");
+document.getElementById("assuntoFavorito").value = camadas.assuntoFavorito || "";
 
 document.getElementById("formEditarPerfil").addEventListener("submit", function (event) {
     event.preventDefault();
@@ -42,7 +53,13 @@ document.getElementById("formEditarPerfil").addEventListener("submit", function 
         personalidade: document.getElementById("personalidade").value,
         programaIdeal: document.getElementById("programaIdeal").value,
         descricao: document.getElementById("descricao").value.trim(),
-        interesses: interesses
+        interesses: interesses,
+        camadas: {
+            gostoMuito: textoEmLista(document.getElementById("gostaMuito").value),
+            queroExplorar: textoEmLista(document.getElementById("queroExplorar").value),
+            naoCurto: textoEmLista(document.getElementById("naoCurto").value),
+            assuntoFavorito: document.getElementById("assuntoFavorito").value.trim()
+        }
     };
 
     const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];

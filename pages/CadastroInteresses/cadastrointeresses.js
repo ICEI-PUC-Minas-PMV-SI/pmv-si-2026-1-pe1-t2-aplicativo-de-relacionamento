@@ -27,6 +27,23 @@ function interessesSelecionados() {
     });
 }
 
+function textoEmLista(valor) {
+    return valor.split(",")
+        .map(function (item) {
+            return item.trim();
+        })
+        .filter(Boolean);
+}
+
+function camadasInteresses() {
+    return {
+        gostoMuito: textoEmLista(document.getElementById("gostaMuito").value),
+        queroExplorar: textoEmLista(document.getElementById("queroExplorar").value),
+        naoCurto: textoEmLista(document.getElementById("naoCurto").value),
+        assuntoFavorito: document.getElementById("assuntoFavorito").value.trim()
+    };
+}
+
 function atualizarEtapa() {
     document.querySelectorAll(".wizard-step").forEach(function (step, index) {
         step.classList.toggle("active", index === etapaAtual);
@@ -47,6 +64,7 @@ function calcularProgressoPerfil() {
     const campos = [
         fotosBase64.length > 0,
         interessesSelecionados().length >= 3,
+        Boolean(camadasInteresses().assuntoFavorito),
         Boolean(document.getElementById("objetivo").value),
         Boolean(document.getElementById("personalidade").value),
         Boolean(document.getElementById("programaIdeal").value),
@@ -82,6 +100,14 @@ function atualizarPreview() {
     document.getElementById("previewTags").innerHTML = interesses.slice(0, 6).map(function (interesse) {
         return `<span>${interesse}</span>`;
     }).join("") || "<span>Escolha seus interesses</span>";
+
+    const camadas = camadasInteresses();
+    document.getElementById("previewLayers").innerHTML = `
+        <div class="preview-layer-row"><small>Gosto muito</small><strong>${camadas.gostoMuito.join(", ") || interesses.slice(0, 2).join(", ") || "Não informado"}</strong></div>
+        <div class="preview-layer-row"><small>Quero explorar</small><strong>${camadas.queroExplorar.join(", ") || "Não informado"}</strong></div>
+        <div class="preview-layer-row"><small>Não curto</small><strong>${camadas.naoCurto.join(", ") || "Não informado"}</strong></div>
+        <div class="preview-layer-row"><small>Assunto favorito</small><strong>${camadas.assuntoFavorito || "Não informado"}</strong></div>
+    `;
 
     atualizarProgressoPerfil();
 }
@@ -180,10 +206,12 @@ formInteresses.addEventListener("submit", function (event) {
     const qualidades = document.getElementById("qualidades").value.trim();
     const curiosidade = document.getElementById("curiosidade").value.trim();
     const interessePrioritario = document.getElementById("interessePrioritario").value.trim().toLowerCase();
+    const camadas = camadasInteresses();
 
     const dadosInteresses = {
         fotos: fotosBase64,
         interesses: interesses,
+        camadas: camadas,
         objetivo: objetivo,
         personalidade: personalidade,
         programaIdeal: programaIdeal,

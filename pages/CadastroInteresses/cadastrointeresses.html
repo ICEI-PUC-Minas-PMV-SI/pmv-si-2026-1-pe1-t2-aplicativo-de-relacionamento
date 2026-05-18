@@ -298,6 +298,52 @@
             padding: 7px 10px;
         }
 
+        .interest-layer-grid {
+            display: grid;
+            gap: 12px;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .interest-layer-card {
+            background: #ffffff;
+            border: 1px solid #ece7ff;
+            border-radius: 8px;
+            padding: 14px;
+        }
+
+        .interest-layer-card label {
+            color: #3d2d7a;
+            font-weight: 900;
+            margin-bottom: 8px;
+        }
+
+        .preview-layers {
+            display: grid;
+            gap: 8px;
+        }
+
+        .preview-layer-row {
+            align-items: center;
+            background: #ffffff;
+            border: 1px solid #ece7ff;
+            border-radius: 8px;
+            display: flex;
+            gap: 8px;
+            justify-content: space-between;
+            padding: 9px 10px;
+        }
+
+        .preview-layer-row small {
+            color: #6c757d;
+            font-weight: 800;
+        }
+
+        .preview-layer-row strong {
+            color: #3d2d7a;
+            font-size: 0.92rem;
+            text-align: right;
+        }
+
         .field-hint {
             color: #6c757d;
             font-size: 0.9rem;
@@ -306,7 +352,8 @@
         @media (max-width: 991px) {
             .wizard-layout,
             .impact-grid,
-            .bio-suggestions {
+            .bio-suggestions,
+            .interest-layer-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -399,6 +446,29 @@
                             <div class="impact-card"><strong>Matches</strong><br><span class="field-hint">Ordena pessoas por afinidade.</span></div>
                             <div class="impact-card"><strong>EROS</strong><br><span class="field-hint">Cria mensagens melhores.</span></div>
                             <div class="impact-card"><strong>Experiências</strong><br><span class="field-hint">Sugere playlists, livros e eventos.</span></div>
+                        </div>
+
+                        <div class="mt-4">
+                            <h5 class="mb-2">Organize seus interesses em camadas</h5>
+                            <p class="field-hint">Essas camadas ajudam o app entender intensidade, curiosidade e limites.</p>
+                            <div class="interest-layer-grid">
+                                <div class="interest-layer-card">
+                                    <label for="gostaMuito" class="form-label">Gosto muito</label>
+                                    <input id="gostaMuito" class="form-control" type="text" placeholder="Ex: Cinema, Livros">
+                                </div>
+                                <div class="interest-layer-card">
+                                    <label for="queroExplorar" class="form-label">Quero explorar</label>
+                                    <input id="queroExplorar" class="form-control" type="text" placeholder="Ex: Gastronomia, Corrida">
+                                </div>
+                                <div class="interest-layer-card">
+                                    <label for="naoCurto" class="form-label">Não curto</label>
+                                    <input id="naoCurto" class="form-control" type="text" placeholder="Ex: Balada, Trilhas longas">
+                                </div>
+                                <div class="interest-layer-card">
+                                    <label for="assuntoFavorito" class="form-label">Meu assunto favorito</label>
+                                    <input id="assuntoFavorito" class="form-control" type="text" placeholder="Ex: filmes de suspense">
+                                </div>
+                            </div>
                         </div>
                     </section>
 
@@ -522,6 +592,7 @@
                     </div>
                     <p id="previewDescricao" class="field-hint">Sua descrição aparece aqui conforme você preenche.</p>
                     <div id="previewTags" class="preview-tags mb-3"></div>
+                    <div id="previewLayers" class="preview-layers mb-3"></div>
                     <div class="impact-card">
                         <strong id="previewDescoberta">Descoberta inicial</strong><br>
                         <span id="previewFiltros" class="field-hint">18 a 35 anos, até 30 km</span>

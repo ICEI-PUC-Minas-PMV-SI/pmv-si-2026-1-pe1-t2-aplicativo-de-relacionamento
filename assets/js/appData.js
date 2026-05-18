@@ -119,18 +119,98 @@ const MatchConnectApp = (function () {
         return dados.fotos && dados.fotos.length > 0 ? dados.fotos[0] : "";
     }
 
+    function normalizarLista(valor) {
+        if (Array.isArray(valor)) return valor;
+        if (!valor) return [];
+        return String(valor).split(",").map(function (item) {
+            return item.trim();
+        }).filter(Boolean);
+    }
+
+    function camadasInteresses() {
+        const dados = interesses();
+        const camadas = dados.camadas || {};
+        const base = Array.isArray(dados.interesses) ? dados.interesses : [];
+
+        return {
+            gostoMuito: normalizarLista(camadas.gostoMuito).length ? normalizarLista(camadas.gostoMuito) : base.slice(0, 2),
+            queroExplorar: normalizarLista(camadas.queroExplorar),
+            naoCurto: normalizarLista(camadas.naoCurto),
+            assuntoFavorito: camadas.assuntoFavorito || base[0] || ""
+        };
+    }
+
     // Calcula afinidade com base nos interesses em comum e em dados preenchidos pelo usuário.
     function compatibilidade(perfil) {
         const dados = interesses();
         const meusInteresses = Array.isArray(dados.interesses) ? dados.interesses : [];
+        const camadas = camadasInteresses();
         const emComum = perfil.interesses.filter(function (interesse) {
             return meusInteresses.includes(interesse);
+        });
+        const favoritosEmComum = perfil.interesses.filter(function (interesse) {
+            return camadas.gostoMuito.includes(interesse);
+        });
+        const bloqueados = perfil.interesses.filter(function (interesse) {
+            return camadas.naoCurto.includes(interesse);
         });
 
         return {
             emComum: emComum,
-            percentual: Math.min(98, 48 + emComum.length * 12 + (dados.objetivo ? 8 : 0))
+            percentual: Math.max(18, Math.min(98, 48 + emComum.length * 12 + favoritosEmComum.length * 6 + (dados.objetivo ? 8 : 0) - bloqueados.length * 10))
         };
+    }
+
+    function compatibilidadeCategorias(perfil) {
+        const dados = interesses();
+        const meusInteresses = Array.isArray(dados.interesses) ? dados.interesses : [];
+        const camadas = camadasInteresses();
+        const emComum = perfil.interesses.filter(function (interesse) {
+            return meusInteresses.includes(interesse);
+        });
+        const favoritosEmComum = perfil.interesses.filter(function (interesse) {
+            return camadas.gostoMuito.includes(interesse);
+        });
+        const explorarEmComum = perfil.interesses.filter(function (interesse) {
+            return camadas.queroExplorar.includes(interesse);
+        });
+        const bloqueados = perfil.interesses.filter(function (interesse) {
+            return camadas.naoCurto.includes(interesse);
+        });
+        const culturais = ["Cinema", "Livros", "Música", "Séries", "Games", "Tecnologia", "Gastronomia"];
+        const ativos = ["Academia", "Corrida", "Praia", "Viagens"];
+        const culturaisComum = emComum.filter(function (interesse) {
+            return culturais.includes(interesse);
+        }).length;
+        const ativosComum = emComum.filter(function (interesse) {
+            return ativos.includes(interesse);
+        }).length;
+        const estilo = dados.programaIdeal && perfil.programaIdeal
+            ? (perfil.programaIdeal.toLowerCase().includes(dados.programaIdeal.toLowerCase().split(" ")[0]) ? 78 : 58)
+            : 56;
+
+        return [
+            {
+                chave: "conversa",
+                rotulo: "Conversa",
+                valor: Math.max(35, Math.min(98, 54 + emComum.length * 10 + favoritosEmComum.length * 7 + (camadas.assuntoFavorito ? 6 : 0)))
+            },
+            {
+                chave: "encontro",
+                rotulo: "Estilo de encontro",
+                valor: Math.max(30, Math.min(96, estilo + explorarEmComum.length * 6 - bloqueados.length * 7))
+            },
+            {
+                chave: "cultura",
+                rotulo: "Interesses culturais",
+                valor: Math.max(28, Math.min(98, 42 + culturaisComum * 16 + favoritosEmComum.length * 5))
+            },
+            {
+                chave: "rotina",
+                rotulo: "Rotina",
+                valor: Math.max(24, Math.min(94, 46 + ativosComum * 13 + (perfil.distanciaKm <= 12 ? 14 : 2) - bloqueados.length * 8))
+            }
+        ];
     }
 
     function explicarCompatibilidade(perfil) {
@@ -155,7 +235,9 @@ const MatchConnectApp = (function () {
         return {
             percentual: afinidade.percentual,
             emComum: afinidade.emComum,
-            motivos: motivos
+            motivos: motivos,
+            categorias: compatibilidadeCategorias(perfil),
+            camadas: camadasInteresses()
         };
     }
 
@@ -216,6 +298,8 @@ const MatchConnectApp = (function () {
 
     return {
         avatarHtml,
+        camadasInteresses,
+        compatibilidadeCategorias,
         configurarSair,
         explicarCompatibilidade,
         fotoPrincipal,

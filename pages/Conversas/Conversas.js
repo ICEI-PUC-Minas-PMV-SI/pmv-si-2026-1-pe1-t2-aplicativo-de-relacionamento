@@ -66,6 +66,10 @@ function renderizarChat() {
     `;
 
     document.getElementById("sugestaoEROS").textContent = conversaAtual.mensagem;
+    const resumoCategorias = detalhes.categorias.map(function (categoria) {
+        return `${categoria.rotulo}: ${categoria.valor}%`;
+    }).join(" • ");
+    document.getElementById("sugestaoEROS").textContent = `${conversaAtual.mensagem} ${resumoCategorias}`;
 
     document.getElementById("chatMensagens").innerHTML = mensagensDoPerfil(conversaAtual.nome).map(function (mensagem) {
         const minha = mensagem.autor === "Você";

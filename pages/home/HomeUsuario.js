@@ -199,24 +199,101 @@ const matchesCurtidos = [];
 const matchesSalvos = lerJsonHome("matchesUsuario", []);
 
 const interessesUsuario = Array.isArray(dadosInteresses.interesses) ? dadosInteresses.interesses : [];
+const camadasUsuario = dadosInteresses.camadas || {};
 const fotoPrincipal = dadosInteresses.fotos && dadosInteresses.fotos.length > 0
     ? dadosInteresses.fotos[0]
     : "../../assets/img/MatchConnectLOGO.PNG";
 
+function normalizarListaInteresse(valor) {
+    if (Array.isArray(valor)) return valor;
+    if (!valor) return [];
+    return String(valor).split(",").map(function (item) {
+        return item.trim();
+    }).filter(Boolean);
+}
+
+function obterCamadasInteresses() {
+    return {
+        gostoMuito: normalizarListaInteresse(camadasUsuario.gostoMuito).length ? normalizarListaInteresse(camadasUsuario.gostoMuito) : interessesUsuario.slice(0, 2),
+        queroExplorar: normalizarListaInteresse(camadasUsuario.queroExplorar),
+        naoCurto: normalizarListaInteresse(camadasUsuario.naoCurto),
+        assuntoFavorito: camadasUsuario.assuntoFavorito || interessesUsuario[0] || ""
+    };
+}
+
 // Calcula compatibilidade usando interesses em comum e dados preenchidos no cadastro.
 function calcularCompatibilidade(perfil) {
+    const camadas = obterCamadasInteresses();
     const interessesEmComum = perfil.interesses.filter(function (interesse) {
         return interessesUsuario.includes(interesse);
+    });
+    const favoritosEmComum = perfil.interesses.filter(function (interesse) {
+        return camadas.gostoMuito.includes(interesse);
+    });
+    const bloqueados = perfil.interesses.filter(function (interesse) {
+        return camadas.naoCurto.includes(interesse);
     });
 
     const base = interessesUsuario.length > 0 ? 58 : 42;
     const bonusInteresses = interessesEmComum.length * 11;
+    const bonusCamada = favoritosEmComum.length * 6;
     const bonusObjetivo = dadosInteresses.objetivo ? 7 : 0;
 
     return {
         interessesEmComum: interessesEmComum,
-        percentual: Math.min(98, base + bonusInteresses + bonusObjetivo)
+        percentual: Math.max(18, Math.min(98, base + bonusInteresses + bonusCamada + bonusObjetivo - bloqueados.length * 10))
     };
+}
+
+function calcularCompatibilidadeCategorias(perfil) {
+    const camadas = obterCamadasInteresses();
+    const emComum = perfil.interessesEmComum || [];
+    const favoritosEmComum = perfil.interesses.filter(function (interesse) {
+        return camadas.gostoMuito.includes(interesse);
+    });
+    const explorarEmComum = perfil.interesses.filter(function (interesse) {
+        return camadas.queroExplorar.includes(interesse);
+    });
+    const bloqueados = perfil.interesses.filter(function (interesse) {
+        return camadas.naoCurto.includes(interesse);
+    });
+    const culturais = ["Cinema", "Livros", "Música", "Séries", "Games", "Tecnologia", "Gastronomia"];
+    const ativos = ["Academia", "Corrida", "Praia", "Viagens"];
+    const culturaisComum = emComum.filter(function (interesse) {
+        return culturais.includes(interesse);
+    }).length;
+    const ativosComum = emComum.filter(function (interesse) {
+        return ativos.includes(interesse);
+    }).length;
+    const estilo = dadosInteresses.programaIdeal && perfil.programaIdeal
+        ? (perfil.programaIdeal.toLowerCase().includes(dadosInteresses.programaIdeal.toLowerCase().split(" ")[0]) ? 78 : 58)
+        : 56;
+
+    return [
+        { rotulo: "Conversa", valor: Math.max(35, Math.min(98, 54 + emComum.length * 10 + favoritosEmComum.length * 7 + (camadas.assuntoFavorito ? 6 : 0))) },
+        { rotulo: "Estilo de encontro", valor: Math.max(30, Math.min(96, estilo + explorarEmComum.length * 6 - bloqueados.length * 7)) },
+        { rotulo: "Interesses culturais", valor: Math.max(28, Math.min(98, 42 + culturaisComum * 16 + favoritosEmComum.length * 5)) },
+        { rotulo: "Rotina", valor: Math.max(24, Math.min(94, 46 + ativosComum * 13 + (perfil.distanciaKm <= 12 ? 14 : 2) - bloqueados.length * 8)) }
+    ];
+}
+
+function perguntaPorInteresse(interesse) {
+    const perguntas = {
+        Cinema: "Qual filme você defenderia mesmo quando ninguém concorda?",
+        Livros: "Que livro você indicaria para alguém entender melhor seu gosto?",
+        Música: "Qual música resume sua semana?",
+        Séries: "Qual série você reassistiria sem pensar?",
+        Gastronomia: "Qual lugar ou prato te surpreendeu de verdade?",
+        Viagens: "Qual viagem curta você faria de novo?",
+        Games: "Qual jogo mostra melhor seu jeito de se divertir?",
+        Tecnologia: "Qual tecnologia você acha que mudou sua rotina?",
+        Academia: "Você prefere treino com música, podcast ou silêncio?",
+        Corrida: "Você corre mais para competir ou para desligar a cabeça?",
+        Praia: "Praia para você combina com conversa, música ou silêncio?",
+        Pets: "Qual história de pet sempre vira assunto?"
+    };
+
+    return perguntas[interesse] || `O que faz ${interesse} ser um assunto bom para você?`;
 }
 
 // Ordena os perfis para mostrar primeiro quem combina mais com o usuário.
@@ -918,13 +995,83 @@ function atualizarCupido() {
 // Explica no card por que aquele perfil combina com o usuário.
 function obterMotivosCompatibilidade(perfil) {
     const motivos = [];
+    const camadas = obterCamadasInteresses();
     const afinidade = perfil.interessesEmComum.length > 0 ? perfil.interessesEmComum : perfil.interesses.slice(0, 2);
 
     motivos.push(`${afinidade.join(" + ")} em comum`);
+    if (camadas.gostoMuito.some(function (interesse) { return perfil.interesses.includes(interesse); })) {
+        motivos.push("Temas que você gosta muito aparecem no perfil");
+    }
+    if (camadas.queroExplorar.some(function (interesse) { return perfil.interesses.includes(interesse); })) {
+        motivos.push("Boa chance para explorar algo novo");
+    }
     motivos.push(`Programa: ${perfil.programaIdeal}`);
     motivos.push(`Energia: ${perfil.energia}`);
 
     return motivos;
+}
+
+function renderizarBarrasCompatibilidade(perfil) {
+    return `
+        <div class="compat-category-panel">
+            <div class="compat-category-head">
+                <span>Compatibilidade por categoria</span>
+                <small>Além do percentual geral</small>
+            </div>
+            ${calcularCompatibilidadeCategorias(perfil).map(function (categoria) {
+        return `
+                <div class="compat-category-row">
+                    <div>
+                        <strong>${categoria.rotulo}</strong>
+                        <span>${categoria.valor}%</span>
+                    </div>
+                    <em><b style="width:${categoria.valor}%"></b></em>
+                </div>
+            `;
+    }).join("")}
+        </div>
+    `;
+}
+
+function renderizarCamadasPerfil(perfil) {
+    const camadas = obterCamadasInteresses();
+    const gostoMuito = camadas.gostoMuito.filter(function (interesse) {
+        return perfil.interesses.includes(interesse);
+    });
+    const explorar = camadas.queroExplorar.filter(function (interesse) {
+        return perfil.interesses.includes(interesse);
+    });
+    const naoCurto = camadas.naoCurto.filter(function (interesse) {
+        return perfil.interesses.includes(interesse);
+    });
+
+    return `
+        <div class="interest-layer-panel">
+            <span>Seu perfil por camadas</span>
+            <div class="interest-layer-row"><small>Gosto muito</small><strong>${gostoMuito.join(", ") || camadas.gostoMuito.join(", ") || "Não informado"}</strong></div>
+            <div class="interest-layer-row"><small>Quero explorar</small><strong>${explorar.join(", ") || camadas.queroExplorar.join(", ") || "Não informado"}</strong></div>
+            <div class="interest-layer-row ${naoCurto.length ? "warn" : ""}"><small>Não curto</small><strong>${naoCurto.join(", ") || camadas.naoCurto.join(", ") || "Sem conflito"}</strong></div>
+            <div class="interest-layer-row"><small>Assunto favorito</small><strong>${camadas.assuntoFavorito || "Não informado"}</strong></div>
+        </div>
+    `;
+}
+
+function renderizarDetalhesCompatibilidade(perfil) {
+    return `
+        <div class="compat-details">
+            <button class="compat-details-toggle" type="button" data-compat-toggle aria-expanded="false">
+                <span>
+                    <strong>Ver compatibilidade detalhada</strong>
+                    <small>Categorias e interesses em camadas</small>
+                </span>
+                <i class="bi bi-chevron-down"></i>
+            </button>
+            <div class="compat-details-body" hidden>
+                ${renderizarBarrasCompatibilidade(perfil)}
+                ${renderizarCamadasPerfil(perfil)}
+            </div>
+        </div>
+    `;
 }
 
 // Mostra matches recentes na aba "Matches".
@@ -979,6 +1126,7 @@ function renderizarSwipe() {
     const interessesParaExibir = perfil.interessesEmComum.length > 0 ? perfil.interessesEmComum : perfil.interesses.slice(0, 3);
     const motivos = obterMotivosCompatibilidade(perfil);
     const sugestaoCupido = montarMensagemCupido(perfil);
+    const interessePergunta = interessesParaExibir[0] || perfil.interesses[0] || "Conversa";
 
     cardPerfilSwipe.innerHTML = `
         <div class="discover-photo discover-photo-${perfil.inicial.toLowerCase()}">
@@ -1001,7 +1149,7 @@ function renderizarSwipe() {
             <p class="discover-quote">"${perfil.frase}"</p>
             <div class="interest-tags small-tags">
                 ${interessesParaExibir.map(function (interesse) {
-        return `<span class="tag-match">${interesse}</span>`;
+        return `<button class="tag-match interest-filter-chip" type="button" data-interest="${interesse}">${interesse}</button>`;
     }).join("")}
             </div>
             <div class="match-reasons">
@@ -1009,12 +1157,20 @@ function renderizarSwipe() {
                 ${motivos.slice(0, 2).map(function (motivo) {
         return `<strong><i class="bi bi-check2-heart"></i>${motivo}</strong>`;
     }).join("")}
+                <button class="match-analysis-toggle" type="button" data-analysis-toggle>Ver análise completa</button>
+                <div class="match-analysis-detail" hidden>
+                    ${motivos.slice(2).map(function (motivo) {
+        return `<strong><i class="bi bi-stars"></i>${motivo}</strong>`;
+    }).join("")}
+                </div>
             </div>
+            ${renderizarDetalhesCompatibilidade(perfil)}
             <div class="discover-cupid-tip">
                 <i class="bi bi-stars"></i>
                 <span>
                     <small>EROS sugere</small>
                     <strong>${sugestaoCupido}</strong>
+                    <em>${perguntaPorInteresse(interessePergunta)}</em>
                 </span>
             </div>
         </div>
@@ -1175,6 +1331,42 @@ if (buscaGlobal) {
         aplicarBuscaGlobal(buscaGlobal.value);
     });
 }
+
+cardPerfilSwipe.addEventListener("click", function (event) {
+    const interesse = event.target.closest("[data-interest]");
+    const toggle = event.target.closest("[data-analysis-toggle]");
+    const compatToggle = event.target.closest("[data-compat-toggle]");
+
+    if (interesse) {
+        const termo = interesse.dataset.interest || "";
+        if (buscaGlobal) {
+            buscaGlobal.value = termo;
+        }
+        aplicarBuscaGlobal(termo);
+        resultadoSwipe.textContent = `Filtrando perfis por ${termo}.`;
+        atualizarCupidoPet(`Filtro por ${termo} ativado. Agora vou procurar afinidade nesse assunto.`);
+        return;
+    }
+
+    if (toggle) {
+        const detalhe = cardPerfilSwipe.querySelector(".match-analysis-detail");
+        if (!detalhe) return;
+        const aberto = detalhe.hasAttribute("hidden");
+        detalhe.toggleAttribute("hidden", !aberto);
+        toggle.textContent = aberto ? "Ocultar análise" : "Ver análise completa";
+        return;
+    }
+
+    if (compatToggle) {
+        const detalhe = cardPerfilSwipe.querySelector(".compat-details-body");
+        if (!detalhe) return;
+        const abrir = detalhe.hasAttribute("hidden");
+        detalhe.toggleAttribute("hidden", !abrir);
+        compatToggle.setAttribute("aria-expanded", String(abrir));
+        compatToggle.classList.toggle("open", abrir);
+        compatToggle.querySelector("strong").textContent = abrir ? "Ocultar compatibilidade detalhada" : "Ver compatibilidade detalhada";
+    }
+});
 
 btnRecusar.addEventListener("click", function () {
     atualizarCupidoPet("Tudo bem recusar. Eu também tenho padrões, e olha que eu sou um robô com asas.");

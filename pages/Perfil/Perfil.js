@@ -4,6 +4,7 @@ MatchConnectApp.configurarSair();
 const usuario = MatchConnectApp.usuario();
 const dados = MatchConnectApp.interesses();
 const interesses = Array.isArray(dados.interesses) ? dados.interesses : [];
+const camadas = MatchConnectApp.camadasInteresses();
 const foto = MatchConnectApp.fotoPrincipal();
 const idade = MatchConnectApp.idade(usuario.dataNascimento);
 const verificacao = localStorage.getItem("perfilVerificado") === "true";
@@ -61,3 +62,11 @@ document.getElementById("quebraGelosPerfil").innerHTML = quebraGelos.map(functio
         </article>
     `;
 }).join("");
+
+document.getElementById("camadasPerfil").innerHTML = `
+    <span>Como seus interesses entram no match</span>
+    <div class="interest-layer-row"><small>Gosto muito</small><strong>${camadas.gostoMuito.join(", ") || "Não informado"}</strong></div>
+    <div class="interest-layer-row"><small>Quero explorar</small><strong>${camadas.queroExplorar.join(", ") || "Não informado"}</strong></div>
+    <div class="interest-layer-row"><small>Não curto</small><strong>${camadas.naoCurto.join(", ") || "Não informado"}</strong></div>
+    <div class="interest-layer-row"><small>Assunto favorito</small><strong>${camadas.assuntoFavorito || "Não informado"}</strong></div>
+`;

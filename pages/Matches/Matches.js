@@ -9,6 +9,44 @@ const matches = perfis.filter(function (perfil) {
 
 const listaMatches = document.getElementById("listaMatches");
 
+function barrasCategorias(perfil) {
+    return `
+        <div class="compat-category-panel">
+            <div class="compat-category-head">
+                <span>Compatibilidade por categoria</span>
+                <small>${perfil.percentual}% geral</small>
+            </div>
+            ${MatchConnectApp.compatibilidadeCategorias(perfil).map(function (categoria) {
+        return `
+                <div class="compat-category-row">
+                    <div><strong>${categoria.rotulo}</strong><span>${categoria.valor}%</span></div>
+                    <em><b style="width:${categoria.valor}%"></b></em>
+                </div>
+            `;
+    }).join("")}
+        </div>
+    `;
+}
+
+function camadasResumo(perfil) {
+    const camadas = MatchConnectApp.camadasInteresses();
+    const gostoMuito = camadas.gostoMuito.filter(function (interesse) {
+        return perfil.interesses.includes(interesse);
+    });
+    const explorar = camadas.queroExplorar.filter(function (interesse) {
+        return perfil.interesses.includes(interesse);
+    });
+
+    return `
+        <div class="interest-layer-panel compact">
+            <span>Interesses em camadas</span>
+            <div class="interest-layer-row"><small>Gosto muito</small><strong>${gostoMuito.join(", ") || camadas.gostoMuito.join(", ") || "Não informado"}</strong></div>
+            <div class="interest-layer-row"><small>Quero explorar</small><strong>${explorar.join(", ") || camadas.queroExplorar.join(", ") || "Não informado"}</strong></div>
+            <div class="interest-layer-row"><small>Assunto favorito</small><strong>${camadas.assuntoFavorito || "Não informado"}</strong></div>
+        </div>
+    `;
+}
+
 if (matches.length === 0) {
     listaMatches.innerHTML = `
         <div class="col-12">
@@ -38,6 +76,8 @@ if (matches.length === 0) {
                 <div class="d-flex flex-wrap gap-2 mb-3">
                     ${comum.map(function (interesse) { return `<span class="tag-match">${interesse}</span>`; }).join("")}
                 </div>
+                ${barrasCategorias(perfil)}
+                ${camadasResumo(perfil)}
                 <div class="match-profile-actions">
                     <a class="btn btn-match-primary" href="../Conversas/Conversas.html">Abrir conversa</a>
                     <a class="btn btn-match-outline" href="../EROS/EROS.html">EROS</a>

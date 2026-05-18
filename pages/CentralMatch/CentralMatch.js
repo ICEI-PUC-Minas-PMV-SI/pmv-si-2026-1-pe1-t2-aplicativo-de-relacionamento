@@ -29,6 +29,22 @@ function renderizarCentral() {
     document.getElementById("motivosCompatibilidade").innerHTML = detalhes.motivos.map(function (motivo) {
         return `<span class="tag-match">${motivo}</span>`;
     }).join("");
+    document.getElementById("categoriasCompatibilidade").innerHTML = `
+        <div class="compat-category-panel">
+            <div class="compat-category-head">
+                <span>Compatibilidade por categoria</span>
+                <small>Leitura detalhada</small>
+            </div>
+            ${detalhes.categorias.map(function (categoria) {
+        return `
+                <div class="compat-category-row">
+                    <div><strong>${categoria.rotulo}</strong><span>${categoria.valor}%</span></div>
+                    <em><b style="width:${categoria.valor}%"></b></em>
+                </div>
+            `;
+    }).join("")}
+        </div>
+    `;
 }
 
 function salvarNotificacao(titulo, texto) {
