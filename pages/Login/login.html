@@ -337,6 +337,13 @@
                         <input type="password" class="form-control" id="senhaLogin" placeholder="Digite sua senha">
                     </div>
 
+                    <div id="etapa2FA" class="mb-3 d-none">
+                        <label for="codigo2FA" class="form-label">Código de verificação</label>
+                        <input type="text" class="form-control" id="codigo2FA" inputmode="numeric" maxlength="6"
+                            placeholder="Digite o código de 6 dígitos">
+                        <small id="codigo2FASimulado" class="text-muted d-block mt-2"></small>
+                    </div>
+
                     <p id="mensagemLogin" class="text-center fw-semibold"></p>
 
                     <button type="submit" class="btn btn-login w-100">Entrar</button>

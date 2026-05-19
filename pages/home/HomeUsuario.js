@@ -298,7 +298,13 @@ function perguntaPorInteresse(interesse) {
 
 // Ordena os perfis para mostrar primeiro quem combina mais com o usuário.
 function ordenarPerfisPorAfinidade() {
+    const perfisBloqueados = lerJsonHome("perfisBloqueados", []);
+    const conversasEncerradas = lerJsonHome("conversasEncerradas", []);
+
     return perfisBase
+        .filter(function (perfil) {
+            return !perfisBloqueados.includes(perfil.nome) && !conversasEncerradas.includes(perfil.nome);
+        })
         .map(function (perfil) {
             const compatibilidade = calcularCompatibilidade(perfil);
             return {

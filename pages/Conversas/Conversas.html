@@ -66,6 +66,7 @@
                 <div class="col-lg-8">
                     <section class="visual-panel chat-main-panel">
                         <div id="chatCabecalho" class="d-flex align-items-center gap-3 mb-4"></div>
+                        <div id="alertaConversa" class="alert alert-warning d-none" role="status"></div>
                         <div id="chatMensagens" class="mb-4"></div>
 
                         <div class="visual-card mb-3">
@@ -76,12 +77,31 @@
                                 <button class="btn btn-match-outline btn-sm acao-chat" type="button" data-acao="evento">Sugerir evento</button>
                                 <button class="btn btn-match-outline btn-sm acao-chat" type="button" data-acao="experiencia">Enviar experiência</button>
                                 <button class="btn btn-match-outline btn-sm acao-chat" type="button" data-acao="denuncia">Denunciar</button>
+                                <button class="btn btn-match-outline btn-sm acao-chat" type="button" data-acao="bloquear">Bloquear</button>
+                                <button id="btnEncerrarConversa" class="btn btn-match-outline btn-sm" type="button">Encerrar conversa</button>
+                                <button id="btnLigarChat" class="btn btn-match-primary btn-sm" type="button"><i class="bi bi-telephone"></i> Ligar</button>
                             </div>
+                            <p id="statusChat" class="status-message mt-3 mb-0"></p>
                         </div>
 
-                        <form id="formMensagem" class="d-flex gap-2">
-                            <input id="campoMensagem" class="form-control" type="text" placeholder="Digite uma mensagem">
-                            <button class="btn btn-match-primary" type="submit"><i class="bi bi-send"></i></button>
+                        <form id="formMensagem" class="d-grid gap-2">
+                            <div class="d-flex gap-2">
+                                <input id="campoMensagem" class="form-control" type="text" placeholder="Digite uma mensagem">
+                                <button class="btn btn-match-primary" type="submit"><i class="bi bi-send"></i></button>
+                            </div>
+                            <div class="row g-2">
+                                <div class="col-md-5">
+                                    <label for="midiaChat" class="form-label small mb-1">Imagem ou áudio</label>
+                                    <input id="midiaChat" class="form-control" type="file" accept="image/*,audio/*">
+                                </div>
+                                <div class="col-md-5">
+                                    <label for="gifChat" class="form-label small mb-1">GIF por URL</label>
+                                    <input id="gifChat" class="form-control" type="url" placeholder="https://...gif">
+                                </div>
+                                <div class="col-md-2 d-flex align-items-end">
+                                    <button id="btnLimparMidia" class="btn btn-match-outline w-100" type="button">Limpar</button>
+                                </div>
+                            </div>
                         </form>
                     </section>
                 </div>

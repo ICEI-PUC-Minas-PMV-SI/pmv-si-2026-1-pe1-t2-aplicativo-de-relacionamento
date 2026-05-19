@@ -243,6 +243,9 @@ const MatchConnectApp = (function () {
 
     // Retorna os perfis já ordenados do mais compatível para o menos compatível.
     function perfisOrdenados() {
+        const bloqueados = getJson("perfisBloqueados", []);
+        const encerradas = getJson("conversasEncerradas", []);
+
         return perfisBase.map(function (perfil) {
             const afinidade = compatibilidade(perfil);
             return {
@@ -250,6 +253,8 @@ const MatchConnectApp = (function () {
                 interessesEmComum: afinidade.emComum,
                 percentual: afinidade.percentual
             };
+        }).filter(function (perfil) {
+            return !bloqueados.includes(perfil.nome) && !encerradas.includes(perfil.nome);
         }).sort(function (a, b) {
             return b.percentual - a.percentual;
         });

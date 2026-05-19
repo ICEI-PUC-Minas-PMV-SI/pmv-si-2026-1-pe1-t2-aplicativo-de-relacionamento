@@ -4,6 +4,7 @@ MatchConnectApp.configurarSair();
 const contato = JSON.parse(localStorage.getItem("contatoConfianca")) || {};
 const perfis = MatchConnectApp.perfisOrdenados();
 let denuncias = JSON.parse(localStorage.getItem("denunciasUsuario")) || [];
+let bloqueados = JSON.parse(localStorage.getItem("perfisBloqueados")) || [];
 document.getElementById("nomeContato").value = contato.nome || "";
 document.getElementById("telefoneContato").value = contato.telefone || "";
 document.getElementById("perfilDenuncia").innerHTML = perfis.map(function (perfil) {
@@ -13,7 +14,9 @@ document.getElementById("perfilDenuncia").innerHTML = perfis.map(function (perfi
 function atualizarStatus() {
     document.getElementById("statusVerificacao").textContent = localStorage.getItem("perfilVerificado") === "true" ? "Verificado" : "Em análise";
     document.getElementById("statusContato").textContent = contato.nome ? contato.nome : "Não configurado";
-    document.getElementById("statusDenuncia").textContent = denuncias.length === 0 ? "Nenhuma" : `${denuncias.length} registro${denuncias.length === 1 ? "" : "s"}`;
+    document.getElementById("statusDenuncia").textContent = denuncias.length === 0 && bloqueados.length === 0
+        ? "Nenhuma"
+        : `${denuncias.length} denúncia${denuncias.length === 1 ? "" : "s"} / ${bloqueados.length} bloqueio${bloqueados.length === 1 ? "" : "s"}`;
 }
 
 document.getElementById("formContato").addEventListener("submit", function (event) {
@@ -32,11 +35,27 @@ document.querySelectorAll(".acao-seguranca").forEach(function (botao) {
             localStorage.setItem("perfilVerificado", "true");
             atualizarStatus();
         }
+
+        if (botao.dataset.msg.includes("bloqueado")) {
+            const pessoa = document.getElementById("perfilDenuncia").value;
+            if (pessoa && !bloqueados.includes(pessoa)) {
+                bloqueados.unshift(pessoa);
+                localStorage.setItem("perfisBloqueados", JSON.stringify(bloqueados));
+                localStorage.setItem("ultimaDenuncia", JSON.stringify({ pessoa: pessoa, origem: "Bloqueio pela central de segurança" }));
+            }
+            atualizarStatus();
+        }
+
+        if (botao.dataset.msg.includes("Denúncia registrada")) {
+            registrarDenuncia();
+            return;
+        }
+
         document.getElementById("mensagemSeguranca").textContent = botao.dataset.msg;
     });
 });
 
-document.getElementById("btnRegistrarDenuncia").addEventListener("click", function () {
+function registrarDenuncia() {
     const denuncia = {
         pessoa: document.getElementById("perfilDenuncia").value,
         motivo: document.getElementById("motivoDenuncia").value,
@@ -48,6 +67,8 @@ document.getElementById("btnRegistrarDenuncia").addEventListener("click", functi
     localStorage.setItem("ultimaDenuncia", JSON.stringify(denuncia));
     document.getElementById("mensagemSeguranca").textContent = `Denúncia registrada para ${denuncia.pessoa}.`;
     atualizarStatus();
-});
+}
+
+document.getElementById("btnRegistrarDenuncia").addEventListener("click", registrarDenuncia);
 
 atualizarStatus();
