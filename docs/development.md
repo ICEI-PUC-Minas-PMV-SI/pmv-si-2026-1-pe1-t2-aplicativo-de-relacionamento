@@ -8,9 +8,9 @@ O sistema foi implementado como uma aplicação web estática, usando HTML, CSS 
 
 | Item | Descrição |
 |------|-----------|
-| Repositório | `https://github.com/RodrigoGMRibeiro/MatchConnect` |
+| Repositório | `https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t2-aplicativo-de-relacionamento` |
 | Ambiente de hospedagem | GitHub Pages ou servidor estático equivalente |
-| URL de acesso prevista | `https://rodrigogmribeiro.github.io/MatchConnect/` |
+| URL de acesso prevista | `https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t2-aplicativo-de-relacionamento` |
 | Página inicial | `index.html` |
 | Tela de cadastro | `pages/Cadastro/Cadastro.html` |
 | Tela de login | `pages/Login/login.html` |
