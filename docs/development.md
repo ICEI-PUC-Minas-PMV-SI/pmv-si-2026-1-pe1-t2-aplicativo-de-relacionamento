@@ -15,6 +15,7 @@ O sistema foi implementado como uma aplicação web estática, usando HTML, CSS 
 | Tela de cadastro | `pages/Cadastro/Cadastro.html` |
 | Tela de login | `pages/Login/login.html` |
 | Tela principal do usuário | `pages/home/Homeusuario.html` |
+| Tela de administração | `pages/Admin/AdminDashboard.html` |
 
 Para executar localmente, basta abrir o projeto em um servidor estático. Exemplo:
 
@@ -42,6 +43,7 @@ Depois, acesse `http://localhost:8000` no navegador.
 | RF-012 | Notificar usuários sobre matches, mensagens, eventos e alertas. | Atendido com central de notificações local. | `pages/Notificacoes/Notificacoes.html`, `pages/Notificacoes/Notificacoes.js`, `pages/CentralMatch/CentralMatch.js` |
 | RF-013 | Identificar e sinalizar mensagens ofensivas. | Atendido com moderação simulada por palavras-chave e registro em `moderacaoMensagens`. | `pages/Conversas/Conversas.js` |
 | RF-014 | Permitir bloquear/denunciar perfis inadequados. | Atendido com denúncia e bloqueio local de perfis. | `pages/Seguranca/Seguranca.html`, `pages/Seguranca/Seguranca.js`, `pages/Conversas/Conversas.js`, `assets/js/appData.js` |
+| RF-014A | Permitir ao administrador gerir usuários, denúncias e métricas da plataforma. | Atendido com telas de administração, controle de usuários e central de denúncias. | `pages/Admin/AdminDashboard.html`, `pages/Admin/AdminUsuarios.html`, `pages/Admin/AdminDenuncias.html`, `pages/Admin/AdminDashboard.js`, `pages/Admin/AdminUsuarios.js`, `pages/Admin/AdminDenuncias.js` |
 | RF-015 | Permitir verificação de identidade por idade e dados básicos. | Atendido parcialmente: idade mínima validada no cadastro e status de verificação simulado na Central de Segurança. | `pages/Cadastro/cadastro.js`, `pages/Seguranca/Seguranca.js`, `pages/Perfil/Perfil.js` |
 | RF-016 | Permitir configurar filtros de matching por idade, distância, interesse e objetivo. | Atendido | `pages/Filtros/Filtros.html`, `pages/Filtros/Filtros.js`, `pages/CadastroInteresses/cadastrointeresses.js`, `pages/home/HomeUsuario.js` |
 | RF-017 | Alertar quando a conversa começar a ficar sem respostas. | Atendido com alerta visual no chat quando a conversa está sem resposta do usuário. | `pages/Conversas/Conversas.html`, `pages/Conversas/Conversas.js` |
@@ -75,6 +77,7 @@ Depois, acesse `http://localhost:8000` no navegador.
 | Eventos e experiências | `pages/Eventos/*`, `pages/EventoDia/*`, `pages/EventoAoVivo/*`, `pages/Experiencias/*`, `pages/PrimeiroEncontro/*` | Sugestões de encontros, eventos do dia, sala ao vivo e planejamento de primeiro encontro. |
 | Segurança | `pages/Seguranca/*` | Contato de confiança, verificação simulada e registro de denúncias. |
 | Perfil e preferências | `pages/Perfil/*`, `pages/EditarPerfil/*`, `pages/Configuracoes/*`, `pages/Filtros/*` | Visualização e edição de perfil, preferências do usuário e filtros de descoberta. |
+| Administração | `pages/Admin/*` | Painel do administrador com métricas, controle de usuários e análise de denúncias. |
 | Planos | `pages/Planos/*`, `pages/Assinatura/*`, `pages/Visualizacoes/*` | Planos Premium, simulação de assinatura e visualizações de perfil. |
 
 ## Estruturas de dados utilizadas
@@ -178,6 +181,18 @@ Persistência: chaves `denunciasUsuario`, `ultimaDenuncia`, `perfisBloqueados` e
 | `data` | Data em texto ISO | Momento do registro. | `2026-05-19T10:30:00.000Z` |
 | `perfisBloqueados` | Lista de textos | Perfis ocultados das recomendações e conversas. | `["Ana"]` |
 | `moderacaoMensagens.texto` | Texto | Mensagem sinalizada por palavra ofensiva. | `mensagem ofensiva` |
+
+### Administração
+
+Persistência: campos em `usuarios` e `denunciasUsuario`.
+
+| Campo | Tipo | Descrição | Exemplo |
+|-------|------|-----------|---------|
+| `role` | Texto | Tipo de usuário (`admin` ou `user`). | `admin` |
+| `createdAt` | Data em texto ISO | Data de cadastro do usuário. | `2026-05-20T14:00:00.000Z` |
+| `blocked` | Booleano | Conta bloqueada pelo administrador. | `true` |
+| `perfilVerificado` | Booleano | Status de verificação de identidade. | `false` |
+| `status` | Texto | Situação de denúncia/resolução no admin. | `pendente`, `em_analise`, `resolvido`, `rejeitado` |
 
 ### AssinaturaUsuario
 
@@ -285,6 +300,16 @@ Persistência: chaves `contatoConfianca`, `perfilVerificado`, `planoEncontro` e 
 2. Configure idade, distância, interesse e objetivo.
 3. Clique em aplicar filtros.
 4. Resultado esperado: a lista de perfis é filtrada e as preferências ficam salvas em `localStorage.filtrosMatchConnect`.
+
+### RF-014A - Administração do sistema
+
+1. Acesse `pages/Login/login.html` e entre com o administrador padrão `admin@matchconnect.com` / `admin123`.
+2. Valide o código de duas etapas exibido no login.
+3. Navegue para `pages/Admin/AdminDashboard.html`.
+4. Verifique as métricas de usuários, denúncias e novos cadastros.
+5. Em `pages/Admin/AdminUsuarios.html`, busque um usuário e teste bloquear/desbloquear, verificar/reverter e excluir um usuário não logado.
+6. Em `pages/Admin/AdminDenuncias.html`, altere o status de uma denúncia para `Em análise`, `Resolvido` e `Rejeitado`.
+7. Resultado esperado: ações de administrador são persistidas em `localStorage.usuarios` e `localStorage.denunciasUsuario`, e o painel reflete as mudanças.
 
 ### RF-019 - Planos Premium
 
