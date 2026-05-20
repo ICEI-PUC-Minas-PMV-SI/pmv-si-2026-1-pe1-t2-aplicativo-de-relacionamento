@@ -70,7 +70,11 @@ formCadastro.addEventListener("submit", function (event) {
         nome: nome,
         email: email,
         dataNascimento: dataNascimento,
-        senha: senha
+        senha: senha,
+        role: "user",
+        createdAt: new Date().toISOString(),
+        blocked: false,
+        perfilVerificado: false
     };
 
     // Salva o usuário e já inicia a sessão para continuar o cadastro de interesses.

@@ -99,6 +99,11 @@ const MatchConnectApp = (function () {
         window.location.href = "../Login/login.html";
     }
 
+    function isAdmin() {
+        const dados = usuario();
+        return dados && dados.role === "admin";
+    }
+
     // Calcula idade a partir da data de nascimento cadastrada.
     function idade(dataNascimento) {
         if (!dataNascimento) return "";
@@ -313,6 +318,7 @@ const MatchConnectApp = (function () {
         addSalvo,
         idade,
         interesses,
+        isAdmin,
         perfisOrdenados,
         protegerPagina,
         setJson,

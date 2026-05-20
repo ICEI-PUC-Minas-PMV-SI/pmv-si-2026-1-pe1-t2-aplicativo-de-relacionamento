@@ -8,10 +8,42 @@
     }
 
     const path = window.location.pathname.toLowerCase();
+    const isAdminPage = path.includes("/pages/admin/");
 
-    // Marca o item atual como ativo comparando a pasta da URL.
     function active(section) {
         return path.includes(`/pages/${section.toLowerCase()}/`) ? " active" : "";
+    }
+
+    function adminActive(section) {
+        return path.includes(`/pages/admin/${section.toLowerCase()}`) ? " active" : "";
+    }
+
+    if (isAdminPage) {
+        nav.className = "navbar-nav ms-auto align-items-lg-center gap-lg-2 text-center app-main-nav";
+        nav.innerHTML = `
+            <li class="nav-item">
+                <a class="nav-link${adminActive("admindashboard")}" href="../Admin/AdminDashboard.html">
+                    <i class="bi bi-bar-chart-line-fill"></i>
+                    Painel
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link${adminActive("adminusuarios")}" href="../Admin/AdminUsuarios.html">
+                    <i class="bi bi-people-fill"></i>
+                    Usuários
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link${adminActive("admindenuncias")}" href="../Admin/AdminDenuncias.html">
+                    <i class="bi bi-flag-fill"></i>
+                    Denúncias
+                </a>
+            </li>
+            <li class="nav-item">
+                <button id="btnSair" class="btn btn-entrar btn-sm" type="button">Sair</button>
+            </li>
+        `;
+        return;
     }
 
     // Links principais ficam visíveis; páginas secundárias entram no menu "Mais".

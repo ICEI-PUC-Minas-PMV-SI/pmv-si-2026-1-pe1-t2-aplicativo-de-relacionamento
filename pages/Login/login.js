@@ -6,6 +6,29 @@ const codigo2FASimulado = document.getElementById("codigo2FASimulado");
 let usuarioPendente = null;
 let codigoPendente = "";
 
+function garantirAdminPadrao() {
+    const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+    const existeAdmin = usuarios.some(function (usuario) {
+        return usuario.role === "admin";
+    });
+
+    if (!existeAdmin) {
+        usuarios.unshift({
+            nome: "Administrador",
+            email: "admin@matchconnect.com",
+            dataNascimento: "1990-01-01",
+            senha: "admin123",
+            role: "admin",
+            createdAt: new Date().toISOString(),
+            blocked: false,
+            perfilVerificado: true
+        });
+        localStorage.setItem("usuarios", JSON.stringify(usuarios));
+    }
+}
+
+garantirAdminPadrao();
+
 // Valida os campos, procura o usuário no localStorage e cria a sessão local.
 formLogin.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -23,7 +46,10 @@ formLogin.addEventListener("submit", function (event) {
         mensagemLogin.style.color = "green";
 
         setTimeout(function () {
-            window.location.href = "../home/Homeusuario.html";
+            const destino = usuarioPendente.role === "admin"
+                ? "../Admin/AdminDashboard.html"
+                : "../home/Homeusuario.html";
+            window.location.href = destino;
         }, 20);
         return;
     }
