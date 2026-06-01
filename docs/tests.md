@@ -25,21 +25,102 @@ Nesta seção o grupo deverá documentar os testes de software que verificam a c
 Preencha a tabela com o plano dos testes. Para cada Caso de Teste (CT), associe qual o Requisito Funcional ou não funcional que ele está verificando. Associe também a página (ou artefato) onde o teste será realizado e descreva o cenário do teste. Veja a tabela de exemplo.
 
 
-**Caso de Teste** | **CT01 - Criar conta parte 1**
+**Caso de Teste** | **CT01 - Cadastro de usuário**
  :--------------: | ------------
-**Procedimento**  | 1) Acesse o endereço www.teste.com.br <br> 2) Clique em criar conta <br> 2) Preencha todos os campos do formulário <br> 3) Clique no botão "Continuar".
+**Procedimento**  | 1) Acessar a tela de cadastro <br> 2) Informar nome, e-mail, senha e data de nascimento <br> 3) Confirmar cadastro.  
 **Requisitos associados** | RF-001
-**Resultado esperado** | Prosseguir para a parte 2 do cadastro
+**Resultado esperado** | Conta criada com sucesso.
 **Dados de entrada** | Inserção de dados válidos no formulário de cadastro
 **Resultado obtido** | Sucesso
 
-**Caso de Teste** | **CT02 - Criar conta parte 2**
+**Caso de Teste** | **CT02 - Login**
  :--------------: | ------------
-**Procedimento**  | 1) Preencha todos os campos do formulário <br> 2) Clique no botão "Criar conta" <br> 
-**Requisitos associados** | RF-001
-**Resultado esperado** | Usuário cadastrado
-**Dados de entrada** | Inserção de dados válidos no formulário de cadastro
+**Procedimento**  | 1) Informar e-mail e senha. <br> 2) Confirmar acesso.
+**Requisitos associados** | RF-002
+**Resultado esperado** | Usuário autenticado e redirecionado para a página principal.
+**Dados de entrada** | Credenciais válidas e código correto.
 **Resultado obtido** | Sucesso
+
+**Caso de Teste** | **CT03 - Edição de perfil**
+ :--------------: | ------------
+**Procedimento**  | 1) Acessar perfil. <br> 2) Alterar biografia e foto. <br> 3) Salvar alterações.
+**Requisitos associados** | RF-003
+**Resultado esperado** | Perfil atualizado corretamente
+**Dados de entrada** | Informações válidas.
+**Resultado obtido** | Sucesso
+
+**Caso de Teste** | **CT04 - Cadastro de interesses e preferências**
+ :--------------: | ------------
+**Procedimento**  | 1) Acessar configuração do perfil. <br> 2) Selecionar interesses, valores e objetivos de relacionamento <br> 3) Salvar.
+**Requisitos associados** | RF-004
+**Resultado esperado** | Preferências registradas no perfil.
+**Dados de entrada** | Interesses e objetivos válidos.
+**Resultado obtido** | Sucesso
+
+**Caso de Teste** | **CT05 - Matching baseado em interesses**
+ :--------------: | ------------
+**Procedimento**  | 1) Configurar interesses compatíveis entre dois usuários. <br> 2) Acessar recomendações.
+**Requisitos associados** | RF-005
+**Resultado esperado** | Sistema sugere usuários compatíveis.
+**Dados de entrada** | Perfis com interesses semelhantes.
+**Resultado obtido** | Sucesso
+
+**Caso de Teste** | **CT06 - Swipe para curtida**
+ :--------------: | ------------
+**Procedimento**  | 1) Visualizar perfil sugerido. <br> 2) Deslizar para a direita.
+**Requisitos associados** | RF-006
+**Resultado esperado** | Interesse registrado pelo sistema.
+**Dados de entrada** | Perfil disponível para avaliação.
+**Resultado obtido** | Sucesso
+
+**Caso de Teste** | **CT07 - Formação de Match**
+ :--------------: | ------------
+**Procedimento**  | 1) Usuário A curte Usuário B. <br> 2) Usuário B curte Usuário A.
+**Requisitos associados** | RF-005, RF-006, RF-007
+**Resultado esperado** | Match criado e chat liberado.
+**Dados de entrada** | Curtidas mútuas.
+**Resultado obtido** | Sucesso
+
+**Caso de Teste** | **CT08 - Envio de mensagens**
+ :--------------: | ------------
+**Procedimento**  | 1) Acessar conversa. <br> 2) Digitar mensagem. <br> 3) Enviar.
+**Requisitos associados** | RF-007
+**Resultado esperado** | Mensagem entregue e exibida aos participantes.
+**Dados de entrada** | Texto válido.
+**Resultado obtido** | Sucesso
+
+**Caso de Teste** | **CT09 - Bloqueio e denúncia de usuário**
+ :--------------: | ------------
+**Procedimento**  | 1) Acessar perfil de outro usuário. <br> 2) Selecionar "Bloquear" ou "Denunciar".
+**Requisitos associados** | RF-014
+**Resultado esperado** | Usuário bloqueado ou denúncia registrada.
+**Dados de entrada** | Perfil existente.
+**Resultado obtido** | Sucesso
+
+**Caso de Teste** | **CT10 - Exclusão de conta**
+ :--------------: | ------------
+**Procedimento**  | 1) Acessar configurações. <br> 2) Selecionar "Excluir Conta". <br> 3) Confirmar exclusão.
+**Requisitos associados** | RF-008
+**Resultado esperado** | Conta removida do sistema.
+**Dados de entrada** | Usuário autenticado.
+**Resultado obtido** | Sucesso
+
+**Caso de Teste** | **CT11 - Responsividade da interface**
+ :--------------: | ------------
+**Procedimento**  | 1) Acessar a aplicação em computador, tablet e smartphone.
+**Requisitos associados** | RF-001
+**Resultado esperado** | Interface adaptada corretamente aos diferentes dispositivos.
+**Dados de entrada** | Diferentes resoluções de tela.
+**Resultado obtido** | Sucesso
+
+**Caso de Teste** | **CT12 - Tempo de resposta**
+ :--------------: | ------------
+**Procedimento**  | 1) Navegar entre perfis, abrir conversas e enviar mensagens.
+**Requisitos associados** | RF-006
+**Resultado esperado** | Resposta inferior a 3 segundos nas principais funcionalidades.
+**Dados de entrada** | Utilização normal da aplicação.
+**Resultado obtido** | Sucesso
+
 
 ## Registro dos Testes de Software
 
