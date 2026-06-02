@@ -126,14 +126,64 @@ Preencha a tabela com o plano dos testes. Para cada Caso de Teste (CT), associe 
 
 Esta seção deve apresentar o relatório com as evidências dos testes de software realizados no sistema pela equipe, baseado no plano de testes pré-definido. Documente cada caso de teste apresentando um vídeo ou animação que comprove o funcionamento da funcionalidade. Veja os exemplos a seguir.
 
-|*Caso de Teste*                                 |*CT01 - Criar conta parte 1*                                         |
+|*Caso de Teste*                                 |*CT01 - Cadastro de Usuário*                                         |
 |---|---|
-|Requisito Associado | RF-001 - A aplicação deve permitir que os usuários criem uma conta e gerenciem seu cadastro|
+|Requisito Associado | RF-001 - O sistema deve permitir ao usuário cadastrar uma conta utilizando informações como nome, idade e e-mail e outros.|
 |Link do vídeo do teste realizado: | https://1drv.ms/u/s!AhD2JqpOUvJChapRtRSQ9vPzbNLwGA?e=mxZs6t| 
 
-|*Caso de Teste*                                 |*CT02 - Criar conta parte 2*                                        |
+|*Caso de Teste*                                 |*CT02 - Login*                                        |
 |---|---|
-|Requisito Associado | RF-001 - A aplicação deve permitir que os usuários criem uma conta e gerenciem seu cadastro|
+|Requisito Associado | RF-002 - O sistema deve permitir ao usuário realizar login em sua conta utilizando suas credenciais cadastradas.|
+|Link do vídeo do teste realizado: | https://1drv.ms/v/s!AhD2JqpOUvJChapQ8CPXL-TI_A7iVg?e=spD3Ar | 
+
+|*Caso de Teste*                                 |*CT03 - Edição de Perfil*                                        |
+|---|---|
+|Requisito Associado | RF-003 - O sistema deve permitir ao usuário editar e inserir as informações do seu perfil.|
+|Link do vídeo do teste realizado: | https://1drv.ms/v/s!AhD2JqpOUvJChapQ8CPXL-TI_A7iVg?e=spD3Ar | 
+
+|*Caso de Teste*                                 |*CT04 - Cadastro de interesses e preferências*                                        |
+|---|---|
+|Requisito Associado | RF-004 - O sistema deve permitir ao usuário informar seus interesses, valores pessoais e objetivos de relacionamento durante o cadastro ou edição do perfil.|
+|Link do vídeo do teste realizado: | https://1drv.ms/v/s!AhD2JqpOUvJChapQ8CPXL-TI_A7iVg?e=spD3Ar | 
+
+|*Caso de Teste*                                 |*CT05 - Matching baseado em interesses*                                        |
+|---|---|
+|Requisito Associado | RF-005 - O sistema deve permitir ferramentas de matching baseado em interesses, valores e preferências dos usuários.|
+|Link do vídeo do teste realizado: | https://1drv.ms/v/s!AhD2JqpOUvJChapQ8CPXL-TI_A7iVg?e=spD3Ar | 
+
+|*Caso de Teste*                                 |*CT06 - Swipe para curtida ou rejeição*                                        |
+|---|---|
+|Requisito Associado | RF-006 - O sistema deve permitir ao usuário indicar interesse ou rejeição por meio da interface de swipe.|
+|Link do vídeo do teste realizado: | https://1drv.ms/v/s!AhD2JqpOUvJChapQ8CPXL-TI_A7iVg?e=spD3Ar | 
+
+|*Caso de Teste*                                 |*CT07 - Formação de Match e abertura do chat*                                        |
+|---|---|
+|Requisito Associado | RF-007 - O sistema deve permitir que usuários que deram match possam iniciar uma conversa.|
+|Link do vídeo do teste realizado: | https://1drv.ms/v/s!AhD2JqpOUvJChapQ8CPXL-TI_A7iVg?e=spD3Ar | 
+
+|*Caso de Teste*                                 |*CT08 - Envio de mensagens no chat*                                        |
+|---|---|
+|Requisito Associado | RF-007 - O sistema deve permitir troca de mensagens por meio do chat interno.|
+|Link do vídeo do teste realizado: | https://1drv.ms/v/s!AhD2JqpOUvJChapQ8CPXL-TI_A7iVg?e=spD3Ar | 
+
+|*Caso de Teste*                                 |*CT09 - Bloqueio e denúncia de usuário*                                        |
+|---|---|
+|Requisito Associado | RF-014 - O sistema deve permitir bloquear e denunciar perfis inadequados.|
+|Link do vídeo do teste realizado: | https://1drv.ms/v/s!AhD2JqpOUvJChapQ8CPXL-TI_A7iVg?e=spD3Ar | 
+
+|*Caso de Teste*                                 |*CT10 - Exclusão de conta*                                        |
+|---|---|
+|Requisito Associado | RF-008 - O sistema deve permitir ao usuário excluir sua conta e remover seus dados da plataforma.|
+|Link do vídeo do teste realizado: | https://1drv.ms/v/s!AhD2JqpOUvJChapQ8CPXL-TI_A7iVg?e=spD3Ar | 
+
+|*Caso de Teste*                                 |*CT11 - Teste de Responsividade*                                        |
+|---|---|
+|Requisito Associado | RF-001 - Interface deve permitir uso adequado em dispositivos móveis, tablets e computadores.|
+|Link do vídeo do teste realizado: | https://1drv.ms/v/s!AhD2JqpOUvJChapQ8CPXL-TI_A7iVg?e=spD3Ar | 
+
+|*Caso de Teste*                                 |*CT12 - Teste de Desempenho*                                        |
+|---|---|
+|Requisito Associado | RF-006 - Deve apresentar tempo de resposta adequado durante as interações.|
 |Link do vídeo do teste realizado: | https://1drv.ms/v/s!AhD2JqpOUvJChapQ8CPXL-TI_A7iVg?e=spD3Ar | 
 
 
