@@ -226,9 +226,10 @@ Apresente os cenários de testes utilizados na realização dos testes de usabil
 
 | Nº do Cenário | Descrição do cenário |
 |---------------|----------------------|
-| 1             | Você é uma pessoa que deseja comprar um iphone. Encontre no site um iphone e veja detalhes de localização e contato da loja que anunciando. |
-| 2             | Você é uma pessoa que deseja comprar um smartphone até R$ 2.000,00. Encontre no site smartphone's nessa faixa de preço. |
-
+| 1             | Você acabou de conhecer a plataforma e deseja criar uma conta. Realize o cadastro, faça login e complete as informações do seu perfil adicionando foto, descrição pessoal e interesses. |
+| 2             | Você está procurando pessoas com interesses semelhantes aos seus. Utilize os filtros disponíveis para localizar perfis compatíveis e visualize as sugestões apresentadas pelo sistema. |
+| 3             | Você encontrou um perfil interessante. Utilize a funcionalidade de swipe para demonstrar interesse e verifique se ocorre um match quando o outro usuário também demonstrar interesse. |
+| 4             | Após obter um match, inicie uma conversa utilizando o chat interno e envie uma mensagem para o outro usuário. |
 
 
 ## Registro de Testes de Usabilidade
