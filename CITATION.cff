@@ -1,33 +1,21 @@
-# This CITATION.cff file was generated with cffinit.
-# Visit https://bit.ly/cffinit to generate yours today!
-
 cff-version: 1.2.0
-title: Web Application Template
-message: >-
-  Repositório padrão para o Eixo 1 - Projeto 1: Aplicações
-  Web da PUC Minas.
-type: software
+title: MatchConnect
 authors:
-  - given-names: Aluno 1
-    family-names: Nome Completo
-    email: aluno@pucminas.br
-    affiliation: PUC Minas
-  - given-names: Hugo
-    name-particle: 'B '
-    family-names: de Paula
-    name-suffix: Prof.
-    email: hugo@pucminas.br
-    affiliation: PUC Minas
-    orcid: 'https://orcid.org/0000-0002-6193-3205'
-repository-code: >-
-  https://github.com/ICEI-PUC-Minas-PMV-SI/WebApplicationProject-Template
-abstract: >-
-  Descrever resumidamente, em um ou dois parágrafos, o
-  projeto que foi desenvolvido.
+  - given-names: João Vitor
+    family-names: Simões Leal
+  - given-names: Ian
+    family-names: Pedra Martins
+  - given-names: Rodrigo
+    family-names: Gonçalves de Moura Ribeiro
+  - name-suffix: Professor 
+    affiliation: PUC Minas 
+    family-names: Lemos Tavares
+    given-names: Clóvis
+repository-code: https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t2-aplicativo-de-relacionamento
 keywords:
-  - Desenvolvimento Web
-  - HTML
-  - CSS
-  - JavaScript
-  - Template
-date-released: '2024-06-23'
+  - aplicativo de relacionamento
+  - matching por compatibilidade
+  - sistema de moderação
+  - desenvolvimento web
+version: 1.0.0
+date-released: 2026-07-10
