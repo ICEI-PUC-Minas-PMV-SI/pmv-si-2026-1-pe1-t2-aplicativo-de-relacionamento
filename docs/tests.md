@@ -234,7 +234,7 @@ Apresente os cenários de testes utilizados na realização dos testes de usabil
 
 ## Registro de Testes de Usabilidade
 
-Cenário 1: Você é uma pessoa que deseja comprar um iphone. Encontre no site um iphone e veja detalhes de localização e contato da loja que anunciando.
+Cenário 1: Você acabou de conhecer a plataforma e deseja criar uma conta. Realize o cadastro, faça login e complete as informações do seu perfil adicionando foto, descrição pessoal e interesses.
 
 | Usuário | Taxa de sucesso | Satisfação subjetiva | Tempo para conclusão do cenário |
 |---------|-----------------|----------------------|---------------------------------|
@@ -250,7 +250,39 @@ Cenário 1: Você é uma pessoa que deseja comprar um iphone. Encontre no site u
     Não tive dificuldades e acho que ficou bem intuitivo.
 
 
-Cenário 2: Você é uma pessoa que deseja comprar um smartphone até R$ 2.000,00. Encontre no site smartphone's nessa faixa de preço.
+Cenário 2: Você está procurando pessoas com interesses semelhantes aos seus. Utilize os filtros disponíveis para localizar perfis compatíveis e visualize as sugestões apresentadas pelo sistema.
+
+| Usuário | Taxa de sucesso | Satisfação subjetiva | Tempo para conclusão do cenário |
+|---------|-----------------|----------------------|---------------------------------|
+| 1       | SIM             | 5                    | 22.54 segundos                          |
+| 2       | SIM             | 5                    | 31.42 segundos                          |
+| 3       | SIM             | 4                    | 36.21 segundos                          |
+|  |  |  |  |
+| **Média**     | 100%           | 4.67                | 30.05 segundos                           |
+| **Tempo para conclusão pelo especialista** | SIM | 5 | 13.57 segundos |
+
+
+    Comentários dos usuários: O site é fácil de acessar, mas algumas páginas poderiam 
+    redirecionar a gente automaticamente para outras. Senti a falta de mais opções de filtros, 
+    tanto na hora da pesquisa, quanto depois dela, nos resultados.
+
+Cenário 3: Você encontrou um perfil interessante. Utilize a funcionalidade de swipe para demonstrar interesse e verifique se ocorre um match quando o outro usuário também demonstrar interesse.
+
+| Usuário | Taxa de sucesso | Satisfação subjetiva | Tempo para conclusão do cenário |
+|---------|-----------------|----------------------|---------------------------------|
+| 1       | SIM             | 5                    | 22.54 segundos                          |
+| 2       | SIM             | 5                    | 31.42 segundos                          |
+| 3       | SIM             | 4                    | 36.21 segundos                          |
+|  |  |  |  |
+| **Média**     | 100%           | 4.67                | 30.05 segundos                           |
+| **Tempo para conclusão pelo especialista** | SIM | 5 | 13.57 segundos |
+
+
+    Comentários dos usuários: O site é fácil de acessar, mas algumas páginas poderiam 
+    redirecionar a gente automaticamente para outras. Senti a falta de mais opções de filtros, 
+    tanto na hora da pesquisa, quanto depois dela, nos resultados.
+
+ Cenário 4: Após obter um match, inicie uma conversa utilizando o chat interno e envie uma mensagem para o outro usuário. 
 
 | Usuário | Taxa de sucesso | Satisfação subjetiva | Tempo para conclusão do cenário |
 |---------|-----------------|----------------------|---------------------------------|
