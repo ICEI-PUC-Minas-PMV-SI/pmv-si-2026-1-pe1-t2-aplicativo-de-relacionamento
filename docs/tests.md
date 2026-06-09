@@ -129,62 +129,52 @@ Esta seção deve apresentar o relatório com as evidências dos testes de softw
 |*Caso de Teste*                                 |*CT01 - Cadastro de Usuário*                                         |
 |---|---|
 |Requisito Associado | RF-001 - O sistema deve permitir ao usuário cadastrar uma conta utilizando informações como nome, idade e e-mail e outros.|
-|Link do vídeo do teste realizado: | https://1drv.ms/u/s!AhD2JqpOUvJChapRtRSQ9vPzbNLwGA?e=mxZs6t| 
+|Link do vídeo do teste realizado: | https://1drv.ms/v/c/cf8cb0076f147e7f/IQBQnjfeIFFQQ43oIQiaYrAQAYf0vp9R1VjfEZpPXz0a1Y0?e=gOgIOT| 
 
 |*Caso de Teste*                                 |*CT02 - Login*                                        |
 |---|---|
 |Requisito Associado | RF-002 - O sistema deve permitir ao usuário realizar login em sua conta utilizando suas credenciais cadastradas.|
-|Link do vídeo do teste realizado: | https://1drv.ms/v/s!AhD2JqpOUvJChapQ8CPXL-TI_A7iVg?e=spD3Ar | 
+|Link do vídeo do teste realizado: | https://1drv.ms/v/c/cf8cb0076f147e7f/IQBH2A3A1tKITLuYTUCuwcAdAcH-EljMnNmP2PJUmxIIiHY?e=xI8dvV | 
 
 |*Caso de Teste*                                 |*CT03 - Edição de Perfil*                                        |
 |---|---|
 |Requisito Associado | RF-003 - O sistema deve permitir ao usuário editar e inserir as informações do seu perfil.|
-|Link do vídeo do teste realizado: | https://1drv.ms/v/s!AhD2JqpOUvJChapQ8CPXL-TI_A7iVg?e=spD3Ar | 
+|Link do vídeo do teste realizado: | https://1drv.ms/v/c/cf8cb0076f147e7f/IQAg80g2lg_RTZcfXEydHepTAdijgozUvGcSZisCy8qmG3I?e=EQX7ud | 
 
 |*Caso de Teste*                                 |*CT04 - Cadastro de interesses e preferências*                                        |
 |---|---|
 |Requisito Associado | RF-004 - O sistema deve permitir ao usuário informar seus interesses, valores pessoais e objetivos de relacionamento durante o cadastro ou edição do perfil.|
-|Link do vídeo do teste realizado: | https://1drv.ms/v/s!AhD2JqpOUvJChapQ8CPXL-TI_A7iVg?e=spD3Ar | 
+|Link do vídeo do teste realizado: | https://1drv.ms/v/c/cf8cb0076f147e7f/IQBQnjfeIFFQQ43oIQiaYrAQAYf0vp9R1VjfEZpPXz0a1Y0?e=gOgIOT | 
 
 |*Caso de Teste*                                 |*CT05 - Matching baseado em interesses*                                        |
 |---|---|
 |Requisito Associado | RF-005 - O sistema deve permitir ferramentas de matching baseado em interesses, valores e preferências dos usuários.|
-|Link do vídeo do teste realizado: | https://1drv.ms/v/s!AhD2JqpOUvJChapQ8CPXL-TI_A7iVg?e=spD3Ar | 
+|Link do vídeo do teste realizado: | https://1drv.ms/v/c/cf8cb0076f147e7f/IQCBsKdxWbQLRIOrt2OqkbIdAVJWNued4okfo-EoSYb7VOo?e=jEMKDB | 
 
-|*Caso de Teste*                                 |*CT06 - Swipe para curtida ou rejeição*                                        |
-|---|---|
-|Requisito Associado | RF-006 - O sistema deve permitir ao usuário indicar interesse ou rejeição por meio da interface de swipe.|
-|Link do vídeo do teste realizado: | https://1drv.ms/v/s!AhD2JqpOUvJChapQ8CPXL-TI_A7iVg?e=spD3Ar | 
-
-|*Caso de Teste*                                 |*CT07 - Formação de Match e abertura do chat*                                        |
+|*Caso de Teste*                                 |*CT06 - Formação de Match e abertura do chat*                                        |
 |---|---|
 |Requisito Associado | RF-007 - O sistema deve permitir que usuários que deram match possam iniciar uma conversa.|
-|Link do vídeo do teste realizado: | https://1drv.ms/v/s!AhD2JqpOUvJChapQ8CPXL-TI_A7iVg?e=spD3Ar | 
+|Link do vídeo do teste realizado: | https://1drv.ms/v/c/cf8cb0076f147e7f/IQCI8QUSB4xcTK0SbbEn7eQqAR2_K3Js6XGRH-7KzTyCuH8?e=czBozv | 
 
-|*Caso de Teste*                                 |*CT08 - Envio de mensagens no chat*                                        |
+|*Caso de Teste*                                 |*CT07 - Envio de mensagens no chat*                                        |
 |---|---|
 |Requisito Associado | RF-007 - O sistema deve permitir troca de mensagens por meio do chat interno.|
-|Link do vídeo do teste realizado: | https://1drv.ms/v/s!AhD2JqpOUvJChapQ8CPXL-TI_A7iVg?e=spD3Ar | 
+|Link do vídeo do teste realizado: | https://1drv.ms/v/c/cf8cb0076f147e7f/IQD6LtFxLCeUT40DONNbjEk3AaBToe8fEgDo5HBq2yHZDmI?e=LyNcZj | 
 
-|*Caso de Teste*                                 |*CT09 - Bloqueio e denúncia de usuário*                                        |
+|*Caso de Teste*                                 |*CT08 - Bloqueio e denúncia de usuário*                                        |
 |---|---|
 |Requisito Associado | RF-014 - O sistema deve permitir bloquear e denunciar perfis inadequados.|
-|Link do vídeo do teste realizado: | https://1drv.ms/v/s!AhD2JqpOUvJChapQ8CPXL-TI_A7iVg?e=spD3Ar | 
+|Link do vídeo do teste realizado: | https://1drv.ms/v/c/cf8cb0076f147e7f/IQD_2SrrhOVNQaVYv34393kNAZXOR-JJy0pRurnWYQRnsxc?e=s3QlEW | 
 
-|*Caso de Teste*                                 |*CT10 - Exclusão de conta*                                        |
+|*Caso de Teste*                                 |*CT09 - Exclusão de conta*                                        |
 |---|---|
 |Requisito Associado | RF-008 - O sistema deve permitir ao usuário excluir sua conta e remover seus dados da plataforma.|
-|Link do vídeo do teste realizado: | https://1drv.ms/v/s!AhD2JqpOUvJChapQ8CPXL-TI_A7iVg?e=spD3Ar | 
+|Link do vídeo do teste realizado: | LINK DO VIDEO | 
 
-|*Caso de Teste*                                 |*CT11 - Teste de Responsividade*                                        |
+|*Caso de Teste*                                 |*CT10 - Teste de Responsividade*                                        |
 |---|---|
 |Requisito Associado | RF-001 - Interface deve permitir uso adequado em dispositivos móveis, tablets e computadores.|
-|Link do vídeo do teste realizado: | https://1drv.ms/v/s!AhD2JqpOUvJChapQ8CPXL-TI_A7iVg?e=spD3Ar | 
-
-|*Caso de Teste*                                 |*CT12 - Teste de Desempenho*                                        |
-|---|---|
-|Requisito Associado | RF-006 - Deve apresentar tempo de resposta adequado durante as interações.|
-|Link do vídeo do teste realizado: | https://1drv.ms/v/s!AhD2JqpOUvJChapQ8CPXL-TI_A7iVg?e=spD3Ar | 
+|Link do vídeo do teste realizado: | LINK DO VIDEO | 
 
 
 ## Avaliação dos Testes de Software
