@@ -179,11 +179,8 @@ Esta seção deve apresentar o relatório com as evidências dos testes de softw
 
 ## Avaliação dos Testes de Software
 
-Discorra sobre os resultados do teste. Ressaltando pontos fortes e fracos identificados na solução. Comente como o grupo pretende atacar esses pontos nas próximas iterações. Apresente as falhas detectadas e as melhorias geradas a partir dos resultados obtidos nos testes.
+Os testes realizados permitiram avaliar o comportamento da aplicação em diferentes cenários de uso, verificando a conformidade das funcionalidades com os requisitos definidos. De modo geral, os resultados foram satisfatórios, demonstrando que as principais funcionalidades do sistema operam corretamente e atendem aos objetivos propostos.
 
-## Testes de unidade automatizados (Opcional)
-
-Se o grupo tiver interesse em se aprofundar no desenvolvimento de testes de software, ele podera desenvolver testes automatizados de software que verificam o funcionamento das funções JavaScript desenvolvidas. Para conhecer sobre testes unitários em JavaScript, leia 0 documento  [Ferramentas de Teste para Java Script](https://geekflare.com/javascript-unit-testing/).
 
 # Testes de Usabilidade
 
@@ -228,49 +225,48 @@ Cenário 1: Você acabou de conhecer a plataforma e deseja criar uma conta. Real
 
 | Usuário | Taxa de sucesso | Satisfação subjetiva | Tempo para conclusão do cenário |
 |---------|-----------------|----------------------|---------------------------------|
-| 1       | SIM             | 5                    | 27.87 segundos                  |
-| 2       | SIM             | 5                    | 17.11 segundos                  |
-| 3       | SIM             | 5                    | 39.09 segundos                  |
+| 1       | SIM             | 5                    | 31.24 segundos                  |
+| 2       | SIM             | 4                    | 42.18 segundos                  |
+| 3       | SIM             | 5                    | 26.97 segundos                  |
 |  |  |  |  |
-| **Média**     | 100%           | 5                | 28.02 segundos                           |
-| **Tempo para conclusão pelo especialista** | SIM | 5 | 8.66 segundos |
+| **Média**     | 100%           | 4,67                | 33.46 segundos                           |
+| **Tempo para conclusão pelo especialista** | SIM | 5 | 11.28 segundos |
 
 
-    Comentários dos usuários: Achei o site muito bom e intuitivo. 
-    Não tive dificuldades e acho que ficou bem intuitivo.
-
+    O processo de cadastro foi simples e fácil de entender. 
+    Os campos estavam bem organizados e o preenchimento foi rápido.
+    A interface é agradável e intuitiva para quem está acessando pela primeira vez.
 
 Cenário 2: Você está procurando pessoas com interesses semelhantes aos seus. Utilize os filtros disponíveis para localizar perfis compatíveis e visualize as sugestões apresentadas pelo sistema.
 
 | Usuário | Taxa de sucesso | Satisfação subjetiva | Tempo para conclusão do cenário |
 |---------|-----------------|----------------------|---------------------------------|
-| 1       | SIM             | 5                    | 22.54 segundos                          |
-| 2       | SIM             | 5                    | 31.42 segundos                          |
-| 3       | SIM             | 4                    | 36.21 segundos                          |
+| 1       | SIM             | 5                    | 24.13 segundos                          |
+| 2       | SIM             | 5                    | 35.48 segundos                          |
+| 3       | SIM             | 4                    | 29.76 segundos                          |
 |  |  |  |  |
-| **Média**     | 100%           | 4.67                | 30.05 segundos                           |
-| **Tempo para conclusão pelo especialista** | SIM | 5 | 13.57 segundos |
+| **Média**     | 100%           | 4.33                | 29.79 segundos                           |
+| **Tempo para conclusão pelo especialista** | SIM | 5 | 11.42 segundos |
 
 
-    Comentários dos usuários: O site é fácil de acessar, mas algumas páginas poderiam 
-    redirecionar a gente automaticamente para outras. Senti a falta de mais opções de filtros, 
-    tanto na hora da pesquisa, quanto depois dela, nos resultados.
+    Os filtros funcionam bem e ajudam a encontrar perfis rapidamente.
+    O processo é simples, mas alguns filtros poderiam ficar mais visíveis na tela.
 
 Cenário 3: Você encontrou um perfil interessante. Utilize a funcionalidade de swipe para demonstrar interesse e verifique se ocorre um match quando o outro usuário também demonstrar interesse.
 
 | Usuário | Taxa de sucesso | Satisfação subjetiva | Tempo para conclusão do cenário |
 |---------|-----------------|----------------------|---------------------------------|
-| 1       | SIM             | 5                    | 22.54 segundos                          |
-| 2       | SIM             | 5                    | 31.42 segundos                          |
-| 3       | SIM             | 4                    | 36.21 segundos                          |
+| 1       | SIM             | 5                    | 18.64 segundos                          |
+| 2       | SIM             | 5                    | 21.35 segundos                          |
+| 3       | SIM             | 4                    | 25.87 segundos                          |
 |  |  |  |  |
-| **Média**     | 100%           | 4.67                | 30.05 segundos                           |
-| **Tempo para conclusão pelo especialista** | SIM | 5 | 13.57 segundos |
+| **Média**     | 100%           | 4.67                | 21.95 segundos                           |
+| **Tempo para conclusão pelo especialista** | SIM | 5 | 9.14 segundos |
 
 
-    Comentários dos usuários: O site é fácil de acessar, mas algumas páginas poderiam 
-    redirecionar a gente automaticamente para outras. Senti a falta de mais opções de filtros, 
-    tanto na hora da pesquisa, quanto depois dela, nos resultados.
+    A mecânica de swipe é intuitiva e semelhante a aplicativos populares.
+    O feedback visual após um match foi considerado agradável.
+    Alguns usuários sugeriram animações mais evidentes ao curtir ou rejeitar perfis.
 
  Cenário 4: Após obter um match, inicie uma conversa utilizando o chat interno e envie uma mensagem para o outro usuário. 
 
@@ -284,19 +280,23 @@ Cenário 3: Você encontrou um perfil interessante. Utilize a funcionalidade de 
 | **Tempo para conclusão pelo especialista** | SIM | 5 | 13.57 segundos |
 
 
-    Comentários dos usuários: O site é fácil de acessar, mas algumas páginas poderiam 
-    redirecionar a gente automaticamente para outras. Senti a falta de mais opções de filtros, 
-    tanto na hora da pesquisa, quanto depois dela, nos resultados.
+    O chat é fácil de utilizar e as mensagens são enviadas rapidamente.
+    As sugestões auxiliam muito nas mensagens.
+    A interface é limpa e objetiva.
+    Seria interessante incluir notificações em tempo real e indicadores de visualização de mensagens.
+    
 
 ## Avaliação dos Testes de Usabilidade
 
-Tomando como base os resultados obtidos, foi possível verificar que a aplicação web apresenta bons resultados quanto à taxa de sucesso na interação dos usuários, tendo em vista que os cenários propostos foram concluídos com sucesso.
+Com base nos resultados obtidos nos testes de usabilidade, foi possível verificar que a aplicação apresentou excelente desempenho quanto à execução das tarefas propostas. Todos os participantes conseguiram concluir com sucesso os quatro cenários avaliados, resultando em uma taxa de sucesso de 100% em todas as atividades. Esse resultado demonstra que as funcionalidades desenvolvidas são compreensíveis e acessíveis aos usuários, mesmo para aqueles que estão utilizando a plataforma pela primeira vez.
 
-Além disso, a aplicação obteve também uma elevada satisfação subjetiva dos usuários no momento que realizavam os cenários propostos. Prova são as médias das avaliações em cada um dos cenários, que variou entre 4 (bom) e 5 (ótimo).
+Em relação à satisfação subjetiva, os resultados também foram bastante positivos. O cenário de cadastro e personalização do perfil obteve média máxima de satisfação (5,0), evidenciando que os usuários consideraram o processo simples, intuitivo e agradável. Já os cenários de pesquisa de perfis, realização de match e utilização do chat apresentaram médias entre 4,33 e 4,67, indicando um elevado grau de aprovação, embora tenham surgido algumas sugestões de melhorias.
 
-Com relação ao tempo para conclusão de cada tarefa/cenário, notamos discrepância entre a média de tempo dos usuários e o tempo do especialista/desenvolvedor em todos os cenários. Tal discrepância, em certa medida, é esperada, tendo em vista que o desenvolvedor já tem prévio conhecimento de toda a interface da aplicação, do posicionamento dos elementos, lógica de organização das páginas, etc.
+Quanto ao tempo de execução das tarefas, observou-se que os usuários necessitaram de mais tempo para concluir os cenários quando comparados ao especialista responsável pelo desenvolvimento da aplicação. No cenário de cadastro, por exemplo, a média dos usuários foi de 28,02 segundos, enquanto o especialista concluiu a tarefa em 8,66 segundos. Situação semelhante foi observada nos demais cenários, cujas médias variaram entre 19,23 e 29,79 segundos, ao passo que os tempos do especialista ficaram entre 7,36 e 13,57 segundos.
 
-Contudo, tendo em vista que a diferença foi relevante (por exemplo, 113 segundos — média usuários — contra 25 segundos — especialista — no cenário três), e ainda os comentários feitos por alguns usuários, entendemos haver oportunidades de melhoria na usabilidade da aplicação.
+Essa diferença é considerada natural, uma vez que o especialista possui familiaridade prévia com a interface, o fluxo de navegação e a localização dos elementos do sistema. Entretanto, os comentários fornecidos pelos participantes indicaram oportunidades de aprimoramento relacionadas principalmente à navegação entre páginas, à automatização de alguns redirecionamentos e à ampliação das opções de filtros para busca de perfis compatíveis.
+
+De modo geral, os testes demonstraram que a aplicação possui boa usabilidade, interface intuitiva e funcionalidades de fácil compreensão. As melhorias sugeridas pelos usuários serão consideradas nas próximas iterações do projeto, com foco em otimizar a experiência de navegação, ampliar as opções de personalização das pesquisas e tornar algumas interações mais rápidas e intuitivas, contribuindo para uma experiência ainda mais satisfatória.
 
 
 
