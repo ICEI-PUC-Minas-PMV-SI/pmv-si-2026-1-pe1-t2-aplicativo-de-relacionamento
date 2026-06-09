@@ -154,7 +154,7 @@ Esta seção deve apresentar o relatório com as evidências dos testes de softw
 |*Caso de Teste*                                 |*CT06 - Formação de Match e abertura do chat*                                        |
 |---|---|
 |Requisito Associado | RF-007 - O sistema deve permitir que usuários que deram match possam iniciar uma conversa.|
-|Link do vídeo do teste realizado: | https://1drv.ms/v/c/cf8cb0076f147e7f/IQCI8QUSB4xcTK0SbbEn7eQqAR2_K3Js6XGRH-7KzTyCuH8?e=czBozv | 
+|Link do vídeo do teste realizado: | https://1drv.ms/v/c/cf8cb0076f147e7f/IQCBsKdxWbQLRIOrt2OqkbIdAVJWNued4okfo-EoSYb7VOo?e=bRkiMu | 
 
 |*Caso de Teste*                                 |*CT07 - Envio de mensagens no chat*                                        |
 |---|---|
@@ -169,7 +169,7 @@ Esta seção deve apresentar o relatório com as evidências dos testes de softw
 |*Caso de Teste*                                 |*CT09 - Exclusão de conta*                                        |
 |---|---|
 |Requisito Associado | RF-008 - O sistema deve permitir ao usuário excluir sua conta e remover seus dados da plataforma.|
-|Link do vídeo do teste realizado: | LINK DO VIDEO | 
+|Link do vídeo do teste realizado: | https://1drv.ms/v/c/cf8cb0076f147e7f/IQAY_QRInDH_TYfW1Q5AGcWaAYrbxWbJKJSXajE6tq-ABmc?e=ZrnYRE | 
 
 |*Caso de Teste*                                 |*CT10 - Teste de Responsividade*                                        |
 |---|---|
