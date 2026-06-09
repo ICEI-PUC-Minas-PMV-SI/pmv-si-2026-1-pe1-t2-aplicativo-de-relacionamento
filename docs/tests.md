@@ -174,7 +174,7 @@ Esta seção deve apresentar o relatório com as evidências dos testes de softw
 |*Caso de Teste*                                 |*CT10 - Teste de Responsividade*                                        |
 |---|---|
 |Requisito Associado | RF-001 - Interface deve permitir uso adequado em dispositivos móveis, tablets e computadores.|
-|Link do vídeo do teste realizado: | LINK DO VIDEO | 
+|Link do vídeo do teste realizado: | https://1drv.ms/v/c/cf8cb0076f147e7f/IQCOqd7-YDleQY-Ger0SfU85ASJhwWtgmuCO7iQNdVKf4eI?e=4v7Dk9 | 
 
 
 ## Avaliação dos Testes de Software
