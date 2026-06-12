@@ -143,6 +143,8 @@ function prepararDadosAdmin() {
         jogos: "Minecraft, It Takes Two, Valorant, Overcooked"
     });
     localStorage.setItem("conversaAberta", "Luiza");
+    localStorage.setItem("mostrarTourEROSHome", "true");
+    localStorage.setItem("mostrarTourCupidoHome", "true");
     localStorage.removeItem("conversasEncerradas");
     localStorage.removeItem("perfisBloqueados");
 }
@@ -180,6 +182,11 @@ formLogin.addEventListener("submit", function (event) {
         mensagemLogin.style.color = "green";
 
         setTimeout(function () {
+            if (usuarioPendente.role === "admin") {
+                localStorage.setItem("mostrarTourEROSHome", "true");
+                localStorage.setItem("mostrarTourCupidoHome", "true");
+            }
+
             const destino = usuarioPendente.role === "admin"
                 ? "../Admin/AdminDashboard.html"
                 : "../home/Homeusuario.html";

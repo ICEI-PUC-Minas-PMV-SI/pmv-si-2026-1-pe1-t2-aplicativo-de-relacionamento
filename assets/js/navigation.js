@@ -253,6 +253,27 @@
         fala: "EROS ativo. Eu observo afinidade, contexto e oportunidades de conversa."
     };
 
+    function deveApresentarSiteParaAdmin() {
+        if (localStorage.getItem("mostrarTourEROSHome") !== "true"
+            && localStorage.getItem("mostrarTourCupidoHome") !== "true") {
+            return false;
+        }
+
+        try {
+            const usuario = JSON.parse(localStorage.getItem("usuarioLogado")) || {};
+            return usuario.role === "admin";
+        } catch (error) {
+            return false;
+        }
+    }
+
+    if (deveApresentarSiteParaAdmin()) {
+        contextoAtual.skin = "padrao";
+        contextoAtual.fala = "Sou o EROS. Vou apresentar o MatchConnect: comece pela Home, veja matches, conversas, eventos, playlists, sala de jogos, segurança e o painel admin.";
+        localStorage.removeItem("mostrarTourEROSHome");
+        localStorage.removeItem("mostrarTourCupidoHome");
+    }
+
     const falasPorTema = {
         cinema: [
             "Eros encontrou alguém que também ama cinema cult. Convite leve, referência boa e zero pressa.",
