@@ -5,6 +5,9 @@
     --match-purple-dark: #5732b8;
     --match-pink: #fd51b3;
     --match-blue: #25a8df;
+    --match-coral: #ef476f;
+    --match-teal: #118ab2;
+    --match-gold: #ffd166;
     --match-line: #e7ddff;
     --match-surface: rgba(255, 255, 255, 0.92);
     --match-soft: #f7f4ff;
@@ -52,6 +55,39 @@ body {
 .navbar-match .nav-link:hover {
     background: rgba(255, 255, 255, 0.14);
     opacity: 1;
+}
+
+.navbar-match .nav-link.has-unread-message {
+    position: relative;
+}
+
+.nav-unread-badge {
+    align-items: center;
+    animation: unreadPulse 1400ms ease-in-out infinite;
+    background: #ffd166;
+    border: 2px solid rgba(255, 255, 255, 0.82);
+    border-radius: 999px;
+    color: #241b35;
+    display: inline-flex;
+    font-size: 0.7rem;
+    font-weight: 950;
+    height: 20px;
+    justify-content: center;
+    line-height: 1;
+    margin-left: 2px;
+    min-width: 20px;
+    padding: 0 5px;
+}
+
+@keyframes unreadPulse {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    45% {
+        transform: scale(1.12);
+    }
 }
 
 .navbar-match .dropdown-toggle {
@@ -185,6 +221,16 @@ body {
 .btn-match-primary:hover {
     color: white;
     opacity: 0.95;
+}
+
+.btn-match-primary:focus-visible,
+.btn-match-outline:focus-visible,
+.navbar-match .nav-link:focus-visible,
+.navbar-match button:focus-visible,
+.settings-action:focus-visible {
+    box-shadow: 0 0 0 0.2rem rgba(17, 138, 178, 0.22);
+    outline: 2px solid rgba(17, 138, 178, 0.72);
+    outline-offset: 3px;
 }
 
 .btn-match-outline {
@@ -1449,6 +1495,7 @@ body {
     box-shadow: 0 0 18px rgba(0, 224, 255, 0.56);
 }
 
+
 /* ================= INTERNAL VISUAL FINAL OVERRIDES ================= */
 .page-heading {
     background:
@@ -1624,7 +1671,7 @@ body {
 }
 
 .chat-message.outgoing {
-    background: linear-gradient(135deg, var(--match-pink), var(--match-purple) 58%, var(--match-blue));
+    background: #6958c8;
     color: #ffffff;
 }
 
@@ -1969,7 +2016,7 @@ body {
 }
 
 .chat-message.outgoing {
-    background: linear-gradient(135deg, var(--match-pink), var(--match-purple) 58%, var(--match-blue));
+    background: #6958c8;
     color: #ffffff;
 }
 
@@ -3263,6 +3310,7 @@ body {
     }
 }
 
+
 /* ================= TEMA SOFT GLASS ================= */
 :root {
     --match-page-bg: #f7f8ff;
@@ -3491,3 +3539,524 @@ body {
     background: linear-gradient(135deg, #9b4eff, #00e0ff);
     box-shadow: 0 0 18px rgba(0, 224, 255, 0.56);
 }
+
+
+/* ================================================================
+   DESIGN SYSTEM v2 — aplica tokens.css em todo o projeto.
+   Esta seção vem por último e tem prioridade sobre estilos legados.
+   ================================================================ */
+
+/* ── 1. NAVBAR — roxo profundo da marca ─────────────── */
+.navbar-match {
+    background: rgba(42, 27, 74, 0.92) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-bottom: 0 !important;
+    box-shadow: 0 10px 28px rgba(26, 15, 51, 0.18) !important;
+    min-height: 60px;
+    position: sticky;
+    top: 0;
+    z-index: 1040;
+}
+
+.navbar-match::after {
+    background: var(--gradient-brand, linear-gradient(90deg, #EC4899 0%, #8B5CF6 50%, #3B82F6 100%));
+    bottom: 0;
+    content: "";
+    height: 2px;
+    left: 0;
+    position: absolute;
+    right: 0;
+}
+
+.navbar-match .navbar-brand,
+.navbar-match .nav-link {
+    color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.navbar-match .navbar-brand {
+    color: #ffffff !important;
+    font-weight: 800;
+}
+
+.navbar-match .navbar-brand i {
+    color: #ffffff !important;
+}
+
+.navbar-match .nav-link.active {
+    background: rgba(255, 255, 255, 0.14) !important;
+    color: #ffffff !important;
+    border-radius: var(--radius-pill, 999px);
+}
+
+.navbar-match .nav-link:hover {
+    background: rgba(255, 255, 255, 0.10) !important;
+    color: #ffffff !important;
+}
+
+.navbar-match .btn-entrar,
+.navbar-match a.btn-entrar,
+.navbar-match button.btn-entrar {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: rgba(255, 255, 255, 0.60) !important;
+    font-size: 0.84rem;
+    font-weight: 600;
+    padding: 6px 10px !important;
+}
+
+.navbar-match .btn-entrar:hover {
+    color: #ffffff !important;
+}
+
+.nav-unread-badge {
+    background: var(--brand-pink, #EC4899) !important;
+    border-color: var(--surface, #fff) !important;
+    color: #fff !important;
+}
+
+.navbar-match .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.20) !important;
+}
+
+.navbar-match form {
+    flex: 0 1 360px !important;
+    max-width: 360px !important;
+}
+
+.navbar-match .input-group {
+    background: rgba(255, 255, 255, 0.12) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 999px !important;
+}
+
+.navbar-match .input-group-text,
+.navbar-match .form-control {
+    background: transparent !important;
+    border: none !important;
+    color: rgba(255, 255, 255, 0.88) !important;
+}
+
+.navbar-match .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.56) !important;
+}
+
+[data-theme="dark"] .navbar-match {
+    background: rgba(42, 27, 74, 0.92) !important;
+    border-bottom: 0 !important;
+    box-shadow: 0 10px 28px rgba(26, 15, 51, 0.18) !important;
+}
+
+[data-theme="dark"] .navbar-match .navbar-brand,
+[data-theme="dark"] .navbar-match .nav-link {
+    color: rgba(255, 255, 255, 0.75) !important;
+}
+
+[data-theme="dark"] .navbar-match .navbar-brand {
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .navbar-match .nav-link.active {
+    background: rgba(255, 255, 255, 0.14) !important;
+    color: #fff !important;
+}
+
+[data-theme="dark"] .navbar-match .nav-link:hover {
+    background: rgba(255, 255, 255, 0.10) !important;
+    color: #fff !important;
+}
+
+[data-theme="dark"] .navbar-match .btn-entrar {
+    color: rgba(255, 255, 255, 0.60) !important;
+}
+
+[data-theme="dark"] .navbar-match .btn-entrar:hover {
+    color: #fff !important;
+}
+
+[data-theme="dark"] .navbar-match .input-group {
+    background: rgba(255, 255, 255, 0.12) !important;
+    border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+[data-theme="dark"] .navbar-match .form-control,
+[data-theme="dark"] .navbar-match .input-group-text {
+    color: rgba(255, 255, 255, 0.88) !important;
+}
+
+[data-theme="dark"] .navbar-match .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.56) !important;
+}
+
+.foto-perfil-navbar {
+    border-color: var(--border-subtle, #ECE7F4) !important;
+}
+
+.avatar-topo {
+    background-color: var(--surface-soft, #F5F1FA) !important;
+    color: var(--brand-purple, #7C3AED) !important;
+}
+
+/* Mobile navbar collapse */
+@media (max-width: 991.98px) {
+    .navbar-match .navbar-collapse {
+        background: rgba(42, 27, 74, 0.96) !important;
+        backdrop-filter: blur(16px) !important;
+        -webkit-backdrop-filter: blur(16px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        border-radius: 16px !important;
+        margin-top: 8px !important;
+        padding: 16px !important;
+    }
+
+    [data-theme="dark"] .navbar-match .navbar-collapse {
+        background: rgba(42, 27, 74, 0.96) !important;
+        border-color: rgba(255, 255, 255, 0.12) !important;
+    }
+
+    .navbar-match .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23ffffff' stroke-opacity='.82' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+    }
+}
+
+/* ── 2. HIERARQUIA DE CARDS ────────────────────────────────── */
+
+.card-hero-brand,
+.app-panel.card-hero-brand,
+.app-card.card-hero-brand {
+    background: linear-gradient(#fff, #fff) padding-box,
+                var(--gradient-brand, linear-gradient(90deg,#EC4899,#8B5CF6,#3B82F6)) border-box !important;
+    border: 1px solid transparent !important;
+    box-shadow: var(--shadow-elevated, 0 8px 30px rgba(124,58,237,0.14)) !important;
+}
+
+.app-panel,
+.app-card,
+.feature-card,
+.home-panel {
+    background: var(--surface, #fff) !important;
+    border: none !important;
+    box-shadow: var(--shadow-card, 0 1px 3px rgba(30,27,46,0.06)) !important;
+    border-radius: var(--radius-card, 16px) !important;
+}
+
+.metric-card,
+.affinity-card,
+.profile-facts div,
+.sugestao-box,
+.idea-card {
+    background: var(--surface-soft, #F5F1FA) !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: var(--radius-card, 16px) !important;
+}
+
+.app-panel:hover,
+.app-card:hover,
+.feature-card:hover,
+.filter-result-card:hover,
+.settings-action:hover {
+    box-shadow: var(--shadow-elevated, 0 8px 30px rgba(124,58,237,0.14)) !important;
+    transform: translateY(-2px);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .app-panel:hover,
+    .app-card:hover,
+    .feature-card:hover,
+    .filter-result-card:hover,
+    .settings-action:hover,
+    .btn-swipe:hover,
+    .conversation-item:hover,
+    .tag:hover,
+    .tag-match:hover {
+        transform: none !important;
+    }
+
+    *,
+    ::before,
+    ::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ── 3. PILLS DE INTERESSE — .tag unificada ────────────────── */
+
+.tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: var(--surface-soft, #F5F1FA);
+    color: var(--brand-purple, #7C3AED);
+    font-size: 13px;
+    font-weight: 600;
+    border: none;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.tag:hover {
+    box-shadow: 0 4px 12px rgba(124,58,237,0.16);
+    transform: translateY(-1px);
+}
+
+.tag--active {
+    background: var(--gradient-brand, linear-gradient(90deg,#EC4899,#8B5CF6,#3B82F6)) !important;
+    color: #fff !important;
+}
+
+.tag-match {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    padding: 6px 14px !important;
+    border-radius: 999px !important;
+    background: var(--surface-soft, #F5F1FA) !important;
+    color: var(--brand-purple, #7C3AED) !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    border: none !important;
+}
+
+.discover-card .tag-match,
+.discover-card .tag {
+    background: rgba(255,255,255,0.12) !important;
+    border: 1px solid rgba(255,255,255,0.18) !important;
+    color: rgba(255,255,255,0.90) !important;
+}
+
+[data-theme="dark"] .tag,
+[data-theme="dark"] .tag-match {
+    background: rgba(180,156,255,0.12) !important;
+    color: #d8d0ff !important;
+    border: 1px solid rgba(180,156,255,0.18) !important;
+}
+
+/* ── 4. BARRAS DE PROGRESSO — gradiente único ──────────────── */
+
+.compat-meter,
+.progress {
+    background: var(--surface-soft, #F5F1FA) !important;
+    border-radius: 999px !important;
+    height: 8px !important;
+    overflow: hidden;
+}
+
+.compat-meter span,
+.progress-bar,
+.barra-match {
+    background: var(--gradient-brand, linear-gradient(90deg,#EC4899,#8B5CF6,#3B82F6)) !important;
+    border-radius: 999px !important;
+    height: 100% !important;
+    display: block !important;
+}
+
+.home-profile-meter-track {
+    background: var(--surface-soft, #F5F1FA) !important;
+    border-radius: 999px !important;
+    height: 8px !important;
+}
+
+.home-profile-meter-track i {
+    background: var(--gradient-brand, linear-gradient(90deg,#EC4899,#8B5CF6,#3B82F6)) !important;
+    border-radius: 999px !important;
+}
+
+[data-theme="dark"] .compat-meter,
+[data-theme="dark"] .progress,
+[data-theme="dark"] .home-profile-meter-track {
+    background: rgba(255,255,255,0.09) !important;
+}
+
+/* ── 5. EMPTY STATES ───────────────────────────────────────── */
+
+.empty-state {
+    align-items: center !important;
+    background: var(--surface, #fff) !important;
+    border-radius: var(--radius-card, 16px) !important;
+    box-shadow: var(--shadow-card, 0 1px 3px rgba(30,27,46,0.06)) !important;
+    border: none !important;
+    color: var(--text-muted, #8B86A0) !important;
+    display: grid !important;
+    gap: 16px !important;
+    justify-items: center !important;
+    min-height: 280px !important;
+    padding: 32px 24px !important;
+    text-align: center !important;
+    width: 100% !important;
+}
+
+.empty-state > i:first-child {
+    background: var(--gradient-brand, linear-gradient(90deg,#EC4899,#8B5CF6,#3B82F6)) !important;
+    border-radius: 50% !important;
+    box-shadow: var(--shadow-elevated, 0 8px 30px rgba(124,58,237,0.14)) !important;
+    color: #fff !important;
+    display: inline-flex !important;
+    font-size: 1.8rem !important;
+    height: 72px !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 72px !important;
+}
+
+.empty-state strong {
+    color: var(--text-strong, #1E1B2E) !important;
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+}
+
+.empty-state p {
+    color: var(--text-muted, #8B86A0) !important;
+    margin: 0 !important;
+    max-width: 380px;
+    font-size: 0.93rem;
+    line-height: 1.6;
+}
+
+[data-theme="dark"] .empty-state {
+    background: linear-gradient(180deg, rgba(29,26,45,0.94), rgba(19,18,31,0.88)) padding-box,
+                linear-gradient(135deg, rgba(180,156,255,0.16), rgba(105,215,255,0.10)) border-box !important;
+    border: 1px solid transparent !important;
+}
+
+/* ── 6. FAB DO EROS — 56px, balão hover ───────────────────── */
+
+.global-eros {
+    bottom: 24px !important;
+    right: 24px !important;
+}
+
+.global-eros-orb {
+    width: 56px !important;
+    height: 56px !important;
+    padding: 6px !important;
+    border-radius: 50% !important;
+    background: var(--surface, #fff) !important;
+    border: 1px solid var(--border-subtle, #ECE7F4) !important;
+    box-shadow: var(--shadow-elevated, 0 8px 30px rgba(124,58,237,0.14)) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: box-shadow 0.2s ease, transform 0.2s ease !important;
+}
+
+.global-eros-orb:hover {
+    box-shadow: 0 12px 40px rgba(124,58,237,0.26) !important;
+    transform: translateY(-2px) scale(1.05) !important;
+}
+
+.global-eros-robot {
+    width: 44px !important;
+    height: 44px !important;
+}
+
+.global-eros-bubble {
+    max-width: 280px !important;
+    border-radius: 16px !important;
+    background: var(--surface, #fff) !important;
+    border: 1px solid var(--border-subtle, #ECE7F4) !important;
+    box-shadow: var(--shadow-elevated, 0 8px 30px rgba(124,58,237,0.14)) !important;
+    color: var(--text-body, #4B4660) !important;
+    font-size: 0.88rem !important;
+    font-weight: 600 !important;
+    line-height: 1.5 !important;
+    padding: 12px 14px 12px 36px !important;
+    opacity: 0 !important;
+    transform: translateY(8px) scale(0.98) !important;
+    transition: opacity 220ms ease, transform 220ms ease !important;
+    pointer-events: none;
+}
+
+.global-eros-bubble.show {
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+    pointer-events: auto;
+}
+
+[data-theme="dark"] .global-eros-orb {
+    background: rgba(29,26,45,0.96) !important;
+    border-color: rgba(180,156,255,0.24) !important;
+}
+
+[data-theme="dark"] .global-eros-bubble {
+    background: rgba(29,26,45,0.98) !important;
+    border-color: rgba(180,156,255,0.22) !important;
+    color: rgba(244,242,255,0.88) !important;
+}
+
+/* Clearance para o FAB não cobrir conteúdo */
+.page-shell,
+.home-app {
+    padding-bottom: 96px !important;
+}
+
+main.container,
+main.container-fluid,
+main[role="main"] {
+    padding-bottom: 96px !important;
+}
+
+@media (max-width: 767.98px) {
+    .global-eros {
+        bottom: 16px !important;
+        right: 16px !important;
+    }
+
+    .page-shell,
+    .home-app,
+    main.container,
+    main.container-fluid {
+        padding-bottom: 80px !important;
+    }
+}
+
+/* ── 7. TIPOGRAFIA E ESPAÇAMENTO ───────────────────────────── */
+
+.section-kicker {
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.08em !important;
+    text-transform: uppercase !important;
+    color: var(--brand-purple, #7C3AED) !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+.app-panel,
+.app-card {
+    padding: 24px !important;
+}
+
+/* ── 8. ACESSIBILIDADE ─────────────────────────────────────── */
+
+:focus-visible {
+    outline: 2px solid var(--brand-purple, #7C3AED) !important;
+    outline-offset: 2px !important;
+}
+
+.btn-match-primary:focus-visible,
+.btn-match-outline:focus-visible,
+.btn:focus-visible,
+button:focus-visible,
+a:focus-visible,
+.nav-link:focus-visible {
+    outline: 2px solid var(--brand-purple, #7C3AED) !important;
+    outline-offset: 2px !important;
+    box-shadow: none !important;
+}
+
+/* ── 9. RESPONSIVO — grids ─────────────────────────────────── */
+
+@media (max-width: 767.98px) {
+    .app-grid,
+    .commercial-grid,
+    .app-grid.two {
+        grid-template-columns: 1fr !important;
+    }
+}
+/* ── FIM DESIGN SYSTEM v2 ──────────────────────────────────── */

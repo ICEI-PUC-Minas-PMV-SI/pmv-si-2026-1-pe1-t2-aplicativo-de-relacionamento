@@ -2,15 +2,15 @@ MatchConnectApp.protegerPagina();
 MatchConnectApp.configurarSair();
 
 const bloqueados = JSON.parse(localStorage.getItem("perfisBloqueados")) || [];
-const encerradas = JSON.parse(localStorage.getItem("conversasEncerradas")) || [];
-const perfis = MatchConnectApp.perfisOrdenados().filter(function (perfil) {
+let encerradas = JSON.parse(localStorage.getItem("conversasEncerradas")) || [];
+let perfis = MatchConnectApp.getMatchedProfiles().filter(function (perfil) {
     return !bloqueados.includes(perfil.nome) && !encerradas.includes(perfil.nome);
 });
 const conversaSalva = localStorage.getItem("conversaAberta");
 let conversaAtual = perfis.find(function (perfil) {
     return perfil.nome === conversaSalva;
 }) || perfis[0];
-const mensagens = JSON.parse(localStorage.getItem("mensagensUsuario")) || {};
+let mensagens = MatchConnectApp.getMensagens();
 const limiteConversasAtivas = 3;
 const palavrasOfensivas = ["ofensa", "idiota", "burro", "odio", "ódio", "xingamento"];
 
@@ -29,13 +29,165 @@ function mensagensDoPerfil(nome) {
 }
 
 function salvarMensagens() {
-    localStorage.setItem("mensagensUsuario", JSON.stringify(mensagens));
+    MatchConnectApp.setMensagens(mensagens);
+}
+
+function statusMensagem(mensagem) {
+    if (mensagem.autor !== "Você") return "";
+    return mensagem.status || "lida";
+}
+
+function textoStatusMensagem(status) {
+    if (status === "enviada") return "Mensagem enviada";
+    if (status === "entregue") return "Mensagem entregue";
+    return "Mensagem lida";
+}
+
+function statusMensagemHtml(mensagem) {
+    if (mensagem.autor !== "Você") return "";
+
+    const status = statusMensagem(mensagem);
+    const icone = status === "enviada" ? "bi-check" : "bi-check-all";
+    const texto = textoStatusMensagem(status);
+
+    return `
+        <small class="message-meta">
+            <span class="message-status status-${status}" title="${texto}" aria-label="${texto}">
+                <i class="bi ${icone}" aria-hidden="true"></i>
+            </span>
+        </small>
+    `;
+}
+
+function atualizarStatusMensagem(nome, id, status) {
+    const lista = mensagens[nome] || [];
+    const mensagem = lista.find(function (item) {
+        return item.id === id;
+    });
+
+    if (!mensagem || mensagem.autor !== "Você") return;
+    if (mensagem.status === "lida") return;
+
+    mensagem.status = status;
+    salvarMensagens();
+
+    if (conversaAtual && conversaAtual.nome === nome) {
+        renderizarChat();
+        return;
+    }
+
+    renderizarLista(document.getElementById("buscaConversas").value);
+}
+
+function simularStatusMensagem(nome, id) {
+    window.setTimeout(function () {
+        atualizarStatusMensagem(nome, id, "entregue");
+    }, 450);
+
+    window.setTimeout(function () {
+        atualizarStatusMensagem(nome, id, "lida");
+    }, 1000);
+}
+
+function naoLidasDoPerfil(nome) {
+    return MatchConnectApp.getNaoLidas()[nome] || 0;
+}
+
+function prioridadeConversa(perfil) {
+    const mensagensPerfil = mensagens[perfil.nome] || [];
+    const ultima = mensagensPerfil[mensagensPerfil.length - 1];
+    const precisaResposta = ultima && ultima.autor !== "Você";
+
+    return {
+        naoLidas: naoLidasDoPerfil(perfil.nome),
+        precisaResposta: precisaResposta ? 1 : 0,
+        percentual: perfil.percentual || 0
+    };
+}
+
+function perfisPriorizados(lista) {
+    return lista.slice().sort(function (a, b) {
+        const pa = prioridadeConversa(a);
+        const pb = prioridadeConversa(b);
+        return pb.naoLidas - pa.naoLidas
+            || pb.precisaResposta - pa.precisaResposta
+            || pb.percentual - pa.percentual;
+    });
+}
+
+function temasDoMatch(perfil) {
+    const emComum = perfil.interessesEmComum && perfil.interessesEmComum.length > 0
+        ? perfil.interessesEmComum
+        : perfil.interesses.slice(0, 3);
+    return emComum.length > 0 ? emComum : ["conversa leve"];
+}
+
+function sugestoesMensagemEROS(perfil) {
+    const temas = temasDoMatch(perfil);
+    const temaA = temas[0] || "um assunto em comum";
+    const temaB = temas[1] || perfil.programaIdeal || "um programa simples";
+    const temaC = temas[2] || perfil.programaIdeal || temas[0] || "uma conversa leve";
+
+    return [
+        {
+            titulo: `${temaA}`,
+            texto: `${perfil.nome}, vi que ${temaA} combina com a gente. Qual indicação desse assunto você acha imperdível?`
+        },
+        {
+            titulo: "Convite leve",
+            texto: `${perfil.nome}, ${temaB} parece render um programa tranquilo. Você prefere conversar mais sobre isso primeiro?`
+        },
+        {
+            titulo: `${temaC}`,
+            texto: `${perfil.nome}, fiquei curioso sobre ${temaC}. O que você mais curte nesse assunto?`
+        }
+    ];
+}
+
+function renderizarPainelEROS(perfil, detalhes) {
+    const temas = temasDoMatch(perfil);
+    const sugestoes = sugestoesMensagemEROS(perfil);
+
+    return `
+        <div class="eros-chat-panel">
+            <div class="eros-chat-summary">
+                <div>
+                    <strong>Vocês combinam em ${temas.slice(0, 3).join(", ")}</strong>
+                    <p>${detalhes.percentual}% de compatibilidade. Use uma das sugestões abaixo.</p>
+                </div>
+                <span>${detalhes.percentual}%</span>
+            </div>
+            <div class="eros-suggestion-grid">
+                ${sugestoes.map(function (sugestao, index) {
+        return `
+                    <button class="eros-suggestion-card" type="button" data-sugestao-index="${index}">
+                        <strong>${sugestao.titulo}</strong>
+                        <span>${sugestao.texto}</span>
+                    </button>
+                `;
+    }).join("")}
+            </div>
+            <details class="eros-match-details">
+                <summary>Ver compatibilidade por área</summary>
+                <div class="eros-match-bars" aria-label="Compatibilidade por categoria">
+                    ${detalhes.categorias.map(function (categoria) {
+        return `
+                        <div class="eros-match-bar">
+                            <div><strong>${categoria.rotulo}</strong><span>${categoria.valor}%</span></div>
+                            <em><b style="width:${categoria.valor}%"></b></em>
+                        </div>
+                    `;
+    }).join("")}
+                </div>
+            </details>
+        </div>
+    `;
 }
 
 function renderizarLista(filtro = "") {
     const termo = filtro.trim().toLowerCase();
     const lista = document.getElementById("listaConversas");
-    const filtradas = perfis.filter(function (perfil) {
+    const filtradas = perfisPriorizados(perfis).filter(function (perfil) {
         return perfil.nome.toLowerCase().includes(termo)
             || perfil.interesses.join(" ").toLowerCase().includes(termo);
     });
@@ -53,13 +205,19 @@ function renderizarLista(filtro = "") {
     }
 
     lista.innerHTML = filtradas.map(function (perfil) {
+        const detalhesPrioridade = prioridadeConversa(perfil);
+        const mensagensPerfil = mensagens[perfil.nome] || [];
+        const ultima = mensagensPerfil[mensagensPerfil.length - 1];
+        const classe = detalhesPrioridade.naoLidas > 0 ? " is-unread" : "";
         return `
-            <button class="list-row w-100 text-start bg-transparent border-0" type="button" data-nome="${perfil.nome}">
+            <button class="list-row priority-row w-100 text-start bg-transparent border-0${classe}" type="button" data-nome="${perfil.nome}">
                 ${MatchConnectApp.avatarHtml(perfil.inicial)}
                 <span class="row-main">
                     <strong>${perfil.nome}</strong>
-                    <small>${perfil.percentual}% compatível • ${perfil.interesses.slice(0, 2).join(", ")}</small>
+                    <small>${detalhesPrioridade.naoLidas ? `${detalhesPrioridade.naoLidas} nova • ` : ""}${perfil.percentual}% compatível • ${perfil.interesses.slice(0, 2).join(", ")}</small>
+                    <em>${ultima ? ultima.texto : "Match pronto para começar"}</em>
                 </span>
+                <span class="priority-chip">${detalhesPrioridade.precisaResposta ? "Responder" : "OK"}</span>
             </button>
         `;
     }).join("");
@@ -69,10 +227,16 @@ function renderizarChat() {
     if (!conversaAtual) {
         document.getElementById("chatCabecalho").innerHTML = "<strong>Nenhuma conversa ativa</strong>";
         document.getElementById("chatMensagens").innerHTML = '<p class="empty-state">Abra novos matches para conversar.</p>';
+        document.getElementById("sugestaoEROS").innerHTML = "";
+        document.getElementById("alertaConversa").classList.add("d-none");
+        document.getElementById("chatQuickActions").classList.add("d-none");
+        document.getElementById("painelEROSChat").classList.add("d-none");
         document.getElementById("formMensagem").classList.add("d-none");
         return;
     }
 
+    document.getElementById("chatQuickActions").classList.remove("d-none");
+    document.getElementById("formMensagem").classList.remove("d-none");
     const detalhes = MatchConnectApp.explicarCompatibilidade(conversaAtual);
     document.getElementById("chatCabecalho").innerHTML = `
         ${MatchConnectApp.avatarHtml(conversaAtual.inicial)}
@@ -82,39 +246,46 @@ function renderizarChat() {
         </div>
     `;
 
-    document.getElementById("sugestaoEROS").textContent = conversaAtual.mensagem;
-    const resumoCategorias = detalhes.categorias.map(function (categoria) {
-        return `${categoria.rotulo}: ${categoria.valor}%`;
-    }).join(" • ");
-    document.getElementById("sugestaoEROS").textContent = `${conversaAtual.mensagem} ${resumoCategorias}`;
+    document.getElementById("sugestaoEROS").innerHTML = renderizarPainelEROS(conversaAtual, detalhes);
     atualizarAlertasConversa();
     atualizarBotaoLigacao();
 
-    document.getElementById("chatMensagens").innerHTML = mensagensDoPerfil(conversaAtual.nome).map(function (mensagem) {
+    MatchConnectApp.marcarConversaLida(conversaAtual.nome);
+    document.body.classList.remove("has-new-message");
+
+    const mensagensPerfilAtual = mensagensDoPerfil(conversaAtual.nome);
+    document.getElementById("chatMensagens").innerHTML = mensagensPerfilAtual.map(function (mensagem) {
         const minha = mensagem.autor === "Você";
         const sinalizada = mensagem.sinalizada ? " border border-danger" : "";
-        let midia = "";
+        const nova = mensagem.nova ? " incoming-new" : "";
+        const texto = mensagem.texto || "";
 
-        if (mensagem.tipo === "imagem" || mensagem.tipo === "gif") {
-            midia = `<img src="${mensagem.url}" class="img-fluid rounded mt-2" alt="Mídia enviada no chat">`;
-        }
-
-        if (mensagem.tipo === "audio") {
-            midia = `<audio controls class="mt-2 w-100" src="${mensagem.url}"></audio>`;
+        if (minha && !mensagem.status) {
+            mensagem.status = "lida";
         }
 
         return `
             <div class="d-flex ${minha ? "justify-content-end" : "justify-content-start"} mb-2">
-                <span class="chat-message ${minha ? "outgoing" : "incoming"}${sinalizada}">
-                    ${mensagem.texto}
-                    ${midia}
+                <span class="chat-message ${minha ? "outgoing" : "incoming"}${sinalizada}${nova}">
+                    <span class="message-text">${texto}</span>
+                    ${statusMensagemHtml(mensagem)}
                     ${mensagem.sinalizada ? '<small class="d-block mt-1 text-danger">Mensagem sinalizada pela moderação.</small>' : ""}
                 </span>
             </div>
         `;
     }).join("");
 
-    document.getElementById("chatMensagens").scrollIntoView({ behavior: "smooth", block: "end" });
+    mensagensPerfilAtual.forEach(function (mensagem) {
+        mensagem.nova = false;
+    });
+
+    const chatMensagens = document.getElementById("chatMensagens");
+    chatMensagens.scrollTo({
+        top: chatMensagens.scrollHeight,
+        behavior: "smooth"
+    });
+    salvarMensagens();
+    renderizarLista(document.getElementById("buscaConversas").value);
 }
 
 document.getElementById("listaConversas").addEventListener("click", function (event) {
@@ -136,11 +307,57 @@ document.getElementById("buscaConversas").addEventListener("input", function (ev
 });
 
 document.getElementById("btnUsarSugestao").addEventListener("click", function () {
-    document.getElementById("campoMensagem").value = conversaAtual.mensagem;
+    if (!conversaAtual) return;
+    alternarPainelEROSChat();
+});
+
+document.getElementById("btnFecharEROSChat").addEventListener("click", function () {
+    document.getElementById("painelEROSChat").classList.add("d-none");
+});
+
+function abrirPainelEROSChat() {
+    if (!conversaAtual) return;
+
+    document.getElementById("painelEROSChat").classList.remove("d-none");
+    document.getElementById("statusChat").textContent = "EROS abriu sugestões rápidas para esta conversa.";
+}
+
+function alternarPainelEROSChat() {
+    if (!conversaAtual) return;
+
+    const painel = document.getElementById("painelEROSChat");
+    const vaiAbrir = painel.classList.contains("d-none");
+    painel.classList.toggle("d-none", !vaiAbrir);
+    document.getElementById("statusChat").textContent = vaiAbrir
+        ? "EROS abriu sugestões rápidas para esta conversa."
+        : "EROS fechado.";
+}
+
+function ligarEROSFlutuanteAoChat() {
+    const botaoEROS = document.querySelector("#globalEROS .global-eros-orb");
+    if (!botaoEROS) return;
+
+    botaoEROS.addEventListener("click", function () {
+        window.setTimeout(alternarPainelEROSChat, 0);
+    });
+}
+
+document.getElementById("sugestaoEROS").addEventListener("click", function (event) {
+    const botao = event.target.closest("[data-sugestao-index]");
+    if (!botao || !conversaAtual) return;
+
+    const sugestoes = sugestoesMensagemEROS(conversaAtual);
+    const sugestao = sugestoes[Number(botao.dataset.sugestaoIndex)];
+    if (!sugestao) return;
+
+    document.getElementById("campoMensagem").value = sugestao.texto;
+    document.getElementById("campoMensagem").focus();
+    document.getElementById("statusChat").textContent = `Sugestão "${sugestao.titulo}" pronta para enviar.`;
 });
 
 document.querySelectorAll(".acao-chat").forEach(function (botao) {
     botao.addEventListener("click", function () {
+        if (!conversaAtual) return;
         const comum = conversaAtual.interessesEmComum[0] || conversaAtual.interesses[0];
 
         if (botao.dataset.acao === "evento") {
@@ -154,7 +371,7 @@ document.querySelectorAll(".acao-chat").forEach(function (botao) {
 
         if (botao.dataset.acao === "denuncia") {
             localStorage.setItem("ultimaDenuncia", JSON.stringify({ pessoa: conversaAtual.nome, origem: "Conversas" }));
-            document.getElementById("sugestaoEROS").textContent = `Denúncia preparada para ${conversaAtual.nome}. Você pode finalizar na Central de segurança.`;
+            document.getElementById("statusChat").textContent = `Denúncia preparada para ${conversaAtual.nome}. Você pode finalizar na Central de segurança.`;
         }
 
         if (botao.dataset.acao === "bloquear") {
@@ -175,74 +392,83 @@ document.querySelectorAll(".acao-chat").forEach(function (botao) {
 document.getElementById("formMensagem").addEventListener("submit", function (event) {
     event.preventDefault();
     const campo = document.getElementById("campoMensagem");
-    const midia = document.getElementById("midiaChat");
-    const gif = document.getElementById("gifChat");
     const texto = campo.value.trim();
-    const arquivo = midia.files[0];
-    const gifUrl = gif.value.trim();
 
-    if (!texto && !arquivo && !gifUrl) return;
+    if (!texto) return;
 
-    function salvarMensagem(extra) {
-        const sinalizada = contemOfensa(texto);
-        mensagensDoPerfil(conversaAtual.nome).push({
-            autor: "Você",
-            texto: texto || extra.texto,
+    const sinalizada = contemOfensa(texto);
+    const idMensagem = `msg-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+    mensagensDoPerfil(conversaAtual.nome).push({
+        id: idMensagem,
+        autor: "Você",
+        texto: texto,
+        data: new Date().toISOString(),
+        status: "enviada",
+        sinalizada: sinalizada
+    });
+
+    if (sinalizada) {
+        registrarModeracao(texto);
+    }
+
+    campo.value = "";
+    salvarMensagens();
+    renderizarChat();
+    simularStatusMensagem(conversaAtual.nome, idMensagem);
+    simularRespostaDoMatch();
+});
+
+function simularRespostaDoMatch() {
+    if (!conversaAtual) return;
+
+    const perfilResposta = conversaAtual;
+    document.getElementById("statusChat").textContent = `${perfilResposta.nome} está digitando...`;
+
+    window.setTimeout(function () {
+        mensagensDoPerfil(perfilResposta.nome).push({
+            autor: perfilResposta.nome,
+            texto: MatchConnectApp.criarMensagemSimulada(perfilResposta, "resposta"),
             data: new Date().toISOString(),
-            sinalizada: sinalizada,
-            ...extra
+            nova: true
         });
+        MatchConnectApp.registrarHistorico("resposta-simulada", perfilResposta, "Resposta automática no chat");
+        salvarMensagens();
 
-        if (sinalizada) {
-            registrarModeracao(texto);
+        if (conversaAtual && conversaAtual.nome === perfilResposta.nome) {
+            document.getElementById("statusChat").textContent = `${perfilResposta.nome} respondeu nesta simulação.`;
+            renderizarChat();
+            return;
         }
 
-        campo.value = "";
-        midia.value = "";
-        gif.value = "";
-        salvarMensagens();
-        renderizarChat();
-    }
-
-    if (arquivo) {
-        const reader = new FileReader();
-        reader.onload = function (readerEvent) {
-            salvarMensagem({
-                tipo: arquivo.type.startsWith("audio") ? "audio" : "imagem",
-                texto: texto || (arquivo.type.startsWith("audio") ? "Áudio enviado" : "Imagem enviada"),
-                url: readerEvent.target.result
-            });
-        };
-        reader.readAsDataURL(arquivo);
-        return;
-    }
-
-    if (gifUrl) {
-        salvarMensagem({ tipo: "gif", texto: texto || "GIF enviado", url: gifUrl });
-        return;
-    }
-
-    salvarMensagem({});
-});
-
-document.getElementById("btnLimparMidia").addEventListener("click", function () {
-    document.getElementById("midiaChat").value = "";
-    document.getElementById("gifChat").value = "";
-});
+        MatchConnectApp.incrementarNaoLida(perfilResposta.nome);
+        renderizarLista(document.getElementById("buscaConversas").value);
+    }, 1100);
+}
 
 document.getElementById("btnEncerrarConversa").addEventListener("click", function () {
+    if (!conversaAtual) return;
     const lista = JSON.parse(localStorage.getItem("conversasEncerradas")) || [];
     if (!lista.includes(conversaAtual.nome)) {
         lista.push(conversaAtual.nome);
     }
+    encerradas = lista;
     salvarLista("conversasEncerradas", lista);
+    salvarLista("conversasAtivas", conversasAtivas().filter(function (nome) {
+        return nome !== conversaAtual.nome;
+    }));
+    MatchConnectApp.marcarConversaLida(conversaAtual.nome);
+    localStorage.removeItem("conversaAberta");
+    perfis = perfis.filter(function (perfil) {
+        return perfil.nome !== conversaAtual.nome;
+    });
     document.getElementById("statusChat").textContent = `Conversa com ${conversaAtual.nome} encerrada.`;
-    window.setTimeout(function () {
-        window.location.reload();
-    }, 500);
+    conversaAtual = perfisPriorizados(perfis)[0] || null;
+    renderizarLista(document.getElementById("buscaConversas").value);
+    renderizarChat();
 });
 
 document.getElementById("btnLigarChat").addEventListener("click", function () {
+    if (!conversaAtual) return;
     const minhasMensagens = mensagensDoPerfil(conversaAtual.nome).filter(function (mensagem) {
         return mensagem.autor === "Você";
     }).length;
@@ -326,3 +552,4 @@ if (conversaAtual) {
 }
 renderizarLista();
 renderizarChat();
+ligarEROSFlutuanteAoChat();

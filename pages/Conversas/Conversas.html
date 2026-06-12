@@ -7,9 +7,11 @@
     <title>Conversas | MatchConnect</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../../assets/css/tokens.css">
     <link rel="stylesheet" href="../../assets/css/App.css">
     <link rel="stylesheet" href="../../assets/css/Internal.css">
-</head>
+<link rel="stylesheet" href="../../assets/css/dark-mode.css">
+<script>!function(){var t=localStorage.getItem("matchConnectTheme");t&&document.documentElement.setAttribute("data-theme",t)}();</script></head>
 
 <body>
     <header>
@@ -69,19 +71,28 @@
                         <div id="alertaConversa" class="alert alert-warning d-none" role="status"></div>
                         <div id="chatMensagens" class="mb-4"></div>
 
-                        <div class="visual-card mb-3">
-                            <span class="section-kicker">EROS</span>
-                            <p id="sugestaoEROS" class="mb-3"></p>
-                            <div class="page-actions">
-                                <button id="btnUsarSugestao" class="btn btn-match-outline btn-sm" type="button">Usar sugestão</button>
-                                <button class="btn btn-match-outline btn-sm acao-chat" type="button" data-acao="evento">Sugerir evento</button>
-                                <button class="btn btn-match-outline btn-sm acao-chat" type="button" data-acao="experiencia">Enviar experiência</button>
-                                <button class="btn btn-match-outline btn-sm acao-chat" type="button" data-acao="denuncia">Denunciar</button>
-                                <button class="btn btn-match-outline btn-sm acao-chat" type="button" data-acao="bloquear">Bloquear</button>
-                                <button id="btnEncerrarConversa" class="btn btn-match-outline btn-sm" type="button">Encerrar conversa</button>
-                                <button id="btnLigarChat" class="btn btn-match-primary btn-sm" type="button"><i class="bi bi-telephone"></i> Ligar</button>
+                        <div id="chatQuickActions" class="chat-quick-actions d-flex flex-wrap gap-2 mb-3">
+                            <button id="btnUsarSugestao" class="btn btn-match-outline btn-sm" type="button">
+                                <i class="bi bi-robot"></i> EROS
+                            </button>
+                            <button class="btn btn-match-outline btn-sm acao-chat" type="button" data-acao="evento">Sugerir evento</button>
+                            <button class="btn btn-match-outline btn-sm acao-chat" type="button" data-acao="experiencia">Enviar experiência</button>
+                            <button id="btnLigarChat" class="btn btn-match-primary btn-sm" type="button">
+                                <i class="bi bi-telephone"></i> Ligar
+                            </button>
+                            <button id="btnEncerrarConversa" class="btn btn-match-outline btn-sm" type="button">Encerrar conversa</button>
+                            <button class="btn btn-match-outline btn-sm acao-chat" type="button" data-acao="denuncia">Denunciar</button>
+                            <button class="btn btn-match-outline btn-sm acao-chat" type="button" data-acao="bloquear">Bloquear</button>
+                        </div>
+
+                        <div id="painelEROSChat" class="chat-eros-popover d-none" aria-live="polite">
+                            <div class="chat-eros-popover-head">
+                                <span class="section-kicker">EROS</span>
+                                <button id="btnFecharEROSChat" class="icon-action" type="button" aria-label="Fechar EROS">
+                                    <i class="bi bi-x-lg"></i>
+                                </button>
                             </div>
-                            <p id="statusChat" class="status-message mt-3 mb-0"></p>
+                            <div id="sugestaoEROS"></div>
                         </div>
 
                         <form id="formMensagem" class="d-grid gap-2">
@@ -89,20 +100,8 @@
                                 <input id="campoMensagem" class="form-control" type="text" placeholder="Digite uma mensagem">
                                 <button class="btn btn-match-primary" type="submit"><i class="bi bi-send"></i></button>
                             </div>
-                            <div class="row g-2">
-                                <div class="col-md-5">
-                                    <label for="midiaChat" class="form-label small mb-1">Imagem ou áudio</label>
-                                    <input id="midiaChat" class="form-control" type="file" accept="image/*,audio/*">
-                                </div>
-                                <div class="col-md-5">
-                                    <label for="gifChat" class="form-label small mb-1">GIF por URL</label>
-                                    <input id="gifChat" class="form-control" type="url" placeholder="https://...gif">
-                                </div>
-                                <div class="col-md-2 d-flex align-items-end">
-                                    <button id="btnLimparMidia" class="btn btn-match-outline w-100" type="button">Limpar</button>
-                                </div>
-                            </div>
                         </form>
+                        <p id="statusChat" class="status-message mt-3 mb-0"></p>
                     </section>
                 </div>
             </div>
@@ -113,6 +112,7 @@
     <script src="../../assets/js/appData.js"></script>
     <script src="Conversas.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/js/theme.js"></script>
 </body>
 
 </html>

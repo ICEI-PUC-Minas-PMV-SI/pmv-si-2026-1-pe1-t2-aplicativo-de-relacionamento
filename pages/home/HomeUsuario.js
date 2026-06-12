@@ -14,85 +14,27 @@ if (!usuarioLogado) {
     window.location.href = "../Login/login.html";
 }
 
-// Perfis simulados usados na área "Descobrir". Cada objeto traz dados para card,
-// cálculo de afinidade e sugestão inicial de conversa.
-const perfisBase = [
-    {
-        nome: "Ana",
-        idade: 24,
-        distanciaKm: 4,
-        inicial: "A",
-        foto: "",
-        interesses: ["Cinema", "Livros", "Gastronomia", "Viagens"],
-        objetivo: "Relacionamento sério",
-        procura: "conversa leve e encontro tranquilo",
-        programaIdeal: "cinema seguido de jantar",
-        energia: "Calma e curiosa",
-        frase: "Prefiro conexões que começam simples e continuam com vontade.",
-        bio: "Gosta de roteiros tranquilos, bons filmes e conversas que continuam depois do primeiro assunto.",
-        mensagem: "Vi que a gente combina em cinema e gastronomia. Qual foi o último lugar que te surpreendeu?"
-    },
-    {
-        nome: "Karol",
-        idade: 26,
-        distanciaKm: 12,
-        inicial: "K",
-        foto: "",
-        interesses: ["Música", "Academia", "Corrida", "Tecnologia"],
-        objetivo: "Conhecer pessoas novas",
-        procura: "alguém animado para conversar e sair da rotina",
-        programaIdeal: "show, treino ou café depois do trabalho",
-        energia: "Alta e espontânea",
-        frase: "Se tiver playlist boa e assunto sincero, eu topo.",
-        bio: "Curte treino, playlists novas e gente que fala de planos sem perder o bom humor.",
-        mensagem: "Você prefere treino com música animada ou podcast para desligar um pouco?"
-    },
-    {
-        nome: "Mariana",
-        idade: 23,
-        distanciaKm: 7,
-        inicial: "M",
-        foto: "",
-        interesses: ["Séries", "Praia", "Pets", "Cinema"],
-        objetivo: "Algo leve, sem pressão",
-        procura: "conversas carinhosas e programas sem pressa",
-        programaIdeal: "praia no fim da tarde",
-        energia: "Doce e observadora",
-        frase: "Gosto de gente que presta atenção nos detalhes pequenos.",
-        bio: "Entre um episódio novo e um fim de tarde na praia, sempre encontra assunto para puxar papo.",
-        mensagem: "Se você fosse escolher uma série para rever hoje, qual entraria sem pensar?"
-    },
-    {
-        nome: "Beatriz",
-        idade: 27,
-        distanciaKm: 18,
-        inicial: "B",
-        foto: "",
-        interesses: ["Viagens", "Gastronomia", "Livros", "Música"],
-        objetivo: "Conhecer pessoas novas",
-        procura: "companhia para descobrir lugares e histórias",
-        programaIdeal: "restaurante novo ou bate-volta",
-        energia: "Exploradora e bem-humorada",
-        frase: "Memória boa quase sempre envolve comida, música ou estrada.",
-        bio: "Acredita que conhecer pessoas também é descobrir novos lugares, sabores e ideias.",
-        mensagem: "Qual viagem curta você faria de novo só pela memória boa?"
-    },
-    {
-        nome: "Luiza",
-        idade: 25,
-        distanciaKm: 28,
-        inicial: "L",
-        foto: "",
-        interesses: ["Games", "Tecnologia", "Séries", "Pets"],
-        objetivo: "Amizade",
-        procura: "parceria para rir, jogar e conversar sem pressão",
-        programaIdeal: "game cooperativo e comida em casa",
-        energia: "Criativa e tranquila",
-        frase: "Eu gosto quando a conversa parece fase bônus.",
-        bio: "Mistura tecnologia, jogos cooperativos e conversas sinceras sem pressa.",
-        mensagem: "Qual jogo ou série você recomenda para alguém que quer entrar no seu universo?"
-    }
-];
+// Perfis simulados usados na área "Descobrir". A fonte principal fica em
+// appData.js para que Home, Matches, Favoritos e Conversas falem a mesma língua.
+const perfisBase = typeof MatchConnectApp !== "undefined" && Array.isArray(MatchConnectApp.perfisBase)
+    ? MatchConnectApp.perfisBase
+    : [
+        {
+            nome: "Ana",
+            idade: 24,
+            distanciaKm: 4,
+            inicial: "A",
+            foto: "",
+            interesses: ["Cinema", "Livros", "Gastronomia", "Viagens"],
+            objetivo: "Relacionamento sério",
+            procura: "conversa leve e encontro tranquilo",
+            programaIdeal: "Cinema seguido de jantar",
+            energia: "Calma e curiosa",
+            frase: "Prefiro conexões que começam simples e continuam com vontade.",
+            bio: "Gosta de roteiros tranquilos, bons filmes e conversas que continuam depois do primeiro assunto.",
+            mensagem: "Vi que a gente combina em cinema e gastronomia. Qual foi o último lugar que te surpreendeu?"
+        }
+    ];
 
 // Conversas simuladas exibidas no painel lateral da Home.
 const conversasBase = [
@@ -119,6 +61,49 @@ const conversasBase = [
     }
 ];
 
+function obterConversasHome() {
+    const encerradas = lerJsonHome("conversasEncerradas", []);
+    const bloqueados = lerJsonHome("perfisBloqueados", []);
+    const matches = typeof MatchConnectApp !== "undefined"
+        ? MatchConnectApp.getMatchedProfiles()
+        : perfisBase.filter(function (perfil) {
+            return matchesSalvos.includes(perfil.nome);
+        });
+    const mensagens = typeof MatchConnectApp !== "undefined"
+        ? MatchConnectApp.getMensagens()
+        : lerJsonHome("mensagensUsuario", {});
+    let naoLidas = typeof MatchConnectApp !== "undefined"
+        ? MatchConnectApp.getNaoLidas()
+        : lerJsonHome("mensagensNaoLidas", {});
+    const matchesAtivos = matches.filter(function (perfil) {
+        return !encerradas.includes(perfil.nome) && !bloqueados.includes(perfil.nome);
+    });
+
+    encerradas.concat(bloqueados).forEach(function (nome) {
+        if (naoLidas[nome]) {
+            delete naoLidas[nome];
+        }
+    });
+
+    localStorage.setItem("mensagensNaoLidas", JSON.stringify(naoLidas));
+
+    return matchesAtivos.map(function (perfil) {
+        const mensagensPerfil = mensagens[perfil.nome] || [];
+        const ultima = mensagensPerfil[mensagensPerfil.length - 1];
+        return {
+            nome: perfil.nome,
+            inicial: perfil.inicial,
+            tempo: naoLidas[perfil.nome] ? "nova" : "agora",
+            ultima: ultima ? ultima.texto : "Match criado. O EROS pode sugerir a primeira mensagem.",
+            interesses: perfil.interessesEmComum && perfil.interessesEmComum.length > 0 ? perfil.interessesEmComum : perfil.interesses.slice(0, 2),
+            naoLidas: naoLidas[perfil.nome] || 0,
+            percentual: perfil.percentual
+        };
+    }).sort(function (a, b) {
+        return b.naoLidas - a.naoLidas || b.percentual - a.percentual;
+    });
+}
+
 const nomeUsuario = document.getElementById("nomeUsuario");
 const resumoAfinidade = document.getElementById("resumoAfinidade");
 const fotoPerfilNavbar = document.getElementById("fotoPerfilNavbar");
@@ -139,6 +124,7 @@ const listaConversas = document.getElementById("listaConversas");
 const buscaConversas = document.getElementById("buscaConversas");
 const buscaGlobal = document.getElementById("buscaGlobal");
 const sugestaoConversa = document.getElementById("sugestaoConversa");
+const chatPreview = document.getElementById("chatPreview");
 const cardPerfilSwipe = document.getElementById("cardPerfilSwipe");
 const contadorSwipe = document.getElementById("contadorSwipe");
 const resultadoSwipe = document.getElementById("resultadoSwipe");
@@ -155,6 +141,7 @@ const cupidoOrb = document.querySelector(".pet-robot");
 const btnNovaDicaCupido = document.getElementById("btnNovaDicaEROS");
 const btnCopiarCupido = document.getElementById("btnCopiarCupido");
 const btnEnviarSugestao = document.getElementById("btnEnviarSugestao");
+const btnAbrirConversaHome = document.getElementById("btnAbrirConversaHome");
 const listaMatchesAnimados = document.getElementById("listaMatchesAnimados");
 const matchCelebration = document.getElementById("matchCelebration");
 const matchCelebrationText = document.getElementById("matchCelebrationText");
@@ -186,17 +173,25 @@ const cupidoRewardSteps = document.querySelectorAll(".eros-reward-track button")
 
 let indiceSwipe = 0;
 let ultimoIndice = 0;
+let swipeStartX = 0;
+let swipeStartY = 0;
+let swipeDeltaX = 0;
+let swiping = false;
+let swiped = false;
+const SWIPE_THRESHOLD = 80;
 let indiceDicaCupido = 0;
 let indiceVariacaoCupido = 0;
 let indiceGuiaCupido = 0;
 let indiceHumorCupido = 0;
 let filtroGlobal = "";
-let cupidoXp = Number(localStorage.getItem("cupidoPetXp")) || 18;
+let conversaSelecionadaHome = null;
+let cupidoXp = Number(localStorage.getItem("erosPetXp") || localStorage.getItem("cupidoPetXp")) || 18;
 let intervaloCupidoPet = null;
 const cupidoStatsPadrao = { likes: 0, sugestoes: 0, eventos: 0, quizzes: 0 };
 const filtrosMatchConnect = lerJsonHome("filtrosMatchConnect", {});
 const matchesCurtidos = [];
 const matchesSalvos = lerJsonHome("matchesUsuario", []);
+const urlApiCompatibilidade = "http://127.0.0.1:8000/compatibilidade";
 
 const interessesUsuario = Array.isArray(dadosInteresses.interesses) ? dadosInteresses.interesses : [];
 const camadasUsuario = dadosInteresses.camadas || {};
@@ -210,6 +205,79 @@ function normalizarListaInteresse(valor) {
     return String(valor).split(",").map(function (item) {
         return item.trim();
     }).filter(Boolean);
+}
+
+function calcularIdadeLocal(dataNascimento) {
+    if (!dataNascimento) return null;
+
+    const nascimento = new Date(dataNascimento);
+    if (Number.isNaN(nascimento.getTime())) return null;
+
+    const hoje = new Date();
+    let idade = hoje.getFullYear() - nascimento.getFullYear();
+    const mes = hoje.getMonth() - nascimento.getMonth();
+
+    if (mes < 0 || (mes === 0 && hoje.getDate() < nascimento.getDate())) {
+        idade--;
+    }
+
+    return idade;
+}
+
+function montarUsuarioLogadoParaApi() {
+    return {
+        nome: usuarioLogado ? usuarioLogado.nome : "Usuario",
+        idade: calcularIdadeLocal(usuarioLogado ? usuarioLogado.dataNascimento : null),
+        data_nascimento: usuarioLogado ? usuarioLogado.dataNascimento : null,
+        interesses: interessesUsuario,
+        objetivo: dadosInteresses.objetivo || "",
+        descricao: dadosInteresses.descricao || ""
+    };
+}
+
+function montarPerfilParaApi(perfil) {
+    return {
+        nome: perfil.nome,
+        idade: perfil.idade,
+        interesses: perfil.interesses,
+        objetivo: perfil.objetivo || "",
+        descricao: perfil.bio || perfil.descricao || ""
+    };
+}
+
+async function verificarCompatibilidadeApi(perfil) {
+    const resposta = await fetch(urlApiCompatibilidade, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            usuario1: montarUsuarioLogadoParaApi(),
+            usuario2: montarPerfilParaApi(perfil)
+        })
+    });
+
+    if (!resposta.ok) {
+        throw new Error("Nao foi possivel calcular a compatibilidade.");
+    }
+
+    return resposta.json();
+}
+
+function montarCompatibilidadeLocal(perfil) {
+    const compatibilidade = calcularCompatibilidade(perfil);
+    const interesses = compatibilidade.interessesEmComum.length > 0
+        ? compatibilidade.interessesEmComum
+        : perfil.interesses.slice(0, 2);
+    const objetivoTexto = dadosInteresses.objetivo && perfil.objetivo
+        ? `Seu objetivo atual é "${dadosInteresses.objetivo}" e o perfil busca "${perfil.objetivo}".`
+        : "Complete o objetivo do perfil para refinar esse resultado.";
+
+    return {
+        porcentagem: compatibilidade.percentual,
+        interesses_em_comum: interesses,
+        explicacao: `Cálculo local baseado em interesses, camadas do perfil e distância. ${objetivoTexto}`
+    };
 }
 
 function obterCamadasInteresses() {
@@ -294,6 +362,50 @@ function perguntaPorInteresse(interesse) {
     };
 
     return perguntas[interesse] || `O que faz ${interesse} ser um assunto bom para você?`;
+}
+
+function normalizarTextoComparacao(texto) {
+    return String(texto || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .replace(/[^a-z0-9 ]/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+}
+
+function textosParecidos(textoA, textoB) {
+    const a = normalizarTextoComparacao(textoA);
+    const b = normalizarTextoComparacao(textoB);
+
+    if (!a || !b) return false;
+    if (a.includes(b) || b.includes(a)) return true;
+
+    const palavrasA = new Set(a.split(" ").filter(function (palavra) {
+        return palavra.length > 3;
+    }));
+    const palavrasB = b.split(" ").filter(function (palavra) {
+        return palavra.length > 3;
+    });
+    const comuns = palavrasB.filter(function (palavra) {
+        return palavrasA.has(palavra);
+    });
+
+    return palavrasB.length > 0 && comuns.length / palavrasB.length >= 0.72;
+}
+
+function perguntaComplementarEROS(interesse, sugestao, perfil) {
+    const principal = perguntaPorInteresse(interesse);
+    const alternativas = [
+        `O que você gostaria de descobrir sobre ${perfil.nome} a partir desse interesse?`,
+        `Esse assunto combina mais com conversa leve ou convite para um programa simples?`,
+        `Qual detalhe deixaria essa abertura mais natural para você?`
+    ];
+    const opcoes = [principal, ...alternativas];
+
+    return opcoes.find(function (pergunta) {
+        return !textosParecidos(pergunta, sugestao);
+    }) || "";
 }
 
 // Ordena os perfis para mostrar primeiro quem combina mais com o usuário.
@@ -575,7 +687,7 @@ function preencherPerfil() {
 // Renderiza a lista de conversas e aplica filtro por nome/interesse.
 function renderizarConversas(filtro = "") {
     const termo = filtro.trim().toLowerCase();
-    const conversas = conversasBase.filter(function (conversa) {
+    const conversas = obterConversasHome().filter(function (conversa) {
         return conversa.nome.toLowerCase().includes(termo)
             || conversa.interesses.join(" ").toLowerCase().includes(termo);
     });
@@ -595,26 +707,55 @@ function renderizarConversas(filtro = "") {
             <span class="conversation-content">
                 <span class="conversation-top">
                     <strong>${conversa.nome}</strong>
-                    <small>${conversa.tempo}</small>
+                    <small>${conversa.naoLidas ? `${conversa.naoLidas} nova` : conversa.tempo}</small>
                 </span>
                 <span class="conversation-text">${conversa.ultima}</span>
                 <span class="conversation-match">${afinidade.length > 0 ? afinidade.join(" + ") : conversa.interesses[0]}</span>
             </span>
         `;
+        item.classList.toggle("has-unread", conversa.naoLidas > 0);
+        item.addEventListener("click", function () {
+            selecionarConversaHome(conversa.nome);
+        });
         listaConversas.appendChild(item);
     });
 
     if (conversas.length === 0) {
-        listaConversas.innerHTML = '<p class="empty-state mb-0">Nenhuma conversa encontrada.</p>';
+        listaConversas.innerHTML = `
+            <div class="empty-state compact-empty mb-0">
+                <i class="bi bi-chat-heart"></i>
+                <strong>Nenhuma conversa ainda</strong>
+                <p>Curta um perfil em Descobrir para liberar mensagens simuladas.</p>
+            </div>
+        `;
     }
+}
+
+function selecionarConversaHome(nome) {
+    const perfil = typeof MatchConnectApp !== "undefined"
+        ? MatchConnectApp.perfilPorNome(nome)
+        : perfisBase.find(function (item) { return item.nome === nome; });
+
+    if (!perfil) return;
+
+    conversaSelecionadaHome = perfil;
+    if (chatPreview) {
+        chatPreview.classList.remove("d-none");
+    }
+    sugestaoConversa.textContent = montarMensagemCupido(perfil);
+    localStorage.setItem("conversaAberta", perfil.nome);
+    resultadoSwipe.textContent = `Conversa com ${perfil.nome} selecionada. Revise a sugestão antes de enviar.`;
+    atualizarCupidoPet(`Selecionei ${perfil.nome}. Agora a sugestão vai para essa conversa, não para o perfil do swipe.`);
 }
 
 // Atualiza a sugestão de abertura usando o perfil atualmente exibido no swipe.
 function atualizarSugestao() {
-    const perfil = obterPerfilAtual();
+    const perfil = conversaSelecionadaHome;
 
-    if (!perfil || interessesUsuario.length === 0) {
-        sugestaoConversa.textContent = "Escolha seus interesses para receber uma sugestão de abertura personalizada.";
+    if (!perfil) {
+        if (chatPreview) {
+            chatPreview.classList.add("d-none");
+        }
         return;
     }
 
@@ -661,7 +802,8 @@ function nivelCupido() {
 
 function getCupidoStats() {
     try {
-        return { ...cupidoStatsPadrao, ...JSON.parse(localStorage.getItem("cupidoPetStats")) };
+        const stats = localStorage.getItem("erosPetStats") || localStorage.getItem("cupidoPetStats");
+        return { ...cupidoStatsPadrao, ...JSON.parse(stats) };
     } catch (error) {
         return { ...cupidoStatsPadrao };
     }
@@ -669,6 +811,7 @@ function getCupidoStats() {
 
 function salvarCupidoStats(stats) {
     localStorage.setItem("cupidoPetStats", JSON.stringify(stats));
+    localStorage.setItem("erosPetStats", JSON.stringify(stats));
 }
 
 function registrarAcaoCupido(tipo, quantidade = 1) {
@@ -787,6 +930,7 @@ function falarCupidoContextual() {
 function ganharXpCupido(pontos, fala) {
     cupidoXp += pontos;
     localStorage.setItem("cupidoPetXp", String(cupidoXp));
+    localStorage.setItem("erosPetXp", String(cupidoXp));
     atualizarCupidoPet(fala);
     renderizarMissoesHome();
 
@@ -976,6 +1120,45 @@ function animarCoracoesCupido() {
     }
 }
 
+function mostrarNovaMensagemSimulada(eventoMensagem) {
+    if (!eventoMensagem) return;
+
+    const aviso = document.createElement("div");
+    aviso.className = "new-message-toast";
+    aviso.innerHTML = `
+        <span><i class="bi bi-chat-heart-fill"></i></span>
+        <div>
+            <strong>${eventoMensagem.pessoa} enviou uma mensagem</strong>
+            <p>${eventoMensagem.texto}</p>
+        </div>
+        <a href="../Conversas/Conversas.html">Abrir</a>
+    `;
+    document.body.appendChild(aviso);
+    document.body.classList.add("has-new-message");
+
+    window.setTimeout(function () {
+        aviso.classList.add("show");
+    }, 40);
+
+    window.setTimeout(function () {
+        aviso.classList.remove("show");
+        window.setTimeout(function () {
+            aviso.remove();
+        }, 260);
+    }, 5200);
+}
+
+function simularMensagemAposMatch(perfil) {
+    if (typeof MatchConnectApp === "undefined" || !perfil) return;
+
+    window.setTimeout(function () {
+        const eventoMensagem = MatchConnectApp.simularMensagemDoMatch(perfil, "match");
+        localStorage.setItem("ultimaMensagemRecebida", JSON.stringify(eventoMensagem));
+        mostrarNovaMensagemSimulada(eventoMensagem);
+        renderizarConversas(buscaConversas ? buscaConversas.value : "");
+    }, 1200);
+}
+
 // Atualiza o EROS e dispara a animação do robozinho.
 function atualizarCupido() {
     const perfil = obterPerfilAtual();
@@ -1017,6 +1200,39 @@ function obterMotivosCompatibilidade(perfil) {
     return motivos;
 }
 
+function resumoCompatibilidadePrincipal(perfil) {
+    const camadas = obterCamadasInteresses();
+    const emComum = perfil.interessesEmComum.length > 0 ? perfil.interessesEmComum : perfil.interesses.slice(0, 2);
+    const favoritos = camadas.gostoMuito.filter(function (interesse) {
+        return perfil.interesses.includes(interesse);
+    });
+    const explorar = camadas.queroExplorar.filter(function (interesse) {
+        return perfil.interesses.includes(interesse);
+    });
+    const bloqueados = camadas.naoCurto.filter(function (interesse) {
+        return perfil.interesses.includes(interesse);
+    });
+    const frasePrincipal = emComum.length > 0
+        ? `Vocês combinam principalmente em ${emComum.slice(0, 3).join(", ")}.`
+        : `O EROS encontrou sinais de conversa em ${perfil.interesses.slice(0, 2).join(", ")}.`;
+    const explicacao = [
+        favoritos.length ? `${favoritos.join(", ")} aparece entre os temas que você gosta muito.` : "",
+        explorar.length ? `${explorar.join(", ")} pode virar uma descoberta em comum.` : "",
+        bloqueados.length ? `Atenção: ${bloqueados.join(", ")} aparece em "não curto".` : "Não há conflito com seus limites informados.",
+        `O programa ideal de ${perfil.nome} é ${perfil.programaIdeal}.`,
+        `A energia do perfil é ${perfil.energia}.`
+    ].filter(Boolean);
+
+    return {
+        emComum: emComum,
+        favoritos: favoritos,
+        explorar: explorar,
+        bloqueados: bloqueados,
+        frasePrincipal: frasePrincipal,
+        explicacao: explicacao
+    };
+}
+
 function renderizarBarrasCompatibilidade(perfil) {
     return `
         <div class="compat-category-panel">
@@ -1039,42 +1255,52 @@ function renderizarBarrasCompatibilidade(perfil) {
     `;
 }
 
-function renderizarCamadasPerfil(perfil) {
-    const camadas = obterCamadasInteresses();
-    const gostoMuito = camadas.gostoMuito.filter(function (interesse) {
-        return perfil.interesses.includes(interesse);
-    });
-    const explorar = camadas.queroExplorar.filter(function (interesse) {
-        return perfil.interesses.includes(interesse);
-    });
-    const naoCurto = camadas.naoCurto.filter(function (interesse) {
-        return perfil.interesses.includes(interesse);
-    });
-
+function renderizarInformacoesPessoa(perfil) {
     return `
         <div class="interest-layer-panel">
-            <span>Seu perfil por camadas</span>
-            <div class="interest-layer-row"><small>Gosto muito</small><strong>${gostoMuito.join(", ") || camadas.gostoMuito.join(", ") || "Não informado"}</strong></div>
-            <div class="interest-layer-row"><small>Quero explorar</small><strong>${explorar.join(", ") || camadas.queroExplorar.join(", ") || "Não informado"}</strong></div>
-            <div class="interest-layer-row ${naoCurto.length ? "warn" : ""}"><small>Não curto</small><strong>${naoCurto.join(", ") || camadas.naoCurto.join(", ") || "Sem conflito"}</strong></div>
-            <div class="interest-layer-row"><small>Assunto favorito</small><strong>${camadas.assuntoFavorito || "Não informado"}</strong></div>
+            <span>Informações de ${perfil.nome}</span>
+            <div class="interest-layer-row"><small>Interesses</small><strong>${perfil.interesses.join(", ")}</strong></div>
+            <div class="interest-layer-row"><small>Busca</small><strong>${perfil.objetivo || "Não informado"}</strong></div>
+            <div class="interest-layer-row"><small>Programa ideal</small><strong>${perfil.programaIdeal || "Não informado"}</strong></div>
+            <div class="interest-layer-row"><small>Energia</small><strong>${perfil.energia || perfil.personalidade || "Não informado"}</strong></div>
+            <div class="interest-layer-row"><small>Sobre</small><strong>${perfil.bio || "Não informado"}</strong></div>
         </div>
     `;
 }
 
-function renderizarDetalhesCompatibilidade(perfil) {
+function renderizarPainelCompatibilidade(perfil) {
+    const resumo = resumoCompatibilidadePrincipal(perfil);
+
     return `
-        <div class="compat-details">
+        <div class="compat-summary-panel">
+            <div class="compat-summary-head">
+                <div>
+                    <span>Por que vocês combinam</span>
+                    <strong>${resumo.frasePrincipal}</strong>
+                    <p>${resumo.explicacao[0] || "Os sinais de afinidade vêm dos interesses, estilo de encontro e preferências preenchidas."}</p>
+                </div>
+                <em>${perfil.percentual}%</em>
+            </div>
+            <div class="compat-summary-tags">
+                ${resumo.emComum.slice(0, 4).map(function (interesse) {
+        return `<span>${interesse}</span>`;
+    }).join("")}
+            </div>
             <button class="compat-details-toggle" type="button" data-compat-toggle aria-expanded="false">
                 <span>
-                    <strong>Ver compatibilidade detalhada</strong>
-                    <small>Categorias e interesses em camadas</small>
+                    <strong>Ver explicação completa</strong>
+                    <small>Categorias, camadas e pontos de atenção</small>
                 </span>
                 <i class="bi bi-chevron-down"></i>
             </button>
             <div class="compat-details-body" hidden>
+                <div class="compat-explain-list">
+                    ${resumo.explicacao.map(function (item) {
+        return `<p><i class="bi bi-check2-heart"></i>${item}</p>`;
+    }).join("")}
+                </div>
                 ${renderizarBarrasCompatibilidade(perfil)}
-                ${renderizarCamadasPerfil(perfil)}
+                ${renderizarInformacoesPessoa(perfil)}
             </div>
         </div>
     `;
@@ -1082,7 +1308,21 @@ function renderizarDetalhesCompatibilidade(perfil) {
 
 // Mostra matches recentes na aba "Matches".
 function renderizarMatchesAnimados() {
-    const matches = matchesCurtidos.length > 0 ? matchesCurtidos : perfisDescoberta.slice(0, 3);
+    const matchesSalvosPerfis = typeof MatchConnectApp !== "undefined" ? MatchConnectApp.getMatchedProfiles() : [];
+    const matches = matchesCurtidos.length > 0 ? matchesCurtidos : matchesSalvosPerfis;
+
+    if (!listaMatchesAnimados) return;
+
+    if (matches.length === 0) {
+        listaMatchesAnimados.innerHTML = `
+            <div class="empty-state compact-empty">
+                <i class="bi bi-heart"></i>
+                <strong>Sem matches ainda</strong>
+                <p>Curta alguém em Descobrir para iniciar sua primeira conversa.</p>
+            </div>
+        `;
+        return;
+    }
 
     listaMatchesAnimados.innerHTML = matches.map(function (perfil, index) {
         const afinidade = perfil.interessesEmComum.length > 0
@@ -1130,9 +1370,9 @@ function renderizarSwipe() {
     btnVoltar.disabled = false;
     contadorSwipe.textContent = `${indiceSwipe + 1}/${perfisDescoberta.length}`;
     const interessesParaExibir = perfil.interessesEmComum.length > 0 ? perfil.interessesEmComum : perfil.interesses.slice(0, 3);
-    const motivos = obterMotivosCompatibilidade(perfil);
     const sugestaoCupido = montarMensagemCupido(perfil);
     const interessePergunta = interessesParaExibir[0] || perfil.interesses[0] || "Conversa";
+    const perguntaExtraEROS = perguntaComplementarEROS(interessePergunta, sugestaoCupido, perfil);
 
     cardPerfilSwipe.innerHTML = `
         <div class="discover-photo discover-photo-${perfil.inicial.toLowerCase()}">
@@ -1158,25 +1398,13 @@ function renderizarSwipe() {
         return `<button class="tag-match interest-filter-chip" type="button" data-interest="${interesse}">${interesse}</button>`;
     }).join("")}
             </div>
-            <div class="match-reasons">
-                <span>Por que combinou</span>
-                ${motivos.slice(0, 2).map(function (motivo) {
-        return `<strong><i class="bi bi-check2-heart"></i>${motivo}</strong>`;
-    }).join("")}
-                <button class="match-analysis-toggle" type="button" data-analysis-toggle>Ver análise completa</button>
-                <div class="match-analysis-detail" hidden>
-                    ${motivos.slice(2).map(function (motivo) {
-        return `<strong><i class="bi bi-stars"></i>${motivo}</strong>`;
-    }).join("")}
-                </div>
-            </div>
-            ${renderizarDetalhesCompatibilidade(perfil)}
+            ${renderizarPainelCompatibilidade(perfil)}
             <div class="discover-cupid-tip">
                 <i class="bi bi-stars"></i>
                 <span>
                     <small>EROS sugere</small>
                     <strong>${sugestaoCupido}</strong>
-                    <em>${perguntaPorInteresse(interessePergunta)}</em>
+                    ${perguntaExtraEROS ? `<em>${perguntaExtraEROS}</em>` : ""}
                 </span>
             </div>
         </div>
@@ -1273,7 +1501,9 @@ function ativarAba(idPainel) {
 // Marca o guia inicial como visto para não exibir novamente nos próximos logins.
 function marcarGuiaCupidoComoVisto() {
     localStorage.setItem("guiaCupidoHomeVisto", "true");
+    localStorage.setItem("guiaEROSHomeVisto", "true");
     localStorage.removeItem("mostrarTourCupidoHome");
+    localStorage.removeItem("mostrarTourEROSHome");
 }
 
 // Fecha o guia inicial do EROS.
@@ -1301,13 +1531,16 @@ function renderizarGuiaCupido() {
 
 // Abre o guia inicial apenas se o usuário ainda não tiver pulado/finalizado.
 function abrirGuiaCupidoSeNecessario() {
-    const deveMostrarAposCadastro = localStorage.getItem("mostrarTourCupidoHome") === "true";
+    const deveMostrarAposCadastro = localStorage.getItem("mostrarTourCupidoHome") === "true"
+        || localStorage.getItem("mostrarTourEROSHome") === "true";
 
     if (!cupidoGuide) {
         return;
     }
 
-    if (!deveMostrarAposCadastro && localStorage.getItem("guiaCupidoHomeVisto") === "true") {
+    if (!deveMostrarAposCadastro
+        && (localStorage.getItem("guiaCupidoHomeVisto") === "true"
+            || localStorage.getItem("guiaEROSHomeVisto") === "true")) {
         return;
     }
 
@@ -1339,9 +1572,25 @@ if (buscaGlobal) {
 }
 
 cardPerfilSwipe.addEventListener("click", function (event) {
+    if (swiped) {
+        swiped = false;
+        return;
+    }
     const interesse = event.target.closest("[data-interest]");
-    const toggle = event.target.closest("[data-analysis-toggle]");
     const compatToggle = event.target.closest("[data-compat-toggle]");
+
+    if (compatToggle) {
+        event.preventDefault();
+        event.stopPropagation();
+        const detalhe = cardPerfilSwipe.querySelector(".compat-details-body");
+        if (!detalhe) return;
+        const abrir = detalhe.hasAttribute("hidden");
+        detalhe.toggleAttribute("hidden", !abrir);
+        compatToggle.setAttribute("aria-expanded", String(abrir));
+        compatToggle.classList.toggle("open", abrir);
+        compatToggle.querySelector("strong").textContent = abrir ? "Ocultar explicação completa" : "Ver explicação completa";
+        return;
+    }
 
     if (interesse) {
         const termo = interesse.dataset.interest || "";
@@ -1353,30 +1602,64 @@ cardPerfilSwipe.addEventListener("click", function (event) {
         atualizarCupidoPet(`Filtro por ${termo} ativado. Agora vou procurar afinidade nesse assunto.`);
         return;
     }
-
-    if (toggle) {
-        const detalhe = cardPerfilSwipe.querySelector(".match-analysis-detail");
-        if (!detalhe) return;
-        const aberto = detalhe.hasAttribute("hidden");
-        detalhe.toggleAttribute("hidden", !aberto);
-        toggle.textContent = aberto ? "Ocultar análise" : "Ver análise completa";
-        return;
-    }
-
-    if (compatToggle) {
-        const detalhe = cardPerfilSwipe.querySelector(".compat-details-body");
-        if (!detalhe) return;
-        const abrir = detalhe.hasAttribute("hidden");
-        detalhe.toggleAttribute("hidden", !abrir);
-        compatToggle.setAttribute("aria-expanded", String(abrir));
-        compatToggle.classList.toggle("open", abrir);
-        compatToggle.querySelector("strong").textContent = abrir ? "Ocultar compatibilidade detalhada" : "Ver compatibilidade detalhada";
-    }
 });
 
 btnRecusar.addEventListener("click", function () {
     atualizarCupidoPet("Tudo bem recusar. Eu também tenho padrões, e olha que eu sou um robô com asas.");
     avancarSwipe("Perfil recusado. Próxima sugestão carregada.", "reject");
+});
+
+// --- Drag-to-swipe gesture support on the profile card ---
+cardPerfilSwipe.addEventListener("pointerdown", function (e) {
+    if (btnRecusar.disabled || btnCurtir.disabled) return;
+    if (e.target.closest("button, a, input, select, textarea, [data-compat-toggle], [data-interest]")) return;
+    swipeStartX = e.clientX;
+    swipeStartY = e.clientY;
+    swipeDeltaX = 0;
+    swiping = false;
+    swiped = false;
+    cardPerfilSwipe.setPointerCapture(e.pointerId);
+});
+
+cardPerfilSwipe.addEventListener("pointermove", function (e) {
+    if (!cardPerfilSwipe.hasPointerCapture(e.pointerId)) return;
+    var dx = e.clientX - swipeStartX;
+    var dy = e.clientY - swipeStartY;
+    if (!swiping && Math.abs(dx) > 10) {
+        swiping = true;
+        cardPerfilSwipe.style.transition = "none";
+        cardPerfilSwipe.style.cursor = "grabbing";
+    }
+    if (!swiping) return;
+    e.preventDefault();
+    swipeDeltaX = dx;
+    cardPerfilSwipe.style.transform = "translateX(" + dx + "px) rotate(" + (dx * 0.05) + "deg)";
+    cardPerfilSwipe.style.opacity = String(Math.max(0.4, 1 - Math.abs(dx) * 0.003));
+});
+
+cardPerfilSwipe.addEventListener("pointerup", function (e) {
+    cardPerfilSwipe.style.cursor = "";
+    if (!swiping) return;
+    swiping = false;
+    swiped = true;
+    cardPerfilSwipe.style.transition = "";
+    cardPerfilSwipe.style.transform = "";
+    cardPerfilSwipe.style.opacity = "";
+
+    if (swipeDeltaX > SWIPE_THRESHOLD) {
+        btnCurtir.click();
+    } else if (swipeDeltaX < -SWIPE_THRESHOLD) {
+        btnRecusar.click();
+    }
+});
+
+cardPerfilSwipe.addEventListener("pointercancel", function (e) {
+    cardPerfilSwipe.style.cursor = "";
+    if (!swiping) return;
+    swiping = false;
+    cardPerfilSwipe.style.transition = "";
+    cardPerfilSwipe.style.transform = "";
+    cardPerfilSwipe.style.opacity = "";
 });
 
 btnCurtir.addEventListener("click", function () {
@@ -1388,14 +1671,18 @@ btnCurtir.addEventListener("click", function () {
     }
 
     matchesCurtidos.unshift(perfil);
-    if (!matchesSalvos.includes(perfil.nome)) {
+    if (typeof MatchConnectApp !== "undefined") {
+        MatchConnectApp.addMatch(perfil);
+    } else if (!matchesSalvos.includes(perfil.nome)) {
         matchesSalvos.unshift(perfil.nome);
         localStorage.setItem("matchesUsuario", JSON.stringify(matchesSalvos));
     }
     renderizarMatchesAnimados();
+    renderizarConversas(buscaConversas ? buscaConversas.value : "");
     mostrarAnimacaoMatch(perfil);
     registrarAcaoCupido("likes");
     ganharXpCupido(8, `Nhac! Curtida em ${perfil.nome}. Minha energia subiu.`);
+    simularMensagemAposMatch(perfil);
     avancarSwipe(`Você curtiu ${perfil.nome}. A conversa já pode começar.`, "like");
 });
 
@@ -1476,6 +1763,11 @@ if (btnEnviarCupidoPet) {
 
 if (btnCopiarCupido) {
     btnCopiarCupido.addEventListener("click", function () {
+        if (!conversaSelecionadaHome) {
+            resultadoSwipe.textContent = "Selecione uma conversa na lista antes de usar a sugestão.";
+            document.getElementById("conversas").scrollIntoView({ behavior: "smooth", block: "start" });
+            return;
+        }
         sugestaoConversa.textContent = cupidoMensagem.textContent;
         resultadoSwipe.textContent = "Dica do EROS enviada para a sugestão de conversa.";
         btnCopiarCupido.textContent = "Sugestão adicionada";
@@ -1488,13 +1780,55 @@ if (btnCopiarCupido) {
 
 if (btnEnviarSugestao) {
     btnEnviarSugestao.addEventListener("click", function () {
-        const perfil = obterPerfilAtual();
-        resultadoSwipe.textContent = `Sugestão enviada para ${perfil ? perfil.nome : "a conversa"}.`;
+        const perfil = conversaSelecionadaHome;
+        const texto = sugestaoConversa.textContent.trim();
+
+        if (!perfil || !texto) {
+            resultadoSwipe.textContent = "Selecione uma conversa antes de enviar uma sugestão.";
+            return;
+        }
+
+        const mensagens = typeof MatchConnectApp !== "undefined"
+            ? MatchConnectApp.getMensagens()
+            : lerJsonHome("mensagensUsuario", {});
+
+        if (!mensagens[perfil.nome]) {
+            mensagens[perfil.nome] = [];
+        }
+
+        mensagens[perfil.nome].push({
+            autor: "Você",
+            texto: texto,
+            data: new Date().toISOString(),
+            origem: "sugestao-home"
+        });
+
+        if (typeof MatchConnectApp !== "undefined") {
+            MatchConnectApp.setMensagens(mensagens);
+            MatchConnectApp.registrarHistorico("sugestao-enviada", perfil, texto);
+        } else {
+            localStorage.setItem("mensagensUsuario", JSON.stringify(mensagens));
+        }
+
+        localStorage.setItem("conversaAberta", perfil.nome);
+        resultadoSwipe.textContent = `Sugestão enviada para ${perfil.nome}.`;
         registrarAcaoCupido("sugestoes");
         btnEnviarSugestao.textContent = "Sugestão enviada";
         window.setTimeout(function () {
-            btnEnviarSugestao.textContent = "Enviar sugestão";
-        }, 1400);
+            window.location.href = "../Conversas/Conversas.html";
+        }, 450);
+    });
+}
+
+if (btnAbrirConversaHome) {
+    btnAbrirConversaHome.addEventListener("click", function () {
+        if (!conversaSelecionadaHome) {
+            resultadoSwipe.textContent = "Selecione uma conversa antes de abrir o chat.";
+            return;
+        }
+
+        localStorage.setItem("conversaAberta", conversaSelecionadaHome.nome);
+        window.location.href = "../Conversas/Conversas.html";
     });
 }
 
@@ -1505,7 +1839,7 @@ listaMatchesAnimados.addEventListener("click", function (event) {
         return;
     }
 
-    sugestaoConversa.textContent = `Abrindo conversa com ${botao.dataset.match}. Use uma pergunta curta para manter o ritmo.`;
+    selecionarConversaHome(botao.dataset.match);
     document.getElementById("conversas").scrollIntoView({ behavior: "smooth", block: "start" });
 });
 

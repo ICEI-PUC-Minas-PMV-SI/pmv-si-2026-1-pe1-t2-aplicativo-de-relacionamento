@@ -7,10 +7,19 @@ const MatchConnectApp = (function () {
             idade: 24,
             distanciaKm: 4,
             inicial: "A",
+            foto: "",
             interesses: ["Cinema", "Livros", "Gastronomia", "Viagens"],
+            musical: {
+                generos: ["pop", "indie", "mpb"],
+                artistas: ["Melim", "Vance Joy", "ANAVITÓRIA"],
+                climas: ["leve", "romântico", "calma"]
+            },
             objetivo: "Relacionamento sério",
+            procura: "conversa leve e encontro tranquilo",
             personalidade: "Calma e curiosa",
+            energia: "Calma e curiosa",
             programaIdeal: "Cinema seguido de jantar",
+            frase: "Prefiro conexões que começam simples e continuam com vontade.",
             bio: "Gosta de roteiros tranquilos, bons filmes e conversas que continuam depois do primeiro assunto.",
             mensagem: "Vi que a gente combina em cinema e gastronomia. Qual foi o último lugar que te surpreendeu?"
         },
@@ -19,10 +28,19 @@ const MatchConnectApp = (function () {
             idade: 26,
             distanciaKm: 12,
             inicial: "K",
+            foto: "",
             interesses: ["Música", "Academia", "Corrida", "Tecnologia"],
+            musical: {
+                generos: ["pop", "eletrônica", "reggaeton"],
+                artistas: ["Dua Lipa", "The Weeknd", "Calvin Harris"],
+                climas: ["energia", "leve"]
+            },
             objetivo: "Conhecer pessoas novas",
+            procura: "alguém animado para conversar e sair da rotina",
             personalidade: "Alta e espontânea",
+            energia: "Alta e espontânea",
             programaIdeal: "Show, treino ou café depois do trabalho",
+            frase: "Se tiver playlist boa e assunto sincero, eu topo.",
             bio: "Curte treino, playlists novas e gente que fala de planos sem perder o bom humor.",
             mensagem: "Você prefere treino com música animada ou podcast para desligar um pouco?"
         },
@@ -31,10 +49,19 @@ const MatchConnectApp = (function () {
             idade: 23,
             distanciaKm: 7,
             inicial: "M",
+            foto: "",
             interesses: ["Séries", "Praia", "Pets", "Cinema"],
+            musical: {
+                generos: ["pop", "reggae", "mpb"],
+                artistas: ["Billie Eilish", "Vitor Kley", "Bob Marley"],
+                climas: ["calma", "leve", "romântico"]
+            },
             objetivo: "Algo leve, sem pressão",
+            procura: "conversas carinhosas e programas sem pressa",
             personalidade: "Doce e observadora",
+            energia: "Doce e observadora",
             programaIdeal: "Praia no fim da tarde",
+            frase: "Gosto de gente que presta atenção nos detalhes pequenos.",
             bio: "Entre um episódio novo e um fim de tarde na praia, sempre encontra assunto para puxar papo.",
             mensagem: "Se você fosse escolher uma série para rever hoje, qual entraria sem pensar?"
         },
@@ -43,10 +70,19 @@ const MatchConnectApp = (function () {
             idade: 27,
             distanciaKm: 18,
             inicial: "B",
+            foto: "",
             interesses: ["Viagens", "Gastronomia", "Livros", "Música"],
+            musical: {
+                generos: ["mpb", "indie", "soul"],
+                artistas: ["Djavan", "Marisa Monte", "Gilsons"],
+                climas: ["romântico", "leve", "calma"]
+            },
             objetivo: "Conhecer pessoas novas",
+            procura: "companhia para descobrir lugares e histórias",
             personalidade: "Exploradora e bem-humorada",
+            energia: "Exploradora e bem-humorada",
             programaIdeal: "Restaurante novo ou bate-volta",
+            frase: "Memória boa quase sempre envolve comida, música ou estrada.",
             bio: "Acredita que conhecer pessoas também é descobrir novos lugares, sabores e ideias.",
             mensagem: "Qual viagem curta você faria de novo só pela memória boa?"
         },
@@ -55,10 +91,19 @@ const MatchConnectApp = (function () {
             idade: 25,
             distanciaKm: 28,
             inicial: "L",
+            foto: "",
             interesses: ["Games", "Tecnologia", "Séries", "Pets"],
+            musical: {
+                generos: ["eletrônica", "indie", "synthwave"],
+                artistas: ["Porter Robinson", "M83", "Kavinsky"],
+                climas: ["energia", "indie", "calma"]
+            },
             objetivo: "Amizade",
+            procura: "parceria para rir, jogar e conversar sem pressão",
             personalidade: "Criativa e tranquila",
+            energia: "Criativa e tranquila",
             programaIdeal: "Game cooperativo e comida em casa",
+            frase: "Eu gosto quando a conversa parece fase bônus.",
             bio: "Mistura tecnologia, jogos cooperativos e conversas sinceras sem pressa.",
             mensagem: "Qual jogo ou série você recomenda para alguém que quer entrar no seu universo?"
         }
@@ -273,6 +318,156 @@ const MatchConnectApp = (function () {
         setJson("matchesUsuario", matches);
     }
 
+    function perfilPorNome(nome) {
+        return perfisOrdenados().find(function (perfil) {
+            return perfil.nome === nome;
+        }) || perfisBase.find(function (perfil) {
+            return perfil.nome === nome;
+        });
+    }
+
+    function getMatchedProfiles() {
+        const nomes = getMatches();
+        return nomes.map(perfilPorNome).filter(Boolean);
+    }
+
+    function registrarHistorico(tipo, perfil, detalhe = "") {
+        const historico = getJson("historicoAfinidade", []);
+        historico.unshift({
+            tipo: tipo,
+            pessoa: perfil ? perfil.nome : "",
+            percentual: perfil ? perfil.percentual : null,
+            interesses: perfil ? (perfil.interessesEmComum || perfil.interesses || []).slice(0, 4) : [],
+            detalhe: detalhe,
+            data: new Date().toISOString()
+        });
+        setJson("historicoAfinidade", historico.slice(0, 40));
+        return historico;
+    }
+
+    function addMatch(perfil) {
+        if (!perfil || !perfil.nome) return getMatches();
+
+        const matches = getMatches();
+        if (!matches.includes(perfil.nome)) {
+            matches.unshift(perfil.nome);
+            setMatches(matches);
+            registrarHistorico("match", perfil, "Match criado pela área Descobrir");
+        }
+
+        return matches;
+    }
+
+    function getMensagens() {
+        return getJson("mensagensUsuario", {});
+    }
+
+    function setMensagens(mensagens) {
+        setJson("mensagensUsuario", mensagens);
+    }
+
+    function addMensagem(nome, mensagem) {
+        const mensagens = getMensagens();
+
+        if (!mensagens[nome]) {
+            mensagens[nome] = [];
+        }
+
+        mensagens[nome].push({
+            data: new Date().toISOString(),
+            ...mensagem
+        });
+        setMensagens(mensagens);
+        return mensagens[nome];
+    }
+
+    function getNaoLidas() {
+        return getJson("mensagensNaoLidas", {});
+    }
+
+    function setNaoLidas(naoLidas) {
+        setJson("mensagensNaoLidas", naoLidas);
+    }
+
+    function incrementarNaoLida(nome) {
+        const naoLidas = getNaoLidas();
+        naoLidas[nome] = (naoLidas[nome] || 0) + 1;
+        setNaoLidas(naoLidas);
+        return naoLidas[nome];
+    }
+
+    function marcarConversaLida(nome) {
+        const naoLidas = getNaoLidas();
+        delete naoLidas[nome];
+        setNaoLidas(naoLidas);
+    }
+
+    function totalNaoLidas() {
+        return Object.values(getNaoLidas()).reduce(function (total, valor) {
+            return total + Number(valor || 0);
+        }, 0);
+    }
+
+    function criarMensagemSimulada(perfil, origem = "match") {
+        if (!perfil) return "";
+
+        const interesse = (perfil.interessesEmComum && perfil.interessesEmComum[0]) || perfil.interesses[0] || "um assunto em comum";
+        const mensagens = {
+            match: [
+                `Oi! Curti que a gente combina em ${interesse}. Qual parte disso mais aparece na sua rotina?`,
+                `Também reparei em ${interesse}. Você prefere falar disso ou me indicar algo bom?`,
+                `Esse match veio com ${perfil.percentual || "boa"}% de afinidade. Começar por ${interesse} parece justo, né?`
+            ],
+            resposta: [
+                `Gostei disso. Me conta mais sobre ${interesse}, fiquei curiosa.`,
+                `Boa pergunta. Eu responderia com calma e ainda puxaria ${interesse} de volta para o papo.`,
+                `Acho que esse assunto rende. Você toparia transformar ${interesse} em um programa leve?`
+            ],
+            evento: [
+                `Esse evento parece combinar com a gente. Principalmente por causa de ${interesse}.`,
+                `Curti a ideia. Se for em local tranquilo e público, eu toparia pensar.`
+            ]
+        };
+        const lista = mensagens[origem] || mensagens.match;
+        const indice = Math.abs((perfil.nome || "").length + new Date().getMinutes()) % lista.length;
+        return lista[indice];
+    }
+
+    function simularMensagemDoMatch(perfil, origem = "match") {
+        if (!perfil || !perfil.nome) return null;
+
+        addMatch(perfil);
+        const texto = criarMensagemSimulada(perfil, origem);
+        addMensagem(perfil.nome, {
+            autor: perfil.nome,
+            texto: texto,
+            origem: origem
+        });
+        incrementarNaoLida(perfil.nome);
+        registrarHistorico("mensagem-recebida", perfil, texto);
+        return { pessoa: perfil.nome, texto: texto };
+    }
+
+    function resetarEstadoNovoUsuario() {
+        [
+            "matchesUsuario",
+            "mensagensUsuario",
+            "mensagensNaoLidas",
+            "conversaAberta",
+            "conversasAtivas",
+            "conversasEncerradas",
+            "perfisBloqueados",
+            "favoritosUsuario",
+            "historicoAfinidade",
+            "mensagemEnviadaRecentemente",
+            "ultimaMensagemRecebida",
+            "planoEncontro",
+            "conviteEvento"
+        ].forEach(function (chave) {
+            localStorage.removeItem(chave);
+        });
+    }
+
     function getSalvos(chave) {
         return getJson(chave, []);
     }
@@ -313,16 +508,34 @@ const MatchConnectApp = (function () {
         configurarSair,
         explicarCompatibilidade,
         fotoPrincipal,
+        addMatch,
+        addMensagem,
+        criarMensagemSimulada,
+        getJson,
         getMatches,
+        getMatchedProfiles,
+        getMensagens,
+        getNaoLidas,
         getSalvos,
         addSalvo,
         idade,
         interesses,
         isAdmin,
+        incrementarNaoLida,
+        marcarConversaLida,
+        perfisBase,
+        perfilPorNome,
         perfisOrdenados,
         protegerPagina,
+        registrarHistorico,
+        resetarEstadoNovoUsuario,
+        simularMensagemDoMatch,
         setJson,
+        setMensagens,
         setMatches,
+        totalNaoLidas,
         usuario
     };
 })();
+
+window.MatchConnectApp = MatchConnectApp;

@@ -5,6 +5,7 @@ MatchConnectApp.configurarSair();
 const dados = MatchConnectApp.interesses();
 const meusInteresses = Array.isArray(dados.interesses) ? dados.interesses : [];
 const perfis = MatchConnectApp.perfisOrdenados();
+const matches = MatchConnectApp.getMatchedProfiles();
 
 // Catálogo de ideias de eventos usadas para montar convites personalizados.
 const eventos = [
@@ -18,9 +19,11 @@ const eventos = [
 let eventoSelecionado = null;
 
 // Preenche o seletor de match com perfis ordenados por compatibilidade.
-document.getElementById("matchConvite").innerHTML = perfis.map(function (perfil) {
-    return `<option value="${perfil.nome}">${perfil.nome} • ${perfil.percentual}% compatível</option>`;
-}).join("");
+document.getElementById("matchConvite").innerHTML = matches.length > 0
+    ? matches.map(function (perfil) {
+        return `<option value="${perfil.nome}">${perfil.nome} • ${perfil.percentual}% compatível</option>`;
+    }).join("")
+    : '<option value="">Crie um match para enviar convites</option>';
 
 // Retorna quais interesses do evento também existem no perfil do usuário.
 function afinidade(evento) {
@@ -29,17 +32,42 @@ function afinidade(evento) {
     });
 }
 
+function matchesContextuais(evento) {
+    return matches.map(function (perfil) {
+        const comumEvento = evento.interesses.filter(function (interesse) {
+            return perfil.interesses.includes(interesse);
+        });
+        return {
+            ...perfil,
+            comumEvento: comumEvento,
+            contextoScore: comumEvento.length * 20 + (perfil.percentual || 0)
+        };
+    }).filter(function (perfil) {
+        return perfil.comumEvento.length > 0;
+    }).sort(function (a, b) {
+        return b.contextoScore - a.contextoScore;
+    }).slice(0, 2);
+}
+
 // Renderiza os cards iniciais com percentual de alinhamento ao perfil.
 function renderizarEventos() {
     document.getElementById("listaEventos").innerHTML = eventos.map(function (evento, index) {
         const comum = afinidade(evento);
         const percentual = Math.min(96, 55 + comum.length * 18);
+        const matchesDoEvento = matchesContextuais(evento);
 
         return `
             <article class="feature-card">
                 <i class="bi ${evento.icone}"></i>
                 <h2 class="h5 mt-3">${evento.titulo}</h2>
                 <p>${evento.tipo} em ${evento.local}, pensado para começar com leveza.</p>
+                <div class="context-match-box mb-3">
+                    <strong>Matches que combinam com esse evento</strong>
+                    <p>${matchesDoEvento.length > 0 ? matchesDoEvento.map(function (perfil) {
+                        return `${perfil.nome} (${perfil.comumEvento.join(", ")})`;
+                    }).join(" • ") : "Curta perfis em Descobrir para ativar contexto por match."}</p>
+                    <small>${matchesDoEvento.length > 0 ? "EROS pode transformar isso em convite." : "Nenhum match salvo ainda."}</small>
+                </div>
                 <div class="compat-meter mb-2"><span style="width:${percentual}%"></span></div>
                 <small class="text-muted d-block mb-3">${percentual}% alinhado ao seu perfil</small>
                 <div class="d-flex flex-wrap gap-2 mb-3">
@@ -74,6 +102,8 @@ function atualizarConvite() {
 }
 
 function enviarMensagemParaConversa(match, texto) {
+    if (!match) return;
+
     const mensagens = JSON.parse(localStorage.getItem("mensagensUsuario")) || {};
 
     if (!mensagens[match]) {
@@ -86,6 +116,8 @@ function enviarMensagemParaConversa(match, texto) {
     localStorage.setItem("mensagensUsuario", JSON.stringify(mensagens));
     localStorage.setItem("conversaAberta", match);
     localStorage.setItem("mensagemEnviadaRecentemente", texto);
+    const perfil = MatchConnectApp.perfilPorNome(match);
+    MatchConnectApp.registrarHistorico("convite-evento", perfil, texto);
 }
 
 // Ativa o painel de continuação após clicar em "Montar convite".
@@ -152,6 +184,11 @@ document.getElementById("btnEnviarConvite").addEventListener("click", function (
     }
 
     const match = document.getElementById("matchConvite").value;
+    if (!match) {
+        document.getElementById("statusConvite").textContent = "Crie um match antes de enviar convite.";
+        return;
+    }
+
     const mensagem = montarMensagemConvite();
     enviarMensagemParaConversa(match, mensagem);
     document.getElementById("statusConvite").textContent = `Mensagem enviada para ${match}`;

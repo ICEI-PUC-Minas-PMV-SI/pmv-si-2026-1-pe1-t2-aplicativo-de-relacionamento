@@ -15,7 +15,7 @@ const experiencias = [
         interesses: ["Música", "Academia", "Corrida"],
         oferta: "Monte uma playlist com 12 faixas para quebrar o gelo antes do encontro.",
         acao: "Compartilhar playlist",
-        link: "https://open.spotify.com/",
+        link: "../Playlists/Playlists.html",
         convite: "montar uma playlist com músicas que combinam com a gente"
     },
     {

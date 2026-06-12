@@ -1,441 +1,1118 @@
 MatchConnectApp.protegerPagina();
 MatchConnectApp.configurarSair();
 
-const TEMPO_FRASE_INTRO = 2000;
-const TEMPO_FEEDBACK_RESPOSTA = 1250;
+const matches = MatchConnectApp.getMatchedProfiles();
+const perfisBase = matches.length > 0 ? matches : MatchConnectApp.perfisOrdenados().slice(0, 4);
+const preferenciasPadrao = {
+    plataforma: "PC",
+    estilo: "Casual",
+    comunicacao: "Chat primeiro",
+    horario: "Noite",
+    jogos: "Valorant, Fortnite, Minecraft"
+};
+const preferencias = { ...preferenciasPadrao, ...MatchConnectApp.getJson("preferenciasPlayMatchConnect", {}) };
 
-const perfis = MatchConnectApp.perfisOrdenados().slice(0, 4);
-
-const estado = {
-    rodada: 0,
-    sinal: 0,
-    respostas: [],
-    iniciado: false,
-    aguardando: false,
-    introIntervalo: null
+const jogosPorPerfil = {
+    Ana: ["Stardew Valley", "It Takes Two", "Minecraft"],
+    Karol: ["Valorant", "Rocket League", "Fortnite"],
+    Mariana: ["The Sims", "Fall Guys", "Mario Kart"],
+    Beatriz: ["FIFA", "Overcooked", "Forza Horizon"],
+    Luiza: ["League of Legends", "Minecraft", "Overwatch"]
 };
 
-const aberturaEROS = [
-    "Você está cansado de conversas que morrem no 'oi, tudo bem?'",
-    "Todos os dias, estranhos se tornam inseparáveis...",
-    "E pessoas inseparáveis voltam a ser estranhas.",
-    "O mundo muda constantemente.",
-    "As pessoas também.",
-    "Então me deixe entender o que realmente cria conexão em você.",
-    "Vamos começar."
-];
-
-const rodadas = [
+const miniGames = [
     {
-        titulo: "Rodada 1 - Primeiras conexões",
-        descricao: "EROS observa como você permite que uma conversa deixe de ser protocolo e vire presença.",
-        pergunta: "Qual conversa faria você esquecer o celular na mesa por horas?",
-        comentario: "Interessante. O primeiro sinal revela o tipo de porta que você abre para alguém entrar.",
-        opcoes: [
-            { icone: "bi-camera-reels", texto: "Filmes que marcaram sua infância", tag: "Memória afetiva", eixo: "cultura", valor: "Cinema emocional" },
-            { icone: "bi-globe-americas", texto: "Viagens que mudaram sua visão", tag: "Expansão", eixo: "exploracao", valor: "Viagens culturais" },
-            { icone: "bi-cup-hot", texto: "Cafés escondidos da cidade", tag: "Intimidade leve", eixo: "encontro", valor: "Cafés tranquilos" },
-            { icone: "bi-music-note-beamed", texto: "Música para ouvir de madrugada", tag: "Atmosfera", eixo: "musica", valor: "Energia noturna" }
+        titulo: "Duas Verdades e Uma Mentira",
+        icone: "bi-incognito",
+        descricao: "Cada um manda três afirmações sobre si e o match adivinha qual é falsa.",
+        tipo: "duas-verdades"
+    },
+    {
+        titulo: "Nunca Nunca",
+        icone: "bi-hand-index-thumb",
+        descricao: "Marque o que você já fez e compare com seu match.",
+        tipo: "nunca-nunca",
+        afirmacoes: [
+            "Já assisti uma série inteira em um fim de semana",
+            "Já viajei sozinho para uma cidade desconhecida",
+            "Já cozinhei um jantar especial para alguém",
+            "Já joguei vídeo game por mais de 5 horas seguidas",
+            "Já fiquei acordado até o amanhecer conversando"
         ]
     },
     {
-        titulo: "Rodada 2 - Universo cultural",
-        descricao: "Cultura é um mapa discreto: mostra humor, memória, ritmo e linguagem.",
-        pergunta: "Se alguém entrasse no seu universo por uma obra, qual porta você abriria?",
-        comentario: "Alta compatibilidade cultural detectada. Você escolhe símbolos antes de escolher respostas prontas.",
-        opcoes: [
-            { icone: "bi-vinyl", texto: "Uma playlist com faixas que explicam fases da sua vida", tag: "Som e identidade", eixo: "musica", valor: "Playlists pessoais" },
-            { icone: "bi-book", texto: "Um livro que mudou seu jeito de pensar", tag: "Profundidade", eixo: "profundidade", valor: "Leitura reflexiva" },
-            { icone: "bi-tv", texto: "Uma série que você defenderia numa conversa longa", tag: "Narrativa", eixo: "cultura", valor: "Séries marcantes" },
-            { icone: "bi-controller", texto: "Um jogo ou experiência interativa que revela seu humor", tag: "Lúdico", eixo: "hobbies", valor: "Jogos e humor" }
+        titulo: "A vs B",
+        icone: "bi-lightning-charge",
+        descricao: "Escolha rápido entre dois opostos e revele seu perfil para o match.",
+        tipo: "batalha",
+        rodadas: [
+            { a: "🏖️ Praia", b: "⛰️ Montanha" },
+            { a: "📺 Séries", b: "🎬 Filmes" },
+            { a: "🍕 Pizza", b: "🍔 Hambúrguer" },
+            { a: "🌅 Manhã", b: "🌙 Noite" },
+            { a: "🎮 Aventura", b: "🛋️ Sossego" },
+            { a: "👨‍🍳 Cozinhar", b: "🛵 Delivery" },
+            { a: "💬 Chat", b: "📞 Ligação" }
         ]
     },
     {
-        titulo: "Rodada 3 - Energia social",
-        descricao: "EROS mede seu ritmo: velocidade, presença, silêncio e disponibilidade emocional.",
-        pergunta: "Em um grupo novo, como sua conexão costuma nascer?",
-        comentario: "Talvez você valorize mais timing do que volume. Nem toda presença precisa gritar.",
-        opcoes: [
-            { icone: "bi-chat-dots", texto: "Puxo uma conversa leve até encontrar um ponto real", tag: "Abertura suave", eixo: "conversa", valor: "Conversa gradual" },
-            { icone: "bi-stars", texto: "Observo primeiro, depois entro com precisão", tag: "Observador", eixo: "energia", valor: "Energia reservada" },
-            { icone: "bi-lightning-charge", texto: "Entro rápido quando percebo bom humor", tag: "Espontâneo", eixo: "energia", valor: "Energia expansiva" },
-            { icone: "bi-moon-stars", texto: "Prefiro conversas menores, menos barulho e mais verdade", tag: "Profundo", eixo: "profundidade", valor: "Baixa pressão" }
-        ]
-    },
-    {
-        titulo: "Rodada 4 - Sintonia emocional",
-        descricao: "A conexão real aparece quando alguém entende o que você não explica de primeira.",
-        pergunta: "O que faz você sentir que uma pessoa realmente te percebeu?",
-        comentario: "Você parece valorizar conexões mais profundas. A resposta não foi sobre atenção; foi sobre leitura.",
-        opcoes: [
-            { icone: "bi-eye", texto: "Ela lembra de um detalhe pequeno que eu contei sem dar importância", tag: "Atenção", eixo: "profundidade", valor: "Detalhes emocionais" },
-            { icone: "bi-emoji-smile", texto: "Ela entende meu humor sem eu precisar explicar", tag: "Humor social", eixo: "humor", valor: "Humor inteligente" },
-            { icone: "bi-heart-pulse", texto: "Ela sabe quando aprofundar e quando deixar leve", tag: "Ritmo emocional", eixo: "energia", valor: "Equilíbrio emocional" },
-            { icone: "bi-compass", texto: "Ela transforma planos simples em experiências memoráveis", tag: "Experiência", eixo: "encontro", valor: "Experiências compartilhadas" }
-        ]
-    },
-    {
-        titulo: "Rodada Final - Compatibilidade real",
-        descricao: "O último cenário combina cultura, presença e intenção. Aqui o EROS procura sintonia humana.",
-        pergunta: "Qual cenário teria mais chance de virar uma conexão real para você?",
-        comentario: "Leitura final recebida. Você não está escolhendo um encontro; está escolhendo um tipo de vínculo.",
-        opcoes: [
-            { icone: "bi-cup-hot", texto: "Café demorado, assunto imprevisível e zero pressa", tag: "Conversas profundas", eixo: "conversa", valor: "Conexão por conversa" },
-            { icone: "bi-music-note-list", texto: "Troca de músicas, memórias e histórias de madrugada", tag: "Intensidade cultural", eixo: "musica", valor: "Sintonia musical" },
-            { icone: "bi-map", texto: "Descobrir um lugar novo e criar uma memória juntos", tag: "Exploração", eixo: "exploracao", valor: "Presença em movimento" },
-            { icone: "bi-film", texto: "Assistir algo marcante e conversar sobre o que ficou depois", tag: "Narrativa emocional", eixo: "cultura", valor: "Cinema e reflexão" }
+        titulo: "Emoji Quiz",
+        icone: "bi-emoji-laughing",
+        descricao: "Adivinhe o que os emojis escondem e desafie seu match.",
+        tipo: "emoji-quiz",
+        perguntas: [
+            { emojis: "🎬🧟💃", resposta: "Thriller", dica: "Música icônica dos anos 80" },
+            { emojis: "🧊👸❄️", resposta: "Frozen", dica: "Animação da Disney" },
+            { emojis: "🕷️👨🏙️", resposta: "Homem-Aranha", dica: "Super-herói que sobe paredes" },
+            { emojis: "🚀🪐⭐🛸", resposta: "Star Wars", dica: "Saga espacial clássica" },
+            { emojis: "💀☠️🏴‍☠️⚓", resposta: "Piratas do Caribe", dica: "Aventura no alto mar" },
+            { emojis: "🦁👑🌅", resposta: "O Rei Leão", dica: "Clássico da Disney" }
         ]
     }
 ];
 
-const perguntasRelampago = [
+const BOT_AFIRMACOES_2V1M = [
+    ["Já visitei 15 países", "Falo 3 idiomas fluentemente", "Tenho medo de altura"],
+    ["Já comi sushi de crocodilo", "Toco violão desde os 8 anos", "Nunca assisti Star Wars"],
+    ["Já fiz paraquedismo", "Tenho 2 gatos e 1 cachorro", "Não gosto de chocolate"],
+    ["Já morei em 4 cidades", "Aprendi a nadar com 30 anos", "Tenho um irmão gêmeo"],
+    ["Já fiz aula de teatro", "Durmo 5 horas por noite", "Coleciono moedas antigas"],
+    ["Já escalei uma montanha", "Faço maratona todo ano", "Nunca comi pizza"],
+    ["Já vi um OVNI", "Toco bateria numa banda", "Não sei andar de bicicleta"],
+    ["Já ganhei um concurso de dança", "Leio 2 livros por semana", "Detesto animais"]
+];
+
+const estado2V1M = {
+    minhasAfirmacoes: ["", "", ""],
+    minhaMentira: -1,
+    minhasProntas: false,
+    botAfirmacoes: [],
+    botMentira: -1,
+    botPalpite: -1,
+    meuPalpite: -1,
+    acertei: null,
+    fase: "criar"
+};
+const estadoNN = { marcados: new Set(), botMarcados: new Set() };
+const estadoBatalha = { rodada: 0, escolhas: [], botEscolhas: [] };
+const estadoEQ = { atual: 0, revelado: false, palpite: "", acertou: null, botAcertos: 0, acertosUsuario: 0 };
+
+const sessaoJogo = { ativa: false, match: null };
+
+const filasOnline = [
     {
-        pergunta: "Qual música entregaria seu humor de hoje?",
-        sugestao: "Música é um atalho emocional. Uma resposta boa aqui revela ritmo, fase e clima social."
+        id: "casual",
+        titulo: "Casual rápido",
+        icone: "bi-emoji-smile",
+        formato: "Duo ou trio",
+        tempo: "2 min",
+        foco: "Partidas leves para conversar sem pressão."
     },
     {
-        pergunta: "Qual filme você usaria para puxar assunto sem parecer óbvio?",
-        sugestao: "Filmes mostram memória, humor e repertório. EROS usaria essa resposta para sugerir conversas culturais."
+        id: "coop",
+        titulo: "Cooperativo",
+        icone: "bi-people",
+        formato: "Squad",
+        tempo: "4 min",
+        foco: "Jogos em equipe, missão compartilhada e clima tranquilo."
     },
     {
-        pergunta: "Qual lugar da cidade combina com uma conversa honesta?",
-        sugestao: "Lugares revelam estilo de encontro: movimento, calma, intimidade ou descoberta."
-    },
-    {
-        pergunta: "Que detalhe faz você perceber que existe química?",
-        sugestao: "Química aparece nos detalhes: timing, humor, atenção e leitura emocional."
-    },
-    {
-        pergunta: "Qual livro, série ou playlist você gostaria que alguém conhecesse para te entender melhor?",
-        sugestao: "Essa resposta vira um sinal forte para matches com afinidade cultural."
+        id: "ranked",
+        titulo: "Competitivo leve",
+        icone: "bi-trophy",
+        formato: "Duo",
+        tempo: "5 min",
+        foco: "Competição com comunicação respeitosa e objetivo claro."
     }
 ];
 
-const elementos = {
-    intro: document.getElementById("introCinematica"),
-    introLine: document.getElementById("introLine"),
-    pergunta: document.getElementById("perguntaQuiz"),
-    opcoes: document.getElementById("opcoesQuiz"),
-    feedback: document.getElementById("feedbackQuiz"),
-    status: document.getElementById("statusJogo"),
-    rodada: document.getElementById("rodadaQuiz"),
-    sinal: document.getElementById("pontuacaoJogo"),
-    jogadores: document.getElementById("jogadoresSala"),
-    roundLabel: document.getElementById("roundLabel"),
-    roundDescription: document.getElementById("roundDescription"),
-    resultado: document.getElementById("resultadoSocial"),
-    resultadoTitulo: document.getElementById("resultadoTitulo"),
-    resultadoResumo: document.getElementById("resultadoResumo"),
-    resultadoTags: document.getElementById("resultadoTags"),
-    perguntaRelampago: document.getElementById("perguntaQuebraGelo"),
-    btnIniciarQuiz: document.getElementById("btnIniciarQuiz"),
-    btnNovaPerguntaJogo: document.getElementById("btnNovaPerguntaJogo"),
-    btnResponderQuebraGelo: document.getElementById("btnResponderQuebraGelo"),
-    btnReiniciarExperiencia: document.getElementById("btnReiniciarExperiencia"),
-    btnPularIntro: document.getElementById("btnPularIntro")
-};
+let matchSelecionado = perfisBase[0] || null;
+let miniGameSelecionado = miniGames[0];
+let filaSelecionada = localStorage.getItem("filaPlayMatchConnect") || "";
 
-function validarElementosObrigatorios() {
-    return Object.entries(elementos).every(function ([nome, elemento]) {
-        if (!elemento) {
-            console.error(`Elemento não encontrado no HTML: ${nome}`);
-            return false;
-        }
+function ativarAba(id) {
+    document.querySelectorAll("[data-tab-target]").forEach(function (botao) {
+        const ativo = botao.dataset.tabTarget === id;
+        botao.classList.toggle("active", ativo);
+        botao.setAttribute("aria-selected", String(ativo));
+    });
 
-        return true;
+    document.querySelectorAll(".play-tab-panel").forEach(function (painel) {
+        painel.classList.toggle("active", painel.id === id);
     });
 }
 
-function registrarQuizEROS() {
-    let stats = {};
-
-    try {
-        stats = JSON.parse(localStorage.getItem("erosPetStats")) || {};
-    } catch (error) {
-        stats = {};
-    }
-
-    stats.quizzes = (stats.quizzes || 0) + 1;
-    localStorage.setItem("erosPetStats", JSON.stringify(stats));
+function tagsJogos(perfil) {
+    return jogosPorPerfil[perfil.nome] || ["Minecraft", "Fall Guys", "Overcooked"];
 }
 
-function renderizarJogadores() {
-    elementos.jogadores.innerHTML = perfis.map(function (perfil, index) {
-        const status = index === 0 ? "sincronizando sinais" : "observando rodada";
+function compatPlay(perfil) {
+    const meusJogos = preferencias.jogos.toLowerCase();
+    const jogos = tagsJogos(perfil);
+    const jogoEmComum = jogos.some(function (jogo) {
+        return meusJogos.includes(jogo.toLowerCase());
+    });
+    const base = perfil.percentual || 60;
+    return Math.min(98, base + (jogoEmComum ? 10 : 0) + (preferencias.estilo.includes("Casual") ? 4 : 0));
+}
 
-        return `
-            <div class="game-player">
-                ${MatchConnectApp.avatarHtml(perfil.inicial)}
-                <span>
-                    <strong>${perfil.nome}</strong>
-                    <small>${perfil.percentual}% compatível - ${status}</small>
-                </span>
+function montarConvite(perfil) {
+    const jogo = tagsJogos(perfil)[0];
+    return `${perfil.nome}, vi que a gente combina para jogar ${jogo}. Topa uma partida ${preferencias.estilo.toLowerCase()} hoje à ${preferencias.horario.toLowerCase()}, começando por ${preferencias.comunicacao.toLowerCase()}?`;
+}
+
+function enviarMensagem(match, texto, origem) {
+    if (!match || !texto) return;
+
+    const mensagens = MatchConnectApp.getMensagens();
+    if (!mensagens[match.nome]) {
+        mensagens[match.nome] = [];
+    }
+
+    mensagens[match.nome].push({
+        autor: "Você",
+        texto: texto,
+        origem: origem,
+        data: new Date().toISOString()
+    });
+    MatchConnectApp.addMatch(match);
+    MatchConnectApp.setMensagens(mensagens);
+    MatchConnectApp.registrarHistorico(origem, match, texto);
+    localStorage.setItem("conversaAberta", match.nome);
+}
+
+function iniciarPartida(match) {
+    sessaoJogo.ativa = true;
+    sessaoJogo.match = match;
+    resetarEstadoJogo();
+    sortearBotNN();
+    document.getElementById("arenaStatus").textContent = `🎮 Em partida com ${match.nome}`;
+    renderizarArena();
+    renderizarEROSPlay();
+}
+
+function encerrarPartida() {
+    sessaoJogo.ativa = false;
+    sessaoJogo.match = null;
+    document.getElementById("arenaStatus").textContent = "Simulação local";
+    renderizarArena();
+    renderizarEROSPlay();
+}
+
+function sortearBotNN() {
+    estadoNN.botMarcados.clear();
+    for (let i = 0; i < miniGames[1].afirmacoes.length; i++) {
+        if (Math.random() > 0.45) estadoNN.botMarcados.add(i);
+    }
+}
+
+function resetarEstadoJogo() {
+    estado2V1M.minhasAfirmacoes = ["", "", ""];
+    estado2V1M.minhaMentira = -1;
+    estado2V1M.minhasProntas = false;
+    estado2V1M.botAfirmacoes = [];
+    estado2V1M.botMentira = -1;
+    estado2V1M.botPalpite = -1;
+    estado2V1M.meuPalpite = -1;
+    estado2V1M.acertei = null;
+    estado2V1M.fase = "criar";
+    estadoNN.marcados.clear();
+    estadoNN.botMarcados.clear();
+    estadoBatalha.rodada = 0;
+    estadoBatalha.escolhas = [];
+    estadoBatalha.botEscolhas = [];
+    estadoEQ.atual = 0;
+    estadoEQ.revelado = false;
+    estadoEQ.palpite = "";
+    estadoEQ.acertou = null;
+    estadoEQ.botAcertos = 0;
+    estadoEQ.acertosUsuario = 0;
+}
+
+function botJogar2V1M() {
+    const pool = BOT_AFIRMACOES_2V1M[Math.floor(Math.random() * BOT_AFIRMACOES_2V1M.length)];
+    estado2V1M.botAfirmacoes = pool.slice();
+    estado2V1M.botMentira = Math.floor(Math.random() * 3);
+    estado2V1M.botPalpite = Math.floor(Math.random() * 3);
+}
+
+function botJogarBatalha() {
+    estadoBatalha.botEscolhas.push(Math.random() > 0.5 ? "a" : "b");
+}
+
+function botJogarEQ(jogo) {
+    if (Math.random() > 0.55) estadoEQ.botAcertos++;
+}
+
+function renderizarArena() {
+    const container = document.getElementById("arenaMatches");
+
+    if (perfisBase.length === 0) {
+        container.innerHTML = `
+            <div class="empty-state">
+                <i class="bi bi-controller"></i>
+                <strong>Nenhum match disponível</strong>
+                <p>Curta perfis em Descobrir para formar duos e squads.</p>
+                <a class="btn btn-match-primary" href="../home/Homeusuario.html#descobrir">Descobrir perfis</a>
             </div>
+        `;
+        return;
+    }
+
+    container.innerHTML = perfisBase.map(function (perfil) {
+        const compat = compatPlay(perfil);
+        const jogos = tagsJogos(perfil);
+        const emJogo = sessaoJogo.ativa && sessaoJogo.match?.nome === perfil.nome;
+        return `
+            <article class="arena-card ${matchSelecionado?.nome === perfil.nome ? "selected" : ""} ${emJogo ? "in-game" : ""}" data-match="${perfil.nome}">
+                <div class="arena-card-head">
+                    ${MatchConnectApp.avatarHtml(perfil.inicial)}
+                    <div>
+                        <h3>${perfil.nome} ${emJogo ? '<span class="play-status-live">● JOGANDO</span>' : ""}</h3>
+                        <span>${compat}% play match - ${perfil.distanciaKm} km</span>
+                    </div>
+                </div>
+                <p>${perfil.energia}. Combina para ${preferencias.estilo.toLowerCase()} em ${preferencias.plataforma}.</p>
+                <div class="play-tag-row">
+                    ${jogos.map(function (jogo) { return `<span>${jogo}</span>`; }).join("")}
+                </div>
+                <div class="arena-actions">
+                    ${emJogo
+                ? `<button class="btn btn-match-primary btn-sm" type="button" data-action="play" data-match="${perfil.nome}">
+                               <i class="bi bi-controller"></i> Jogar agora
+                           </button>
+                           <button class="btn btn-match-outline btn-sm" type="button" data-action="leave" data-match="${perfil.nome}">
+                               <i class="bi bi-box-arrow-left"></i> Sair
+                            </button>`
+                : `<button class="btn btn-match-primary btn-sm" type="button" data-action="invite" data-match="${perfil.nome}">
+                                Convidar
+                            </button>
+                            <button class="btn btn-match-outline btn-sm" type="button" data-action="play" data-match="${perfil.nome}">
+                                <i class="bi bi-controller"></i> Jogar
+                            </button>`
+            }
+                </div>
+            </article>
         `;
     }).join("");
 }
 
-function atualizarPainel() {
-    const rodadaVisivel = estado.iniciado
-        ? Math.min(estado.rodada + 1, rodadas.length)
-        : 0;
+function renderizarEROSPlay() {
+    const painel = document.getElementById("erosPlayActions");
+    const texto = document.getElementById("erosPlayText");
 
-    elementos.rodada.textContent = `${rodadaVisivel}/${rodadas.length}`;
-    elementos.sinal.textContent = `${Math.min(100, estado.sinal)}%`;
-}
-
-function esconderIntro() {
-    elementos.intro.classList.remove("show");
-    elementos.intro.classList.add("d-none");
-    elementos.intro.style.display = "none";
-    elementos.intro.style.pointerEvents = "none";
-    elementos.intro.setAttribute("aria-hidden", "true");
-}
-
-function mostrarIntro(callback) {
-    let indice = 0;
-    let finalizado = false;
-
-    function concluirIntro() {
-        if (finalizado) return;
-
-        finalizado = true;
-
-        if (estado.introIntervalo) {
-            window.clearInterval(estado.introIntervalo);
-            estado.introIntervalo = null;
-        }
-
-        esconderIntro();
-
-        if (typeof callback === "function") {
-            callback();
-        }
-    }
-
-    if (estado.introIntervalo) {
-        window.clearInterval(estado.introIntervalo);
-    }
-
-    elementos.intro.classList.remove("d-none");
-    elementos.intro.classList.add("show");
-    elementos.intro.style.display = "flex";
-    elementos.intro.style.pointerEvents = "auto";
-    elementos.intro.setAttribute("aria-hidden", "false");
-    elementos.introLine.textContent = aberturaEROS[indice];
-    elementos.btnPularIntro.onclick = concluirIntro;
-
-    estado.introIntervalo = window.setInterval(function () {
-        indice += 1;
-
-        if (indice >= aberturaEROS.length) {
-            concluirIntro();
-            return;
-        }
-
-        elementos.introLine.style.animation = "none";
-        void elementos.introLine.offsetWidth;
-        elementos.introLine.textContent = aberturaEROS[indice];
-        elementos.introLine.style.animation = "";
-    }, TEMPO_FRASE_INTRO);
-}
-
-function renderizarRodada() {
-    const rodadaAtual = rodadas[estado.rodada];
-
-    if (!rodadaAtual) {
-        finalizarExperiencia();
+    if (sessaoJogo.ativa && sessaoJogo.match) {
+        const m = sessaoJogo.match;
+        texto.innerHTML = `
+            <div class="session-lobby">
+                <div class="session-players">
+                    <div class="session-player">
+                        ${MatchConnectApp.avatarHtml("V")}
+                        <strong>Você</strong>
+                    </div>
+                    <div class="session-vs">VS</div>
+                    <div class="session-player">
+                        ${MatchConnectApp.avatarHtml(m.inicial)}
+                        <strong>${m.nome}</strong>
+                        <span class="text-muted">🤖 Bot</span>
+                    </div>
+                </div>
+                <p class="session-status">${m.nome} entrou na sala! Pronto para jogar.</p>
+            </div>
+        `;
+        painel.innerHTML = `
+            <button class="btn btn-match-primary" type="button" data-eros-play="start">
+                <i class="bi bi-controller"></i> Iniciar partida
+            </button>
+            <button class="btn btn-match-outline" type="button" data-eros-play="leave">
+                <i class="bi bi-box-arrow-left"></i> Sair da sala
+            </button>
+        `;
         return;
     }
 
-    elementos.resultado.classList.add("d-none");
-    elementos.opcoes.classList.remove("d-none");
-    elementos.opcoes.style.display = "grid";
+    if (!matchSelecionado) {
+        texto.textContent = "Selecione um match na arena para montar um convite de jogo.";
+        painel.innerHTML = "";
+        return;
+    }
 
-    elementos.roundLabel.textContent = rodadaAtual.titulo;
-    elementos.roundDescription.textContent = rodadaAtual.descricao;
-    elementos.pergunta.textContent = rodadaAtual.pergunta;
-    elementos.feedback.textContent = "EROS está ouvindo padrões, pausas e preferências sociais.";
-    elementos.status.textContent = "Leitura em andamento";
+    const convite = montarConvite(matchSelecionado);
+    texto.textContent = convite;
+    painel.innerHTML = `
+        <button class="btn btn-match-primary" type="button" data-eros-play="send">
+            <i class="bi bi-send"></i> Enviar convite
+        </button>
+        <a class="btn btn-match-outline" href="../Conversas/Conversas.html" data-eros-play="open">
+            <i class="bi bi-chat-heart"></i> Abrir conversa
+        </a>
+    `;
+}
 
-    elementos.opcoes.innerHTML = rodadaAtual.opcoes.map(function (opcao, index) {
+function preencherPreferencias() {
+    document.getElementById("playPlataforma").value = preferencias.plataforma;
+    document.getElementById("playEstilo").value = preferencias.estilo;
+    document.getElementById("playComunicacao").value = preferencias.comunicacao;
+    document.getElementById("playHorario").value = preferencias.horario;
+    document.getElementById("playJogos").value = preferencias.jogos;
+}
+
+function renderizarFilasOnline() {
+    document.getElementById("filaPlayOnline").innerHTML = filasOnline.map(function (fila) {
         return `
-            <button class="quiz-option" type="button" data-index="${index}">
-                <span class="option-icon"><i class="bi ${opcao.icone}"></i></span>
-                <span class="option-title">${opcao.texto}</span>
-                <span class="option-meta">${opcao.tag}</span>
+            <button class="queue-card ${filaSelecionada === fila.id ? "selected" : ""}" type="button" data-queue="${fila.id}">
+                <span class="queue-icon"><i class="bi ${fila.icone}"></i></span>
+                <span>
+                    <strong>${fila.titulo}</strong>
+                    <small>${fila.formato} - espera ${fila.tempo}</small>
+                    <em>${fila.foco}</em>
+                </span>
             </button>
         `;
     }).join("");
 
-    atualizarPainel();
+    const fila = filasOnline.find(function (item) {
+        return item.id === filaSelecionada;
+    });
+    document.getElementById("filaStatusPlay").textContent = fila ? `Na fila: ${fila.titulo}` : "Aberto";
+}
 
-    const primeiraOpcao = elementos.opcoes.querySelector(".quiz-option");
-    if (primeiraOpcao) {
-        primeiraOpcao.focus({ preventScroll: true });
+function renderHTMLDuasVerdades(jogo) {
+    const e = estado2V1M;
+
+    if (e.fase === "recebendo") {
+        return `
+            <p class="text-muted mb-3">${jogo.descricao}</p>
+            <div class="dv-recebendo">
+                <div class="dv-typing">
+                    <span class="dv-typing-dot"></span>
+                    <span class="dv-typing-dot"></span>
+                    <span class="dv-typing-dot"></span>
+                </div>
+                <p><strong>${sessaoJogo.match ? sessaoJogo.match.nome : "Match"}</strong> está escrevendo as afirmações dela...</p>
+            </div>
+        `;
     }
 
-    document.querySelector(".game-stage-panel")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (e.fase === "criar") {
+        const inputs = e.minhasAfirmacoes.map(function (val, i) {
+            return `
+                <div class="dv-input-group">
+                    <label>Afirmação ${i + 1}</label>
+                    <input class="dv-input" type="text" data-dv-idx="${i}" value="${val}" placeholder="Digite algo sobre você..." autocomplete="off">
+                </div>
+            `;
+        }).join("");
+
+        const mentiraBtns = e.minhasAfirmacoes.map(function (_, i) {
+            const sel = e.minhaMentira === i ? " selected" : "";
+            return `<button class="dv-mentira-btn${sel}" data-dv-mentira="${i}">${i + 1}</button>`;
+        }).join("");
+
+        const podeConfirmar = e.minhasAfirmacoes.every(function (v) { return v.trim() !== ""; }) && e.minhaMentira >= 0;
+
+        return `
+            <p class="text-muted mb-3">${jogo.descricao}</p>
+            <p class="dv-subtitle">Escreva <strong>3 afirmações</strong> sobre você — duas verdadeiras e uma mentira. Depois marque qual é a mentira.</p>
+            <div class="dv-inputs">${inputs}</div>
+            <p class="dv-mentira-label">Qual afirmação é a <strong>mentira</strong>?</p>
+            <div class="dv-mentira-opts">${mentiraBtns}</div>
+            <button class="btn btn-match-primary w-100 mt-3" data-mg-action="dv-confirmar" ${podeConfirmar ? "" : "disabled"}>
+                <i class="bi bi-check-circle"></i> Confirmar
+            </button>
+        `;
+    }
+
+    if (e.fase === "aguardar") {
+        return `
+            <p class="text-muted mb-3">${jogo.descricao}</p>
+            <div class="dv-minhas-prontas">
+                <span>Suas afirmações:</span>
+                <ul>${e.minhasAfirmacoes.map(function (a, i) {
+            return `<li>${a}${i === e.minhaMentira ? ' <span class="dv-mentira-tag">MENTIRA</span>' : ''}</li>`;
+        }).join("")}</div>
+            </div>
+            <div class="mg-card mg-card-idle">⏳ Aguardando ${sessaoJogo.match.nome} criar as afirmações...</div>
+        `;
+    }
+
+    if (e.fase === "adivinhar") {
+        const botItens = e.botAfirmacoes.map(function (a, i) {
+            const sel = e.meuPalpite === i ? " selected" : "";
+            return `<button class="dv-palpite-btn${sel}" data-dv-palpite="${i}">${a}</button>`;
+        }).join("");
+
+        return `
+            <p class="text-muted mb-3">Adivinhe qual afirmação do <strong>${sessaoJogo.match ? sessaoJogo.match.nome : "match"}</strong> é mentira!</p>
+            <div class="dv-palpite-area">
+                <p class="dv-mentira-label">Qual é a <strong>mentira</strong>?</p>
+                <div class="dv-palpite-opts">${botItens}</div>
+                <button class="btn btn-match-primary w-100 mt-3" data-mg-action="dv-palpite" ${e.meuPalpite >= 0 ? "" : "disabled"}>
+                    <i class="bi bi-send"></i> Responder ✍️
+                </button>
+            </div>
+        `;
+    }
+
+    if (e.fase === "adivinhar-feedback") {
+        const botItens = e.botAfirmacoes.map(function (a, i) {
+            const isLie = i === e.botMentira;
+            const myGuess = i === e.meuPalpite;
+            let badge = isLie ? ' <span class="dv-mentira-tag">MENTIRA</span>' : "";
+            if (myGuess) badge += isLie ? ' <span class="dv-acertou-tag">✅ Certo!</span>' : ' <span class="dv-errou-tag">❌ Errado!</span>';
+            return `<div class="dv-palpite-btn${myGuess ? " selected" : ""}">${a}${badge}</div>`;
+        }).join("");
+
+        return `
+            <p class="text-muted mb-3">Adivinhe qual afirmação do <strong>${sessaoJogo.match ? sessaoJogo.match.nome : "match"}</strong> é mentira!</p>
+            <p class="dv-resultado-header" style="margin-bottom:12px;">${e.acertei ? "✅ Você acertou!" : "❌ Você errou!"}</p>
+            <div class="dv-palpite-area">
+                <div class="dv-palpite-opts">${botItens}</div>
+                <p class="text-muted text-center mt-2" style="font-size:0.8rem;">Aguarde, agora é sua vez de criar afirmações...</p>
+            </div>
+        `;
+    }
+
+    if (e.fase === "resultado") {
+        const temBot = sessaoJogo.ativa && e.botAfirmacoes.length > 0;
+        const header = temBot
+            ? `<div class="dv-resultado-header">${e.acertei ? "✅ Você acertou a mentira!" : "❌ Você errou a mentira!"}</div>`
+            : `<div class="dv-resultado-header">Suas afirmações</div>`;
+
+        const botMsg = temBot
+            ? `<div class="dv-bot-resultado">
+                   <strong>${sessaoJogo.match.nome}</strong> achou que sua mentira era a afirmação <strong>${e.botPalpite + 1}</strong>
+                   — ${e.botPalpite === e.minhaMentira ? "✅ Ele acertou!" : "❌ Ele errou!"}
+               </div>`
+            : "";
+
+        return `
+            <div class="dv-resultado">
+                ${header}
+                <div class="dv-resultado-col">
+                    <span class="dv-resultado-label">Suas afirmações</span>
+                    <ul>${e.minhasAfirmacoes.map(function (a, i) {
+            const isLie = i === e.minhaMentira;
+            const botGuess = temBot && i === e.botPalpite;
+            const guessCorrect = temBot && botGuess && e.botPalpite === e.minhaMentira;
+            let badge = isLie ? ' <span class="dv-mentira-tag">MENTIRA</span>' : "";
+            if (botGuess) badge += guessCorrect ? ' <span class="dv-acertou-tag">✅ Acertou</span>' : ' <span class="dv-errou-tag">❌ Achou que era</span>';
+            return `<li class="${isLie ? "dv-lie" : "dv-truth"}">${a}${badge}</li>`;
+        }).join("")}</ul>
+                </div>
+                ${temBot
+                ? `<div class="dv-resultado-col">
+                           <span class="dv-resultado-label">Afirmações de ${sessaoJogo.match.nome}</span>
+                           <ul>${e.botAfirmacoes.map(function (a, i) {
+                    const isLie = i === e.botMentira;
+                    const myGuess = i === e.meuPalpite;
+                    let badge = isLie ? ' <span class="dv-mentira-tag">MENTIRA</span>' : "";
+                    if (myGuess) badge += isLie ? ' <span class="dv-acertou-tag">✅ Certo!</span>' : ' <span class="dv-errou-tag">❌ Você escolheu</span>';
+                    return `<li class="${isLie ? "dv-lie" : "dv-truth"}">${a}${badge}</li>`;
+                }).join("")}</ul>
+                       </div>`
+                : ""}
+            </div>
+            ${botMsg}
+            <div class="d-grid gap-2 mt-3">
+                <button class="btn btn-match-primary" data-mg-action="enviar">
+                    <i class="bi bi-send"></i> Compartilhar
+                </button>
+                <button class="btn btn-match-outline" data-mg-action="dv-restart">
+                    <i class="bi bi-arrow-counterclockwise"></i> Jogar de novo
+                </button>
+            </div>
+        `;
+    }
+
+    return "";
 }
 
-function iniciarQuiz() {
-    estado.rodada = 0;
-    estado.sinal = 0;
-    estado.respostas = [];
-    estado.iniciado = true;
-    estado.aguardando = false;
-
-    elementos.resultado.classList.add("d-none");
-    elementos.opcoes.classList.add("d-none");
-    elementos.opcoes.style.display = "none";
-
-    elementos.status.textContent = "Abertura cinematográfica";
-    elementos.roundLabel.textContent = "Transmissão iniciada";
-    elementos.pergunta.textContent = "EROS está abrindo a experiência.";
-    elementos.roundDescription.textContent = "A primeira rodada começará automaticamente após a introdução.";
-    elementos.feedback.textContent = "EROS está calibrando sinais de afinidade.";
-    elementos.btnIniciarQuiz.innerHTML = '<i class="bi bi-arrow-clockwise"></i> Reiniciar experiência';
-
-    atualizarPainel();
-
-    mostrarIntro(function () {
-        renderizarRodada();
-    });
-}
-
-function interpretarResposta(opcao, botao) {
-    if (estado.aguardando || !estado.iniciado) return;
-
-    const rodadaAtual = rodadas[estado.rodada];
-
-    estado.aguardando = true;
-    estado.sinal += 18 + estado.rodada * 2;
-
-    estado.respostas.push({
-        rodada: rodadaAtual.titulo,
-        pergunta: rodadaAtual.pergunta,
-        eixo: opcao.eixo,
-        valor: opcao.valor,
-        tag: opcao.tag
-    });
-
-    botao.classList.add("selected");
-    elementos.feedback.textContent = rodadaAtual.comentario;
-    elementos.status.textContent = "EROS interpretando resposta";
-
-    atualizarPainel();
-
-    window.setTimeout(function () {
-        estado.rodada += 1;
-        estado.aguardando = false;
-        renderizarRodada();
-    }, TEMPO_FEEDBACK_RESPOSTA);
-}
-
-function contarEixos() {
-    return estado.respostas.reduce(function (mapa, resposta) {
-        mapa[resposta.eixo] = (mapa[resposta.eixo] || 0) + 1;
-        return mapa;
-    }, {});
-}
-
-function finalizarExperiencia() {
-    const eixos = contarEixos();
-    const dominante = Object.keys(eixos).sort((a, b) => eixos[b] - eixos[a])[0] || "conversa";
-    const valores = [...new Set(estado.respostas.map((resposta) => resposta.valor))].slice(0, 6);
-
-    const perfisResultado = {
-        cultura: "Conector cultural",
-        musica: "Sintonia noturna",
-        profundidade: "Intensidade emocional",
-        energia: "Radar de presença",
-        encontro: "Curador de experiências",
-        exploracao: "Explorador afetivo",
-        conversa: "Conversador magnético",
-        humor: "Humor inteligente",
-        hobbies: "Afinidade lúdica"
-    };
-
-    const titulo = perfisResultado[dominante] || "Conector social";
-
-    elementos.opcoes.classList.add("d-none");
-    elementos.opcoes.style.display = "none";
-    elementos.resultado.classList.remove("d-none");
-
-    elementos.roundLabel.textContent = "Leitura neural concluída";
-    elementos.roundDescription.textContent = "EROS encontrou padrões de afinidade, ritmo social e linguagem emocional.";
-    elementos.pergunta.textContent = "Seu DNA social foi calibrado.";
-    elementos.feedback.textContent = "Você tende a criar conexão através de cultura, humor inteligente e experiências compartilhadas.";
-    elementos.status.textContent = "Experiência finalizada";
-    elementos.rodada.textContent = `${rodadas.length}/${rodadas.length}`;
-    elementos.sinal.textContent = "100%";
-    elementos.resultadoTitulo.textContent = titulo;
-    elementos.resultadoResumo.textContent = "EROS conclui: você cria conexão quando existe contexto, troca real e espaço para a conversa ganhar profundidade sem parecer uma entrevista.";
-
-    elementos.resultadoTags.innerHTML = valores.map(function (valor) {
-        return `<span class="result-tag">${valor}</span>`;
+function renderHTMLNuncaNunca(jogo) {
+    const itens = jogo.afirmacoes.map(function (a, i) {
+        const marcado = estadoNN.marcados.has(i);
+        const botMarcado = sessaoJogo.ativa && estadoNN.botMarcados.has(i);
+        const botClass = botMarcado ? " bot-marcou" : "";
+        return `<button class="nunca-btn${marcado ? " marcado" : ""}${botClass}" type="button" data-mg-action="nn-toggle" data-nn="${i}">
+            <span class="nunca-check ${marcado ? "checked" : ""}">${marcado ? "✓" : "◌"}</span>
+            <span>${a}${botMarcado ? ' <span class="bot-tag">✓ ' + sessaoJogo.match?.nome + "</span>" : ""}</span>
+        </button>`;
     }).join("");
 
-    localStorage.setItem("erosPetXp", String((Number(localStorage.getItem("erosPetXp")) || 0) + 12));
+    const total = estadoNN.marcados.size;
+    const botTotal = estadoNN.botMarcados.size;
+    const frases = ["Você nunca fez nenhum!", "Começou bem!", "Na metade!", "Quase tudo!", "Já fez tudo!"];
+    const frase = frases[Math.min(total, frases.length - 1)];
 
-    localStorage.setItem("dnaSocialMatchConnect", JSON.stringify({
-        titulo,
-        sinais: valores,
-        respostas: estado.respostas,
-        atualizadoEm: new Date().toISOString(),
-        origem: "Sala de Jogos"
-    }));
+    const botInfo = sessaoJogo.ativa
+        ? `<div class="nunca-score-bot">🤖 ${sessaoJogo.match.nome} marcou <strong>${botTotal}</strong> de ${jogo.afirmacoes.length}</div>`
+        : "";
 
-    localStorage.setItem("modoHojeMatchConnect", "jogar");
-
-    registrarQuizEROS();
+    return `
+        <p class="text-muted mb-3">${jogo.descricao}</p>
+        <div class="nunca-list">${itens}</div>
+        <div class="nunca-score">
+            <strong>${total}</strong> de ${jogo.afirmacoes.length} — ${frase}
+        </div>
+        ${botInfo}
+        <button class="btn btn-match-primary w-100 mt-3" type="button" data-mg-action="enviar">
+            <i class="bi bi-send"></i> ${sessaoJogo.ativa ? "Compartilhar na conversa" : "Compartilhar com match"}
+        </button>
+        <button class="btn btn-match-outline w-100 mt-2" type="button" data-mg-action="nn-restart">
+            <i class="bi bi-arrow-counterclockwise"></i> Limpar e começar de novo
+        </button>
+    `;
 }
 
-function renderizarSinalRelampago() {
-    const item = perguntasRelampago[Math.floor(Math.random() * perguntasRelampago.length)];
+function renderHTMLBatalha(jogo) {
+    if (estadoBatalha.rodada < jogo.rodadas.length) {
+        const rodada = jogo.rodadas[estadoBatalha.rodada];
+        const barra = Math.round((estadoBatalha.rodada / jogo.rodadas.length) * 100);
 
-    elementos.perguntaRelampago.textContent = item.pergunta;
-    elementos.roundLabel.textContent = "Sinal relâmpago";
-    elementos.pergunta.textContent = item.pergunta;
-    elementos.roundDescription.textContent = item.sugestao;
-    elementos.feedback.textContent = `EROS interpreta: ${item.sugestao}`;
-    elementos.status.textContent = "Sinal relâmpago gerado";
+        const botFeedback = sessaoJogo.ativa && estadoBatalha.botEscolhas.length > estadoBatalha.escolhas.length - 1
+            ? ""
+            : "";
 
-    elementos.resultado.classList.add("d-none");
-    elementos.opcoes.classList.add("d-none");
-    elementos.opcoes.style.display = "none";
-}
+        return `
+            <p class="text-muted mb-2">${jogo.descricao}</p>
+            <div class="batalha-barra"><div style="width:${barra}%"></div></div>
+            <div class="batalha-arena">
+                <button class="batalha-opt" data-mg-action="batalha-escolha" data-lado="a">${rodada.a}</button>
+                <span class="batalha-vs">VS</span>
+                <button class="batalha-opt" data-mg-action="batalha-escolha" data-lado="b">${rodada.b}</button>
+            </div>
+        `;
+    }
 
-if (validarElementosObrigatorios()) {
-    elementos.btnIniciarQuiz.addEventListener("click", iniciarQuiz);
-
-    elementos.opcoes.addEventListener("click", function (event) {
-        const botao = event.target.closest(".quiz-option");
-        if (!botao) return;
-
-        const rodadaAtual = rodadas[estado.rodada];
-        const opcao = rodadaAtual?.opcoes[Number(botao.dataset.index)];
-        if (!opcao) return;
-
-        interpretarResposta(opcao, botao);
+    const minhasTags = jogo.rodadas.map(function (r, i) {
+        return estadoBatalha.escolhas[i] === "a" ? r.a : r.b;
     });
 
-    elementos.btnNovaPerguntaJogo.addEventListener("click", renderizarSinalRelampago);
+    const botTags = sessaoJogo.ativa
+        ? jogo.rodadas.map(function (r, i) {
+            return estadoBatalha.botEscolhas[i] === "a" ? r.a : r.b;
+        })
+        : [];
 
-    elementos.btnResponderQuebraGelo.addEventListener("click", function () {
-        elementos.feedback.textContent = `EROS interpreta: "${elementos.perguntaRelampago.textContent}" revela como você transforma curiosidade em abertura social.`;
-        elementos.roundLabel.textContent = "Interpretação do EROS";
-        elementos.pergunta.textContent = elementos.perguntaRelampago.textContent;
-        elementos.roundDescription.textContent = "Essa pergunta pode virar um assunto inicial mais humano e menos genérico.";
-        elementos.status.textContent = "Sinal interpretado";
+    const totalRodadas = jogo.rodadas.length;
+    const rodadasComparaveis = Math.min(estadoBatalha.escolhas.length, estadoBatalha.botEscolhas.length);
+    const matches = rodadasComparaveis > 0
+        ? jogo.rodadas.slice(0, rodadasComparaveis).filter(function (_, i) {
+            return estadoBatalha.escolhas[i] === estadoBatalha.botEscolhas[i];
+        }).length
+        : 0;
+    const compatibilidade = rodadasComparaveis > 0 ? Math.round((matches / rodadasComparaveis) * 100) : 0;
 
-        elementos.resultado.classList.add("d-none");
-        elementos.opcoes.classList.add("d-none");
-        elementos.opcoes.style.display = "none";
-    });
-
-    elementos.btnReiniciarExperiencia.addEventListener("click", iniciarQuiz);
-
-    renderizarJogadores();
-    atualizarPainel();
+    return `
+        <div class="batalha-resultado-dual">
+            <div class="batalha-perfil">
+                <span class="batalha-perfil-label">🧑 Você</span>
+                <div class="batalha-tags">${minhasTags.map(function (t) { return `<span>${t}</span>`; }).join("")}</div>
+            </div>
+            ${sessaoJogo.ativa
+            ? `<div class="batalha-perfil">
+                       <span class="batalha-perfil-label">🤖 ${sessaoJogo.match.nome}</span>
+                       <div class="batalha-tags">${botTags.map(function (t) { return `<span>${t}</span>`; }).join("")}</div>
+                   </div>`
+            : ""}
+        </div>
+        ${sessaoJogo.ativa && estadoBatalha.botEscolhas.length >= totalRodadas
+            ? `<div class="batalha-compat">
+                   <span class="batalha-compat-label">🧬 Compatibilidade</span>
+                   <div class="batalha-compat-barra">
+                       <div class="batalha-compat-preenchimento" style="width:${compatibilidade}%"></div>
+                   </div>
+                   <span class="batalha-compat-valor">${compatibilidade}%</span>
+               </div>`
+            : sessaoJogo.ativa && estadoBatalha.botEscolhas.length < totalRodadas
+                ? `<p class="text-muted text-center mt-3" style="font-size:0.85rem;">🤖 ${sessaoJogo.match.nome} ainda está escolhendo...</p>`
+                : ""}
+        <div class="d-grid gap-2 mt-3">
+            <button class="btn btn-match-primary" data-mg-action="enviar">
+                <i class="bi bi-send"></i> Compartilhar perfil
+            </button>
+            <button class="btn btn-match-outline" data-mg-action="batalha-restart">
+                <i class="bi bi-arrow-counterclockwise"></i> Jogar de novo
+            </button>
+        </div>
+    `;
 }
+
+function renderHTMLEmojiQuiz(jogo) {
+    if (estadoEQ.atual >= jogo.perguntas.length) {
+        const botMsg = sessaoJogo.ativa
+            ? `
+            <div class="eq-fim"><strong>Quiz encerrado!</strong></div>
+            <div class="eq-placar">
+                <div class="eq-placar-jogador">
+                    ${MatchConnectApp.avatarHtml("V")}
+                    <strong>Você</strong>
+                    <span class="eq-placar-num">${estadoEQ.acertosUsuario}</span>
+                </div>
+                <div class="eq-placar-vs">X</div>
+                <div class="eq-placar-jogador">
+                    ${MatchConnectApp.avatarHtml(sessaoJogo.match.inicial)}
+                    <strong>${sessaoJogo.match.nome}</strong>
+                    <span class="eq-placar-num">${estadoEQ.botAcertos}</span>
+                </div>
+            </div>`
+            : `<div class="eq-fim">
+                   <strong>Quiz encerrado!</strong>
+                   <p>Você acertou <strong>${estadoEQ.acertosUsuario}</strong> de ${jogo.perguntas.length}</p>
+               </div>`;
+
+        return `
+            ${botMsg}
+            <div class="d-grid gap-2 mt-3">
+                <button class="btn btn-match-primary" data-mg-action="enviar">
+                    <i class="bi bi-send"></i> Desafiar match
+                </button>
+                <button class="btn btn-match-outline" data-mg-action="eq-restart">
+                    <i class="bi bi-arrow-counterclockwise"></i> Recomeçar
+                </button>
+            </div>
+        `;
+    }
+
+    const q = jogo.perguntas[estadoEQ.atual];
+    const feedbackHtml = estadoEQ.acertou === true
+        ? `<div class="eq-feedback eq-feedback-certo">✅ Correto! <span>${q.resposta}</span></div>`
+        : estadoEQ.acertou === false
+            ? `<div class="eq-feedback eq-feedback-erro">❌ Errado! A resposta era <span>${q.resposta}</span></div>`
+            : estadoEQ.revelado
+                ? `<div class="eq-resposta">${q.resposta}</div>`
+                : "";
+
+    const podeProximo = estadoEQ.acertou === true || estadoEQ.revelado;
+    const acoesHtml = estadoEQ.acertou === null && !estadoEQ.revelado
+        ? `
+            <div class="eq-palpite">
+                <input class="eq-input" type="text" id="eqPalpiteInput" placeholder="Digite sua resposta..." value="${estadoEQ.palpite}" autocomplete="off">
+                <button class="btn btn-match-primary" data-mg-action="eq-confirmar">Confirmar</button>
+            </div>
+            <button class="btn btn-match-outline w-100" data-mg-action="eq-reveal">Revelar resposta</button>`
+        : "";
+
+    const btnProximo = podeProximo
+        ? `<button class="btn btn-match-primary w-100 mt-2" data-mg-action="${estadoEQ.atual < jogo.perguntas.length - 1 ? "eq-next" : "eq-done"}">
+               ${estadoEQ.atual < jogo.perguntas.length - 1 ? "Próxima →" : "Ver resultado"}
+           </button>`
+        : "";
+
+    const botMsg = sessaoJogo.ativa && estadoEQ.botAcertos > 0
+        ? `<p class="eq-bot-score-small">🤖 ${sessaoJogo.match.nome} acertou ${estadoEQ.botAcertos} perguntas até agora</p>`
+        : "";
+
+    return `
+        <div class="eq-progress">Pergunta ${estadoEQ.atual + 1} de ${jogo.perguntas.length}</div>
+        <div class="eq-emojis">${q.emojis}</div>
+        <p class="eq-dica">💡 ${q.dica}</p>
+        ${feedbackHtml}
+        ${acoesHtml}
+        ${btnProximo}
+        ${botMsg}
+        <button class="btn btn-match-outline w-100 mt-2" data-mg-action="enviar">
+            <i class="bi bi-send"></i> Desafiar match
+        </button>
+    `;
+}
+
+function textoParaEnviar() {
+    const jogo = miniGameSelecionado;
+    const nome = sessaoJogo.ativa ? sessaoJogo.match.nome : (matchSelecionado ? matchSelecionado.nome : "Match");
+
+    switch (jogo.tipo) {
+        case "duas-verdades": {
+            if (estado2V1M.fase !== "resultado") return null;
+            let texto = `${nome}, no Duas Verdades e Uma Mentira:\n\n`;
+            texto += `Minhas afirmações:\n`;
+            estado2V1M.minhasAfirmacoes.forEach(function (a, i) {
+                texto += `  ${i + 1}. ${a}${i === estado2V1M.minhaMentira ? " (MENTIRA)" : ""}\n`;
+            });
+            if (sessaoJogo.ativa && estado2V1M.botAfirmacoes.length > 0) {
+                texto += `\nAfirmações de ${nome}:\n`;
+                estado2V1M.botAfirmacoes.forEach(function (a, i) {
+                    texto += `  ${i + 1}. ${a}${i === estado2V1M.botMentira ? " (MENTIRA)" : ""}\n`;
+                });
+                texto += `\nEu ${estado2V1M.acertei ? "acertei" : "errei"} a mentira de ${nome}!`;
+            }
+            return texto;
+        }
+        case "nunca-nunca": {
+            if (estadoNN.marcados.size === 0) {
+                return `${nome}, vamos jogar Nunca Nunca? Marque o que você já fez e manda pra mim!`;
+            }
+            const feitos = jogo.afirmacoes.filter(function (_, i) { return estadoNN.marcados.has(i); });
+            const botFeitos = sessaoJogo.ativa
+                ? jogo.afirmacoes.filter(function (_, i) { return estadoNN.botMarcados.has(i); })
+                : [];
+            let texto = `${nome}, no Nunca Nunca já fiz: ${feitos.join("; ")}.`;
+            if (botFeitos.length > 0) texto += ` ${nome} já fez: ${botFeitos.join("; ")}.`;
+            texto += " E você?";
+            return texto;
+        }
+        case "batalha": {
+            if (estadoBatalha.escolhas.length === 0) return `${nome}, bora jogar A vs B? Cada um escolhe e compara!`;
+            const tags = jogo.rodadas.map(function (r, i) {
+                return estadoBatalha.escolhas[i] === "a" ? r.a : r.b;
+            }).filter(Boolean);
+            const botTags = sessaoJogo.ativa
+                ? jogo.rodadas.map(function (r, i) {
+                    return estadoBatalha.botEscolhas[i] === "a" ? r.a : r.b;
+                }).filter(Boolean)
+                : [];
+            let texto = `${nome}, no A vs B escolhi: ${tags.join(", ")}.`;
+            if (botTags.length > 0) texto += ` ${nome} escolheu: ${botTags.join(", ")}.`;
+            return texto;
+        }
+        case "emoji-quiz": {
+            if (estadoEQ.atual >= jogo.perguntas.length) {
+                return `${nome}, consegue acertar os emojis quiz? ${jogo.perguntas.map(function (p) { return p.emojis; }).join(" / ")}`;
+            }
+            const q = jogo.perguntas[estadoEQ.atual];
+            return `${nome}, consegue adivinhar? ${q.emojis} — Dica: ${q.dica}`;
+        }
+        default:
+            return null;
+    }
+}
+
+function renderizarJogoAtivo() {
+    const area = document.getElementById("miniGameArea");
+    const kicker = document.getElementById("miniGameKicker");
+    const titulo = document.getElementById("miniGameTitulo");
+    const jogo = miniGameSelecionado;
+
+    titulo.textContent = jogo.titulo;
+
+    const partnerBanner = sessaoJogo.ativa
+        ? `<div class="mini-game-partner">🤖 Jogando com <strong>${sessaoJogo.match.nome}</strong></div>`
+        : "";
+
+    let ConteudoHtml = "";
+    const partnerTag = sessaoJogo.ativa
+        ? ` — com ${sessaoJogo.match.nome}`
+        : "";
+
+    switch (jogo.tipo) {
+        case "duas-verdades":
+            if (sessaoJogo.ativa && estado2V1M.fase === "criar") {
+                estado2V1M.fase = "recebendo";
+                botJogar2V1M();
+                setTimeout(function () {
+                    estado2V1M.fase = "adivinhar";
+                    renderizarJogoAtivo();
+                }, 1200);
+            }
+            kicker.textContent = (
+                estado2V1M.fase === "criar" ? "Crie suas afirmações" :
+                    estado2V1M.fase === "recebendo" ? "Mensagem recebida" :
+                        estado2V1M.fase === "adivinhar" ? "Adivinhe a mentira" :
+                            estado2V1M.fase === "adivinhar-feedback" ? (estado2V1M.acertei ? "Você acertou!" : "Você errou!") :
+                                "Resultado"
+            ) + partnerTag;
+            ConteudoHtml = renderHTMLDuasVerdades(jogo);
+            break;
+        case "nunca-nunca":
+            kicker.textContent = "Marque os seus" + partnerTag;
+            ConteudoHtml = renderHTMLNuncaNunca(jogo);
+            break;
+        case "batalha":
+            kicker.textContent = (estadoBatalha.rodada < jogo.rodadas.length
+                ? `Rodada ${estadoBatalha.rodada + 1} de ${jogo.rodadas.length}`
+                : "Resultado") + partnerTag;
+            ConteudoHtml = renderHTMLBatalha(jogo);
+            break;
+        case "emoji-quiz":
+            kicker.textContent = `Pergunta ${Math.min(estadoEQ.atual + 1, jogo.perguntas.length)} de ${jogo.perguntas.length}` + partnerTag;
+            ConteudoHtml = renderHTMLEmojiQuiz(jogo);
+            break;
+        default:
+            ConteudoHtml = `<p class="text-muted">${jogo.descricao}</p>`;
+    }
+
+    area.innerHTML = partnerBanner + ConteudoHtml;
+}
+
+function renderizarMiniGames() {
+    document.getElementById("miniGameList").innerHTML = miniGames.map(function (game, index) {
+        return `
+            <button class="mini-game-card ${miniGameSelecionado.titulo === game.titulo ? "selected" : ""}" type="button" data-mini-index="${index}">
+                <i class="bi ${game.icone}"></i>
+                <strong>${game.titulo}</strong>
+                <span>${game.descricao}</span>
+            </button>
+        `;
+    }).join("");
+
+    renderizarJogoAtivo();
+}
+
+document.querySelectorAll("[data-tab-target]").forEach(function (botao) {
+    botao.addEventListener("click", function () {
+        ativarAba(botao.dataset.tabTarget);
+    });
+});
+
+document.getElementById("arenaMatches").addEventListener("click", function (event) {
+    const botao = event.target.closest("[data-action]");
+    if (!botao) return;
+
+    const match = perfisBase.find(function (perfil) {
+        return perfil.nome === botao.dataset.match;
+    });
+    if (!match) return;
+
+    matchSelecionado = match;
+
+    if (botao.dataset.action === "play") {
+        iniciarPartida(match);
+        return;
+    }
+
+    if (botao.dataset.action === "leave") {
+        encerrarPartida();
+        return;
+    }
+
+    if (botao.dataset.action === "invite") {
+        enviarMensagem(match, montarConvite(match), "convite-play");
+        document.getElementById("arenaStatus").textContent = `Convite enviado para ${match.nome}`;
+    }
+
+    renderizarArena();
+    renderizarEROSPlay();
+});
+
+document.getElementById("erosPlayActions").addEventListener("click", function (event) {
+    const botao = event.target.closest("[data-eros-play]");
+    if (!botao) return;
+
+    if (botao.dataset.erosPlay === "start" && sessaoJogo.match) {
+        resetarEstadoJogo();
+        sortearBotNN();
+        ativarAba("minigames");
+        renderizarMiniGames();
+        return;
+    }
+
+    if (botao.dataset.erosPlay === "leave") {
+        encerrarPartida();
+        return;
+    }
+
+    if (!matchSelecionado) return;
+
+    localStorage.setItem("conversaAberta", matchSelecionado.nome);
+    if (botao.dataset.erosPlay === "send") {
+        enviarMensagem(matchSelecionado, montarConvite(matchSelecionado), "convite-play");
+        document.getElementById("arenaStatus").textContent = `Convite enviado para ${matchSelecionado.nome}`;
+    }
+});
+
+document.getElementById("formPreferenciasPlay").addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    preferencias.plataforma = document.getElementById("playPlataforma").value;
+    preferencias.estilo = document.getElementById("playEstilo").value;
+    preferencias.comunicacao = document.getElementById("playComunicacao").value;
+    preferencias.horario = document.getElementById("playHorario").value;
+    preferencias.jogos = document.getElementById("playJogos").value.trim() || preferenciasPadrao.jogos;
+
+    MatchConnectApp.setJson("preferenciasPlayMatchConnect", preferencias);
+    document.getElementById("statusPreferenciasPlay").textContent = "Preferências salvas. A arena foi recalculada.";
+    renderizarArena();
+    renderizarEROSPlay();
+    renderizarFilasOnline();
+});
+
+document.getElementById("filaPlayOnline").addEventListener("click", function (event) {
+    const card = event.target.closest("[data-queue]");
+    if (!card) return;
+
+    filaSelecionada = card.dataset.queue;
+    localStorage.setItem("filaPlayMatchConnect", filaSelecionada);
+    document.getElementById("statusPreferenciasPlay").textContent = "Fila selecionada. EROS vai priorizar matches com esse ritmo de jogo.";
+    renderizarFilasOnline();
+});
+
+document.getElementById("miniGameList").addEventListener("click", function (event) {
+    const card = event.target.closest("[data-mini-index]");
+    if (!card) return;
+
+    const novo = miniGames[Number(card.dataset.miniIndex)];
+    if (!novo || novo.titulo === miniGameSelecionado.titulo) return;
+
+    miniGameSelecionado = novo;
+    resetarEstadoJogo();
+    if (novo.tipo === "nunca-nunca") sortearBotNN();
+    renderizarMiniGames();
+});
+
+document.getElementById("btnNovoMiniGame").addEventListener("click", function () {
+    const idx = miniGames.indexOf(miniGameSelecionado);
+    miniGameSelecionado = miniGames[(idx + 1) % miniGames.length];
+    resetarEstadoJogo();
+    if (miniGameSelecionado.tipo === "nunca-nunca") sortearBotNN();
+    renderizarMiniGames();
+});
+
+document.getElementById("miniGameArea").addEventListener("click", function (event) {
+    const jogo = miniGameSelecionado;
+
+    const palpiteBtn = event.target.closest("[data-dv-palpite]");
+    if (palpiteBtn && jogo.tipo === "duas-verdades") {
+        estado2V1M.meuPalpite = Number(palpiteBtn.dataset.dvPalpite);
+        renderizarJogoAtivo();
+        return;
+    }
+
+    const mentiraBtn = event.target.closest("[data-dv-mentira]");
+    if (mentiraBtn && jogo.tipo === "duas-verdades") {
+        estado2V1M.minhaMentira = Number(mentiraBtn.dataset.dvMentira);
+        renderizarJogoAtivo();
+        return;
+    }
+
+    const btn = event.target.closest("[data-mg-action]");
+    if (!btn) return;
+
+    const action = btn.dataset.mgAction;
+
+    if (action === "dv-confirmar") {
+        const inputs = document.querySelectorAll("#miniGameArea .dv-input");
+        inputs.forEach(function (inp) {
+            estado2V1M.minhasAfirmacoes[Number(inp.dataset.dvIdx)] = inp.value;
+        });
+        if (estado2V1M.minhasAfirmacoes.every(function (v) { return v.trim() !== ""; }) && estado2V1M.minhaMentira >= 0) {
+            estado2V1M.minhasProntas = true;
+            if (sessaoJogo.ativa) {
+                estado2V1M.botPalpite = Math.floor(Math.random() * 3);
+            }
+            estado2V1M.fase = "resultado";
+            renderizarJogoAtivo();
+        }
+    } else if (action === "dv-palpite") {
+        if (estado2V1M.meuPalpite < 0) return;
+        estado2V1M.acertei = estado2V1M.meuPalpite === estado2V1M.botMentira;
+        if (sessaoJogo.ativa) {
+            estado2V1M.fase = "adivinhar-feedback";
+            renderizarJogoAtivo();
+            setTimeout(function () {
+                estado2V1M.fase = "criar";
+                renderizarJogoAtivo();
+            }, 1400);
+        } else {
+            estado2V1M.fase = "resultado";
+            renderizarJogoAtivo();
+        }
+    } else if (action === "nn-toggle") {
+        if (jogo.tipo !== "nunca-nunca") return;
+        const indice = Number(btn.dataset.nn);
+        if (!Number.isInteger(indice)) return;
+        if (estadoNN.marcados.has(indice)) {
+            estadoNN.marcados.delete(indice);
+        } else {
+            estadoNN.marcados.add(indice);
+        }
+        renderizarJogoAtivo();
+    } else if (action === "nn-restart") {
+        estadoNN.marcados.clear();
+        if (sessaoJogo.ativa) {
+            sortearBotNN();
+        }
+        renderizarJogoAtivo();
+    } else if (action === "batalha-escolha") {
+        estadoBatalha.escolhas.push(btn.dataset.lado);
+        estadoBatalha.rodada++;
+        renderizarJogoAtivo();
+        if (sessaoJogo.ativa && estadoBatalha.rodada <= jogo.rodadas.length) {
+            setTimeout(function () {
+                botJogarBatalha();
+                renderizarJogoAtivo();
+            }, 400);
+        }
+    } else if (action === "batalha-restart") {
+        estadoBatalha.rodada = 0;
+        estadoBatalha.escolhas = [];
+        estadoBatalha.botEscolhas = [];
+        renderizarJogoAtivo();
+    } else if (action === "eq-reveal") {
+        estadoEQ.revelado = true;
+        estadoEQ.acertou = null;
+        renderizarJogoAtivo();
+        if (sessaoJogo.ativa) {
+            setTimeout(function () {
+                botJogarEQ(jogo);
+                renderizarJogoAtivo();
+            }, 400);
+        }
+    } else if (action === "eq-confirmar") {
+        const input = document.getElementById("eqPalpiteInput");
+        if (!input) return;
+        const palpite = input.value.trim().toLowerCase();
+        const resposta = jogo.perguntas[estadoEQ.atual].resposta.toLowerCase();
+        estadoEQ.palpite = input.value;
+        estadoEQ.acertou = palpite === resposta;
+        estadoEQ.revelado = true;
+        if (estadoEQ.acertou) estadoEQ.acertosUsuario++;
+        renderizarJogoAtivo();
+        if (sessaoJogo.ativa) {
+            setTimeout(function () {
+                botJogarEQ(jogo);
+                renderizarJogoAtivo();
+            }, 500);
+        }
+    } else if (action === "eq-next") {
+        estadoEQ.atual++;
+        estadoEQ.revelado = false;
+        estadoEQ.palpite = "";
+        estadoEQ.acertou = null;
+        renderizarJogoAtivo();
+        if (sessaoJogo.ativa) {
+            setTimeout(function () {
+                botJogarEQ(jogo);
+                renderizarJogoAtivo();
+            }, 300);
+        }
+    } else if (action === "eq-done") {
+        estadoEQ.atual = jogo.perguntas.length;
+        if (sessaoJogo.ativa) {
+            for (let i = estadoEQ.botAcertos; i < jogo.perguntas.length; i++) {
+                if (Math.random() > 0.55) estadoEQ.botAcertos++;
+            }
+            renderizarJogoAtivo();
+        }
+        renderizarJogoAtivo();
+    } else if (action === "eq-restart") {
+        estadoEQ.atual = 0;
+        estadoEQ.revelado = false;
+        estadoEQ.palpite = "";
+        estadoEQ.acertou = null;
+        estadoEQ.botAcertos = 0;
+        estadoEQ.acertosUsuario = 0;
+        renderizarJogoAtivo();
+    } else if (action === "enviar") {
+        const texto = textoParaEnviar();
+        if (!texto) return;
+        const alvo = sessaoJogo.ativa ? sessaoJogo.match : matchSelecionado;
+        if (!alvo) {
+            document.getElementById("miniGameKicker").textContent = "Selecione um match na Arena!";
+            return;
+        }
+        enviarMensagem(alvo, texto, "mini-game");
+        window.location.href = "../Conversas/Conversas.html";
+    }
+});
+
+document.getElementById("miniGameArea").addEventListener("input", function (event) {
+    const inp = event.target.closest(".dv-input");
+    if (!inp) return;
+    estado2V1M.minhasAfirmacoes[Number(inp.dataset.dvIdx)] = inp.value;
+});
+
+preencherPreferencias();
+renderizarArena();
+renderizarEROSPlay();
+renderizarFilasOnline();
+renderizarMiniGames();

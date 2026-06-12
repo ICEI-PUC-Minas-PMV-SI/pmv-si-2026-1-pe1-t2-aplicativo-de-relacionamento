@@ -205,6 +205,8 @@ formInteresses.addEventListener("submit", function (event) {
     const descricao = document.getElementById("descricao").value.trim();
     const qualidades = document.getElementById("qualidades").value.trim();
     const curiosidade = document.getElementById("curiosidade").value.trim();
+    const conversaValePena = document.getElementById("conversaValePena").value.trim();
+    const ritmoConexao = document.getElementById("ritmoConexao").value;
     const interessePrioritario = document.getElementById("interessePrioritario").value.trim().toLowerCase();
     const camadas = camadasInteresses();
 
@@ -217,7 +219,9 @@ formInteresses.addEventListener("submit", function (event) {
         programaIdeal: programaIdeal,
         descricao: descricao,
         qualidades: qualidades,
-        curiosidade: curiosidade
+        curiosidade: curiosidade,
+        conversaValePena: conversaValePena,
+        ritmoConexao: ritmoConexao
     };
 
     const preferenciasDescoberta = {

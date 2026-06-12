@@ -81,6 +81,23 @@ formCadastro.addEventListener("submit", function (event) {
     usuarios.push(novoUsuario);
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
     localStorage.setItem("usuarioLogado", JSON.stringify(novoUsuario));
+    [
+        "matchesUsuario",
+        "mensagensUsuario",
+        "mensagensNaoLidas",
+        "conversaAberta",
+        "conversasAtivas",
+        "conversasEncerradas",
+        "perfisBloqueados",
+        "favoritosUsuario",
+        "historicoAfinidade",
+        "mensagemEnviadaRecentemente",
+        "ultimaMensagemRecebida",
+        "planoEncontro",
+        "conviteEvento"
+    ].forEach(function (chave) {
+        localStorage.removeItem(chave);
+    });
 
     mensagem.textContent = "Usuário cadastrado com sucesso!";
     mensagem.style.color = "green";

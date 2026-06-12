@@ -91,7 +91,7 @@
                 <li><a class="dropdown-item${active("EROS")}" href="../EROS/EROS.html"><i class="bi bi-robot"></i> EROS</a></li>
                 <li><a class="dropdown-item${active("EventoDia")}" href="../EventoDia/EventoDia.html"><i class="bi bi-calendar-event"></i> Modo Evento</a></li>
                 <li><a class="dropdown-item${active("Experiencias")}" href="../Experiencias/Experiencias.html"><i class="bi bi-stars"></i> Experiências</a></li>
-                <li><a class="dropdown-item" href="../Experiencias/Experiencias.html"><i class="bi bi-music-note-list"></i> Playlists</a></li>
+                <li><a class="dropdown-item${active("Playlists")}" href="../Playlists/Playlists.html"><i class="bi bi-music-note-list"></i> Playlists</a></li>
                 <li><a class="dropdown-item" href="../Experiencias/Experiencias.html"><i class="bi bi-book"></i> Livros</a></li>
                 <li><a class="dropdown-item${active("Onboarding")}" href="../Onboarding/Onboarding.html"><i class="bi bi-sliders"></i> Preferências</a></li>
                 <li><a class="dropdown-item" href="../Sobre/Sobre.html"><i class="bi bi-question-circle"></i> Ajuda</a></li>
@@ -108,10 +108,37 @@
                 <img id="fotoPerfilNavbar" class="foto-perfil-navbar" src="" alt="Foto do perfil">
             </a>
         </li>
-        <li class="nav-item">
-            <button id="btnSair" class="btn btn-entrar btn-sm" type="button">Sair</button>
+        <li class="nav-item nav-actions-group d-flex align-items-center gap-2">
+            <button id="darkModeToggle" class="dark-mode-toggle" type="button" aria-label="Alternar modo escuro" title="Alternar modo escuro">
+                <i class="bi bi-moon-fill"></i>
+                <i class="bi bi-sun-fill"></i>
+            </button>
+            <button id="btnSair" class="btn btn-entrar" type="button">Sair</button>
         </li>
     `;
+
+    var toggle = document.getElementById("darkModeToggle");
+    if (toggle) {
+        if (window.MatchConnectTheme) {
+            window.MatchConnectTheme.bind(toggle);
+        } else if (toggle.dataset.themeBound !== "true") {
+            toggle.dataset.themeBound = "true";
+            var temaSalvo = localStorage.getItem("matchConnectTheme");
+            if (temaSalvo) {
+                document.documentElement.setAttribute("data-theme", temaSalvo);
+                toggle.setAttribute("aria-label",
+                    temaSalvo === "dark" ? "Alternar modo claro" : "Alternar modo escuro");
+            }
+            toggle.addEventListener("click", function () {
+                var html = document.documentElement;
+                var tema = html.getAttribute("data-theme") === "dark" ? "light" : "dark";
+                html.setAttribute("data-theme", tema);
+                localStorage.setItem("matchConnectTheme", tema);
+                toggle.setAttribute("aria-label",
+                    tema === "dark" ? "Alternar modo claro" : "Alternar modo escuro");
+            });
+        }
+    }
 
     const menuMais = document.getElementById("menuMais");
     const menuMaisLista = menuMais?.nextElementSibling;
@@ -137,6 +164,32 @@
     }
 
     const fotoPerfil = document.getElementById("fotoPerfilNavbar");
+
+    function totalNaoLidas() {
+        try {
+            const naoLidas = JSON.parse(localStorage.getItem("mensagensNaoLidas")) || {};
+            return Object.values(naoLidas).reduce(function (total, valor) {
+                return total + Number(valor || 0);
+            }, 0);
+        } catch (error) {
+            return 0;
+        }
+    }
+
+    function aplicarIndicadorMensagem() {
+        const total = totalNaoLidas();
+        const linkConversas = nav.querySelector('a[href="../Conversas/Conversas.html"]');
+
+        if (!linkConversas || total <= 0) {
+            return;
+        }
+
+        linkConversas.classList.add("has-unread-message");
+        linkConversas.insertAdjacentHTML("beforeend", `<span class="nav-unread-badge">${total}</span>`);
+        document.body.classList.add("has-new-message");
+    }
+
+    aplicarIndicadorMensagem();
 
     if (fotoPerfil) {
         let dadosInteresses = {};

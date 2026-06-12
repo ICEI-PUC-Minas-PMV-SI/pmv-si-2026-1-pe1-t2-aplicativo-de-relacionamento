@@ -8,10 +8,14 @@ const camadas = MatchConnectApp.camadasInteresses();
 const foto = MatchConnectApp.fotoPrincipal();
 const idade = MatchConnectApp.idade(usuario.dataNascimento);
 const verificacao = localStorage.getItem("perfilVerificado") === "true";
+const matches = MatchConnectApp.getMatches();
+const historicoAfinidade = MatchConnectApp.getJson("historicoAfinidade", []);
 const quebraGelos = [
     { titulo: "Música ou silêncio?", texto: dados.personalidade ? `Meu tom de conversa é ${dados.personalidade}.` : "Prefiro conversas leves no começo." },
     { titulo: "Programa ideal", texto: dados.programaIdeal || "Um encontro curto em lugar público." },
-    { titulo: "Assunto fácil", texto: interesses[0] ? `Pode começar por ${interesses[0]}.` : "Ainda estou completando meus interesses." }
+    { titulo: "Assunto fácil", texto: interesses[0] ? `Pode começar por ${interesses[0]}.` : "Ainda estou completando meus interesses." },
+    { titulo: "Conversa que vale", texto: dados.conversaValePena || "Atenção, leveza e curiosidade real." },
+    { titulo: "Ritmo de conexão", texto: dados.ritmoConexao || "Construir sem pressa." }
 ];
 
 function calcularForcaPerfil() {
@@ -40,6 +44,17 @@ document.getElementById("seloVerificacao").textContent = verificacao ? "Perfil v
 const forca = calcularForcaPerfil();
 document.getElementById("barraPerfil").style.width = `${forca}%`;
 document.getElementById("forcaPerfil").textContent = `${forca}% completo`;
+
+const selos = [
+    forca >= 80 ? "Perfil completo" : "Perfil em construção",
+    verificacao ? "Verificado" : "Verificação pendente",
+    matches.length > 0 ? `${matches.length} match${matches.length === 1 ? "" : "es"}` : "Sem matches ainda",
+    interesses.length >= 3 ? "Interesses confirmados" : "Interesses básicos"
+];
+
+document.getElementById("selosPerfil").innerHTML = selos.map(function (selo) {
+    return `<span class="trust-badge"><i class="bi bi-patch-check"></i>${selo}</span>`;
+}).join("");
 
 const lista = document.getElementById("interessesPerfil");
 
@@ -70,3 +85,22 @@ document.getElementById("camadasPerfil").innerHTML = `
     <div class="interest-layer-row"><small>Não curto</small><strong>${camadas.naoCurto.join(", ") || "Não informado"}</strong></div>
     <div class="interest-layer-row"><small>Assunto favorito</small><strong>${camadas.assuntoFavorito || "Não informado"}</strong></div>
 `;
+
+const historicoResumo = historicoAfinidade.slice(0, 4);
+const assuntoForte = historicoAfinidade.flatMap(function (item) {
+    return item.interesses || [];
+})[0] || camadas.assuntoFavorito || interesses[0] || "seus interesses principais";
+
+document.getElementById("historicoAfinidadePerfil").innerHTML = historicoResumo.length > 0
+    ? `
+        <strong>EROS está aprendendo com suas ações</strong>
+        <p>Seu padrão recente aponta para ${assuntoForte}. O histórico considera matches, mensagens recebidas e convites enviados.</p>
+        <small>${historicoResumo.map(function (item) {
+            return `${item.tipo} com ${item.pessoa || "perfil"}`;
+        }).join(" • ")}</small>
+    `
+    : `
+        <strong>Ainda sem histórico suficiente</strong>
+        <p>Curta perfis, responda mensagens e envie convites para o MatchConnect melhorar suas recomendações.</p>
+        <small>O aprendizado fica salvo apenas nesta simulação local.</small>
+    `;

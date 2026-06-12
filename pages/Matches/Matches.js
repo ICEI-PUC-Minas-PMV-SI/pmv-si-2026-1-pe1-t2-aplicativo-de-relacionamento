@@ -61,6 +61,12 @@ if (matches.length === 0) {
 } else {
     listaMatches.innerHTML = matches.map(function (perfil) {
     const comum = perfil.interessesEmComum.length > 0 ? perfil.interessesEmComum : perfil.interesses.slice(0, 2);
+    const detalhes = MatchConnectApp.explicarCompatibilidade(perfil);
+    const selos = [
+        perfil.percentual >= 80 ? "Alta afinidade" : "Afinidade em evolução",
+        comum.length >= 2 ? "Interesses confirmados" : "Bom ponto de partida",
+        perfil.distanciaKm <= 12 ? "Perto de você" : "Conexão por interesse"
+    ];
 
     return `
         <article class="col-md-6">
@@ -74,12 +80,20 @@ if (matches.length === 0) {
                 </div>
                 <p class="text-muted">${perfil.bio}</p>
                 <div class="d-flex flex-wrap gap-2 mb-3">
+                    ${selos.map(function (selo) { return `<span class="trust-badge"><i class="bi bi-patch-check"></i>${selo}</span>`; }).join("")}
+                </div>
+                <div class="d-flex flex-wrap gap-2 mb-3">
                     ${comum.map(function (interesse) { return `<span class="tag-match">${interesse}</span>`; }).join("")}
+                </div>
+                <div class="match-explain-box">
+                    <strong>Por que esse match faz sentido</strong>
+                    <p>${detalhes.motivos.slice(0, 3).join(" • ")}</p>
+                    <small>EROS recomenda começar por ${comum[0] || perfil.interesses[0]} e fazer uma pergunta aberta.</small>
                 </div>
                 ${barrasCategorias(perfil)}
                 ${camadasResumo(perfil)}
                 <div class="match-profile-actions">
-                    <a class="btn btn-match-primary" href="../Conversas/Conversas.html">Abrir conversa</a>
+                    <a class="btn btn-match-primary abrir-conversa-match" href="../Conversas/Conversas.html" data-match="${perfil.nome}">Abrir conversa</a>
                     <a class="btn btn-match-outline" href="../EROS/EROS.html">EROS</a>
                 </div>
             </div>
@@ -87,3 +101,10 @@ if (matches.length === 0) {
     `;
     }).join("");
 }
+
+listaMatches.addEventListener("click", function (event) {
+    const link = event.target.closest(".abrir-conversa-match");
+    if (!link) return;
+
+    localStorage.setItem("conversaAberta", link.dataset.match);
+});

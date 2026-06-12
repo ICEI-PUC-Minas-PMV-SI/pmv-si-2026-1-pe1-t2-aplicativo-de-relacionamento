@@ -1,0 +1,74 @@
+/* MatchConnect — Design Tokens v2
+   Centraliza todas as variáveis do sistema de design.
+   Carregar ANTES de qualquer outro CSS do projeto.
+   ================================================================ */
+
+:root {
+  /* ── Cores de marca ─────────────────────────────────────────── */
+  --brand-purple:  #7C3AED;
+  --brand-violet:  #8B5CF6;
+  --brand-pink:    #EC4899;
+  --brand-blue:    #3B82F6;
+
+  /* Gradiente único da marca — usar em botões primários, barras de
+     progresso e destaques de card hero.                          */
+  --gradient-brand: linear-gradient(90deg, #EC4899 0%, #8B5CF6 50%, #3B82F6 100%);
+
+  /* ── Superfícies ────────────────────────────────────────────── */
+  --bg-page:       #FAF7FC;
+  --surface:       #FFFFFF;
+  --surface-soft:  #F5F1FA;
+  --surface-glass: rgba(255, 255, 255, 0.72);
+
+  /* ── Texto ──────────────────────────────────────────────────── */
+  --text-strong: #1E1B2E;
+  --text-body:   #4B4660;
+  --text-muted:  #8B86A0;
+
+  /* ── Bordas e sombras ───────────────────────────────────────── */
+  --border-subtle:   #ECE7F4;
+  --shadow-card:     0 1px 3px rgba(30, 27, 46, 0.06);
+  --shadow-elevated: 0 8px 30px rgba(124, 58, 237, 0.14);
+
+  /* ── Raio ───────────────────────────────────────────────────── */
+  --radius-card: 16px;
+  --radius-pill: 999px;
+
+  /* ── Espaçamento (escala fixa — usar só estes valores) ──────── */
+  --space-1: 8px;
+  --space-2: 12px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 48px;
+
+  /* ── Tipografia ─────────────────────────────────────────────── */
+  --font-page-title:  700 32px/1.2 Inter, "Segoe UI", sans-serif;
+  --font-card-title:  700 20px/1.3 Inter, "Segoe UI", sans-serif;
+  --font-body:        400 15px/1.6 Inter, "Segoe UI", sans-serif;
+  --font-label:       700 12px/1 Inter, "Segoe UI", sans-serif;
+
+  /* ── Navbar (glass) ─────────────────────────────────────────── */
+  --navbar-bg:     var(--surface-glass);
+  --navbar-blur:   blur(12px);
+  --navbar-border: 1px solid var(--border-subtle);
+
+  /* ── FAB EROS ───────────────────────────────────────────────── */
+  --fab-size:      56px;
+  --fab-clearance: 96px;
+}
+
+/* ── Dark mode: ajusta apenas os tokens de superfície e texto ─── */
+[data-theme="dark"] {
+  --bg-page:       #0F0E18;
+  --surface:       rgba(29, 26, 45, 0.96);
+  --surface-soft:  rgba(255, 255, 255, 0.06);
+  --surface-glass: rgba(20, 16, 32, 0.72);
+  --text-strong:   #F4F2FF;
+  --text-body:     #C6C2D8;
+  --text-muted:    #B9B8C9;
+  --border-subtle: rgba(255, 255, 255, 0.10);
+  --shadow-card:   0 1px 3px rgba(0, 0, 0, 0.30);
+  --shadow-elevated: 0 8px 30px rgba(0, 0, 0, 0.40);
+  --navbar-bg:     rgba(20, 16, 32, 0.72);
+}

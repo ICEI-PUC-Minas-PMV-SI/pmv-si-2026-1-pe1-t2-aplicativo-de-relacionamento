@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Playlists | MatchConnect</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../../assets/css/tokens.css">
+    <link rel="stylesheet" href="../../assets/css/App.css">
+    <link rel="stylesheet" href="../../assets/css/Internal.css">
+    <link rel="stylesheet" href="Playlists.css">
+    <link rel="stylesheet" href="../../assets/css/dark-mode.css">
+    <script>!function(){var t=localStorage.getItem("matchConnectTheme");t&&document.documentElement.setAttribute("data-theme",t)}();</script>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-match">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center gap-2" href="../home/Homeusuario.html">
+                    <i class="bi bi-heart-pulse-fill"></i> MatchConnect
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="menuPrincipal">
+                    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3 text-center">
+                        <li class="nav-item"><a class="nav-link" href="../home/Homeusuario.html">Início</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../Conversas/Conversas.html">Conversas</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="Playlists.html">Playlists</a></li>
+                        <li class="nav-item"><button id="btnSair" class="btn btn-entrar">Sair</button></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="page-shell playlist-shell">
+        <div class="container">
+            <section class="page-heading playlist-hero">
+                <div>
+                    <span class="section-kicker">Spotify + MatchConnect</span>
+                    <h1>Crie uma playlist para puxar assunto</h1>
+                    <p>Monte uma seleção baseada no match, salve no site, copie as faixas e abra no Spotify para finalizar.</p>
+                </div>
+                <div class="page-actions">
+                    <a class="btn btn-match-outline" href="../Experiencias/Experiencias.html">Experiências</a>
+                    <a class="btn btn-match-primary" href="../Conversas/Conversas.html">Conversas</a>
+                </div>
+            </section>
+
+            <section class="playlist-grid">
+                <section class="app-panel playlist-builder">
+                    <div class="playlist-panel-head">
+                        <div>
+                            <span class="section-kicker">Construtor</span>
+                            <h2>Playlist compatível</h2>
+                            <p>Escolha um match, um clima e deixe o EROS sugerir a base musical.</p>
+                        </div>
+                        <span id="playlistStatus" class="tag-match">Pronto para montar</span>
+                    </div>
+
+                    <div class="playlist-form">
+                        <label class="playlist-field">
+                            <span class="playlist-field-label">
+                                <i class="bi bi-person-heart" aria-hidden="true"></i>
+                                Match
+                            </span>
+                            <select id="playlistMatch" class="form-select"></select>
+                        </label>
+
+                        <label class="playlist-field">
+                            <span class="playlist-field-label">
+                                <i class="bi bi-vinyl" aria-hidden="true"></i>
+                                Clima da playlist
+                            </span>
+                            <select id="playlistMood" class="form-select">
+                                <option value="leve">Leve para começar conversa</option>
+                                <option value="romantica">Romântica sem exagero</option>
+                                <option value="energia">Energia para treino ou rolê</option>
+                                <option value="indie">Indie/cinema para trocar referências</option>
+                                <option value="calma">Calma para encontro tranquilo</option>
+                            </select>
+                        </label>
+
+                        <label class="playlist-field">
+                            <span class="playlist-field-label">
+                                <i class="bi bi-pencil-square" aria-hidden="true"></i>
+                                Nome
+                            </span>
+                            <input id="playlistName" class="form-control" type="text" maxlength="70">
+                        </label>
+                    </div>
+
+                    <div class="playlist-actions">
+                        <button id="btnGerarPlaylist" class="btn btn-match-primary" type="button">
+                            <i class="bi bi-magic"></i> Gerar sugestão
+                        </button>
+                        <button id="btnSalvarPlaylist" class="btn btn-match-outline" type="button">
+                            <i class="bi bi-bookmark-heart"></i> Salvar
+                        </button>
+                        <button id="btnCopiarPlaylist" class="btn btn-match-outline" type="button">
+                            <i class="bi bi-clipboard"></i> Copiar
+                        </button>
+                    </div>
+
+                    <div id="playlistAffinitySummary" class="playlist-affinity-summary"></div>
+
+                    <div class="add-track">
+                        <div class="add-track-head">
+                            <div>
+                                <label for="novaMusica">Adicionar ou procurar música</label>
+                                <span>Digite artista, música ou escolha uma sugestão pronta.</span>
+                            </div>
+                        </div>
+                        <div class="manual-track-search">
+                            <i class="bi bi-search"></i>
+                            <input id="novaMusica" class="form-control" type="text" placeholder="Ex: Djavan - Oceano">
+                            <button id="btnAdicionarMusica" class="btn btn-add-track" type="button" disabled>
+                                <i class="bi bi-plus-lg"></i>
+                                Adicionar
+                            </button>
+                        </div>
+                        <div class="manual-track-tools">
+                            <a id="btnBuscarMusicaSpotify" class="spotify-search-link" href="https://open.spotify.com/search/" target="_blank" rel="noopener">
+                                <i class="bi bi-spotify"></i> Buscar no Spotify
+                            </a>
+                            <span id="manualTrackHint">Digite uma música ou escolha uma sugestão.</span>
+                        </div>
+                        <div id="manualTrackSuggestions" class="manual-track-suggestions" aria-label="Sugestões de faixas"></div>
+                    </div>
+
+                    <div id="playlistResumo" class="playlist-summary"></div>
+                </section>
+
+                <aside class="app-panel spotify-panel">
+                    <div class="playlist-panel-head">
+                        <div>
+                            <span class="section-kicker">Dentro do site</span>
+                            <h2>Spotify preview</h2>
+                            <p>Use o player embutido como referência e pesquise as faixas sugeridas no Spotify.</p>
+                        </div>
+                        <span class="spotify-pill"><i class="bi bi-spotify"></i> Spotify</span>
+                    </div>
+
+                    <iframe id="spotifyEmbed" class="spotify-embed"
+                        src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator"
+                        title="Spotify embed" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                        loading="lazy"></iframe>
+
+                    <div class="spotify-actions">
+                        <a id="btnAbrirSpotify" class="btn btn-match-primary" href="https://open.spotify.com/" target="_blank" rel="noopener">
+                            <i class="bi bi-spotify"></i> Abrir no Spotify
+                        </a>
+                        <button id="btnEnviarPlaylist" class="btn btn-match-outline" type="button">
+                            <i class="bi bi-send"></i> Enviar para o match
+                        </button>
+                    </div>
+                </aside>
+            </section>
+
+            <section class="app-panel mt-4 track-box">
+                <div class="playlist-panel-head">
+                    <div>
+                        <span class="section-kicker">Faixas</span>
+                        <h2>Rascunho da playlist</h2>
+                    </div>
+                    <span id="playlistCount" class="tag-match">0 faixas</span>
+                </div>
+                <div class="playlist-draft-layout">
+                    <div class="playlist-draft-tracks">
+                        <div id="playlistTracks" class="track-list"></div>
+                    </div>
+                    <aside class="playlist-affinity" aria-labelledby="playlistAffinityTitle">
+                        <div class="playlist-affinity-head">
+                            <div>
+                                <span class="section-kicker">Afinidade em tempo real</span>
+                                <h3 id="playlistAffinityTitle">Afinidade da playlist</h3>
+                            </div>
+                        </div>
+                        <div id="playlistAffinityList" class="playlist-affinity-list"></div>
+                    </aside>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="../../assets/js/navigation.js"></script>
+    <script src="../../assets/js/appData.js"></script>
+    <script src="Playlists.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/js/theme.js"></script>
+</body>
+
+</html>
