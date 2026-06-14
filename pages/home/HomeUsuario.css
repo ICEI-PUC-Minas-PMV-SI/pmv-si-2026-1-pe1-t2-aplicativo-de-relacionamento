@@ -2146,3 +2146,122 @@
         width: 100%;
     }
 }
+
+/* ── Compat Panel: Glassmorphism escuro (Design System v2) ───────
+   A seção "Explicação completa" usa fundo dark-brand para que os
+   cards de insight possam usar glassmorphism com texto claro.    */
+
+.compat-summary-panel {
+    background: linear-gradient(135deg, #1E1B2E 0%, #2D1553 55%, #0F2040 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: var(--radius-card, 16px) !important;
+}
+
+.compat-summary-head span {
+    color: var(--brand-pink, #EC4899) !important;
+}
+
+.compat-summary-head strong {
+    color: #F4F2FF !important;
+}
+
+.compat-summary-head p {
+    color: rgba(198, 194, 216, 0.88) !important;
+}
+
+.compat-summary-tags span {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(255, 255, 255, 0.16) !important;
+    color: #E2E8F0 !important;
+}
+
+/* Botão de toggle */
+.compat-details-toggle {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    color: #E2E8F0 !important;
+}
+
+.compat-details-toggle strong {
+    color: #F4F2FF !important;
+}
+
+.compat-details-toggle small {
+    color: rgba(198, 194, 216, 0.80) !important;
+}
+
+.compat-details-toggle i {
+    color: var(--brand-violet, #8B5CF6) !important;
+}
+
+/* Cards de insight (compat-explain-list p) — glassmorphism */
+.compat-explain-list p {
+    background: rgba(255, 255, 255, 0.05) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.10) !important;
+    border-radius: 12px !important;
+    color: #E2E8F0 !important;
+}
+
+/* Ícones por categoria via emoji — substitui o bi-check2-heart
+   1: temas em comum  2: descobertas  3: limites  4: programa ideal  5: energia */
+.compat-explain-list p i {
+    flex: 0 0 auto;
+    font-size: 1rem;
+    line-height: 1;
+    margin-top: 1px;
+}
+
+.compat-explain-list p i::before {
+    font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif !important;
+}
+
+.compat-explain-list p:nth-child(1) i::before { content: "🎬" !important; }
+.compat-explain-list p:nth-child(2) i::before { content: "✈️" !important; }
+.compat-explain-list p:nth-child(3) i::before { content: "🛡️" !important; }
+.compat-explain-list p:nth-child(4) i::before { content: "💜" !important; }
+.compat-explain-list p:nth-child(5) i::before { content: "⚡" !important; }
+
+/* Painéis de categoria e informações */
+.compat-category-panel,
+.interest-layer-panel {
+    background: rgba(255, 255, 255, 0.05) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.10) !important;
+    border-radius: 12px !important;
+}
+
+.compat-category-head span,
+.interest-layer-panel > span {
+    color: rgba(228, 224, 255, 0.92) !important;
+}
+
+.compat-category-head small {
+    color: rgba(180, 177, 200, 0.85) !important;
+}
+
+.compat-category-row strong,
+.interest-layer-row small {
+    color: rgba(198, 194, 216, 0.90) !important;
+}
+
+.compat-category-row span,
+.interest-layer-row strong {
+    color: #F4F2FF !important;
+}
+
+.compat-category-row em {
+    background: rgba(255, 255, 255, 0.12) !important;
+}
+
+.interest-layer-row {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.interest-layer-row.warn {
+    background: rgba(236, 72, 153, 0.12) !important;
+    border-color: rgba(236, 72, 153, 0.22) !important;
+}

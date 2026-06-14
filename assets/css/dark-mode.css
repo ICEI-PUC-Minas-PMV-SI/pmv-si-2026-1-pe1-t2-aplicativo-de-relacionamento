@@ -1219,65 +1219,66 @@
 
 /* Dark mode toggle button */
 /* Toggle adaptado ao tema claro (navbar glass) */
+/* ── Tema toggle — modo claro (lua visível) ─────────────────────
+   Lilás suave + ícone roxo escuro. Contraste ≈ 5.5:1 (WCAG AA+). */
 .dark-mode-toggle {
   align-items: center;
-  background: var(--surface-soft, #F5F1FA);
-  border: 1px solid var(--border-subtle, #ECE7F4);
+  background: #EDE9FE;
+  border: 1px solid rgba(109, 40, 217, 0.22);
   border-radius: 999px;
-  color: var(--brand-purple, #7C3AED);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
+  color: #6D28D9;
   cursor: pointer;
   display: inline-flex;
   font-size: 1rem;
   height: 34px;
   justify-content: center;
-  transition: background 180ms ease, transform 180ms ease;
+  transition: background 180ms ease, box-shadow 180ms ease, transform 180ms ease;
   width: 34px;
 }
 
 .dark-mode-toggle:hover {
-  background: rgba(124,58,237,0.10);
+  background: #DDD6FE;
+  box-shadow: 0 4px 14px rgba(109, 40, 217, 0.18);
   transform: scale(1.08);
 }
 
+/* ── Modo escuro (sol visível) ──────────────────────────────────
+   Vidro semitransparente + sol amarelo claro. Contraste ≈ 8:1.  */
 [data-theme="dark"] .dark-mode-toggle {
-  background: rgba(155, 127, 255, 0.20);
-  border-color: rgba(155, 127, 255, 0.30);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.20);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.24);
+  color: #FDE68A;
 }
 
 [data-theme="dark"] .dark-mode-toggle:hover {
-  background: rgba(155, 127, 255, 0.30);
+  background: rgba(255, 255, 255, 0.20);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.32);
 }
 
+/* ── Landing page (fundo com gradiente claro/escuro) ──────────── */
 body.landing-modern .dark-mode-toggle {
-  color: rgba(255, 255, 255, 0.80);
-  background: rgba(255, 255, 255, 0.10);
-  border-color: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.30);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
+  color: #1E1B4B;
 }
 
 [data-theme="dark"] body.landing-modern .dark-mode-toggle {
-  background: rgba(155, 127, 255, 0.20);
-  border-color: rgba(155, 127, 255, 0.30);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.20);
+  color: #FDE68A;
 }
 
-.dark-mode-toggle i {
-  pointer-events: none;
-}
-
-[data-theme="dark"] .dark-mode-toggle .bi-moon-fill {
-  display: none;
-}
-
-[data-theme="dark"] .dark-mode-toggle .bi-sun-fill {
-  display: inline;
-}
-
-.dark-mode-toggle .bi-sun-fill {
-  display: none;
-}
-
-.dark-mode-toggle .bi-moon-fill {
-  display: inline;
-}
+/* ── Visibilidade dos ícones ─────────────────────────────────── */
+.dark-mode-toggle i          { pointer-events: none; }
+.dark-mode-toggle .bi-sun-fill  { display: none; }
+.dark-mode-toggle .bi-moon-fill { display: inline; }
+[data-theme="dark"] .dark-mode-toggle .bi-moon-fill { display: none; }
+[data-theme="dark"] .dark-mode-toggle .bi-sun-fill  { display: inline; }
 
 /* Dark mode polish: final overrides for a cleaner, more modern app-wide look. */
 [data-theme="dark"] {
@@ -1751,23 +1752,22 @@ body.landing-modern .dark-mode-toggle {
   padding: 0 !important;
 }
 
+/* ── Floating toggle: posicionamento e tamanho ─────────────────
+   As cores vêm das regras .dark-mode-toggle acima.
+   No claro: lilás (#EDE9FE) + lua roxa — visivelmente destacado.
+   No escuro: vidro branco semitransparente + sol amarelo.        */
 .dark-mode-floating-toggle {
   bottom: 22px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.14);
+  height: 42px;
   position: fixed;
   right: 22px;
-  z-index: 1040;
-  background:
-    linear-gradient(135deg, rgba(36, 27, 53, 0.92), rgba(75, 58, 143, 0.88), rgba(17, 127, 156, 0.88));
-  border-color: rgba(255, 255, 255, 0.20);
-  box-shadow: 0 14px 34px rgba(33, 24, 70, 0.24);
-  height: 42px;
   width: 42px;
+  z-index: 1040;
 }
 
 [data-theme="dark"] .dark-mode-floating-toggle {
-  background:
-    linear-gradient(135deg, rgba(255, 121, 200, 0.18), rgba(180, 156, 255, 0.20), rgba(105, 215, 255, 0.16)) !important;
-  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.36);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.36);
 }
 
 @media (max-width: 575.98px) {
